@@ -5,6 +5,8 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PackageController;
 use App\Http\Controllers\KycController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\BuypackageController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -21,7 +23,8 @@ Route::get('/', function () {
 });
 Route::get('/redirects', [HomeController::class,'index']);
 
-Route::get('/buy_package', [PackageController::class,'index']);
+Route::resource('package', PackageController::class);
+Route::resource('buy_package', BuypackageController::class);
 Route::resource('kyc', KycController::class);
 Route::get('/user/profile', [UserController::class,'user']);
 Route::resource('user', UserController::class);

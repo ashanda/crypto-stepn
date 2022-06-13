@@ -29,7 +29,7 @@
 						</a>
                         
                     </li>
-                    <li><a class="has-arrow ai-icon" href="buy_package" aria-expanded="false">
+                    <li><a class="has-arrow ai-icon" href="package" aria-expanded="false">
 							<i class="flaticon-061-puzzle"></i>
 							<span class="nav-text">Packages</span>
 						</a>

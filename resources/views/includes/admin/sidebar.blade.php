@@ -4,13 +4,10 @@
         <div class="deznav">
             <div class="deznav-scroll">
 				<div class="main-profile">
-					@if (Auth::user()->profile_pic == null)
-					<img src="{{ asset('/images/user.png')}}" alt="">
-                    
-                    @else
+
+					
 					<img src="{{ url('profile/img/'.Auth::user()->profile_pic) }}" alt="">
                     
-                    @endif
 					
 					<a href="/"><i class="fa fa-cog" aria-hidden="true"></i></a>
 					<h5 class="mb-0 fs-20 text-black "><span class="font-w400">Hello,</span> {{ Auth::user()->fname.' '.Auth::user()->lname }}</h5>
@@ -30,7 +27,7 @@
 						</a>
                         
                     </li>
-                    <li><a class="has-arrow ai-icon" href="buy_package" aria-expanded="false">
+                    <li><a class="has-arrow ai-icon" href="package" aria-expanded="false">
 							<i class="flaticon-061-puzzle"></i>
 							<span class="nav-text">Packages</span>
 						</a>

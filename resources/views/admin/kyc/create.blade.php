@@ -4,9 +4,7 @@
    <!--**********************************
             Content body start
         ***********************************-->
-        @php
-            var_dump($user_id);
-        @endphp
+        
         <div class="content-body">
 			<div class="container-fluid">
 <div class="container mt-2">
