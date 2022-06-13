@@ -199,6 +199,6 @@ $('#dbType').on('change',function(){
 </script>    
 
 
-
+{{ \TawkTo::widgetCode() }}
 </body>
 </html>
