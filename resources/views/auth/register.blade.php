@@ -12,6 +12,7 @@
 }
 
 
+
 @endphp        
 <div class="authincation h-100">
         <div class="container h-100">
@@ -44,6 +45,8 @@
                                         <div class="form-group">
                                         <input id="ref_id" class="form-control" type="hidden" name="ref_id" value="{{ request()->get('ref')}}" />
                                         <input id="ref_s" class="form-control" type="hidden" name="ref_s" value="{{request()->get('ref_s')  }}" />
+                                        
+
                                         <input id="system_id" class="form-control" type="hidden" name="system_id" value="{{ generateRandomString() }}" />
                                         </div>
                                         <div class="form-group">

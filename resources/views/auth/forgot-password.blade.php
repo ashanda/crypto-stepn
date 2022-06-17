@@ -1,4 +1,21 @@
-<x-guest-layout>
+@extends('layouts.auth')
+
+@section('content')
+   <!--**********************************
+            Content body start
+        ***********************************-->
+        <div class="authincation h-100">
+            <div class="container h-100">
+                <div class="row justify-content-center h-100 align-items-center">
+                    <div class="col-md-6">
+                        <div class="authincation-content">
+                            <div class="row no-gutters">
+                                <div class="col-xl-12">
+                                    <div class="auth-form">
+                                        <div class="text-center mb-3">
+                                            <img src="images/logo-full.png" alt="">
+                                        </div>
+                                        <h4 class="text-center mb-4">Sign in your account</h4>
     <x-jet-authentication-card>
         <x-slot name="logo">
             <x-jet-authentication-card-logo />
@@ -31,4 +48,5 @@
             </div>
         </form>
     </x-jet-authentication-card>
-</x-guest-layout>
+
+    @endsection

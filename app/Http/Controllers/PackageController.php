@@ -51,6 +51,7 @@ class PackageController extends Controller
         $request->validate([
         'package_name' => 'required',
         'package_value' => 'required',
+        'package_category' => 'required',
         'package_duration' => 'required',
         'package_description' => 'required',
         'package_image' => 'required',
@@ -59,6 +60,7 @@ class PackageController extends Controller
         $package = new Package();
         $package->package_name = $request->package_name;
         $package->package_value = $request->package_value;
+        $package->package_category = $request->package_category;
         $package->package_duration = $request->package_duration;
         $package->package_description = $request->package_description;
         ;
@@ -116,6 +118,7 @@ class PackageController extends Controller
         $request->validate([
             'package_name' => 'required',
             'package_value' => 'required',
+            'package_category' => 'required',
             'package_duration' => 'required',
             'package_description' => 'required',
             'package_status' => 'required',
@@ -123,6 +126,7 @@ class PackageController extends Controller
         $package = Package::find($id);
         $package->package_name = $request->package_name;
         $package->package_value = $request->package_value;
+        $package->package_category = $request->package_category;
         $package->package_duration = $request->package_duration;
         $package->package_description = $request->package_description;
         ;

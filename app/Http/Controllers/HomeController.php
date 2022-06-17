@@ -9,10 +9,16 @@ Use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['auth', 'verified']);
+    }
+    
     public function index(User $user_data)
     {
         $role=Auth::user()->role;
         if($role==1){
+
             return view('admin');
         }
         if($role==0){

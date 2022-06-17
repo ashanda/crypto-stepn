@@ -17,6 +17,7 @@ class CreatePackagesTable extends Migration
             $table->increments('id');
             $table->string('package_name');
             $table->string('package_value');
+            $table->string('package_category');
             $table->string('package_duration');
             $table->longText('package_description');
             $table->string('package_image');

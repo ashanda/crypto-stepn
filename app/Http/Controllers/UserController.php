@@ -41,6 +41,7 @@ class UserController extends Controller
         
         if(Auth::check()){
             $request->validate([
+                
                 'fname' => 'required',
                 'lname' => 'required',
                 'email' => 'required',

@@ -20,8 +20,7 @@ return new class extends Migration
             $table->string('lname');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('ref_id')->nullable();
-            $table->string('ref_s')->nullable();
+            $table->string('ref_id')->nullable();  
             $table->string('password');
             $table->string('role')->default(0);
             $table->string('status')->default(1);

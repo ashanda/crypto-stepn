@@ -9,6 +9,7 @@
 			<div class="container-fluid">
 				<div class="form-head mb-sm-5 mb-3 d-flex flex-wrap align-items-center">
 					<h2 class="font-w600 mb-2 mr-auto ">Dashboard</h2>
+					
 					<div class="col-xl-6 col-xxl-12">
 						<div class="row">
 							<div class="col-sm-6">
@@ -23,7 +24,7 @@
 										<div class="d-flex">
 											
 											<div class="text-white">
-												<span><input type="text" readonly id="copyTarget1" class="form-control" value="{{ url('/') }}/?ref_id={{ $user_data[0]->system_id }}&ref_s={{ 0 }}"></span>
+												<span><input type="text" readonly id="copyTarget1" class="form-control" value="{{ url('/') }}/register/?ref={{ $user_data[0]->system_id }}&ref_s={{ 0 }}"></span>
 												<span id="copyButton1" class="btn btn-outline-success float-right" title="Click to copy">
 													<i class="fa fa-clipboard" aria-hidden="true"></i>
 												</span>
@@ -44,7 +45,8 @@
 										<div class="d-flex">
 											
 											<div class="text-white">
-												<span><input type="text" readonly id="copyTarget1" class="form-control" value="{{ url('/') }}/?ref_id={{ $user_data[0]->system_id }}&ref_s={{ 1 }}"></span>
+												
+												<span><input type="text" readonly id="copyTarget1" class="form-control" value="{{ url('/') }}/register/?ref={{ $user_data[0]->system_id }}&ref_s={{ 1 }}"></span>
 												<span id="copyButton2" class="btn btn-outline-success float-right" title="Click to copy">
 													<i class="fa fa-clipboard" aria-hidden="true"></i>
 												</span>

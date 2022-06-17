@@ -30,6 +30,36 @@
                 <div class="row">
                     <div class="col-xs-12 col-sm-12 col-md-12">
                         <div class="form-group">
+                            <strong>Package Category:</strong>
+                            <div class="dropdown bootstrap-select form-control default-select">
+                                <select class="form-control default-select" tabindex="-98" name="package_category">
+                                  
+                                    @if ($package[0]->package_category == 'Primary')
+                                    <option value="Primary">Primary</option>
+                                    <option value="Superior">Superior</option>
+                                    <option value="VIP">VIP</option>
+                                    
+                                    @elseif ($package[0]->package_category == 'Superior')
+                                    <option value="Superior">Superior</option>
+                                    <option value="Primary">Primary</option>
+                                    <option value="VIP">VIP</option>
+                                    @else
+                                    <option value="VIP">VIP</option>
+                                    <option value="Superior">Superior</option>
+                                    <option value="Primary">Primary</option>
+                                    @endif
+                                  
+                                  
+                                  
+                              </select>
+                          </div>
+                            @error('status')
+                            <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-12">
+                        <div class="form-group">
                             <strong>Package Name:</strong>
                             <input type="text" name="package_name" class="form-control" value="{{ $package[0]->package_name }}">
                             @error('package_name')

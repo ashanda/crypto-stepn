@@ -1,11 +1,14 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PackageController;
 use App\Http\Controllers\KycController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\BuypackageController;
+use App\Http\Controllers\WalletController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -21,21 +24,26 @@ use App\Http\Controllers\BuypackageController;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/redirects', [HomeController::class,'index']);
+
+Route::get('/redirects', [HomeController::class,'index'])->middleware(['auth','verified']);
+Route::get('/dashboard', [HomeController::class,'index'])->middleware(['auth','verified']);
 
 Route::resource('package', PackageController::class);
 Route::resource('buy_package', BuypackageController::class);
+
 Route::resource('kyc', KycController::class);
+
 Route::get('/user/profile', [UserController::class,'user']);
 Route::resource('user', UserController::class);
 
+Route::resource('wallet', WalletController::class);
 
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
     'verified'
 ])->group(function () {
-    Route::get('/dashboard', [HomeController::class,'index']);
+    Route::get('/redirects', [HomeController::class,'index']);
     
     
 });

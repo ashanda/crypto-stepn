@@ -24,6 +24,7 @@
             <table class="table table-bordered">
             <tr>
             <th>S.No</th>
+            <th>Package Category</th>
             <th>Package Name</th>
             <th>Package Value($)</th>
             <th>Package Duration(Days)</th>
@@ -33,6 +34,7 @@
             @foreach ($data as $package)
             <tr>
             <td>{{ $package->id }}</td>
+            <td>{{ $package->package_category }}</td>
             <td>{{ $package->package_name }}</td>
             <td>{{ $package->package_value }}</td>
             <td>{{ $package->package_duration }}</td>

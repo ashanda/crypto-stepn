@@ -3,11 +3,13 @@
 namespace App\Actions\Fortify;
 
 use App\Models\User;
+use App\Models\User_Parent;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
 use Laravel\Jetstream\Jetstream;
+use Illuminate\Support\Facades\DB;
 
 class CreateNewUser implements CreatesNewUsers
 {
@@ -23,7 +25,7 @@ class CreateNewUser implements CreatesNewUsers
    
     {
         
-
+        
         Validator::make($input, [
             'fname' => ['required', 'string', 'max:255'],
             'lname' => ['required', 'string', 'max:255'],
@@ -32,15 +34,27 @@ class CreateNewUser implements CreatesNewUsers
             'password' => $this->passwordRules(),
             'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['accepted', 'required'] : '',
         ])->validate();
-
-        return User::create([
+        $puid = DB::table('users')->where('system_id', '=' ,$input['ref_id'])->first();
+            if(!empty($puid)){
+                $puid = $puid->uid;
+            }else{
+                $puid = null;
+            }
+        $user =  User::create([
+            
             'fname' => $input['fname'],
             'lname' => $input['lname'],
             'ref_id' => $input['ref_id'],
-            'ref_s' => $input['ref_s'],
             'system_id'=>$input['system_id'],
             'email' => $input['email'],
             'password' => Hash::make($input['password']),
-        ]);
+        ]); 
+        User_Parent::create([
+            'parent_id' => $puid,
+            'ref_s' => $input['ref_s'],
+        ]);  
+        
+        return $user;
+
     }
 }
