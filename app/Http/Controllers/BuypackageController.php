@@ -3,12 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use App\Models\User_Package;
 use App\Models\User_Parent;
 use App\Models\Direct_Commission;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\PackageController;
+
+use App\Models\Package;
 use App\Models\User;
 
 class BuypackageController extends Controller
@@ -47,6 +50,9 @@ class BuypackageController extends Controller
         * @param  \Illuminate\Http\Request  $request
         * @return \Illuminate\Http\Response
         */
+
+        
+
         public function store(Request $request)
         {
             $request->validate([
@@ -55,17 +61,25 @@ class BuypackageController extends Controller
                 
                 'package_id' => 'required',
                 'package_value' => 'required',
+                'currency_type' => 'required',
+                'network'=>'required',
 
                 
                 
                 ]);
                 $buy_package = new User_Package();
                 $buy_package->uid = Auth::user()->uid;
+                if($request->file('deposite_ss')){
+                    $file= $request->file('deposite_ss');
+                    $filename= date('YmdHi').$file->getClientOriginalName();
+                    $file-> move(public_path('/deposite/img'), $filename);
+                    $buy_package->deposite_ss = $filename;
+                }
                 $buy_package->package_id = $request->package_id;
                 $package_revenue = $request->package_value * 5;
                 $buy_package->package_revenue = $package_revenue;
-                $buy_package->parent_id = $request->pref_id;
-                $buy_package->pref_side = $request->pref_side;
+                $buy_package->currency_type = $request->currency_type;
+                $buy_package->network = $request->network;
 
                 //User parent Record
                 $user_parents = User_Parent::where('parent_id', '=', $request->pref_id)->first();
@@ -148,10 +162,20 @@ class BuypackageController extends Controller
         * @param  \App\Company  $buy_package
         * @return \Illuminate\Http\Response
         */
-        public function edit(Request $buy_package,$id)
-        {
-           
-        }
+        public function buy($id)
+            {
+                $role=Auth::user()->role;
+                if($role==1){
+                    $buy_package = Package::find($id);
+                    return view('admin.kyc.edit',compact('buy_package','id'));
+                }
+                if($role==0){
+                    
+                    $buy_package = DB::table('packages')->where('id', $id)->get();  
+                    return view('user.package.buy',compact('buy_package','id'));
+                }
+            
+            }
         /**
         * Update the specified resource in storage.
         *

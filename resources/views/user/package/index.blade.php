@@ -21,8 +21,7 @@
                 <div class="col-xl-3 col-lg-6 col-sm-6">
                     <div class="card">
                         <div class="card-body">
-                            <form action="{{ route('buy_package.store') }}" method="POST" enctype="multipart/form-data">
-                                @csrf
+                            
                                 <div class="new-arrival-product">
                                 <div class="new-arrivals-img-contnent">
                                     <img class="img-fluid" src="{{ asset('packages/img/'.$package->package_image) }}" alt="">
@@ -53,7 +52,8 @@
                                     @elseif($package_data == '2')
                                     <button type="submit" class="btn btn-primary" disabled>Wait For Admin Approve</button>
                                     @else
-                                      <button type="submit" class="btn btn-primary ml-3">Buy Package</button>
+                                      <a class="btn btn-primary ml-3" href="buy_package/{{ $data[0]->id }}/progress" role="button">Buy Package</a>
+                                      
                                     @endif
                                                                              
                                       
@@ -62,7 +62,7 @@
                                 </div>
                                 
                             </div>
-                        </form> 
+                        
                         </div>
                     </div>
                 </div>

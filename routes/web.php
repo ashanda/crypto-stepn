@@ -7,6 +7,7 @@ use App\Http\Controllers\PackageController;
 use App\Http\Controllers\KycController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\BuypackageController;
+use App\Http\Controllers\UserbuypackageController;
 use App\Http\Controllers\WalletController;
 
 
@@ -30,6 +31,10 @@ Route::get('/dashboard', [HomeController::class,'index'])->middleware(['auth','v
 
 Route::resource('package', PackageController::class);
 Route::resource('buy_package', BuypackageController::class);
+Route::get('buy_package/{id}/progress',[BuypackageController::class,'buy'])->middleware(['auth','verified']);
+
+Route::resource('user_buy_package', UserbuypackageController::class);
+
 
 Route::resource('kyc', KycController::class);
 

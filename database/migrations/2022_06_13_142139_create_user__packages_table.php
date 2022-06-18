@@ -18,8 +18,9 @@ class CreateUserPackagesTable extends Migration
             $table->string('uid');
             $table->string('package_id');
             $table->string('package_revenue');
-            $table->string('parent_id')->nullable();
-            $table->string('pref_side')->nullable();
+            $table->string('currency_type');
+            $table->string('network');
+            $table->string('deposite_ss');
             $table->string('status')->default(2);
             $table->timestamps();
         });
