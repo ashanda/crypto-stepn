@@ -31,7 +31,9 @@ Route::get('/dashboard', [HomeController::class,'index']);
 
 Route::resource('/package', PackageController::class);
 Route::resource('/buy_package', BuypackageController::class);
+
 Route::get('/buy_package/{id}/progress',[BuypackageController::class,'buy']);
+
 Route::get('/active_packages', [BuypackageController::class,'active']);
 Route::get('/user/profile', [UserController::class,'user']);
 
