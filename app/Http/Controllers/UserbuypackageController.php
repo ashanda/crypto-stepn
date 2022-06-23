@@ -21,9 +21,8 @@ class UserbuypackageController extends Controller
             return view('admin.user_package.index',compact('data'));
         }
         if($role==0){
-            $user_id = Auth::id();
-            $data = DB::table('kycs')->where('uid', $user_id)->get();        
-            return view('user.kyc.index',compact('data'));
+                   
+            return view('dashboard');
         }
     
     }

@@ -89,7 +89,14 @@ class BuypackageController extends Controller
                 }
                 $buy_package->package_id = $request->package_id;
                 // Commission function call
-                
+                $previous_package = User_Package::where('package_id', '=', $request->package_id,'AND', 'uid', '=',Auth::user()->uid)->count();
+                if ($previous_package >= 1){
+                    buy_package_secound_time($request->package_value,$request->package_id); 
+                    $package_revenue = $request->package_value * 4;
+                }else{
+                    buy_package($request->package_value,$request->package_id); 
+                    $package_revenue = $request->package_value * 5;
+                }
                 $package_revenue = $request->package_value * 5;
                 $buy_package->package_revenue = $package_revenue;
                 $buy_package->currency_type = $request->currency_type;
