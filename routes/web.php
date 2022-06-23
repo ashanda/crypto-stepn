@@ -26,24 +26,24 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/redirects', [HomeController::class,'index']);
-Route::get('/dashboard', [HomeController::class,'index']);
+Route::get('/redirects', [HomeController::class,'index'])->middleware(['auth','verified']);
+Route::get('/dashboard', [HomeController::class,'index'])->middleware(['auth','verified']);
 
-Route::resource('package', PackageController::class);
-Route::resource('buy_package', BuypackageController::class);
-Route::get('buy_package/{id}/progress',[BuypackageController::class,'buy']);
-Route::get('active_packages', [BuypackageController::class,'active']);
-Route::get('/user/profile', [UserController::class,'user']);
+Route::resource('package', PackageController::class)->middleware(['auth','verified']);
+Route::resource('buy_package', BuypackageController::class)->middleware(['auth','verified']);
+Route::get('buy_package/{id}/progress',[BuypackageController::class,'buy'])->middleware(['auth','verified']);
+Route::get('active_packages', [BuypackageController::class,'active'])->middleware(['auth','verified']);
+Route::get('/user/profile', [UserController::class,'user'])->middleware(['auth','verified']);
 
-Route::resource('user_buy_package', UserbuypackageController::class);
+Route::resource('user_buy_package', UserbuypackageController::class)->middleware(['auth','verified']);
 
 
-Route::resource('kyc', KycController::class);
+Route::resource('kyc', KycController::class)->middleware(['auth','verified'])->middleware(['auth','verified']);
 
-Route::get('/user/profile', [UserController::class,'user']);
-Route::resource('user', UserController::class);
+Route::get('/user/profile', [UserController::class,'user'])->middleware(['auth','verified']);
+Route::resource('user', UserController::class)->middleware(['auth','verified']);
 
-Route::resource('wallet', WalletController::class);
+Route::resource('wallet', WalletController::class)->middleware(['auth','verified']);
 
 Route::middleware([
     'auth:sanctum',
