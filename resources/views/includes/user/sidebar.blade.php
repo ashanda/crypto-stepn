@@ -44,8 +44,8 @@
 							<span class="nav-text">Packages</span>
 						</a>
 						<ul aria-expanded="false">
-							<li><a href="/active_packages">My Active Packages</a></li>
-							<li><a href="/buy_package">Buy package</a></li>
+							<li><a href="active_packages">My Active Packages</a></li>
+							<li><a href="buy_package">Buy package</a></li>
 						</ul>
                         
                     </li>
