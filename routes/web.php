@@ -34,7 +34,7 @@ Route::resource('buy_package', BuypackageController::class)->middleware(['auth',
 Route::get('active_packages', [BuypackageController::class,'active'])->middleware(['auth','verified']);
 Route::get('buy_package/{id}/progress',[BuypackageController::class,'buy'])->middleware(['auth','verified']);
 Route::get('/user/profile', [UserController::class,'user'])->middleware(['auth','verified']);
-Route::resource('user_buy_package', UserbuypackageController::class);
+Route::resource('user_buy_package', UserbuypackageController::class)->middleware(['auth','verified']);
 
 
 Route::resource('kyc', KycController::class)->middleware(['auth','verified']);
