@@ -121,8 +121,8 @@
             if($userbinarycommision->isEmpty()){
             $user['uid'] = $parent_id;
             $user['user_package_id'] = $package_id;
-            $user['current_left_balance'] = $package_value*0.1;
-            $user['current_right_balance'] = $package_value*0.1;
+            $user['current_left_balance'] = $package_value*0.2;
+            $user['current_right_balance'] = $package_value*0.2;
             DB::table('user_binary_commissions')->insert($user);
             if($ref_s == 0 ) {
             $current_left_balance = $user['current_left_balance'];
@@ -143,21 +143,25 @@
 
 
             if(	$current_left_balance == $current_right_balance ){
-            // Update Wallet 
-            // Update User_binart_commission as left ballance = 0, right balance = 0			   
-            } else if( $current_left_balance < $current_right_balance ){				
-            // Update Wallet 
-            // Update User_binart_commission_total as left balance = 0, right balance = ( $current_right_balance -  current_left_balance )	
-            }else{
-
-            }
-
-            /* Now Update UserBinary Commision table */
-            DB::table('user_binary_commissions')
-            ->where('id', $id)
-            ->update(array('current_left_balance' => $current_left_balance, 'current_right_balance' => $current_right_balance));
-            }    
-        
+              // Update Wallet 
+              DB::table('user_binary_commissions')
+              ->where('id', $id)
+              ->update(array('current_left_balance' => $current_left_balance, 'current_right_balance' => $current_right_balance));			   
+             } else if( $current_left_balance < $current_right_balance ){				
+              // Update Wallet 
+              $current_right_balance = $current_right_balance - $current_left_balance;
+              $current_left_balance = 0;
+              DB::table('user_binary_commissions')
+              ->where('id', $id)
+              ->update(array('current_left_balance' => $current_left_balance, 'current_right_balance' => $current_right_balance));
+           }else{
+              $current_left_balance = $current_left_balance - $current_right_balance;
+              $current_right_balance = 0;
+              DB::table('user_binary_commissions')
+              ->where('id', $id)
+              ->update(array('current_left_balance' => $current_left_balance, 'current_right_balance' => $current_right_balance));
+           }    
+          }
         $parent_user_level++;
         
       }
