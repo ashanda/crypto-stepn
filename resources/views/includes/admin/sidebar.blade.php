@@ -55,7 +55,8 @@
                 </ul>
 				<div class="copyright">
 					<p><strong> Crypto Admin Dashboard</strong> © 2021 All Rights Reserved</p>
-					<p class="fs-12">Made with <span class="heart"></span> by DexignZone</p>
+					<!-- <p class="fs-12">Made with <span class="heart"></span> by DexignZone</p> -->
+					<p class="fs-12">Made with <i class="fa fa-heart"> </i> by YogeeMedia</p>
 				</div>
 			</div>
         </div>
