@@ -22,7 +22,7 @@
 									<div class="card-info">
 										
 										<div class="d-flex justify-content-between">
-											<h2 class="num-text text-white mb-5 font-w600">My Reffrel Link Left<br> Chain</h2>
+											<h2 class="num-text text-white mb-5 font-w600">My Reffrel Link Left Chain</h2>
 											
 										</div>
 										<div class="d-flex">
