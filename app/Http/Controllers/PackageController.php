@@ -100,11 +100,7 @@ class PackageController extends Controller
                 $package = DB::table('packages')->where('id', $id)->get(); ;
                 return view('admin.package.edit',compact('package','id'));
             }
-            if($role==0){
-                $user_id = Auth::id();
-                $package = DB::table('packages')->where('uid', $user_id)->get();  
-                return view('user.kyc.edit',compact('kyc','id'));
-            }
+            
         }
         /**
         * Update the specified resource in storage.

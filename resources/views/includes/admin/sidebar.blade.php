@@ -33,7 +33,7 @@
 					</a>
 					<ul aria-expanded="false">
 						<li><a href="package">Create Package</a></li>
-						<li><a href="user_buy_package">Activate Package</a></li>
+						<li><a href="/user_buy_package">Activate Package</a></li>
 					</ul>
 					</li>
                     

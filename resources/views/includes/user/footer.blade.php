@@ -34,13 +34,13 @@ Scripts
     <script src="{{ asset('js/plugins-init/datatables.init.js') }}"></script>
 
 <script>
-        $(document).ready(function () {
+       /* $(document).ready(function () {
 
             setInterval( function() {
                 $("#sample").load(location.href + " #sample");
              }, 5000 );
 
-        });
+        });*/
         (function() {
   "use strict";
 

@@ -78,7 +78,7 @@
                                     @endphp    
                                     @if ( $package_data == '1')
                                     
-                                      <button type="submit" class="btn btn-primary" disabled>All Ready Buy</button>
+                                      <button type="submit" class="btn btn-primary" disabled>Already Bought</button>
                                         
                                     @elseif($package_data == '2')
                                     <button type="submit" class="btn btn-primary" disabled>Wait For Admin Approve</button>

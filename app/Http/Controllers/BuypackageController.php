@@ -76,6 +76,15 @@ class BuypackageController extends Controller
                     $buy_package->deposite_ss = $filename;
                 }
                 $buy_package->package_id = $request->package_id;
+                // Commission function call
+                $previous_package = User_Package::where('package_id', '=', $request->package_id,'AND', 'uid', '=',Auth::user()->uid)->count();
+                if ($previous_package >= 1){
+                    buy_package_secound_time($request->package_value); 
+                    $package_revenue = $request->package_value * 4;
+                }else{
+                    buy_package($request->package_value); 
+                    $package_revenue = $request->package_value * 5;
+                }
                 $package_revenue = $request->package_value * 5;
                 $buy_package->package_revenue = $package_revenue;
                 $buy_package->currency_type = $request->currency_type;
@@ -90,54 +99,10 @@ class BuypackageController extends Controller
                         $user_parent->save();
                     }
                 
-                //Direct Commission Record 10%
+                
+                
 
-                $direct_commission = new Direct_Commission();
-                $direct_commission->uid = Auth::user()->uid;
-                $direct_commission->child_uid = $request->pref_id;
-                $direct_commission->direct_commission = $request->package_value * master_data()->direct_sales;
-                $direct_commission->save();
-
-
-                //Direct Commission Record 30%
-
-                $in_direct_level_1 = new Direct_Commission();
-                if($request->pref_id !='NULL' ){
-                $d1 = User_Parent::where('uid', '=', $request->pref_id)->whereNotNull("parent_id")->first();
-                var_dump($d1!=Null);
-                if(!is_null($d1) || !empty($d1)){
-                $in_direct_level_1->uid = $d1->uid;
-                $in_direct_level_1->child_uid =$d1->parent_id;
-                $in_direct_level_1->direct_commission = $request->package_value * master_data()->in_direct_level_1;
-                $in_direct_level_1->save();
-                }
-                }
-
-                 //Direct Commission Record 20%
-                if($d1!=Null){
-                 $in_direct_level_2 = new Direct_Commission();
-
-                 $d2 = User_Parent::where('uid', '=', $d1->parent_id)->whereNotNull("parent_id")->first();
-                 if(!is_null($d2) || !empty($d2)){
-                 $in_direct_level_2->uid = $d2->uid;
-                 $in_direct_level_2->child_uid =$d2->parent_id;
-                 $in_direct_level_2->direct_commission = $request->package_value * master_data()->in_direct_level_2;
-                 $in_direct_level_2->save();
-                 }   
-                }
-                 //Direct Commission Record 10%
-
-                 if($d1!=Null){
-                 $in_direct_level_3 = new Direct_Commission();
-
-                 $d3 = User_Parent::where('uid', '=', $d2->parent_id)->whereNotNull("parent_id")->first();
-                 if(!is_null($d3) || !empty($d3)){
-                 $in_direct_level_3->uid = $d3->uid;
-                 $in_direct_level_3->child_uid =$d3->parent_id;
-                 $in_direct_level_3->direct_commission = $request->package_value * master_data()->in_direct_level_3;
-                 $in_direct_level_3->save();
-                 } 
-                }
+                
 
 
                 $buy_package->save();
@@ -167,11 +132,13 @@ class BuypackageController extends Controller
                 $role=Auth::user()->role;
                 if($role==1){
                     $buy_package = Package::find($id);
+                    
                     return view('admin.kyc.edit',compact('buy_package','id'));
                 }
                 if($role==0){
                     
                     $buy_package = DB::table('packages')->where('id', $id)->get();  
+                    
                     return view('user.package.buy',compact('buy_package','id'));
                 }
             

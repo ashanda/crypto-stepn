@@ -32,7 +32,7 @@ Route::get('/dashboard', [HomeController::class,'index'])->middleware(['auth','v
 Route::resource('package', PackageController::class);
 Route::resource('buy_package', BuypackageController::class);
 Route::get('buy_package/{id}/progress',[BuypackageController::class,'buy'])->middleware(['auth','verified']);
-
+Route::get('/user/profile', [UserController::class,'user']);
 Route::resource('user_buy_package', UserbuypackageController::class);
 
 

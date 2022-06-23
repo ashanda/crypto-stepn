@@ -9,6 +9,10 @@
 			<div class="container-fluid">
 				<div class="form-head mb-sm-5 mb-3 d-flex flex-wrap align-items-center">
 					<h2 class="font-w600 mb-2 mr-auto ">Dashboard</h2>
+					<p>left side - <br>
+				       right side - <br>
+					   total - 
+					</p>		
 					
 					<div class="col-xl-6 col-xxl-12">
 						<div class="row">

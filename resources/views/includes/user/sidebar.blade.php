@@ -23,6 +23,16 @@
                         
 
                     </li>
+					<li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+						<i class="flaticon-061-puzzle"></i>
+						<span class="nav-text">Markets</span>
+					</a>
+					<ul aria-expanded="false">
+						<li><a href="https://www.livecoinwatch.com" target="_blank">livecoinwatch.com</a></li>
+						<li><a href="https://coinmarketcap.com" target="_blank">coinmarketcap.com</a></li>
+						<li><a href="https://www.coingecko.com" target="_blank">coingecko.com</a></li>
+					</ul>
+					</li>
                     <li><a class="has-arrow ai-icon" href="/kyc" aria-expanded="false">
 						<i class="flaticon-077-menu-1"></i>
 							<span class="nav-text">KYC</span>

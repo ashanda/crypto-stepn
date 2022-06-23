@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateDirectCommissionsTable extends Migration
+class CreateUserCommissionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,12 @@ class CreateDirectCommissionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('direct__commissions', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('uid')->nullable();
-            $table->string('child_uid');
-            $table->float('direct_commission');
+        Schema::create('user_commissions', function (Blueprint $table) {
+            $table->id();
+            $table->integer('uid');
+            $table->integer('ref_uid');
+            $table->float('commission');
+            $table->string('commission_type');
             $table->timestamps();
         });
     }
@@ -29,6 +30,6 @@ class CreateDirectCommissionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('direct__commissions');
+        Schema::dropIfExists('user_commissions');
     }
 }
