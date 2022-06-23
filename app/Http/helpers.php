@@ -222,12 +222,19 @@
         
         /****************************************************/
         
-        /* Query for UserBinary Commision table values	- SELECT 	
+        /* Query for UserBinary Commision table values	- SELECT 	*/
        $userbinarycommision =  DB::table("user_binary_commissions")
                               ->select("id", "uid", "current_left_balance", "current_right_balance")
                               ->where("uid", "=", $parent_id )
                               ->get();
-
+        if($userbinarycommision->isEmpty()){
+          $user['uid'] = $parent_id;
+          $user['user_package_id'] = 0;
+          $user['current_left_balance'] = 0;
+          $user['current_right_balance'] = 0;
+          
+          DB::table('user_binary_commissions')->insert($user);
+        }else{
         $id= $userbinarycommision[0]->id;
         $user_id = $userbinarycommision[0]->uid;			
         $current_left_balance = $userbinarycommision[0]->current_left_balance;
@@ -250,10 +257,11 @@
           
         }
         
-        /* Now Update UserBinary Commision table 
-        $effected = DB::table('user_binary_commissions')
-        ->where('id', $userEmail)
-        ->update(array('current_left_balance' => $plan, 'current_right_balance' => $plan));
+        /* Now Update UserBinary Commision table */
+        DB::table('user_binary_commissions')
+        ->where('id', $id)
+        ->update(array('current_left_balance' => $current_right_balance, 'current_right_balance' => $current_right_balance));
+      }
         /***********************************************************/      
         
         $parent_user_level++;
@@ -265,8 +273,14 @@
   }
 
 function test(){
-  $previous_package = User_Package::where('package_id', '=', '1','AND', 'uid', '=',Auth::user()->uid)->count();
-  var_dump($previous_package);
+  $previous_package = DB::table("user_binary_commissions")
+  ->select("id", "uid", "current_left_balance", "current_right_balance")
+  ->where("uid", "=", 11 )
+  ->get();
+ 
+    var_dump($previous_package->isEmpty());
+  
+  
 }
  
 

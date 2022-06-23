@@ -32,7 +32,19 @@ class BuypackageController extends Controller
             }
         }
 
-
+        public function active(){
+            $role=Auth::user()->role;
+            if($role==0){
+            $user_id = Auth::id();
+                $data = DB::table('users')
+                ->join('user__packages', 'users.uid', '=', 'user__packages.uid')
+                ->join('packages', 'user__packages.package_id', '=', 'packages.id')
+                ->where('users.uid', '=', $user_id)
+                ->select('user__packages.id','users.fname', 'users.lname', 'packages.package_name', 'user__packages.status','packages.created_at')
+                ->get();    
+                return view('user.package.active',compact('data'));
+            }
+        }
         
         /**
         * Show the form for creating a new resource.
