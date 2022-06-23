@@ -2,6 +2,7 @@
     
     use Illuminate\Support\Facades\Auth;
     use Illuminate\Support\Facades\DB;
+    
     use App\Models\Master_Data;
     use App\Models\User_Package;
     use App\Models\User_Parent;
@@ -28,11 +29,11 @@
     return $direct_commision;
   }
 
-  function buy_package($package_value){
-    assign_user_commissions( $package_value );
+  function buy_package($package_value,$package_id){
+    assign_user_commissions( $package_value,$package_id );
   }
 
-  function assign_user_commissions($package_value){
+  function assign_user_commissions($package_value,$package_id){
     $current_user = Auth::user()->uid;
     $parent_id=0;
     $parent_user_level = 0;
@@ -100,39 +101,51 @@
         
         /****************************************************/
         
-        /* Query for UserBinary Commision table values	- SELECT 	
-       $userbinarycommision =  DB::table("user_binary_commissions")
-                              ->select("id", "uid", "current_left_balance", "current_right_balance")
-                              ->where("uid", "=", $parent_id )
-                              ->get();
+        /* Query for UserBinary Commision table values	- SELECT 	*/
+        $userbinarycommision =  DB::table("user_binary_commissions")
+        ->select("id", "uid", "current_left_balance", "current_right_balance")
+        ->where("uid", "=", $parent_id )
+        ->get();
+        
+            if($userbinarycommision->isEmpty()){
+            $user['uid'] = $parent_id;
+            $user['user_package_id'] = $package_id;
+            $user['current_left_balance'] = $package_value*0.1;
+            $user['current_right_balance'] = $package_value*0.1;
+            DB::table('user_binary_commissions')->insert($user);
+            if($ref_s == 0 ) {
+            $current_left_balance = $user['current_left_balance'];
+            }else{
+            $current_right_balance = $user['current_right_balance'];
+            }
+            }else{
+            $id= $userbinarycommision[0]->id;
+            $user_id = $userbinarycommision[0]->uid;			
+            $current_left_balance = $userbinarycommision[0]->current_left_balance;
+            $current_right_balance = $userbinarycommision[0]->current_right_balance;		
 
-        $id= $userbinarycommision[0]->id;
-        $user_id = $userbinarycommision[0]->uid;			
-        $current_left_balance = $userbinarycommision[0]->current_left_balance;
-        $current_right_balance = $userbinarycommision[0]->current_right_balance;		
-        
-        if( $ref_s == 0 ){
-          $current_left_balance += $package_value;
-        }else{
-          $current_right_balance += $package_value;
-        }
-            
-        
-        if(	$current_left_balance == $current_right_balance ){
-           // Update Wallet 
-                 // Update User_binart_commission as left ballance = 0, right balance = 0			   
-        } else if( $current_left_balance < $current_right_balance ){				
-           // Update Wallet 
-                 // Update User_binart_commission_total as left balance = 0, right balance = ( $current_right_balance -  current_left_balance )	
-        }else{
-          
-        }
-        
-        /* Now Update UserBinary Commision table 
-        $effected = DB::table('user_binary_commissions')
-        ->where('id', $userEmail)
-        ->update(array('current_left_balance' => $plan, 'current_right_balance' => $plan));
-        /***********************************************************/      
+            if( $ref_s == 0 ){
+            $current_left_balance += $package_value*0.2;
+            }else{
+            $current_right_balance += $package_value*0.2;
+            }
+
+
+            if(	$current_left_balance == $current_right_balance ){
+            // Update Wallet 
+            // Update User_binart_commission as left ballance = 0, right balance = 0			   
+            } else if( $current_left_balance < $current_right_balance ){				
+            // Update Wallet 
+            // Update User_binart_commission_total as left balance = 0, right balance = ( $current_right_balance -  current_left_balance )	
+            }else{
+
+            }
+
+            /* Now Update UserBinary Commision table */
+            DB::table('user_binary_commissions')
+            ->where('id', $id)
+            ->update(array('current_left_balance' => $current_left_balance, 'current_right_balance' => $current_right_balance));
+            }    
         
         $parent_user_level++;
         
@@ -154,7 +167,7 @@
 
 
 
-  function buy_package_secound_time($package_value){
+  function buy_package_secound_time($package_value,$package_id){
     $current_user = Auth::user()->uid;
     $parent_id=0;
     $parent_user_level = 0;
@@ -227,13 +240,18 @@
                               ->select("id", "uid", "current_left_balance", "current_right_balance")
                               ->where("uid", "=", $parent_id )
                               ->get();
+                              
         if($userbinarycommision->isEmpty()){
           $user['uid'] = $parent_id;
-          $user['user_package_id'] = 0;
-          $user['current_left_balance'] = 0;
-          $user['current_right_balance'] = 0;
-          
+          $user['user_package_id'] = $package_id;
+          $user['current_left_balance'] = $package_value*0.1;
+          $user['current_right_balance'] = $package_value*0.1;
           DB::table('user_binary_commissions')->insert($user);
+         if($ref_s == 0 ) {
+          $current_left_balance = $user['current_left_balance'];
+         }else{
+          $current_right_balance = $user['current_right_balance'];
+         }
         }else{
         $id= $userbinarycommision[0]->id;
         $user_id = $userbinarycommision[0]->uid;			
@@ -241,26 +259,33 @@
         $current_right_balance = $userbinarycommision[0]->current_right_balance;		
         
         if( $ref_s == 0 ){
-          $current_left_balance += $package_value;
+          $current_left_balance += $package_value*0.1;
         }else{
-          $current_right_balance += $package_value;
+          $current_right_balance += $package_value*0.1;
         }
             
         
         if(	$current_left_balance == $current_right_balance ){
            // Update Wallet 
-                 // Update User_binart_commission as left ballance = 0, right balance = 0			   
-        } else if( $current_left_balance < $current_right_balance ){				
+           DB::table('user_binary_commissions')
+           ->where('id', $id)
+           ->update(array('current_left_balance' => $current_left_balance, 'current_right_balance' => $current_right_balance));			   
+          } else if( $current_left_balance < $current_right_balance ){				
            // Update Wallet 
-                 // Update User_binart_commission_total as left balance = 0, right balance = ( $current_right_balance -  current_left_balance )	
+           $current_right_balance = $current_right_balance - $current_left_balance;
+           $current_left_balance = 0;
+           DB::table('user_binary_commissions')
+           ->where('id', $id)
+           ->update(array('current_left_balance' => $current_left_balance, 'current_right_balance' => $current_right_balance));
         }else{
-          
+           $current_left_balance = $current_left_balance - $current_right_balance;
+           $current_right_balance = 0;
+           DB::table('user_binary_commissions')
+           ->where('id', $id)
+           ->update(array('current_left_balance' => $current_left_balance, 'current_right_balance' => $current_right_balance));
         }
         
-        /* Now Update UserBinary Commision table */
-        DB::table('user_binary_commissions')
-        ->where('id', $id)
-        ->update(array('current_left_balance' => $current_right_balance, 'current_right_balance' => $current_right_balance));
+        
       }
         /***********************************************************/      
         
@@ -272,16 +297,7 @@
       
   }
 
-function test(){
-  $previous_package = DB::table("user_binary_commissions")
-  ->select("id", "uid", "current_left_balance", "current_right_balance")
-  ->where("uid", "=", 11 )
-  ->get();
- 
-    var_dump($previous_package->isEmpty());
-  
-  
-}
+
  
 
 

@@ -17,12 +17,12 @@
     @endif
     <table class="table table-bordered">
     <tr>
-    <th>S.No</th>
+    <th>Index</th>
     
     <th>Package Name</th>
     
     <th>Package status</th>
-    <th width="280px">Deactiavte Date</th>
+    <th width="280px">Valid till</th>
     </tr>
     @php
         $i = 1;

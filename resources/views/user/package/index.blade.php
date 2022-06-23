@@ -45,16 +45,16 @@
                                             $package_data = 'null';
                                         }
                                     @endphp    
-                                    @if ( $package_data == '1')
                                     
-                                      <button type="submit" class="btn btn-primary" disabled>All Ready Buy</button>
+                                    
+                                      <button type="submit" class="btn btn-primary" disabled>Purchased</button>
                                         
-                                    @elseif($package_data == '2')
+                                    
                                     <button type="submit" class="btn btn-primary" disabled>Wait For Admin Approve</button>
-                                    @else
+                                    
                                       <a class="btn btn-primary ml-3" href="buy_package/{{ $data[0]->id }}/progress" role="button">Buy Package</a>
                                       
-                                    @endif
+                                   
                                                                              
                                       
                                     
