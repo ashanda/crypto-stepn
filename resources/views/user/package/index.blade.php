@@ -39,21 +39,30 @@
                                     <input type="hidden" name="pref_id" value="{{ get_ref()->parent_id }}">
                                     <input type="hidden" name="pref_side" value="{{ get_ref()->ref_s }}">
                                     <div>
-                                    @php
-                                        if(!empty($package_data[0]->status)){
-                                            $package_data =  $package_data[0]->status;
+                                        @php
+                                        if(!empty($buy_package[0]->status)){
+                                            $package_data =  $buy_package[0]->status;
                                         }else{
                                             $package_data = 'null';
                                         }
                                     @endphp    
+                                    @if ( $package_data == '1')
+                                    
+                                    <button type="submit" class="btn btn-primary" disabled>Purchased</button>
+                                        
+                                    @elseif($package_data == '2')
+                                    <button type="submit" class="btn btn-primary" disabled>Wait For Admin Approve</button>
+                                    @else
+                                    <a class="btn btn-primary ml-3" href="buy_package/{{ $package->id }}/progress" role="button">Buy Package</a>
+                                    @endif    
                                     
                                     
-                                      <button type="submit" class="btn btn-primary" disabled>Purchased</button>
+                                      
                                         
                                     
-                                    <button type="submit" class="btn btn-primary" disabled>Wait For Admin Approve</button>
                                     
-                                      <a class="btn btn-primary ml-3" href="buy_package/{{ $package->id }}/progress" role="button">Buy Package</a>
+                                    
+                                     
                                       
                                    
                                                                              

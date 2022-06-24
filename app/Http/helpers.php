@@ -24,6 +24,7 @@
     return $get_ref;
   }
 
+
   
   function direct_commision(){
     $direct_commision = DB::table('direct__commissions')->where('uid',Auth::id())->sum('direct_commission');
