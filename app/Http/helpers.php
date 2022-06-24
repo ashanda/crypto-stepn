@@ -24,8 +24,15 @@
     return $get_ref;
   }
 
-
-  
+  function get_package_status($packageid){
+    $get_package_status = User_Package::where('uid','=',Auth::user()->uid,'AND','package_id','=',$packageid)->count();
+    if($get_package_status > 5){
+      $result_valu = 0;
+    }else{
+       $result_valu = 1;
+    }
+    return $result_valu;
+}
   function direct_commision(){
     $direct_commision = DB::table('direct__commissions')->where('uid',Auth::id())->sum('direct_commission');
     return $direct_commision;

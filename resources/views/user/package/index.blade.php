@@ -40,18 +40,13 @@
                                     <input type="hidden" name="pref_side" value="{{ get_ref()->ref_s }}">
                                     <div>
                                         @php
-                                        if(!empty($buy_package[0]->status)){
-                                            $package_data =  $buy_package[0]->status;
-                                        }else{
-                                            $package_data = 'null';
-                                        }
-                                    @endphp    
-                                    @if ( $package_data == '1')
+                                        $package_data = get_package_status($package->id);
+                                        @endphp    
+                                    @if ( $package_data == '0')
                                     
-                                    <button type="submit" class="btn btn-primary" disabled>Purchased</button>
+                                    <button type="submit" class="btn btn-primary" disabled>Package Disable</button>
                                         
-                                    @elseif($package_data == '2')
-                                    <button type="submit" class="btn btn-primary" disabled>Wait For Admin Approve</button>
+                                    
                                     @else
                                     <a class="btn btn-primary ml-3" href="buy_package/{{ $package->id }}/progress" role="button">Buy Package</a>
                                     @endif    
