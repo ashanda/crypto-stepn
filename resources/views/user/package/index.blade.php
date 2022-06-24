@@ -17,6 +17,7 @@
                     </div>
                     @endif
                 </div>
+                
                 @foreach ( $data as $package)
                 <div class="col-xl-3 col-lg-6 col-sm-6">
                     <div class="card">
@@ -52,7 +53,7 @@
                                     
                                     <button type="submit" class="btn btn-primary" disabled>Wait For Admin Approve</button>
                                     
-                                      <a class="btn btn-primary ml-3" href="buy_package/{{ $data[0]->id }}/progress" role="button">Buy Package</a>
+                                      <a class="btn btn-primary ml-3" href="buy_package/{{ $package->id }}/progress" role="button">Buy Package</a>
                                       
                                    
                                                                              

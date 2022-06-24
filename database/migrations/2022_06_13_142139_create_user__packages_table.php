@@ -17,7 +17,9 @@ class CreateUserPackagesTable extends Migration
             $table->increments('id');
             $table->string('uid');
             $table->string('package_id');
-            $table->string('package_revenue');
+            $table->float('package_value');
+            $table->float('package_double_value');
+            $table->float('package_revenue');
             $table->string('currency_type');
             $table->string('network');
             $table->string('deposite_ss');

@@ -15,6 +15,14 @@ class CreateCommissionsTable extends Migration
     {
         Schema::create('commissions', function (Blueprint $table) {
             $table->id();
+            $table->integer('uid');
+            $table->integer('parent_uid');
+            $table->integer('package_id');
+            $table->string('package_type');
+            $table->string('package_commission')->nullable();
+            $table->string('level_commission')->nullable();
+            $table->string('binary_commission_left')->nullable();
+            $table->string('binary_commission_right')->nullable();
             $table->timestamps();
         });
     }

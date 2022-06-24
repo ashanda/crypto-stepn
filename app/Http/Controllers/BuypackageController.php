@@ -97,7 +97,10 @@ class BuypackageController extends Controller
                     buy_package($request->package_value,$request->package_id); 
                     $package_revenue = $request->package_value * 5;
                 }
+                $buy_package->package_value = $request->package_value;
+                $buy_package->package_double_value = $request->package_value * 2;
                 $package_revenue = $request->package_value * 5;
+
                 $buy_package->package_revenue = $package_revenue;
                 $buy_package->currency_type = $request->currency_type;
                 $buy_package->network = $request->network;

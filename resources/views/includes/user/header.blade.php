@@ -34,8 +34,8 @@
             Nav header start
         ***********************************-->
         <div class="nav-header">
-            <a href="index.html" class="brand-logo">
-				Lemaconet.com
+            <a href="/" class="brand-logo">
+				<img src="images/logo-full.png" alt="">
             </a>
 
             <div class="nav-control">
@@ -54,12 +54,7 @@
                 <nav class="navbar navbar-expand">
                     <div class="collapse navbar-collapse justify-content-between">
                         <div class="header-left">
-							<div class="input-group search-area right d-lg-inline-flex d-none">
-								<input type="text" class="form-control" placeholder="Find something here...">
-								<div class="input-group-append">
-									<span class="input-group-text"><a href="javascript:void(0)"><i class="flaticon-381-search-2"></i></a></span>
-								</div>
-							</div>
+							
                         </div>
                         <ul class="navbar-nav header-right main-notification">
 							<!--<li class="nav-item dropdown notification_dropdown">

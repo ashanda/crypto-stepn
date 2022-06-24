@@ -14,11 +14,11 @@ class CreateUserBinaryCommissionsTable extends Migration
     public function up()
     {
         Schema::create('user_binary_commissions', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             $table->integer('uid');
             $table->integer('user_package_id');
-            $table->float('current_left_balance');
-            $table->float('current_right_balance');
+            $table->float('current_left_balance')->default(0);
+            $table->float('current_right_balance')->default(0);
             
         });
     }
