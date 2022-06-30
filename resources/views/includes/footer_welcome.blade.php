@@ -1,33 +1,47 @@
-<!-- Latest jQuery -->
-<script src="{{ asset('assets/js/jquery-2.2.4.min.js') }}"></script>
-<!-- popper js -->
-<script src="{{ asset('assets/bootstrap/js/popper.min.js') }}"></script>
-<!-- Latest compiled and minified Bootstrap -->
-<script src="{{ asset('assets/bootstrap/js/bootstrap.min.js') }}"></script>
-<!-- meanmenu min js  -->
-<script src="{{ asset('assets/js/jquery.meanmenu.min.js') }}"></script>
-<!-- Sticky JS -->
-<script src="{{ asset('assets/js/jquery.sticky.js') }}"></script>
-<!-- owl-carousel min js  -->
-<script src="{{ asset('assets/owlcarousel/js/owl.carousel.min.js') }}"></script>	
-<!-- jquery appear js  -->
-<script src="{{ asset('assets/js/jquery.appear.js') }}"></script>
-<!-- countTo js -->
-<script src="{{ asset('assets/js/jquery.inview.min.js') }}"></script>
-<!-- venobox js -->
-<script src="{{ asset('assets/venobox/js/venobox.min.js') }}"></script>
-<script src="{{ asset('assets/js/masonry.pkgd.min.js') }}"></script>
-<!-- scroll to top js -->
-<script src="{{ asset('assets/js/scrolltopcontrol.js') }}"></script>
-<!-- WOW - Reveal Animations When You Scroll -->
-<script src="{{ asset('assets/js/wow.min.js') }}"></script>
-<!-- scripts js -->
-<script src="{{ asset('assets/js/scripts.js') }}"></script>
-<!-- chart js -->
-<script src="{{ asset('assets/js/canvasjs.min.js') }}"></script>
-<script src="{{ asset('assets/js/canvasjs.activeone.js') }}"></script>
+
+<!----footer-->
+<div class="footer">
+    <div class="container-fluid">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 fff">
+            <div class="card1">
+                <h1>Lemaconet</h1>
+                Guiding towards the potential investment opportunities to everyone by providing completely decentralized platforms & methods.
+            </div>
+            <div class="card2">
+                <h1>CONTACT US -</h1>
+                <p>Shams Business Center, <br/>Sharjah Media City Free Zone, <br/>Al Messaned, Sharjah, UAE.</p>          
+                
+                <p>info@lemaconet.com </p>
+            </div>
+            <div class="card3">
+                <h1>Follow Us</h1>
+                    <p>
+                        <a href="https://www.facebook.com/lemaconet" target="_blank"><i class="fa fa-facebook"></i>  </a>
+                        <a href="https://twitter.com/lemaconet?t=gwT14Wk4NPfT1AcVIk78Eg&s=08" target="_blank"><i class="fa fa-twitter" ></i> </a>
+                    </p>
+            </div>
+        </div>
+        <div class="line fff">
+                <div class="copyright">
+                    Copyright ©<script>document.write(new Date().getFullYear())</script> <a href="#">Lemaconet</a>. Website Powered by <a href="https://yogeemedia.com/" target="_blank">YogeeMedia</a>.
+                </div>
+    </div>
+</div>
+
+</div>
+
+<script>
+    function myFunction() {
+      var x = document.getElementById("myTopnav");
+      if (x.className === "topnav") {
+        x.className += " responsive";
+      } else {
+        x.className = "topnav";
+      }
+    }
+</script>
+
+
+
 </body>
-
-
-
 </html>

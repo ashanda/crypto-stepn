@@ -50,7 +50,7 @@
                         
                     </li>
                     
-                    <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+                    <li><a class="has-arrow ai-icon" href="/genealogy" aria-expanded="false">
 							<i class="flaticon-053-heart"></i>
 							<span class="nav-text">Genealogy</span>
 						</a>
