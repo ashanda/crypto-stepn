@@ -30,7 +30,8 @@ class User extends Authenticatable implements MustVerifyEmail
         'email',
         'puid',
         'ref_id',
-        
+        'dbType',
+        'id_number',
         'system_id',
         'password',
     ];

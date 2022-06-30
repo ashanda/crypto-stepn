@@ -16,14 +16,105 @@
    *
    * @return response()
    */
-  
-   
 
+  // wallete function
+  function wallet_insert($uid,$wallet_balance){
+    DB::table('wallets')->insert([
+      'uid' => $uid,
+      'wallet_balance' => $wallet_balance,
+      'wallet_in' => $wallet_balance,
+  ]);
+  }
+
+  function wallet_update($id,$uid,$wallet_balance){
+    $wallet_balance_update =  DB::table("wallets")
+            ->select("id", "uid" ,"wallet_balance")
+            ->where("uid", "=", $uid )
+            ->first();
+            $wallet_id= $wallet_balance_update->id;
+            $new_wallet_balance = $wallet_balance_update->wallet_balance + ($wallet_balance);
+    DB::table('wallets')
+              ->where('id', $wallet_id)
+              ->update(['wallet_balance' => $new_wallet_balance,'wallet_in' =>$wallet_balance]);
+  }
+//-------------------------------------------------
+
+//wallet log//
+function wallet_log(){
+  $wallete = DB::table("wallets")
+  ->where("uid", "=", Auth::user()->uid)
+  ->count();
+  if($wallete > 0){
+    $wallete_log = DB::table("wallets")
+    ->where("uid", "=", Auth::user()->uid)
+    ->get();
+    return $wallete_log;
+  }
+  
+  
+  
+}
+
+//commission log//
+function commssion_log(){
+  $commssion_log_check = DB::table("commissions")
+  ->where("uid", "=", Auth::user()->uid)
+  ->count();
+  if($commssion_log_check > 0){
+    $commssion_log = DB::table("commissions")
+    ->where("uid", "=", Auth::user()->uid)
+    ->get();
+    return $commssion_log;
+  }
+  
+  
+  
+}
+
+
+
+// package commission //
+function package_commission(){
+  $user_package_data = DB::table('user__packages')->get();
+  foreach($user_package_data as $data){
+  $package_commission =  DB::table("package__commissions")
+    ->select("id", "uid" ,"package_id","commission")
+    ->where("uid", "=", $data->uid,"AND","package_id","=",$data->package_id )
+    ->count();    
+      
+      
+       if($package_commission < 1){
+           $commission = $data->package_value*0.025;
+           $user['uid'] = $data->uid;
+           $user['package_id'] = $data->package_id;
+           $user['commission'] = $commission;
+           DB::table('package__commissions')->insert($user);
+       }else{
+          $package_commission =  DB::table("package__commissions")
+              ->select("id", "uid" ,"package_id","commission")
+              ->where("uid", "=", $data->uid,"AND","package_id","=",$data->package_id )
+              ->first();
+           $new_package_commission = $package_commission->commission + ($data->package_value*0.025);      
+           
+           DB::table('package__commissions')
+          ->where('id', $package_commission->id)
+          ->update(['commission' => $new_package_commission]);
+       }
+       
+    }
+}
+
+
+//get ref id function 
   function get_ref(){
     $get_ref = User_Parent::where('uid',Auth::id())->first();
     return $get_ref;
   }
+//******************************* */
 
+
+
+// package max 5 time //
   function get_package_status($packageid){
     $get_package_status = User_Package::where('uid','=',Auth::user()->uid,'AND','package_id','=',$packageid)->count();
     if($get_package_status > 5){
@@ -33,11 +124,18 @@
     }
     return $result_valu;
 }
+
+/*********************************************** */
+
+
+// direct commission sum 
   function direct_commision(){
     $direct_commision = DB::table('direct__commissions')->where('uid',Auth::id())->sum('direct_commission');
     return $direct_commision;
   }
 
+
+  // binary commission sum
   function binary_commision(){
     $binary_commision0 = DB::table('user_binary_commissions')->where('uid',Auth::id())->sum('current_left_balance');
     $binary_commision1 = DB::table('user_binary_commissions')->where('uid',Auth::id())->sum('current_right_balance');
@@ -60,12 +158,16 @@
     
     return $binary_commision;
   }
+/********************************* */
+
+
 
   function invest(){
     $invest = DB::table('user__packages')->where('uid',Auth::id())->sum('package_value');
     return $invest;
   }
 
+  // buy package function 
   function buy_package($package_value,$package_id){
     assign_user_commissions( $package_value,$package_id );
   }
@@ -355,6 +457,10 @@
       
   }
   
+/****************************************** */
+
+
+//get perant child //
   function get_parent_details($chiild_user){
       
     
@@ -366,6 +472,8 @@
   }
 
 
+
+  // buy package secound time function //
 
   function buy_package_secound_time($package_value,$package_id){
     $current_user = Auth::user()->uid;
@@ -634,7 +742,10 @@
      
       
   }
+/****************************************** */
 
+
+//commission log function //
   function all_commission($uid,$puid,$pid,$ptype,$pcommission,$lcommission,$bleft,$bright){
     $all_commission = new Commission();
     $all_commission->uid = $uid;

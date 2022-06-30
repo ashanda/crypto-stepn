@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Transection;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -13,7 +14,7 @@ class WalletController extends Controller
         $role=Auth::user()->role;
         if($role==1){
                    
-            return view('admin.kyc.index');
+            return view('admin.withdraw.index');
         }
         if($role==0){
                   
@@ -21,4 +22,8 @@ class WalletController extends Controller
         }
     
     }
+
+    
+
+
 }

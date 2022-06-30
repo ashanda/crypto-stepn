@@ -43,8 +43,20 @@
                                             <x-jet-input id="email" class="form-control" type="email" name="email" :value="old('email')" required />
                                         </div>
                                         <div class="form-group">
-                                        <input id="ref_id" class="form-control" type="hidden" name="ref_id" value="{{ request()->get('ref')}}" />
-                                        <input id="ref_s" class="form-control" type="hidden" name="ref_s" value="{{request()->get('ref_s')  }}" />
+                                            <label for="topic">Select NIC/Driving Lisence/Passport</label>
+                                            <select class="form-control" name="dbType" required>
+                                                  <option value="NIC">NIC</option>
+                                                  <option value="Driving Lisence">Driving Lisence</option>
+                                                  <option value="Passport">Passport</option>
+                                             </select>
+                                        </div>
+                                        <div class="form-group upload">
+                                               <label for="send_cv">Enter Number</label>
+                                               <input type="text" name="id_number" required/>
+                                        </div>
+                                        <div class="form-group">
+                                        <input id="ref_id" class="form-control" type="hidden" name="ref_id" value="{{ request()->get('ref')}}" required/>
+                                        <input id="ref_s" class="form-control" type="hidden" name="ref_s" value="{{request()->get('ref_s')  }}" required/>
                                         
 
                                         <input id="system_id" class="form-control" type="hidden" name="system_id" value="{{ generateRandomString() }}" />

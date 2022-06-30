@@ -9,6 +9,8 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\BuypackageController;
 use App\Http\Controllers\UserbuypackageController;
 use App\Http\Controllers\WalletController;
+use App\Http\Controllers\WithdrawController;
+use App\Http\Controllers\TransController;
 
 
 /*
@@ -39,11 +41,18 @@ Route::get('/user/profile', [UserController::class,'user']);
 
 Route::resource('/user_buy_package', UserbuypackageController::class);
 
+Route::get('/withdraw' , [WithdrawController::class, 'index']);
+
+Route::get('/trans/p2p' , [TransController::class, 'p2p']);
+Route::get('/trans/crypto' , [TransController::class, 'crypto']);
 
 Route::resource('/kyc', KycController::class);
 
 Route::get('/user/profile', [UserController::class,'user']);
 Route::resource('/user', UserController::class);
+
+Route::resource('/trans',TransController::class);
+
 
 Route::resource('/wallet', WalletController::class);
 

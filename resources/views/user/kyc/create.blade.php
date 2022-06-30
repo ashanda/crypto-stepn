@@ -51,21 +51,16 @@
                                             </div> 
                                           
                                             <label for="db">Choose type</label>
-                                                <select name="dbType" id="dbType">
-                                                <option>Choose Document Type</option>
-                                                <option value="nic">NIC</option>
-                                                <option value="passport">Passport</option>
-                                                <option value="driving">Driving License</option>
                                                 
-                                                </select>
+                                                <input type="text" readonly name="dbType" class="form-control" value="{{ Auth::user()->dbType }}">
                                                 <div class="col-xs-12 col-sm-12 col-md-12">
-                                            <div class="form-group" id="otherType" style="display:none;">
+                                            
                                                 
-                                                <input type="text" name="id_number" class="form-control" placeholder="Enter Number">
+                                                <input type="text" name="id_number" readonly class="form-control" value="{{ Auth::user()->id_number }}">
                                                 @error('id_number')
                                                 <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                                                 @enderror
-                                            </div>
+                                            
                                             
                                                 </div>
                                         </div> 

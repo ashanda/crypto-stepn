@@ -54,7 +54,7 @@
                 <nav class="navbar navbar-expand">
                     <div class="collapse navbar-collapse justify-content-between">
                         <div class="header-left">
-							
+							<h3>Your System ID {{ Auth::user()->system_id }}</h3>
                         </div>
                         <ul class="navbar-nav header-right main-notification">
 							<!--<li class="nav-item dropdown notification_dropdown">

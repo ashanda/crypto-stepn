@@ -19,13 +19,13 @@
 							<div class="card-info">
 
 								<div class="d-flex justify-content-between">
-									<h2 class="num-text text-white mb-2 font-w600">Reffrel Link [Left Chain]</h2>
+									<h2 class="num-text text-white mb-2 font-w600">Left Chain(25)</h2>
 								</div>
-								<h3 id="">${{ binary_commision_left()}}</h3>
+								<h3 id="">Business Volume ${{ binary_commision_left()}}</h3>
 								<div class="d-flex">
 									<div class="text-white">
 										<span><input type="text" readonly id="copyTarget1" class="form-control" value="{{ url('/') }}/register/?ref={{ $user_data[0]->system_id }}&ref_s={{ 0 }}"></span>
-										<span id="copyButton1" onclick="clipboardClicked1()" class="btn btn-outline-success float-right" title="Click to copy"> Copy 
+										<span id="copyButton1" onclick="clipboardClicked1()" class="btn btn-outline-success float-right" title="Click to copy"> Copy Referral 
 											<i class="fa fa-clipboard" aria-hidden="true"></i>
 										</span>
 										<span class="alert alert-success" id="clickedMessage-1">Copied !</span>
@@ -40,15 +40,15 @@
 							<div class="card-info">
 
 								<div class="d-flex justify-content-between">
-									<h2 class="num-text text-white mb-2 font-w600">Reffrel Link [Right Chain]</h2>
+									<h2 class="num-text text-white mb-2 font-w600">Right Chain(25)</h2>
 								</div>
-								<h3 id="">${{ binary_commision_right() }}</h3>
+								<h3 id="">Business Volume ${{ binary_commision_right() }}</h3>
 								<div class="d-flex">
 
 									<div class="text-white">
 
 										<span><input type="text" readonly id="copyTarget2" class="form-control" value="{{ url('/') }}/register/?ref={{ $user_data[0]->system_id }}&ref_s={{ 1 }}"></span>
-										<span id="copyButton2" onclick="clipboardClicked2()" class="btn btn-outline-success float-right" title="Click to copy"> Copy 
+										<span id="copyButton2" onclick="clipboardClicked2()" class="btn btn-outline-success float-right" title="Click to copy"> Copy Referral
 											<i class="fa fa-clipboard" aria-hidden="true"></i>
 										</span>
 										<span class="alert alert-success" id="clickedMessage-2">Copied !</span>
@@ -85,15 +85,15 @@
 								</div>
 								<table width="100%">
 									<tr>
-										<td>Package Earning</td>
+										<td>Package Rewards</td>
 										<td>$0</td>
 									</tr>
 									<tr>
-										<td>Uni-level Earnings</td>
+										<td>Referrel Rewards</td>
 										<td>${{ direct_commision() }}</td>
 									</tr>
 									<tr>
-										<td>Binary Earning</td>
+										<td>Business Volume Rewards</td>
 										<td>${{ binary_commision() }}</td>
 									</tr>
 									<tr>
