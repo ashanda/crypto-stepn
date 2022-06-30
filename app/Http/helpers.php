@@ -115,6 +115,7 @@ function package_commission(){
 }
 
 
+
 //get ref id function 
   function get_ref(){
     $get_ref = User_Parent::where('uid',Auth::id())->first();
@@ -136,6 +137,13 @@ function package_commission(){
 }
 
 /*********************************************** */
+
+
+//package commission sum
+function package_commission_sum(){
+  $package_commission_sum = DB::table('package__commissions')->where('uid',Auth::id())->sum('commission');
+  return $package_commission_sum;
+}
 
 
 // direct commission sum 
