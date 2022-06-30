@@ -46,6 +46,8 @@ Route::get('/withdraw' , [WithdrawController::class, 'index']);
 Route::get('/trans/p2p' , [TransController::class, 'p2p']);
 Route::get('/trans/crypto' , [TransController::class, 'crypto']);
 
+Route::get('/package_earn' , [HomeController::class,'package_earn']);
+Route::post('/package_earn_tranfer' , [HomeController::class,'package_earn_tranfer']);
 Route::resource('/kyc', KycController::class);
 
 Route::get('/user/profile', [UserController::class,'user']);

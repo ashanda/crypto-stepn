@@ -66,11 +66,21 @@ function commssion_log(){
     ->get();
     return $commssion_log;
   }
-  
-  
-  
 }
 
+// transection log
+function transection(){
+  $transection_log_check = DB::table("transections")
+  ->where("uid", "=", Auth::user()->uid)
+  ->count();
+  if($transection_log_check > 0){
+    $transection_log = DB::table("transections")
+    ->where("uid", "=", Auth::user()->uid)
+    ->get();
+    return $transection_log;
+  }
+
+}
 
 
 // package commission //

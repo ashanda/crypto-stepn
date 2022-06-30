@@ -44,7 +44,12 @@
 						</a>
                         
                     </li>
-                    <li><a href="widget-basic.html" class="ai-icon" aria-expanded="false">
+					<li><a href="/package_earn" class="ai-icon" aria-expanded="false">
+						<i class="flaticon-381-settings-2"></i>
+						<span class="nav-text">Package Earning Tranfer</span>
+					</a>
+				</li>
+                    <li><a href="/wallet" class="ai-icon" aria-expanded="false">
 							<i class="flaticon-381-settings-2"></i>
 							<span class="nav-text">Wallets</span>
 						</a>

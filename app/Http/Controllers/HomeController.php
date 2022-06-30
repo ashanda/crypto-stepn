@@ -28,6 +28,30 @@ class HomeController extends Controller
         }
     }
 
+
+    public function package_earn(){
+        $role=Auth::user()->role;
+        if($role==1){
+
+            return view('admin.package_earn.index')
+            ->with('success','successfully Tranfer');;
+        }
+        
+
+    }
+
+    public function package_earn_tranfer(){
+        $role=Auth::user()->role;
+        if($role==1){
+            package_commission();
+            return view('admin.package_earn.index');
+        }
+        
+
+    }
+
+    
+
     
 
     

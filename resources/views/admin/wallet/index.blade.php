@@ -5,86 +5,71 @@
             Content body start
         ***********************************-->
         
-            <!-- Add Project -->
+        <div class="content-body">
+			<div class="container-fluid">
+        <div class="container mt-2">
+            <div class="row">
+            <div class="col-lg-12 margin-tb">
             
             
-            <div class="row" style="margin-top: 85px;padding:20px;" >
-                
-                <div class="col-xl-3 col-lg-6 col-sm-6">
-                    @if(session('status'))
-                    <div class="alert alert-success mb-1 mt-1">
-                    {{ session('status') }}
-                    </div>
-                    @endif
-                </div>
-                
-                @foreach ( $data as $package)
-                <div class="col-xl-3 col-lg-6 col-sm-6">
-                    <div class="card">
-                        <div class="card-body">
-                            
-                                <div class="new-arrival-product">
-                                <div class="new-arrivals-img-contnent">
-                                    <img class="img-fluid" src="{{ asset('packages/img/'.$package->package_image) }}" alt="">
-                                </div>
-                                <div class="new-arrival-content text-center mt-3">
-                                    <h4><a href="ecom-product-detail.html">{{ $package->package_name  }}</a></h4>
-                                    <ul class="star-rating">
-                                        <h4>Info</h4>
-                                    </ul>
-                                    <span class="price">${{ $package->package_value  }}</span>
-                                    
-                                    <input type="hidden" name="package_id" value="{{ $package->id  }}">
-                                    <input type="hidden" name="package_value" value="{{ $package->package_value  }}">
-                                    <input type="hidden" name="pref_id" value="{{ get_ref()->parent_id }}">
-                                    <input type="hidden" name="pref_side" value="{{ get_ref()->ref_s }}">
-                                    <div>
-                                        @php
-                                        $package_data = get_package_status($package->id);
-                                        @endphp    
-                                    @if ( $package_data == '0')
-                                    
-                                    <button type="submit" class="btn btn-primary" disabled>Package Disable</button>
-                                        
-                                    
-                                    @else
-                                    <a class="btn btn-primary ml-3" href="buy_package/{{ $package->id }}/progress" role="button">Buy Package</a>
-                                    @endif    
-                                    
-                                    
-                                      
-                                        
-                                    
-                                    
-                                    
-                                     
-                                      
-                                   
-                                                                             
-                                      
-                                    
-                                    </div>
-                                </div>
-                                
-                            </div>
-                        
-                        </div>
-                    </div>
-                </div>
-                @endforeach
-                
-
-                
-
-                
             </div>
-                
-                
-                
-                
+            </div>
+            @if ($message = Session::get('success'))
+            <div class="alert alert-success">
+            <p>{{ $message }}</p>
+            </div>
+            @endif
+            <table class="table table-bordered">
+            <tr>
+            <th>No</th>
+            <th>User Name</th>
+            <th>Amount</th>
+            <th>P2P ID</th>
+            <th>Currency Type</th>
+            <th>Network</th>
+            <th>Wallet Address</th>
+            <th>Package status</th>
+            <th width="280px">Action</th>
+            </tr>
+            @php
+                $i = 1;
+            @endphp
+            
+            @foreach ($data as $package)
+            <tr>
+            <td>{{ $i }}</td>
+            <td>{{ $package->fname ." ".$package->lname }}</td>
+            <td>{{ $package->amount}}</td>
+            <td>{{ $package->p2p_id}}</td>
+            <td>{{ $package->currency_type}}</td>
+            <td>{{ $package->network}}</td>
+            <td>{{ $package->wallet_address}}</td>
+            @if ($package->status==0)
+            <td>{{ 'Pending' }}</td>
+            @else
+            <td>{{ 'withdrow' }}</td>
+            @endif
+            <td>
+                <form action="{{ route('wallet.destroy',$package->id) }}" method="Post">
+                <a class="btn btn-primary" href="{{ route('wallet.edit',$package->id) }}">Edit</a>
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+            </td>
+            
+            
+            
+            </tr>
+            @php
+                $i++;
+            @endphp
+            @endforeach
+            </table>
+        </div>
             </div>
         </div>
-        
+
         <!--**********************************
             Content body end
         ***********************************-->

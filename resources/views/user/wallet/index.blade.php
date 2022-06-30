@@ -146,6 +146,68 @@
 								<div class="col-xl-6 col-lg-12 col-xxl-12">
 									<div class="card">
 										<div class="card-header">
+											<h4 class="card-title">Transection History</h4>
+										</div>
+										<div class="card-body">
+											<div class="table-responsive">
+												<table id="example2" class="display" style="width:100%">
+													<thead>
+														<tr>
+															<th>Amount</th>
+															<th>P2P ID</th>
+															<th>Currency Type</th>
+															<th>Network</th>
+															<th>Wallet Address</th>
+															<th>Status</th>
+															<th>Update Date</th>
+														</tr>
+													</thead>
+													<tbody>
+														@php
+															$data = transection();
+														@endphp
+														@if ($data == NULL)
+														
+														@else
+														@foreach ($data as $package)
+														<tr>
+															<td>{{ $package->amount }}</td>
+															<td>{{ $package->p2p_id  }} </td>
+															<td>{{ $package->currency_type  }} </td>
+															<td>{{ $package->network  }} </td>
+															<td>{{ $package->wallet_address  }} </td>
+															@if ($package->status == 0)
+															<td>{{ 'Pending'  }} </td>
+															@elseif ($package->status == 1)
+															<td>{{ 'Approve'  }} </td>
+															@else
+															<td>{{ 'Reject'  }} </td>
+															@endif
+
+
+															<td>{{ $package->updated_at  }} </td>
+														</tr>
+														@endforeach	
+														@endif
+														
+													</tbody>
+												</table>
+											</div>
+										</div>
+									</div>
+								</div>
+								
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-xl-12">
+					<div class="card">
+						<div class="card-body">
+							<div class="row align-items-end">
+								<div class="col-xl-6 col-lg-12 col-xxl-12">
+									<div class="card">
+										<div class="card-header">
 											<h4 class="card-title">Earning History</h4>
 										</div>
 										<div class="card-body">
@@ -171,11 +233,11 @@
 														@foreach ($data as $package)
 														<tr>
 															<td>{{ $package->package_type }}</td>
-															<td>${{ $package->package_commission  }} </td>
-															<td>${{ $package->level_commission  }} </td>
-															<td>${{ $package->binary_commission_left  }} </td>
-															<td>${{ $package->binary_commission_right  }} </td>
-															<td>${{ $package->created_at  }} </td>
+															<td>{{ $package->package_commission  }} </td>
+															<td>{{ $package->level_commission  }} </td>
+															<td>{{ $package->binary_commission_left  }} </td>
+															<td>{{ $package->binary_commission_right  }} </td>
+															<td>{{ $package->created_at  }} </td>
 														</tr>
 														@endforeach	
 														@endif
@@ -191,6 +253,7 @@
 						</div>
 					</div>
 				</div>
+
 			</div>
 		</div>
 			
