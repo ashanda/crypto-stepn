@@ -31,7 +31,7 @@
                             <nav class="main-menu">
                                <ul class="menu-area-main">
                                 <div id="selectField">
-                                        <a href="https://lemaconet.com">Home</a>
+                                        <a href="https://lemaconet.com">Homes</a>
                                         <!---a href="#">About </a>
                                         <a href="#">Contact Us</a---->
                                         <a href="/login">Login</a>
