@@ -80,20 +80,20 @@ Table Of Contents end
 				$('.topcontrol').removeClass('topanimation');
 			}
 		});
-		
-        $('a.js-scroll-trigger').on('click', function(e) {
-            var anchor = $(this);
-            $('html, body').stop().animate({
-                scrollTop: $(anchor.attr('href')).offset().top - 48
-            }, 1000);
-            e.preventDefault();
-        });
-		
-        // Activate scrollspy to add active class to navbar items on scroll
-        $('body.home-4').scrollspy({
-            target: '.mainmenu-area',
-            offset: 200
-        });
+
+		$('a.js-scroll-trigger').on('click', function (e) {
+			var anchor = $(this);
+			$('html, body').stop().animate({
+				scrollTop: $(anchor.attr('href')).offset().top - 48
+			}, 1000);
+			e.preventDefault();
+		});
+
+		// Activate scrollspy to add active class to navbar items on scroll
+		$('body.home-4').scrollspy({
+			target: '.mainmenu-area',
+			offset: 200
+		});
 
 
 		/* 4. SECTIONS BACKGROUNDS */
@@ -168,18 +168,18 @@ Table Of Contents end
 		});
 
 		$(".home-slides,.home-slides-2").on("translate.owl.carousel", function () {
-			$(this).find(".owl-item .home-single-slide h2").removeClass("fadeInLeft animated").css("opacity","0");
-			$(this).find(".owl-item .home-single-slide p").removeClass("fadeInRight animated").css("opacity","0");
-			$(this).find(".owl-item .home-single-slide .home-single-slide-button a").removeClass("fadeInUp animated").css("opacity","0");
-		});
-		
-		$(".home-slides,.home-slides-2").on("translated.owl.carousel", function () {
-			$(this).find(".owl-item .home-single-slide h2").addClass("fadeInLeft animated").css("opacity","1");
-			$(this).find(".owl-item .home-single-slide p").addClass("fadeInRight animated").css("opacity","1");
-			$(this).find(".owl-item .home-single-slide .home-single-slide-button a").addClass("fadeInUp animated").css("opacity","1");
+			$(this).find(".owl-item .home-single-slide h2").removeClass("fadeInLeft animated").css("opacity", "0");
+			$(this).find(".owl-item .home-single-slide p").removeClass("fadeInRight animated").css("opacity", "0");
+			$(this).find(".owl-item .home-single-slide .home-single-slide-button a").removeClass("fadeInUp animated").css("opacity", "0");
 		});
 
-		
+		$(".home-slides,.home-slides-2").on("translated.owl.carousel", function () {
+			$(this).find(".owl-item .home-single-slide h2").addClass("fadeInLeft animated").css("opacity", "1");
+			$(this).find(".owl-item .home-single-slide p").addClass("fadeInRight animated").css("opacity", "1");
+			$(this).find(".owl-item .home-single-slide .home-single-slide-button a").addClass("fadeInUp animated").css("opacity", "1");
+		});
+
+
 		/* 6. SERVICE SLIDER JS */
 
 		$('.services-slider').owlCarousel({
@@ -383,3 +383,73 @@ Table Of Contents end
 
 
 })(jQuery);
+
+
+// change adderss by option
+
+function ChangeAddress() {
+	var x = document.getElementById("sel1").value;
+	var y = document.getElementById("sel2").value;
+	var z;
+	if (x == 1 && y == 1) {
+		z = "TJftK2SA5X13znBu3crSDgPdcjzrG8jiV8";
+	}
+	if (x == 1 && y == 2) {
+		z = "0x024406145cee6a4c209e28cfec7faea8e1bed67f";
+	}
+	if (x == 1 && y == 3) {
+		z = "0x024406145cee6a4c209e28cfec7faea8e1bed67f";
+	}
+	if (x == 1 && y == 4) {
+		z = "0x024406145cee6a4c209e28cfec7faea8e1bed67f";
+	}
+	if (x == 1 && y == 5) {
+		z = "DdJWtY4AngbHFS2zEmjvJwzrcqXEybavbxEWyYssdW4D";
+	}
+	if (x == 2 && y == 1) {
+		z = "TJftK2SA5X13znBu3crSDgPdcjzrG8jiV8";
+	}
+	if (x == 2 && y == 2) {
+		z = "No address yet";
+	}
+	if (x == 2 && y == 3) {
+		z = "0x024406145cee6a4c209e28cfec7faea8e1bed67f";
+	}
+	if (x == 2 && y == 4) {
+		z = "0x024406145cee6a4c209e28cfec7faea8e1bed67f";
+	}
+	if (x == 2 && y == 5) {
+		z = "DdJWtY4AngbHFS2zEmjvJwzrcqXEybavbxEWyYssdW4D";
+	}
+	if (x == 3 && y == 1) {
+		z = "No address yet";
+	}
+	if (x == 3 && y == 2) {
+		z = "0x024406145cee6a4c209e28cfec7faea8e1bed67f";
+	}
+	if (x == 3 && y == 3) {
+		z = "0x024406145cee6a4c209e28cfec7faea8e1bed67f";
+	}
+	if (x == 3 && y == 4) {
+		z = "No address yet";
+	}
+	if (x == 3 && y == 5) {
+		z = "No address yet";
+	}
+	if (x == 4 && y == 1) {
+		z = "No address yet";
+	}
+	if (x == 4 && y == 2) {
+		z = "0x024406145cee6a4c209e28cfec7faea8e1bed67f";
+	}
+	if (x == 4 && y == 3) {
+		z = "0x024406145cee6a4c209e28cfec7faea8e1bed67f";
+	}
+	if (x == 4 && y == 4) {
+		z = "No address yet";
+	}
+	if (x == 4 && y == 5) {
+		z = "No address yet";
+	}
+	document.getElementById("deposit_add").value = z;
+}
