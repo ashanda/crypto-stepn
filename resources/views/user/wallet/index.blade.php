@@ -16,7 +16,7 @@
 					<a href="/withdraw" class="btn btn-secondary mb-2">+ Withdraw</a>
 				</div>
 				<div class="row">
-					<div class="col-xl-3 col-xxl-4">
+					<div class="col-xl-12 col-xxl-12">
 						<div class="swiper-box">
 							<div class="swiper-container card-swiper swiper-container-initialized swiper-container-vertical swiper-container-pointer-events swiper-container-free-mode">
 								<div class="swiper-wrapper" style="transform: translate3d(0px, 0px, 0px);" id="swiper-wrapper-0a7812a3110a99a5d" aria-live="polite">
