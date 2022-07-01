@@ -70315,5 +70315,7 @@ form a.btn.btn-primary {
 .swiper-box {
     height: 100%;
 }
-
+.card .table-responsive table th{
+    vertical-align: initial;
+}
 /* styles fix kasun */
