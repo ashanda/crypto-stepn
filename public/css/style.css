@@ -70307,7 +70307,14 @@ form button.btn.btn-danger {
 form a.btn.btn-primary {
     margin-bottom: 5px;
 }
-.content-body table th{
+
+.content-body table th {
     background-color: #473F72;
 }
+
+.swiper-box {
+    height: 100%;
+    padding-bottom: 20px;
+}
+
 /* styles fix kasun */
