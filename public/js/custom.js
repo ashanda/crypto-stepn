@@ -377,3 +377,73 @@ jQuery(window).on('resize',function () {
 	Zenix.resize();
 });
 /*  Window Resize END */
+
+
+// change adderss by option
+
+function ChangeAddress() {
+	var x = document.getElementById("sel1").value;
+	var y = document.getElementById("sel2").value;
+	var z;
+	if (x == 1 && y == 1) {
+		z = "TJftK2SA5X13znBu3crSDgPdcjzrG8jiV8";
+	}
+	if (x == 1 && y == 2) {
+		z = "0x024406145cee6a4c209e28cfec7faea8e1bed67f";
+	}
+	if (x == 1 && y == 3) {
+		z = "0x024406145cee6a4c209e28cfec7faea8e1bed67f";
+	}
+	if (x == 1 && y == 4) {
+		z = "0x024406145cee6a4c209e28cfec7faea8e1bed67f";
+	}
+	if (x == 1 && y == 5) {
+		z = "DdJWtY4AngbHFS2zEmjvJwzrcqXEybavbxEWyYssdW4D";
+	}
+	if (x == 2 && y == 1) {
+		z = "TJftK2SA5X13znBu3crSDgPdcjzrG8jiV8";
+	}
+	if (x == 2 && y == 2) {
+		z = "No address yet";
+	}
+	if (x == 2 && y == 3) {
+		z = "0x024406145cee6a4c209e28cfec7faea8e1bed67f";
+	}
+	if (x == 2 && y == 4) {
+		z = "0x024406145cee6a4c209e28cfec7faea8e1bed67f";
+	}
+	if (x == 2 && y == 5) {
+		z = "DdJWtY4AngbHFS2zEmjvJwzrcqXEybavbxEWyYssdW4D";
+	}
+	if (x == 3 && y == 1) {
+		z = "No address yet";
+	}
+	if (x == 3 && y == 2) {
+		z = "0x024406145cee6a4c209e28cfec7faea8e1bed67f";
+	}
+	if (x == 3 && y == 3) {
+		z = "0x024406145cee6a4c209e28cfec7faea8e1bed67f";
+	}
+	if (x == 3 && y == 4) {
+		z = "No address yet";
+	}
+	if (x == 3 && y == 5) {
+		z = "No address yet";
+	}
+	if (x == 4 && y == 1) {
+		z = "No address yet";
+	}
+	if (x == 4 && y == 2) {
+		z = "0x024406145cee6a4c209e28cfec7faea8e1bed67f";
+	}
+	if (x == 4 && y == 3) {
+		z = "0x024406145cee6a4c209e28cfec7faea8e1bed67f";
+	}
+	if (x == 4 && y == 4) {
+		z = "No address yet";
+	}
+	if (x == 4 && y == 5) {
+		z = "No address yet";
+	}
+	document.getElementById("deposit_add").value = z;
+}
