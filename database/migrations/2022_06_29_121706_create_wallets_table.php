@@ -17,6 +17,7 @@ class CreateWalletsTable extends Migration
             $table->increments('id');
             $table->integer('uid');
             $table->float('wallet_balance')->nullable();
+            $table->float('available_balance')->nullable();
             $table->float('wallet_in')->nullable();
             $table->float('wallet_out')->nullable();
             $table->timestamps();

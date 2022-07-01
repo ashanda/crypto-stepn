@@ -26,11 +26,17 @@
 											<div class="card-info">
 												<p class="mb-1 text-white fs-14">Total Rewards</p>
 												<div class="d-flex justify-content-between">
-													<h2 class="num-text text-white mb-5 font-w600">$50</h2>
+													<h5 class="num-text text-white mb-5 font-w200">Total - ${{ wallet_total() }}</h5></br>
+													
 													<svg width="55" height="34" viewBox="0 0 55 34" fill="none" xmlns="http://www.w3.org/2000/svg">
 														<circle cx="38.0091" cy="16.7788" r="16.7788" fill="white" fill-opacity="0.67"></circle>
 														<circle cx="17.4636" cy="16.7788" r="16.7788" fill="white" fill-opacity="0.67"></circle>
 													</svg>
+												</div>
+												<div class="d-flex justify-content-between">
+													
+													<h5 class="num-text text-white mb-5 font-w200">Available - ${{ wallet_available_balance_sum() }}</h5>
+													
 												</div>
 												
 											</div>
@@ -185,8 +191,8 @@
 															<th>Package Type</th>
 															<th>Package Rewards</th>
 															<th>Level Rewards</th>
-															<th>Bussiness Volume Left Rewards</th>
-															<th>Bussiness Volume Right Rewards</th>
+															<th>Bussiness Volume Rewards</th>
+															
 															<th>Date</th>
 														</tr>
 													</thead>
@@ -198,12 +204,27 @@
 														
 														@else
 														@foreach ($data as $package)
+														
+														@php
+														$binary_commission;
+
+															$bc_l = $package->binary_commission_left;
+															$bc_r = $package->binary_commission_right;
+
+
+															if( $bc_l == 0){
+																$binary_commission = $bc_r;
+															}
+															if( $bc_r == 0){
+																$binary_commission = $bc_l;
+															}
+														@endphp	
 														<tr>
 															<td>{{ $package->package_type }}</td>
 															<td>{{ $package->package_commission  }} </td>
 															<td>{{ $package->level_commission  }} </td>
-															<td>{{ $package->binary_commission_left  }} </td>
-															<td>{{ $package->binary_commission_right  }} </td>
+															<td>{{ $binary_commission  }} </td>
+															
 															<td>{{ $package->created_at  }} </td>
 														</tr>
 														@endforeach	
