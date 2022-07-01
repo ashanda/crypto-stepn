@@ -41,11 +41,8 @@ class CreateNewUser implements CreatesNewUsers
                 $puid = null;
             }
             
-            $user_valid = DB::table('users')->where('id_number', '=' ,$input['id_number'])->count();
-            if($user_valid > 0){
-                
-            }else{
-                $user =  User::create([
+            
+            $user =  User::create([
             
             'fname' => $input['fname'],
             'lname' => $input['lname'],
@@ -67,5 +64,5 @@ class CreateNewUser implements CreatesNewUsers
         
         
 
-    }
+    
 }
