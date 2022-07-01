@@ -35,16 +35,10 @@
 														<circle cx="17.4636" cy="16.7788" r="16.7788" fill="white" fill-opacity="0.67"></circle>
 													</svg>
 												</div>
-<<<<<<< HEAD
 												<div class="d-flex justify-content-between">
-													
-													<h5 class="num-text text-white mb-5 font-w200">Available - ${{ wallet_available_balance_sum() }}</h5>
-													
+													<h5 class="num-text text-white mb-5 font-w200">Available - ${{ wallet_available_balance_sum() }}</h5>	
 												</div>
 												
-=======
-
->>>>>>> aee53ad7948d73072209e11b17a03ad309bc6556
 											</div>
 										</div>
 									</div>
