@@ -116,7 +116,7 @@
                 <script>
 function ChangeAddress() {
     var x= document.getElementById("sel1").value
-    alert("x");
+    alert(x);
 }
                 </script>
            
