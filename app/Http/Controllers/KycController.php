@@ -218,35 +218,11 @@ class KycController extends Controller
         $role=Auth::user()->role;
         if($role==1){
             $request->validate([
-                'uid' => 'required',
-                'dbType' => 'required',
-                'id_number' => 'required',
-                'dob' => 'required',
-                'phone_number' => 'required',
-                'whatsapp_number' => 'required',
-                'street_address' => 'required',
-                'city' => 'required',
-                'district' => 'required',
-                'province' => 'required',
-                'country' => 'required',
-                'postal_code' => 'required',
-                'selfie_photo' => 'required',
+                
                 'status' => 'required',
                 ]);
                 $kyc = kyc::find($id);
-                $kyc->uid= $request->uid;
-                $kyc->dbType= $request->dbType;
-                $kyc->id_number = $request->id_number;
-                $kyc->dob = $request->dob;
-                $kyc->phone_number = $request->phone_number;
-                $kyc->whatsapp_number = $request->whatsapp_number;
-                $kyc->street_address = $request->street_address;
-                $kyc->city = $request->city;
-                $kyc->district = $request->district;
-                $kyc->province = $request->province;
-                $kyc->country = $request->country;
-                $kyc->postal_code = $request->postal_code;
-                $kyc->selfie_image = $request->selfie_photo;
+                
                 $kyc->status = $request->status;
                 $kyc->save();
                 return redirect()->route('kyc.index')

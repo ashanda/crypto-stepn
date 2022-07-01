@@ -145,6 +145,12 @@ function package_commission_sum(){
   return $package_commission_sum;
 }
 
+// wallet total
+function wallet_total(){
+  $wallet_total_sum = DB::table('wallets')->where('uid',"=",Auth::user()->uid)->sum('wallet_balance');
+  return $wallet_total_sum;
+}
+
 
 // direct commission sum 
   function direct_commision(){

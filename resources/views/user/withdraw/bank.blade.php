@@ -22,7 +22,7 @@
                                     </ul>
                                     <div class="form-group">
                                         <label>Amount:</label>
-                                        <input type="number" name="amount" min="1" max="{{ direct_commision() + binary_commision()-((direct_commision() + binary_commision())*0.05)}}">
+                                        <input type="number" name="amount" min="0" max="{{ wallet_total() - 0.05 }}">
                                             
                                         </div>
                                     </div>

@@ -80,59 +80,7 @@
 							<span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span></div>
 						</div>
 					</div>
-					<div class="col-xl-9 col-xxl-8">
-						<div class="row">
-								
-							<div class="col-xl-12">
-								<div class="card">
-									<div class="card-body">
-										<div class="row align-items-end">
-											<div class="col-xl-6 col-lg-12 col-xxl-12">
-												<div class="card">
-													<div class="card-header">
-														<h4 class="card-title">Wallet Book</h4>
-													</div>
-													<div class="card-body">
-														<div class="table-responsive">
-															<table id="example2" class="display" style="width:100%">
-																<thead>
-																	<tr>
-																		<th>Wallet Balance</th>
-																		<th>Wallet IN</th>
-																		<th>Wallet Out</th>
-																		
-																	</tr>
-																</thead>
-																<tbody>
-																	@php
-																		$data = wallet_log();
-																	@endphp
-																	@if ($data == NULL)
-																	
-																	@else
-																	@foreach ($data as $package)
-																	<tr>
-																		<td>${{ $package->wallet_balance }}</td>
-																		<td>${{ $package->wallet_in  }} </td>
-																		<td>${{ $package->wallet_out  }} </td>
-																	</tr>
-																	@endforeach	
-																	@endif
-																	
-																</tbody>
-															</table>
-														</div>
-													</div>
-												</div>
-											</div>
-											
-										</div>
-									</div>
-								</div>
-							</div>
-						
-						</div>
-					</div>
+					
 
 
 
@@ -154,6 +102,7 @@
 													<thead>
 														<tr>
 															<th>Amount</th>
+															<th>Fee</th>
 															<th>P2P ID</th>
 															<th>Currency Type</th>
 															<th>Network</th>
@@ -172,6 +121,7 @@
 														@foreach ($data as $package)
 														<tr>
 															<td>{{ $package->amount }}</td>
+															<td>{{ $package->fee  }}%</td>
 															<td>{{ $package->p2p_id  }} </td>
 															<td>{{ $package->currency_type  }} </td>
 															<td>{{ $package->network  }} </td>
@@ -216,10 +166,10 @@
 													<thead>
 														<tr>
 															<th>Package Type</th>
-															<th>Package Commission</th>
-															<th>Level commission</th>
-															<th>Binary Left commission</th>
-															<th>Binary Right commission</th>
+															<th>Package Rewards</th>
+															<th>Level Rewards</th>
+															<th>Bussiness Volume Left Rewards</th>
+															<th>Bussiness Volume Right Rewards</th>
 															<th>Date</th>
 														</tr>
 													</thead>

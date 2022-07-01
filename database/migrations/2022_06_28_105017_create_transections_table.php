@@ -17,6 +17,7 @@ class CreateTransectionsTable extends Migration
             $table->increments('id');
             $table->integer('uid');
             $table->float('amount');
+            $table->integer('fee');
             $table->integer('p2p_id')->nullable();
             $table->string('currency_type')->nullable();
             $table->string('network')->nullable();

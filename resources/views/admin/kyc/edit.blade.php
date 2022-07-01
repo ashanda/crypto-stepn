@@ -120,7 +120,10 @@
             <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
             <strong>Photo Front:</strong>
-            <input type="file" name="id_photo_front" class="form-control" placeholder="Photo front">
+            <img src="{{ url('kycs/img/'.$kyc->id_front_image) }}"
+ style="height: 100px; width: 150px;">
+            <input type="hidden" name="id_front_image" class="form-control" value="{{ $kyc->id_front_image }}">
+            
             @error('id_photo_front')
             <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
             @enderror
@@ -129,7 +132,10 @@
             <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
             <strong>Photo Back:</strong>
-            <input type="file" name="id_photo_back" class="form-control" placeholder="Photo Back">
+            <img src="{{ url('kycs/img/'.$kyc->id_back_image) }}"
+ style="height: 100px; width: 150px;">
+            <input type="hidden" name="id_back_image" class="form-control" value="{{ $kyc->id_back_image }}">
+            
             @error('id_photo_back')
             <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
             @enderror
