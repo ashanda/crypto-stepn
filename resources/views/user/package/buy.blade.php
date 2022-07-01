@@ -54,7 +54,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label>  Deposit Address:</label>
-                                        <input type="text" name="deposit_add" readonly value="123456789">
+                                        <input type="text" name="deposit_add" id="deposit_add" readonly value="123456789">
                                     </div>  
                                     <div class="form-group">
                                         <strong>Profe Screen Shot:</strong>
@@ -117,7 +117,7 @@
 function ChangeAddress() {
     var x= document.getElementById("sel1").value;
     var y = document.getElementById("sel2").value;
-    alert(x + y);
+    document.getElementById("deposit_add").value = x+y;
 }
                 </script>
            
