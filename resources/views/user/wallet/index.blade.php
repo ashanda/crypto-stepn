@@ -186,7 +186,7 @@
 								</div>
 								<div class="card-body">
 									<div class="table-responsive">
-										<table id="example2" class="display" style="width:100%">
+										<table id="example2" class="display table table-bordered" style="width:100%">
 											<thead>
 												<tr>
 													<th>Package Type</th>
