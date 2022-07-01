@@ -53,17 +53,18 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
+                                        <label>  Deposit Address:</label>
+                                        <input type="text" name="deposit_add" readonly value="123456789">
+                                    </div>  
+                                    <div class="form-group">
                                         <strong>Profe Screen Shot:</strong>
                                         <input type="file" name="deposite_ss" class="form-control" placeholder="Profe Screen Shot" required>
                                         @error('deposite_ss')
                                         <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                                         @enderror
                                         </div>
-                                    <div class="form-group">
-                                        <label>  Deposit Address:</label>
-                                        <input type="text" name="deposit_add" readonly value="123456789">
-                                    </div>    
-                                    <span class="price">${{ $buy_package[0]->package_value  }}</span>
+                                      
+                                    
                                     <input type="hidden" name="pref_id" value="{{ get_ref()->parent_id }}">
                                     <input type="hidden" name="package_id" value="{{ $buy_package[0]->id  }}">
                                     <input type="hidden" name="package_value" value="{{ $buy_package[0]->package_value  }}">
@@ -73,6 +74,7 @@
                                              <label class="custom-control-label" for="basic_checkbox_1"><a target="_blank" href="/disclaimer_notice">Disclaimer Notice</a></label>
                                          </div>
                                      </div>
+                                     <span class="price">${{ $buy_package[0]->package_value  }}</span>
                                     <div>
                                     @php
                                         if(!empty($buy_package[0]->status)){
