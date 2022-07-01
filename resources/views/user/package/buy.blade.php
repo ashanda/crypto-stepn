@@ -44,11 +44,11 @@
                                     <div class="form-group">
                                         <label> Network (select one):</label>
                                         <div class="dropdown bootstrap-select form-control default-select dropup">
-                                            <select class="form-control default-select" id="sel1" tabindex="-98" name="network" required>
-                                            <option>Tron (TRC20)</option>
-                                            <option>BNB Smart Chain (BEP20)</option>
-                                            <option>Ethereum (ERC20)</option>
-                                            <option>Polygon</option>
+                                            <select class="form-control default-select" id="sel1" tabindex="-98" name="network" required onchange="ChangeAddress()">
+                                            <option value="tron">Tron (TRC20)</option>
+                                            <option value="bnb">BNB Smart Chain (BEP20)</option>
+                                            <option value="ethereum">Ethereum (ERC20)</option>
+                                            <option value="polygon">Polygon</option>
                                         </select>
                                         </div>
                                     </div>
@@ -111,7 +111,12 @@
                 
                 
                 
-                
+                <script>
+function ChangeAddress() {
+    var x= document.getElementById("sel1").value
+    alert("x");
+}
+                </script>
            
         
         
