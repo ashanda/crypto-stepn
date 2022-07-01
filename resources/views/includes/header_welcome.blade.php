@@ -22,7 +22,7 @@
                 <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col logo_section">
                          <div class="center-desk">
                             <div class="logo">
-                               <a href="#" ><img src="assets/images/lemaconet F.png"> </a>
+                               <a href="https://lemaconet.com" ><img src="assets/images/lemaconet F.png"> </a>
                             </div>
                          </div>
                    </div>
@@ -31,7 +31,7 @@
                             <nav class="main-menu">
                                <ul class="menu-area-main">
                                 <div id="selectField">
-                                        <a href="#">Home</a>
+                                        <a href="https://lemaconet.com">Home</a>
                                         <!---a href="#">About </a>
                                         <a href="#">Contact Us</a---->
                                         <a href="/login">Login</a>

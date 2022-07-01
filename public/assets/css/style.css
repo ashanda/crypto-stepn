@@ -172,6 +172,126 @@ menu-area-main li i:hover {
     }
   }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+nav{
+    background: #08071B;
+    height: 80px;
+    width: 100%;
+    padding-top: 10px;
+}
+lable .logo img{
+    width: 200px;
+    padding-left: 10px;
+}
+nav ul{
+    float: right;
+    margin-right: 40px;
+}
+nav ul li{
+    display: inline-block;
+    line-height: 80px;
+    margin: 0 5px;
+}
+nav ul li a{
+    color: #fff;
+    font-size: 18px;
+    text-decoration: none;
+    font-weight: 600;
+    padding-right: 20px;
+}
+nav ul .reg_btn{
+    border: 1px solid #fff;
+    border-radius: 20px;
+    padding: 5px 10px;
+
+}
+nav ul .reg_btn:hover{
+    background-color: #fff;
+    color: #08071B;
+}
+nav ul li a:active, nav ul li a:hover{
+    color: #2CBCA5;
+}
+.checkbtn{
+    font-size: 30px;
+    color: #fff;
+    float: right;
+    line-height: 80px;
+    margin-right: 40px;
+    cursor: pointer;
+    display: none;
+}
+#check{
+    display: none;
+}
+@media screen and (max-width: 990px){
+    lable .logo img{
+        width: 150px;
+    }
+    nav ul li a{
+        font-size: 16px;
+    }
+}
+@media screen and (max-width: 800px){
+    .checkbtn{
+        display: block;
+    }
+    nav ul{
+        position: fixed;
+        width: 100%;
+        height: 100vh;
+        background-color: #08071B;
+        top:90px;
+        left: -1000px;
+        text-align: center;
+        transition: all.5s;
+    }
+    nav ul li{
+        display: block;
+        margin: 30px 0;
+        line-height: 30px;
+    }
+    nav ul li a{
+        font-size: 20px;
+    }
+    #check:checked ~ ul{
+        left: 0;
+    }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /*cover*/
 
 .left{
@@ -362,9 +482,9 @@ menu-area-main li i:hover {
     line-height: 60px;
     background-color: transparent;
 }
-@media screen and (max-width: 950px){
+@media screen and (max-width: 800px){
     .features{
-        padding-top: 100px;
+        padding-top: 700px;
     }
     .features img{
         width: 700px;
@@ -534,7 +654,8 @@ menu-area-main li i:hover {
         font-size: 14px;
         font-weight: 300;
         line-height: 20px;
-        padding-left: 60px;
+        padding-left: 10px;
+        position: relative;
     }
     .payouts h2{
         font-size: 14px;
@@ -549,20 +670,22 @@ menu-area-main li i:hover {
         width: 500px;
     }
     .payouts .right{
-        padding-top: 65px;
+        display: block;
+        position: relative;
+        padding-top: 35px;
+        float: left;
     }
-    .payout_card1, .payout_card2, .payout_card3{
-        width: 80%;
-        margin-left: auto;
-        margin-right: auto;
+    .payout_card1, .payouts .payout_card2, .payout_card3{
+        margin-left: 10px;
+        width: 400px;
         padding-top: 5px ;
-        padding-bottom: 10px;
+        padding-bottom: 5px;
     }
     .payout_card1 img, .payout_card2 img, .payout_card3 img{
         width: 50px;
     }
     .payout_card1 h1, .payout_card2 h1, .payout_card3 h1{
-        font-size: 20px;
+        font-size: 16px;
         background-color: transparent;
         padding-left: 15px;
 
@@ -796,7 +919,7 @@ menu-area-main li i:hover {
 }
 @media screen and (max-width: 950px){
     .get_started{
-        margin-top: 800px;
+        margin-top: 1200px;
     }
     .get_started h1{
         font-size: 24px;
