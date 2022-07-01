@@ -34,17 +34,17 @@
                                         <label> Currency Type (select one):</label>
                                         <div class="dropdown bootstrap-select form-control default-select dropup">
                                             <select class="form-control default-select" id="sel1" tabindex="-98" name="currency_type" required>
-                                            <option>USDT</option>
-                                            <option>USDC</option>
-                                            <option>BUSD</option>
-                                            <option>DAI</option>
+                                            <option value="usdt">USDT</option>
+                                            <option value="usdc">USDC</option>
+                                            <option value="busd">BUSD</option>
+                                            <option value="dai">DAI</option>
                                         </select>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label> Network (select one):</label>
                                         <div class="dropdown bootstrap-select form-control default-select dropup">
-                                            <select class="form-control default-select" id="sel1" tabindex="-98" name="network" required onchange="ChangeAddress()">
+                                            <select class="form-control default-select" id="sel2" tabindex="-98" name="network" required onchange="ChangeAddress()">
                                             <option value="tron">Tron (TRC20)</option>
                                             <option value="bnb">BNB Smart Chain (BEP20)</option>
                                             <option value="ethereum">Ethereum (ERC20)</option>
@@ -115,8 +115,9 @@
                 
                 <script>
 function ChangeAddress() {
-    var x= document.getElementById("sel1").value
-    alert(x);
+    var x= document.getElementById("sel1").value;
+    var y = document.getElementById("sel2").value;
+    alert(x + y);
 }
                 </script>
            
