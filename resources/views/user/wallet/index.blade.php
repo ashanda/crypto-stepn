@@ -174,7 +174,6 @@
 								</div>
 							</div>
 						</div>
-<<<<<<< HEAD
 					</div>
 				</div>
 				<div class="col-xl-12">
@@ -244,8 +243,6 @@
 						</div>
 					</div>
 				</div>
-=======
->>>>>>> aee53ad7948d73072209e11b17a03ad309bc6556
 
 					</div>
 				</div>
