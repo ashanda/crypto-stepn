@@ -8,6 +8,7 @@
 			#example2_filter {
   display: none!important;
 }
+
 		</style>
         <div class="content-body" style="min-height: 796px;">
 			<div class="container-fluid">
