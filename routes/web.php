@@ -30,6 +30,7 @@ Route::get('/', function () {
 
 Route::get('/redirects', [HomeController::class,'index']);
 Route::get('/dashboard', [HomeController::class,'index']);
+
 Route::get('/disclaimer_notice', [HomeController::class,'disclaimer_notice']);
 Route::resource('/package', PackageController::class);
 Route::resource('/buy_package', BuypackageController::class);
