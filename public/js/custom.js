@@ -377,3 +377,5 @@ jQuery(window).on('resize',function () {
 	Zenix.resize();
 });
 /*  Window Resize END */
+
+
