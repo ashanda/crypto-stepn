@@ -45,7 +45,7 @@
                                         <div class="mt-10 sm:mt-0">
                                             <ul>
                                                 <li><span class="text-black">IP : </span>{{ $ip_address }}</li>
-                                                <li><span class="text-black">Agent : </span>{{ $user_agent }}</li>
+                                                
                                             </ul>
                                         </div>
 									</div>

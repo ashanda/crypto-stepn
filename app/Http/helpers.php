@@ -240,6 +240,7 @@ function wallet_total(){
             $direct_commission = new Direct_Commission();
             $direct_commission->uid = $parent_id ;
             $direct_commission->direct_commission = $package_value * 0.1;
+            wallet_insert($parent_id,$package_value * 0.1);
             $direct_commission->save();
             $ptype='Direct Commission';
                 $lcommission = $package_value * 0.1;
@@ -273,6 +274,7 @@ function wallet_total(){
           $direct_commission->uid = $parent_id ;
           $direct_commission->direct_commission = $package_value * 0.03;
           $direct_commission->save();
+          wallet_insert($parent_id,$package_value * 0.03);
           $ptype='Indirect Commmission 1';
                 $lcommission = $package_value * 0.03;
                 $pcommission = '0';
@@ -303,6 +305,7 @@ function wallet_total(){
           $direct_commission = new Direct_Commission();
           $direct_commission->uid = $parent_id ;
           $direct_commission->direct_commission = $package_value * 0.02;
+          wallet_insert($parent_id,$package_value * 0.02);
           $direct_commission->save();
           $ptype='Indirect Commmission 2';
                 $lcommission = $package_value * 0.02;
@@ -335,6 +338,7 @@ function wallet_total(){
           $direct_commission = new Direct_Commission();
           $direct_commission->uid = $parent_id ;
           $direct_commission->direct_commission = $package_value * 0.01;
+          wallet_insert($parent_id,$package_value * 0.01);
           $direct_commission->save();
           $ptype='Indirect Commmission 3';
                 $lcommission = $package_value * 0.01;
@@ -366,6 +370,7 @@ function wallet_total(){
           $direct_commission = new Direct_Commission();
           $direct_commission->uid = $parent_id ;
           $direct_commission->direct_commission = $package_value * 0.01;
+          wallet_insert($parent_id,$package_value * 0.01);
           $direct_commission->save();
           $ptype='Indirect Commmission 4';
                 $lcommission = $package_value * 0.01;
@@ -404,6 +409,7 @@ function wallet_total(){
                 $pcommission = '0';
                 $bleft = $package_value*0.2;
                 $bright= 0;
+                
            all_commission($parent_id,$package_id,$ref_id,$ptype,$pcommission,$lcommission,$bleft,$bright);
             }else{
               $user['current_right_balance'] = $package_value*0.2;

@@ -20,6 +20,23 @@
 						<div class="swiper-box">
 							<div class="swiper-container card-swiper swiper-container-initialized swiper-container-vertical swiper-container-pointer-events swiper-container-free-mode">
 								<div class="swiper-wrapper" style="transform: translate3d(0px, 0px, 0px);" id="swiper-wrapper-0a7812a3110a99a5d" aria-live="polite">
+									<div class="swiper-slide" role="group" aria-label="3 / 8">
+										<div class="card-bx stacked card">
+											<img src="images/card/card3.jpg" alt="">
+											<div class="card-info">
+												<p class="mb-1 text-white fs-14">Total Rewards</p>
+												<div class="d-flex justify-content-between">
+													<h2 class="num-text text-white mb-5 font-w600">$50</h2>
+													<svg width="55" height="34" viewBox="0 0 55 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+														<circle cx="38.0091" cy="16.7788" r="16.7788" fill="white" fill-opacity="0.67"></circle>
+														<circle cx="17.4636" cy="16.7788" r="16.7788" fill="white" fill-opacity="0.67"></circle>
+													</svg>
+												</div>
+												
+											</div>
+										</div>
+									</div>
+									
 									<div class="swiper-slide swiper-slide-active" role="group" aria-label="1 / 8">
 										<div class="card-bx stacked card">
 											<img src="images/card/card1.jpg" alt="">
