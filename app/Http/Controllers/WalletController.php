@@ -58,7 +58,7 @@ class WalletController extends Controller
        
        $wallet_balance = wallet::find($id_update_row);
        
-       $wallet_balance->wallet_balance = $old_balance - $request->amount;
+       $wallet_balance->wallet_balance = $old_balance - $request->amount*0.05;
        $wallet_balance->wallet_out = $change_wallet_balance->wallet_out + $request->amount;
        $wallet_balance->save();
        $withdraw->save();

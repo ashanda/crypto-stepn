@@ -68,7 +68,7 @@
                                       <div class="col-xs-12 col-sm-12 col-md-12">
                                   <div class="form-group" id="otherType" style="display:none;">
                                       
-                                    <input type="text" name="id_number" class="form-control" value="{{ $kyc[0]->id_number }}">
+                                    <input type="text" name="id_number" readonly class="form-control" value="{{ $kyc[0]->id_number }}">
                                       @error('id_number')
                                       <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                                       @enderror

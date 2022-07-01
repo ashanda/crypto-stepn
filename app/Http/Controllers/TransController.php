@@ -14,8 +14,15 @@ class TransController extends Controller
     {
         $role=Auth::user()->role;
         if($role==0){
-                  
-            return view('user.withdraw.p2p');
+            $check_eligible_kyc = DB::table('kycs')->where('uid','==',Auth::user()->uid,'AND','status','==','0')->count();
+            $check_eligible_package = DB::table('user__packages')->where('uid','=',Auth::user()->uid)->count();
+            if($check_eligible_kyc > 0 && $check_eligible_package > 0){
+                return view('user.withdraw.p2p');
+            }else{
+                return view('user.withdraw.index');
+            }
+
+           
         }
         
     }
@@ -24,8 +31,14 @@ class TransController extends Controller
     {
         $role=Auth::user()->role;
         if($role==0){
-                  
-            return view('user.withdraw.bank');
+            $check_eligible_kyc = DB::table('kycs')->where('uid','=',Auth::user()->uid,'AND','status','=','0')->count();
+            $check_eligible_package = DB::table('user__packages')->where('uid','=',Auth::user()->uid)->count();
+            if($check_eligible_kyc > 0 && $check_eligible_package > 0){
+                return view('user.withdraw.bank');
+            }else{
+                return view('user.withdraw.index');
+            }      
+            
         }
     }
 
@@ -38,6 +51,7 @@ class TransController extends Controller
                 $withdraw = new Transection;
                 $withdraw->uid= Auth::user()->uid;
                 $withdraw->amount= $request->amount;
+                $withdraw->fee= 5;
                 $withdraw->p2p_id = $request->p2p_id;
                 $withdraw->wallet_address = $request->wallet_address;      
                 $withdraw->currency_type = $request->currency_type;  
@@ -55,7 +69,7 @@ class TransController extends Controller
             ->where("uid", "=", Auth::user()->uid )
             ->first();
             $wallet_id= $wallet_balance_update->id;
-            $new_wallet_balance = $wallet_balance_update->wallet_out + ($request->amount);
+            $new_wallet_balance = $wallet_balance_update->wallet_out + ($request->amount*0.05);
               DB::table('wallets')
               ->where('id', $wallet_id)
               ->update(['wallet_out' => $new_wallet_balance]);
