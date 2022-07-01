@@ -248,58 +248,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-xl-12">
-			<div class="card">
-				<div class="card-body">
-					<div class="row align-items-end">
-						<div class="col-xl-6 col-lg-12 col-xxl-12">
-							<div class="card">
-								<div class="card-header">
-									<h4 class="card-title">Earning History</h4>
-								</div>
-								<div class="card-body">
-									<div class="table-responsive">
-										<table id="example2" class="display table table-bordered" style="width:100%">
-											<thead>
-												<tr>
-													<th>Package Type</th>
-													<th>Package Rewards</th>
-													<th>Level Rewards</th>
-													<th>Bussiness Volume Left Rewards</th>
-													<th>Bussiness Volume Right Rewards</th>
-													<th>Date</th>
-												</tr>
-											</thead>
-											<tbody>
-												@php
-												$data = commssion_log();
-												@endphp
-												@if ($data == NULL)
-
-												@else
-												@foreach ($data as $package)
-												<tr>
-													<td>{{ $package->package_type }}</td>
-													<td>{{ $package->package_commission  }} </td>
-													<td>{{ $package->level_commission  }} </td>
-													<td>{{ $package->binary_commission_left  }} </td>
-													<td>{{ $package->binary_commission_right  }} </td>
-													<td>{{ $package->created_at  }} </td>
-												</tr>
-												@endforeach
-												@endif
-
-											</tbody>
-										</table>
-									</div>
-								</div>
-							</div>
-						</div>
-
-					</div>
-				</div>
-			</div>
-		</div>
+		
 
 	</div>
 </div>
