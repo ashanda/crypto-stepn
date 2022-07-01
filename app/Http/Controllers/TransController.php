@@ -14,7 +14,7 @@ class TransController extends Controller
     {
         $role=Auth::user()->role;
         if($role==0){
-            $check_eligible_kyc = DB::table('kycs')->where('uid','==',Auth::user()->uid,'AND','status','==','0')->count();
+            $check_eligible_kyc = DB::table('kycs')->where('uid','=',Auth::user()->uid,'AND','status','=','0')->count();
             $check_eligible_package = DB::table('user__packages')->where('uid','=',Auth::user()->uid)->count();
             if($check_eligible_kyc > 0 && $check_eligible_package > 0){
                 return view('user.withdraw.p2p');
