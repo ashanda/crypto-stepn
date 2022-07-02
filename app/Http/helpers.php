@@ -19,7 +19,16 @@
    *
    * @return response()
    */
- 
+
+// store fee
+function store_fee($uid,$fee){
+  $store_fee['uid'] = $uid;
+  $store_fee['fee'] = $fee;
+
+DB::table('company_profit_fee')->insert($store_fee);
+}
+
+ // fee
 function get_trxfee($req_amount){
   if(9 < $req_amount && $req_amount< 50 ){
     $fee= 2;

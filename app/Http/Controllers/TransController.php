@@ -44,7 +44,7 @@ class TransController extends Controller
         }
     }
 
-    public function store(Request $request)
+    public function store_p2p(Request $request)
     {
        
 
@@ -67,6 +67,73 @@ class TransController extends Controller
                 $withdraw->wallet_address = $wallet_address->wallet_address;      
                 $withdraw->currency_type = $wallet_address->currency_type;  
                 $withdraw->network = $wallet_address->network;        
+                
+
+                $wallete = DB::table("wallets")
+                ->where("uid", "=", Auth::user()->uid)
+                ->count();
+
+                if($wallete > 0){
+
+                    $wallet_balance_update =  DB::table("wallets")
+            ->select("id", "uid" ,"wallet_out","wallet_balance","available_balance")
+            ->where("uid", "=", Auth::user()->uid )
+            ->first();
+            $wallet_id= $wallet_balance_update->id;
+            
+                $new_available_balance = $wallet_balance_update->available_balance - ($request->amount+$fee);
+                $new_wallet_balance = $wallet_balance_update->wallet_balance ;
+            
+            
+            
+              DB::table('wallets')
+              ->where('id', $wallet_id)
+              ->update(['wallet_out' => $new_wallet_balance,'available_balance' => $new_available_balance]);
+
+                }else{
+                    DB::table('wallets')->insert([
+                        'uid' => Auth::user()->uid,
+                        'wallet_out' => $request->amount,
+                    ]);
+                }
+
+                $withdraw->save();
+                return redirect()->route('wallet.index')
+                ->with('success','withdraw has been created successfully.');
+        
+    
+    }
+
+    
+    public function store(Request $request)
+    {
+       
+
+                $id = $request->wallet_address;
+                $wallet_address = UserCryptoWallet::find($id);
+
+                $withdraw = new Transection;
+                $withdraw->uid= Auth::user()->uid;
+                
+                
+                
+                $fee = get_trxfee($request->amount);
+                
+                if($fee == -1){
+                   // return;
+                }
+                $withdraw->fee= $fee;
+                $withdraw->amount = $request->amount;
+                $withdraw->p2p_id = $request->p2p_id;
+                if($wallet_address == NULL){
+                    
+                }else{
+                    $withdraw->wallet_address = $wallet_address->wallet_address;      
+                    $withdraw->currency_type = $wallet_address->currency_type;  
+                    $withdraw->network = $wallet_address->network; 
+                }
+                
+                      
                 
 
                 $wallete = DB::table("wallets")

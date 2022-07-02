@@ -130,6 +130,8 @@ class BuypackageController extends Controller
         
            
         }
+
+        
         /**
         * Display the specified resource.
         *

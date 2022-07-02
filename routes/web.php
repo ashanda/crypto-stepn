@@ -46,6 +46,7 @@ Route::resource('/user_buy_package', UserbuypackageController::class);
 Route::get('/withdraw' , [WithdrawController::class, 'index']);
 
 Route::get('/trans/p2p' , [TransController::class, 'p2p']);
+
 Route::get('/trans/crypto' , [TransController::class, 'crypto']);
 
 Route::get('/package_earn' , [HomeController::class,'package_earn']);

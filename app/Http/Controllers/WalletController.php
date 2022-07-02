@@ -68,6 +68,7 @@ class WalletController extends Controller
     }else if($request->package_status == 0){
         $wallet_balance->available_balance = $wallet_balance->available_balance - $request->amount; 
     }else if($request->package_status == 1){
+        store_fee($request->uid,$fee);
         $wallet_balance->available_balance = $old__available_balance - ($request->amount+$fee);
         $wallet_balance->wallet_balance = $old_balance - ($request->amount + $fee);
     }
