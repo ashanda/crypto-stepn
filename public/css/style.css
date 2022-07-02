@@ -70318,4 +70318,15 @@ form a.btn.btn-primary {
 .card .table-responsive table th{
     vertical-align: initial;
 }
+.withdraw-section .btn.btn-primary {
+    color: #fff;
+    min-width: 250px;
+    margin: 4px;
+}
+.withdraw-section .btn {
+    padding: 0.938rem 1.5rem;
+    border-radius: 5px;
+    font-weight: 500;
+    font-size: 1rem;
+}
 /* styles fix kasun */
