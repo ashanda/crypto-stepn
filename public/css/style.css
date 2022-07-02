@@ -70340,6 +70340,10 @@ form a.btn.btn-primary {
     width: 100%;
 }
 
+[data-theme-version="dark"] .authincation-content .form-control{
+    background-color: #ffffff2e;
+}
+
 @media screen and (min-width: 1200px) {
     .swiper-container.card-swiper.swiper-container-initialized.swiper-container-vertical.swiper-container-pointer-events.swiper-container-free-mode{
         padding-bottom: 20px;
