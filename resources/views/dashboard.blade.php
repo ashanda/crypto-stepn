@@ -11,7 +11,7 @@
 			<h2 class="font-w600 mb-2 mr-auto ">Dashboard</h2>
 			
 
-			<div class="col-xl-6 col-xxl-12">
+			<div class="col-xl-12 col-xxl-12">
 				<div class="row">
 					<div class="col-sm-6">
 						<div class="card-bx stacked card">
@@ -59,8 +59,9 @@
 					</div>
 				</div>
 			</div>
+
 			<!-- Above section repeated start-->
-			<div class="col-xl-6 col-xxl-12">
+			<div class="col-xl-12 col-xxl-12">
 				<div class="row">
 					<div class="col-sm-6">
 						<div class="card-bx stacked card t-earning">
