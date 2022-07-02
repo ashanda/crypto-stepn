@@ -36,6 +36,8 @@ Route::resource('/buy_package', BuypackageController::class);
 
 Route::get('/buy_package/{id}/progress',[BuypackageController::class,'buy']);
 
+Route::get('/buy_package/{id}/wallet_buy',[BuypackageController::class,'wallet_buy']);
+
 Route::get('/active_packages', [BuypackageController::class,'active']);
 Route::get('/user/profile', [UserController::class,'user']);
 

@@ -162,6 +162,23 @@ class BuypackageController extends Controller
                 }
             
             }
+
+            public function wallet_buy($id)
+            {
+                $role=Auth::user()->role;
+                if($role==1){
+                    $buy_package = Package::find($id);
+                    
+                    return view('admin.kyc.edit',compact('buy_package','id'));
+                }
+                if($role==0){
+                    
+                    $buy_package = DB::table('packages')->where('id', $id)->get();  
+                    
+                    return view('user.package.wallet_buy',compact('buy_package','id'));
+                }
+            
+            }
         /**
         * Update the specified resource in storage.
         *

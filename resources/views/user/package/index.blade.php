@@ -48,7 +48,8 @@
                                         
                                     
                                     @else
-                                    <a class="btn btn-primary ml-3" href="buy_package/{{ $package->id }}/progress" role="button">Buy Package</a>
+                                    <a class="btn btn-primary ml-3" href="buy_package/{{ $package->id }}/progress" role="button">Buy Package Crypto</a>
+                                    <a class="btn btn-primary ml-3" href="buy_package/{{ $package->id }}/wallet_buy" role="button">Buy Package Wallet</a>
                                     @endif    
                                     
                                     

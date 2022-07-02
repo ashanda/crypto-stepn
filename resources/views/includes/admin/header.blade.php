@@ -34,8 +34,8 @@
             Nav header start
         ***********************************-->
         <div class="nav-header">
-            <a href="index.html" class="brand-logo">
-				Lemaconet.com
+            <a href="/" class="brand-logo">
+				<img src="{{asset('images/logo-full.png')}}" alt="">
             </a>
 
             <div class="nav-control">

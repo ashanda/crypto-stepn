@@ -35,7 +35,7 @@
         ***********************************-->
         <div class="nav-header">
             <a href="/" class="brand-logo">
-				<img src="images/logo-full.png" alt="">
+				<img src="{{asset('images/logo-full.png')}}" alt="">
             </a>
 
             <div class="nav-control">
