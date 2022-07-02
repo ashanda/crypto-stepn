@@ -20,6 +20,18 @@
    * @return response()
    */
 
+
+//Geneology
+function geneology( $target_parent ){
+
+	
+
+return $geneology;
+
+}
+
+
+
 // store fee
 function store_fee($uid,$fee){
   $store_fee['uid'] = $uid;
