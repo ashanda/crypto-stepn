@@ -20,44 +20,28 @@
                                   @endphp
                                
                                 <div class="new-arrival-content text-center mt-3">
-                                    
+                                    @php
+                                        $fee;
+                                    @endphp
                                     <ul class="star-rating">
                                         <h4>Withdrawal Request</h4>
                                     </ul>
                                     <div class="form-group">
                                         <label>Amount:</label>
+                                        
                                         <input type="number" name="amount" min="0" max="{{ wallet_total() - 0.05 }}">
                                             
                                         </div>
                                     </div>
-                                    <div class="form-group">
-                                        <label> Currency Type (select one):</label>
-                                        <div class="dropdown bootstrap-select form-control default-select dropup">
-                                            <select class="form-control default-select" id="sel1" tabindex="-98" name="currency_type" required>
-                                            <option>{{  $get_user_wallets[0]->currency_type}}</option>
-                                            <option>{{ $get_user_wallets[1]->currency_type}}</option>
-                                            <option>{{ $get_user_wallets[2]->currency_type}}</option>
-                                            
-                                        </select>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label> Network (select one):</label>
-                                        <div class="dropdown bootstrap-select form-control default-select dropup">
-                                            <select class="form-control default-select" id="sel1" tabindex="-98" name="network" required>
-                                                <option>{{  $get_user_wallets[0]->network}}</option>
-                                                <option>{{ $get_user_wallets[1]->netwok}}</option>
-                                                <option>{{ $get_user_wallets[2]->netwok}}</option>
-                                        </select>
-                                        </div>
-                                    </div>
+                                   
+                                    
                                     
                                     <div class="form-group">
                                         <label>  Your Wallet Address:</label>
                                         <select class="form-control default-select" id="sel1" tabindex="-98" name="wallet_address" required>
-                                            <option>{{  $get_user_wallets[0]->wallet_address}}</option>
-                                            <option>{{ $get_user_wallets[1]->wallet_address}}</option>
-                                            <option>{{ $get_user_wallets[2]->wallet_address}}</option>
+                                            <option value="{{  $get_user_wallets[0]->id}}">{{  $get_user_wallets[0]->wallet_address}}</option>
+                                            <option value="{{  $get_user_wallets[1]->id}}">{{ $get_user_wallets[1]->wallet_address}}</option>
+                                            <option value="{{  $get_user_wallets[2]->id}}">{{ $get_user_wallets[2]->wallet_address}}</option>
                                     </select>
                                         
                                     </div>    

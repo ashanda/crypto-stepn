@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Models\User_Package;
 use App\Models\User_Parent;
+
 use App\Models\Direct_Commission;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -88,13 +89,16 @@ class BuypackageController extends Controller
                     $buy_package->deposite_ss = $filename;
                 }
                 $buy_package->package_id = $request->package_id;
+                
+                $user_current_package = DB::table('packages')->where('id','=',$buy_package->package_id)->get();
+                
                 // Commission function call
                 $previous_package = User_Package::where('package_id', '=', $request->package_id,'AND', 'uid', '=',Auth::user()->uid)->count();
                 if ($previous_package >= 1){
-                    buy_package_secound_time($request->package_value,$request->package_id); 
+                    buy_package_secound_time($request->package_value,$request->package_id,$user_current_package[0]->id); 
                     $package_revenue = $request->package_value * 4;
                 }else{
-                    buy_package($request->package_value,$request->package_id); 
+                    buy_package($request->package_value,$request->package_id,$user_current_package[0]->id); 
                     $package_revenue = $request->package_value * 5;
                 }
                 $buy_package->package_value = $request->package_value;

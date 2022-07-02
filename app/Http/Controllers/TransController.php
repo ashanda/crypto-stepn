@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Models\Withdraw;
 use App\Models\Transection;
+use App\Models\UserCryptoWallet;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -46,16 +48,25 @@ class TransController extends Controller
     {
        
 
-            
-                
+                $id = $request->wallet_address;
+                $wallet_address = UserCryptoWallet::find($id);
+
                 $withdraw = new Transection;
                 $withdraw->uid= Auth::user()->uid;
-                $withdraw->amount= $request->amount;
-                $withdraw->fee= 5;
+                
+                
+                
+                $fee = get_trxfee($request->amount);
+                
+                if($fee == -1){
+                   // return;
+                }
+                $withdraw->fee= $fee;
+                $withdraw->amount = $request->amount;
                 $withdraw->p2p_id = $request->p2p_id;
-                $withdraw->wallet_address = $request->wallet_address;      
-                $withdraw->currency_type = $request->currency_type;  
-                $withdraw->network = $request->network;        
+                $withdraw->wallet_address = $wallet_address->wallet_address;      
+                $withdraw->currency_type = $wallet_address->currency_type;  
+                $withdraw->network = $wallet_address->network;        
                 
 
                 $wallete = DB::table("wallets")
@@ -70,8 +81,8 @@ class TransController extends Controller
             ->first();
             $wallet_id= $wallet_balance_update->id;
             
-                $new_available_balance = $wallet_balance_update->available_balance - $request->amount;
-                $new_wallet_balance = $wallet_balance_update->wallet_balance + ($request->amount*0.05);
+                $new_available_balance = $wallet_balance_update->available_balance - ($request->amount+$fee);
+                $new_wallet_balance = $wallet_balance_update->wallet_balance ;
             
             
             

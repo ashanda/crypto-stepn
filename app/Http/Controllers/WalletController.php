@@ -49,11 +49,15 @@ class WalletController extends Controller
         $withdraw = Transection::find($id);
         $withdraw->status = $request->package_status;
         $withdraw->amount = $request->amount;
-        
+        $fee = get_trxfee($request->amount);
+                if($fee == -1){
+                   // return;
+                }
 
        $change_wallet_balance = DB::table('wallets')
        ->where('uid',"=",$request->uid )
        ->first();
+
        $id_update_row = $change_wallet_balance->id;
        $old_balance = $change_wallet_balance->wallet_balance;
        $old__available_balance =$change_wallet_balance->available_balance;
@@ -64,8 +68,8 @@ class WalletController extends Controller
     }else if($request->package_status == 0){
         $wallet_balance->available_balance = $wallet_balance->available_balance - $request->amount; 
     }else if($request->package_status == 1){
-        $wallet_balance->available_balance = $old__available_balance - $request->amount*0.05;
-        $wallet_balance->wallet_balance = $old_balance - ($request->amount + ($request->amount*0.05));
+        $wallet_balance->available_balance = $old__available_balance - ($request->amount+$fee);
+        $wallet_balance->wallet_balance = $old_balance - ($request->amount + $fee);
     }
 
        

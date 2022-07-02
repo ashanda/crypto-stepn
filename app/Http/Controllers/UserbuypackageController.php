@@ -57,14 +57,14 @@ class UserbuypackageController extends Controller
         $package->status = $request->package_status;
        
         $package->save();
-        return redirect()->route('userbuypackage.index')
+        return redirect()->route('user_buy_package.index')
         ->with('success','Package Has Been updated successfully');
         }
         
         public function destroy(User_Package $package)
         {
         $package->delete();
-        return redirect()->route('userbuypackage.index')
+        return redirect()->route('user_buy_package.index')
         ->with('success','User Package has been deleted successfully');
         }
 }
