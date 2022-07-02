@@ -70342,6 +70342,7 @@ form a.btn.btn-primary {
 
 [data-theme-version="dark"] .authincation-content .form-control{
     background-color: #ffffff2e;
+    padding: 0 10px;
 }
 
 @media screen and (min-width: 1200px) {
