@@ -14,7 +14,11 @@
                             <form action="{{ route('trans.store') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="new-arrival-product">
-                                
+                                  @php
+                                     $get_user_wallets = get_user_wallets_data();
+                                     
+                                  @endphp
+                               
                                 <div class="new-arrival-content text-center mt-3">
                                     
                                     <ul class="star-rating">
@@ -30,10 +34,10 @@
                                         <label> Currency Type (select one):</label>
                                         <div class="dropdown bootstrap-select form-control default-select dropup">
                                             <select class="form-control default-select" id="sel1" tabindex="-98" name="currency_type" required>
-                                            <option>USDT</option>
-                                            <option>USDC</option>
-                                            <option>BUSD</option>
-                                            <option>DAI</option>
+                                            <option>{{  $get_user_wallets[0]->currency_type}}</option>
+                                            <option>{{ $get_user_wallets[1]->currency_type}}</option>
+                                            <option>{{ $get_user_wallets[2]->currency_type}}</option>
+                                            
                                         </select>
                                         </div>
                                     </div>
@@ -41,17 +45,21 @@
                                         <label> Network (select one):</label>
                                         <div class="dropdown bootstrap-select form-control default-select dropup">
                                             <select class="form-control default-select" id="sel1" tabindex="-98" name="network" required>
-                                            <option>Tron (TRC20)</option>
-                                            <option>BNB Smart Chain (BEP20)</option>
-                                            <option>Ethereum (ERC20)</option>
-                                            <option>Polygon</option>
+                                                <option>{{  $get_user_wallets[0]->network}}</option>
+                                                <option>{{ $get_user_wallets[1]->netwok}}</option>
+                                                <option>{{ $get_user_wallets[2]->netwok}}</option>
                                         </select>
                                         </div>
                                     </div>
                                     
                                     <div class="form-group">
                                         <label>  Your Wallet Address:</label>
-                                        <input type="text" name="wallet_address"  value="123456789">
+                                        <select class="form-control default-select" id="sel1" tabindex="-98" name="wallet_address" required>
+                                            <option>{{  $get_user_wallets[0]->wallet_address}}</option>
+                                            <option>{{ $get_user_wallets[1]->wallet_address}}</option>
+                                            <option>{{ $get_user_wallets[2]->wallet_address}}</option>
+                                    </select>
+                                        
                                     </div>    
                                     
                                    

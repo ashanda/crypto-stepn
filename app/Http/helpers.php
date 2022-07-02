@@ -9,6 +9,8 @@
     use App\Models\Direct_Commission;
     use App\Models\User;
     use App\Models\Commission;
+    use App\Models\UserCryptoWallet;
+    Use App\Models\Kyc;
 
 
    /**
@@ -17,6 +19,26 @@
    * @return response()
    */
  
+//kyc validate
+function get_user_kyc_count(){
+  $get_user_kyc_count = Kyc::where('uid','=',Auth::user()->uid,'AND','status','=','1')->count();
+  return $get_user_kyc_count;
+}
+
+//wallet count
+function get_user_wallets_count(){
+  $get_user_wallets_count = UserCryptoWallet::where('uid','=',Auth::user()->uid)->count();
+  return $get_user_wallets_count;
+}
+
+
+// wallet address get //
+function get_user_wallets_data(){
+  $get_user_wallets = UserCryptoWallet::where('uid',Auth::id())->get();
+  return $get_user_wallets;
+}
+
+
 // wallete realtime value
  function wallet_available_balance_sum(){
   $wallet_available_balance_sum = DB::table('wallets')->where('uid',"=",Auth::user()->uid)->sum('available_balance');

@@ -9,7 +9,7 @@
 					<img src="{{ url('profile/img/'.Auth::user()->profile_pic) }}" alt="">
                     
 					
-					<a href="/"><i class="fa fa-cog" aria-hidden="true"></i></a>
+					<a href="/dashboard"><i class="fa fa-cog" aria-hidden="true"></i></a>
 					<h5 class="mb-0 fs-20 text-black "><span class="font-w400">Hello,</span> {{ Auth::user()->fname.' '.Auth::user()->lname }}</h5>
 					<p class="mb-0 fs-14 font-w400">info@lemaconet.com</p>
 				</div>
@@ -58,11 +58,7 @@
                     
                     
                 </ul>
-				<div class="copyright">
-					<p><strong> Crypto Admin Dashboard</strong> © 2021 All Rights Reserved</p>
-					<!-- <p class="fs-12">Made with <span class="heart"></span> by DexignZone</p> -->
-					<p class="fs-12">Made with <i class="fa fa-heart"> </i> by YogeeMedia</p>
-				</div>
+				
 			</div>
         </div>
         <!--**********************************

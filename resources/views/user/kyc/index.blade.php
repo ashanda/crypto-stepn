@@ -10,13 +10,22 @@
             <div class="row">
             <div class="col-lg-12 margin-tb">
             <div class="pull-left">
+                
             <h2>Your KYC</h2>
+            @php
+              $get_user_kyc_count = get_user_kyc_count();
+            @endphp
             </div>
             <div class="pull-right mb-2">
              @if ($data->first()==null)
              <a class="btn btn-success" href="{{ route('kyc.create') }}"> Create KYC</a>
              @else
-             <a class="btn btn-success" href="{{ route('kyc.edit',$data[0]->id) }}"> Edit KYC</a>
+              @if ($get_user_kyc_count >0 )
+                  
+              @else
+              <a class="btn btn-success" href="{{ route('kyc.edit',$data[0]->id) }}"> Edit KYC</a> 
+              @endif
+             
              @endif  
             
             </div>

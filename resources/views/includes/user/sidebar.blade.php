@@ -11,7 +11,7 @@
 					<img src="{{ url('profile/img/'.Auth::user()->profile_pic) }}" alt="">
                     
                     @endif
-					<a href="/"><i class="fa fa-cog" aria-hidden="true"></i></a>
+					<a href="/dashboard"><i class="fa fa-cog" aria-hidden="true"></i></a>
 					<h5 class="mb-0 fs-20 text-black "><span class="font-w400">Hello,</span> {{ Auth::user()->fname.' '.Auth::user()->lname }}</h5>
 					<p class="mb-0 fs-14 font-w400">info@lemaconet.com</p>
 				</div>
@@ -56,19 +56,20 @@
 						</a>
                         
                     </li>
-                    <li><a href="/wallet" class="ai-icon" aria-expanded="false">
-							<i class="flaticon-381-settings-2"></i>
-							<span class="nav-text">Wallets</span>
-						</a>
+
+					<li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+						<i class="flaticon-381-settings-2"></i>
+						<span class="nav-text">Wallets</span>
+					</a>
+					<ul aria-expanded="false">
+						<li><a href="/wallet">My Wallet</a></li>
+						<li><a href="/add_wallet">Add Crypto Wallet</a></li>
+					</ul>
+					
 					</li>
-                    
-                    
-                    
+
                 </ul>
-				<div class="copyright">
-					<p><strong> Crypto Admin Dashboard</strong> © 2021 All Rights Reserved</p>
-					<p class="fs-12">Made with <span class="heart"></span> by DexignZone</p>
-				</div>
+				
 			</div>
         </div>
         <!--**********************************

@@ -10,8 +10,6 @@
         <div class="container mt-2">
             <div class="row">
             <div class="col-lg-12 margin-tb">
-            
-            
             </div>
             </div>
             @if ($message = Session::get('success'))
@@ -44,7 +42,7 @@
             <td>{{ $package->currency_type}}</td>
             <td>{{ $package->network}}</td>
             <td>{{ $package->wallet_address}}</td>
-            @if ($package->status==0)
+            @if ($package->status=0)
             <td>{{ 'Pending' }}</td>
             @else
             <td>{{ 'withdrow' }}</td>

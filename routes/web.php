@@ -11,8 +11,7 @@ use App\Http\Controllers\UserbuypackageController;
 use App\Http\Controllers\WalletController;
 use App\Http\Controllers\WithdrawController;
 use App\Http\Controllers\TransController;
-
-
+use App\Http\Controllers\AddWalletCRUDController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -57,7 +56,7 @@ Route::get('/user/profile', [UserController::class,'user']);
 Route::resource('/user', UserController::class);
 
 Route::resource('/trans',TransController::class);
-
+Route::resource('/add_wallet', AddWalletCRUDController::class);
 
 Route::resource('/wallet', WalletController::class);
 
