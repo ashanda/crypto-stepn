@@ -70329,4 +70329,13 @@ form a.btn.btn-primary {
     font-weight: 500;
     font-size: 1rem;
 }
+#copyButton1, #copyButton2 {
+    padding: 10px 20px;
+    float: left !important;
+    border-radius: 5px;
+    background-color: #2C254A;
+    border-color: #2C254A;
+    color: #fff;
+    margin: 12px 0 0px 1px;
+}
 /* styles fix kasun */
