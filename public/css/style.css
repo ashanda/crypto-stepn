@@ -70239,7 +70239,7 @@ html[dir="rtl"] [direction="rtl"][data-sidebar-style="compact"]:not([data-layout
 }
 
 
-/* styles fix kasun */
+/* styles kasun */
 
 .d-flex .text-white {
     width: 100%;
@@ -70339,4 +70339,11 @@ form a.btn.btn-primary {
     margin: 12px 0 0px 1px;
     width: 100%;
 }
-/* styles fix kasun */
+
+@media screen and (min-width: 1200px) {
+    .swiper-container.card-swiper.swiper-container-initialized.swiper-container-vertical.swiper-container-pointer-events.swiper-container-free-mode{
+        padding-bottom: 20px;
+    }
+  }
+/* styles kasun */
+
