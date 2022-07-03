@@ -32,7 +32,14 @@
                                     <ul class="star-rating">
                                         <h4>Info</h4>
                                     </ul>
+                                    
+                                    @if (user_package_count() == 0)
+                                    <span class="price">${{ $package->package_value }}</span>
+                                    <span class="userMsg">{{ 'One Time Service Fee: $10' }}</span>
+                                    @else
                                     <span class="price">${{ $package->package_value  }}</span>
+                                    @endif
+                                    
                                     
                                     <input type="hidden" name="package_id" value="{{ $package->id  }}">
                                     <input type="hidden" name="package_value" value="{{ $package->package_value  }}">
@@ -42,14 +49,19 @@
                                         @php
                                         $package_data = get_package_status($package->id);
                                         @endphp    
-                                    @if ( $package_data == '0')
+                                    @if ( $package_data == '0' )
                                     
                                     <button type="submit" class="btn btn-primary" disabled>Package Disable</button>
                                         
                                     
                                     @else
-                                    <a class="btn btn-primary ml-3" href="buy_package/{{ $package->id }}/progress" role="button">Buy Package Crypto</a>
+                                    @if (user_package_count() == 0)
+                                    <a class="btn btn-primary ml-3" href="buy_package/{{ $package->id }}/progress" role="button">Buy Package Crypto</a>  
+                                    @else
+                                    <a class="btn btn-primary ml-3" href="buy_package/{{ $package->id }}/progress" role="button">Buy Package Crypto</a>   
                                     <a class="btn btn-primary ml-3" href="buy_package/{{ $package->id }}/wallet_buy" role="button">Buy Package Wallet</a>
+                                    @endif
+                                    
                                     @endif    
                                     
                                     

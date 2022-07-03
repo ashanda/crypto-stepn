@@ -75,7 +75,13 @@
                                     <label class="custom-control-label" for="basic_checkbox_1"><a target="_blank" href="/disclaimer_notice">Disclaimer Notice</a></label>
                                 </div>
                             </div>
+                            @if (user_package_count() == 0)
+                            <span class="price">${{ $buy_package[0]->package_value+10  }}</span>
+                            <span class="userMsg">{{ '(One time service fee $10 included)'  }}</span>
+                            @else
                             <span class="price">${{ $buy_package[0]->package_value  }}</span>
+                            @endif
+                            
                             <div>
                                 @php
                                 if(!empty($buy_package[0]->status)){

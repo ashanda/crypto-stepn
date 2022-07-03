@@ -29,7 +29,7 @@ class CreateNewUser implements CreatesNewUsers
         Validator::make($input, [
             'fname' => ['required', 'string', 'max:255'],
             'lname' => ['required', 'string', 'max:255'],
-            'ref_id' => ['required', 'string', 'email', 'max:255'],
+            'ref_id' => ['required'],
             'ref_s' => ['required'],
             'email' => ['required'],
             'system_id' => ['required', 'string', 'max:255', 'unique:users'],
@@ -43,7 +43,6 @@ class CreateNewUser implements CreatesNewUsers
                 $puid = null;
             }
             
-            
             $user =  User::create([
             
             'fname' => $input['fname'],
@@ -55,12 +54,38 @@ class CreateNewUser implements CreatesNewUsers
             'email' => $input['email'],
             'password' => Hash::make($input['password']),
             ]); 
-            User_Parent::create([
+            
+            
+            $userid = DB::getPdo()->lastInsertId();
+            $userid = (int)$userid;
+            
+            $vp = $puid;
+            
+
+            while(!empty($vp)){
+    
+            $vpid = DB::table("user__parents")
+            ->select("uid")
+            ->where("ref_s", "=", $input['ref_s'])
+            ->where("virtual_parent", "=", $vp)
+            ->get();
+           
+            if(!empty($vpid[0]->uid)){
+                $vp = $vpid[0]->uid;
+            }else{
+                break;
+            }
+            }    
+            
+
+            DB::table('user__parents')->insert([
+                'uid' => $userid,
                 'parent_id' => $puid,
+                'virtual_parent' => $vp,
                 'ref_s' => $input['ref_s'],
             ]);
+           
             return $user;
-                
             }
           
         

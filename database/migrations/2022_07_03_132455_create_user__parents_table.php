@@ -14,9 +14,11 @@ class CreateUserParentsTable extends Migration
     public function up()
     {
         Schema::create('user__parents', function (Blueprint $table) {
-            $table->increments('uid');
+            $table->id;
+            $table->integer('uid');
             $table->string('ref_s')->nullable();
             $table->string('parent_id')->nullable();
+            $table->string('virtual_parent')->nullable();
             $table->timestamps();
         });
     }

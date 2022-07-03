@@ -12,6 +12,7 @@ use App\Http\Controllers\WalletController;
 use App\Http\Controllers\WithdrawController;
 use App\Http\Controllers\TransController;
 use App\Http\Controllers\AddWalletCRUDController;
+use App\Http\Controllers\GeneologyController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -52,6 +53,7 @@ Route::get('/trans/crypto' , [TransController::class, 'crypto']);
 Route::get('/package_earn' , [HomeController::class,'package_earn']);
 Route::post('/package_earn_tranfer' , [HomeController::class,'package_earn_tranfer']);
 
+Route::get('/genealogy' , [GeneologyController::class,'index']);
 
 Route::resource('/kyc', KycController::class);
 

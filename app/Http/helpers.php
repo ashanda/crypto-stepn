@@ -20,13 +20,50 @@
    * @return response()
    */
 
+//user previous package check//
+function previous_package_check($package_id){
+  $previous_package = User_Package::where('package_id', '=', $package_id,'AND', 'uid', '=',Auth::user()->uid)->count();
+ return $previous_package;
+}   
+
+//user package count
+
+    function user_package_count()
+    {
+        $user_package_count = User_Package::where('uid','=',Auth::user()->uid)->count();
+        return $user_package_count;
+    }
 
 //Geneology
+
+
 function geneology( $target_parent ){
 
-	
+  $parent_details = DB::table("kycs")
+                  ->join('users',"users.uid", "=", "kycs.uid")
+                  ->where("kycs.uid", "=", 6)
+                  ->select("users.uid","kycs.phone_number", "kycs.whatsapp_number", "users.email", "kycs.country", "kycs.created_at")
+                  ->get();
+  
+ echo "<li><a href='#' data-toggle='popover' title='User Details' data-content='Email- ".$parent_details[0]->email."  Country-".$parent_details[0]->country." Wtzapp- ".$parent_details[0]->whatsapp_number."Registered Date -".$parent_details[0]->created_at."'>".$parent_details[0]->uid."</a><ul>
+     <li>
+         <a href='#'>2</a>
+         
+     </li>
+     <li>
+         <a href='#'>3</a>
+         
+     </li>
+ </ul>
+</li>";
 
-return $geneology;
+	$geneology = DB::table('users')
+            ->join('user__parents', 'user__parents.uid', '=', 'users.uid')
+            ->where('user__parents.virtual_parent','=' ,$target_parent)
+            ->select('user__parents.uid', 'user__parents.ref_s' , 'users.fname' , 'users.email' , 'users.created_at')
+            ->get();
+
+ 
 
 }
 
@@ -199,7 +236,7 @@ function package_commission(){
 
 //get ref id function 
   function get_ref(){
-    $get_ref = User_Parent::where('uid',Auth::id())->first();
+    $get_ref = User_Parent::where('uid',Auth::user()->uid)->first();
     return $get_ref;
   }
 //******************************* */
@@ -277,17 +314,29 @@ function wallet_total(){
     assign_user_commissions( $package_value,$package_id,$package_cat );
   }
 
+
+
   function assign_user_commissions($package_value,$package_id,$package_cat){
     $current_user = Auth::user()->uid;
     $parent_id=0;
+    $virtual_parentid = 0;
     $parent_user_level = 0;
 
     do { 
       
       if($parent_id == 0)$parent_id = $current_user;
       
-
-      $sub_level_parent = get_parent_details($parent_id );  
+      
+      $sub_level_parent = get_parent_details($parent_id); 
+      if(!isset($sub_level_parent[0])){
+        break;
+        }
+        
+      
+   
+     
+      
+      $virtual_parentid =  $sub_level_parent[0]->virtual_parent;
       $parent_id  =  $sub_level_parent[0]->parent_id;
       $ref_id = $sub_level_parent[0]->uid;  
       $ref_s = $sub_level_parent[0]->ref_s;   
@@ -296,7 +345,7 @@ function wallet_total(){
         ->where("uid", "=", $parent_id )
         ->count();
      
-      
+      if($virtual_parentid == $parent_id){
       switch ( $parent_user_level ) {
        case 0:
         // 1. Assign $package_value to the parent user , Assign 10% Direct Commmission here*/
@@ -470,6 +519,9 @@ function wallet_total(){
          break;*/
         
       } 
+    }
+    //end of if
+
       /* 		   						
         Assign Binary Commission to the parent user here
                   
@@ -482,10 +534,10 @@ function wallet_total(){
         /* Query for UserBinary Commision table values	- SELECT 	*/
         $userbinarycommision =  DB::table("user_binary_commissions")
         ->select("id", "uid", "current_left_balance", "current_right_balance")
-        ->where("uid", "=", $parent_id )
+        ->where("uid", "=", $virtual_parentid )
         ->get();
         $package_category = DB::table('packages')->where('id','=',$package_cat)->get();
-        $package_cat_commission;
+        $package_cat_commission=0;
 
         switch ($package_category[0]->package_category) {
           case 'Primary':
@@ -499,7 +551,7 @@ function wallet_total(){
             break;
         } 
             if($userbinarycommision->isEmpty()){
-            $user['uid'] = $parent_id;
+            $user['uid'] = $virtual_parentid;
             $user['user_package_id'] = $package_id;
 
             if($ref_s == 0){
@@ -511,7 +563,7 @@ function wallet_total(){
                 $bleft = $package_value*$package_cat_commission;
                 $bright= 0;
                 
-           all_commission($parent_id,$package_id,$ref_id,$ptype,$pcommission,$lcommission,$bleft,$bright);
+           all_commission($virtual_parentid,$package_id,$ref_id,$ptype,$pcommission,$lcommission,$bleft,$bright);
             }else{
               $user['current_right_balance'] = $package_value*$package_cat_commission;
               $user['current_left_balance'] = 0;
@@ -520,7 +572,7 @@ function wallet_total(){
                 $pcommission = '0';
                 $bleft = 0;
                 $bright= $package_value*$package_cat_commission;
-           all_commission($parent_id,$package_id,$ref_id,$ptype,$pcommission,$lcommission,$bleft,$bright);
+           all_commission($virtual_parentid,$package_id,$ref_id,$ptype,$pcommission,$lcommission,$bleft,$bright);
             }
             DB::table('user_binary_commissions')->insert($user);
             $ptype='Direct Commission';
@@ -550,8 +602,8 @@ function wallet_total(){
                 $pcommission = '0';
                 $bleft = 0;
                 $bright= 0;
-                wallet_update($parent_id,$current_left_balance*$package_cat_commission);
-           all_commission($parent_id,$package_id,$ref_id,$ptype,$pcommission,$lcommission,$bleft,$bright);	
+                wallet_update($virtual_parentid,$current_left_balance*$package_cat_commission);
+           all_commission($virtual_parentid,$package_id,$ref_id,$ptype,$pcommission,$lcommission,$bleft,$bright);	
 
              } else if( $current_left_balance < $current_right_balance ){				
               // Update Wallet 
@@ -560,12 +612,12 @@ function wallet_total(){
               $pcommission = '0';
               $bleft = $current_left_balance;
               $bright= $current_right_balance;
-         all_commission($parent_id,$package_id,$ref_id,$ptype,$pcommission,$lcommission,$bleft,$bright);		   
+         all_commission($virtual_parentid,$package_id,$ref_id,$ptype,$pcommission,$lcommission,$bleft,$bright);		   
          
               $current_right_balance = $current_right_balance - $current_left_balance;
               $current_left_balance = 0;
               //wallete update < right binary value
-              wallet_update($parent_id,$current_left_balance*$package_cat_commission);
+              wallet_update($virtual_parentid,$current_left_balance*$package_cat_commission);
               DB::table('user_binary_commissions')
               ->where('id', $id)
               ->update(array('current_left_balance' => $current_left_balance, 'current_right_balance' => $current_right_balance));
@@ -576,10 +628,10 @@ function wallet_total(){
               $pcommission = '0';
               $bleft = $current_left_balance;
               $bright= $current_right_balance;
-         all_commission($parent_id,$package_id,$ref_id,$ptype,$pcommission,$lcommission,$bleft,$bright);		   
+         all_commission($virtual_parentid,$package_id,$ref_id,$ptype,$pcommission,$lcommission,$bleft,$bright);		   
               $current_left_balance = $current_left_balance - $current_right_balance;
               $current_right_balance = 0;
-              wallet_update($parent_id,$current_right_balance*$package_cat_commission);
+              wallet_update($virtual_parentid,$current_right_balance*$package_cat_commission);
               DB::table('user_binary_commissions')
               ->where('id', $id)
               ->update(array('current_left_balance' => $current_left_balance, 'current_right_balance' => $current_right_balance));
@@ -588,11 +640,12 @@ function wallet_total(){
           }
 
         
-
+      if($parent_id == $virtual_parentid){
+          
         $parent_user_level++;
         
       }
-      while ( $parent_id  != 1);// ID 1 is the top most user in the pyramid.*/
+    }while ( $parent_id  != 1);// ID 1 is the top most user in the pyramid.*/
      
       
   }
@@ -602,12 +655,12 @@ function wallet_total(){
 
 //get perant child //
   function get_parent_details($chiild_user){
-      
-    
-    return DB::table("user__parents")
-    ->select("uid","parent_id", "ref_s")
+    $get_parent_details = DB::table("user__parents")
+    ->select("id","uid","parent_id", "ref_s","virtual_parent" )
     ->where("uid", "=", $chiild_user )
     ->get();
+    
+    return $get_parent_details;
     
   }
 
@@ -625,7 +678,12 @@ function wallet_total(){
       if($parent_id == 0)$parent_id = $current_user;
       
 
-      $sub_level_parent = get_parent_details($parent_id );  
+       
+      $sub_level_parent = get_parent_details($parent_id); 
+      if(!isset($sub_level_parent[0])){
+        break;
+        }
+
       $parent_id  =  $sub_level_parent[0]->parent_id;
       $ref_id = $sub_level_parent[0]->uid;  
       $ref_s = $sub_level_parent[0]->ref_s;   
@@ -819,7 +877,7 @@ function wallet_total(){
                               ->get();
 
                               $package_category = DB::table('packages')->where('id','=',$package_cat)->get();                 
-                              $package_cat_commission;
+                              $package_cat_commission=0;
 
                               switch ($package_category[0]->package_category) {
                                 case 'Primary':

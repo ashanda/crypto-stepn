@@ -55,6 +55,11 @@ class UserbuypackageController extends Controller
         ]);
         $package = User_Package::find($id);
         $package->status = $request->package_status;
+        if($request->package_status == '1'){
+            $package->status = '1';
+            store_fee( $package->uid,$package->package_value);
+
+        }
        
         $package->save();
         return redirect()->route('user_buy_package.index')
