@@ -92,22 +92,20 @@ class BuypackageController extends Controller
                 
                 $user_current_package = DB::table('packages')->where('id','=',$buy_package->package_id)->get();
                 
-                // Commission function call
+                // check previous package
                 $previous_package = previous_package_check($request->package_id);
-                var_dump($previous_package);
+                
                 
                 if ($previous_package == 0){
-                    buy_package($request->package_value,$request->package_id,$user_current_package[0]->id); 
+                     
                     $package_revenue = $request->package_value * 5;
-                   
+                    $package_revenue_double = $request->package_value * 2;
                 }else{
-                    buy_package_secound_time($request->package_value,$request->package_id,$user_current_package[0]->id); 
+                    $package_revenue_double = $request->package_value * 2;
                     $package_revenue = $request->package_value * 4;
                 }
                 $buy_package->package_value = $request->package_value;
-                $buy_package->package_double_value = $request->package_value * 2;
-                $package_revenue = $request->package_value * 5;
-
+                $buy_package->package_double_value = $package_revenue_double;
                 $buy_package->package_revenue = $package_revenue;
                 $buy_package->currency_type = $request->currency_type;
                 $buy_package->network = $request->network;

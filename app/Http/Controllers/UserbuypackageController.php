@@ -34,7 +34,7 @@ class UserbuypackageController extends Controller
             ->join('user__packages', 'users.uid', '=', 'user__packages.uid')
             ->join('packages', 'user__packages.package_id', '=', 'packages.id')
             ->where('user__packages.id',$id) 
-            ->select('user__packages.id','packages.package_name','user__packages.currency_type','user__packages.network','user__packages.deposite_ss','user__packages.status')
+            ->select('user__packages.id','user__packages.package_id','user__packages.package_value','packages.package_name','user__packages.currency_type','user__packages.network','user__packages.deposite_ss','user__packages.status')
             ->get();
             $kyc = User_Package::find($id);
             return view('admin.user_package.edit',compact('userbuypackage','id','current_user_package'));
@@ -51,17 +51,39 @@ class UserbuypackageController extends Controller
         $request->validate([
             
             'package_status' => 'required',
-           
+            'package_row_id' => 'required',
+            'package_id' => 'required',
+            'package_value' => 'required',
         ]);
         $package = User_Package::find($id);
         $package->status = $request->package_status;
-        if($request->package_status == '1'){
-            $package->status = '1';
+        $status = (int)$request->package_status;
+        $package_id = (int)$request->package_id;
+        if( $status == 1){
+            
+                
+                $user_current_package = DB::table('packages')->where('id','=',$request->package_row_id)->get(); 
+                // Commission function call
+                $previous_package = previous_package_check($package_id);
+                
+                
+                if ($previous_package == 1){
+                    dd($request->package_value,$request->package_id,$user_current_package[0]->id);
+                    buy_package($request->package_value,$request->package_id,$user_current_package[0]->id); 
+                    
+                   
+                }else{
+                    
+                    buy_package_secound_time($request->package_value,$request->package_id,$user_current_package[0]->id); 
+                    
+                }
+                
+            
             store_fee( $package->uid,$package->package_value);
-
+            
         }
-       
         $package->save();
+       
         return redirect()->route('user_buy_package.index')
         ->with('success','Package Has Been updated successfully');
         }

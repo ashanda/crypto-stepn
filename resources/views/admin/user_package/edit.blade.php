@@ -83,7 +83,10 @@
                                   
                                   
                               </select>
-                          </div>
+                              <input type="hidden" name="package_value" value="{{ $current_user_package[0]->package_value }}">
+                              <input type="hidden" name="package_id" value="{{ $current_user_package[0]->package_id }}">
+                              <input type="hidden" name="package_row_id" value="{{ $current_user_package[0]->id }}">
+                            </div>
                             @error('status')
                             <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                             @enderror
