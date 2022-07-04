@@ -119,7 +119,7 @@
 			<div class="card">
 				<div class="card-body">
 					<div class="row align-items-end">
-						<div class="col-xl-6 col-lg-12 col-xxl-12">
+						<div class="col-xl-12 col-lg-12 col-xxl-12">
 							<div class="card">
 								<div class="card-header">
 									<h4 class="card-title">Transection History</h4>
@@ -181,7 +181,7 @@
 					<div class="card">
 						<div class="card-body">
 							<div class="row align-items-end">
-								<div class="col-xl-6 col-lg-12 col-xxl-12">
+								<div class="col-xl-12 col-lg-12 col-xxl-12">
 									<div class="card">
 										<div class="card-header">
 											<h4 class="card-title">Earning History</h4>
