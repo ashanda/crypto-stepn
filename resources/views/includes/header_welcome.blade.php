@@ -30,21 +30,7 @@
                 </div>
                 <div class="col-xl-9 col-lg-9 col-md-9 col-sm-9">
 
-                    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                            <span class="navbar-toggler-icon"></span>
-                        </button>
-                        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                            <div class="navbar-nav">
-                                <a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
-                                <a class="nav-item nav-link" href="#">Login</a>
-                                <a class="nav-item nav-link" href="#"><button class="nav_btn">Get Started</button></a>
-                            </div>
-                        </div>
-                    </nav>
-
-
-                    <!-- <div class="menu-area topnav" id="myTopnav">
+                    <div class="menu-area topnav" id="myTopnav">
                         <nav class="main-menu">
                             <ul class="menu-area-main">
                                 <div id="selectField">
@@ -55,7 +41,7 @@
 
                                 </div>
                             </ul>
-                        </nav> -->
+                        </nav>
                     </div>
                 </div>
             </div>
