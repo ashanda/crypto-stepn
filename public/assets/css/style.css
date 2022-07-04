@@ -134,7 +134,7 @@ menu-area-main li i:hover {
   }
 @media screen and (max-width: 950px) {
     .header{
-        padding-top: 35px;
+        /* padding-top: 35px; */
         background-color: rgb(26,28,44, 0.5);
     }
     .logo a{
@@ -150,7 +150,7 @@ menu-area-main li i:hover {
 }
 @media screen and (max-width: 1195px) {
     .topnav a:not(:first-child) {
-      display: none;
+      /* display: none; */
     }
     .topnav a.icon {
       float: right;
