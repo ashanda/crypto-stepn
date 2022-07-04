@@ -48,7 +48,7 @@
     padding-left: 10px;
 }
 nav.main-menu {
-    padding-top: 5px;
+    padding-top: 10px;
     float: right;
     margin-left: 0;
 }
@@ -145,11 +145,9 @@ menu-area-main li i:hover {
         margin-right: 20px;
     }
     nav.main-menu a{
-        padding-top: 20px;
+        /* padding-top: 20px; */
     }
-    nav.main-menu{
-        padding-top: 0;
-    }
+ 
 }
 @media screen and (max-width: 1195px) {
     .topnav a:not(:first-child) {
