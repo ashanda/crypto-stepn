@@ -44,7 +44,8 @@
     color: #fff;
 }
 .logo img{
-    width: 250px;
+    width: 100%;
+    max-width: 200px;
     padding-left: 10px;
 }
 nav.main-menu {
