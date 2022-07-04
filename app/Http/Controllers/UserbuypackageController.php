@@ -34,7 +34,7 @@ class UserbuypackageController extends Controller
             ->join('user__packages', 'users.uid', '=', 'user__packages.uid')
             ->join('packages', 'user__packages.package_id', '=', 'packages.id')
             ->where('user__packages.id',$id) 
-            ->select('user__packages.id','user__packages.package_id','user__packages.package_value','packages.package_name','user__packages.currency_type','user__packages.network','user__packages.deposite_ss','user__packages.status')
+            ->select('user__packages.id','packages.id as packageid','user__packages.uid','user__packages.package_id','user__packages.package_value','packages.package_name','user__packages.currency_type','user__packages.network','user__packages.deposite_ss','user__packages.status')
             ->get();
             $kyc = User_Package::find($id);
             return view('admin.user_package.edit',compact('userbuypackage','id','current_user_package'));
@@ -54,28 +54,30 @@ class UserbuypackageController extends Controller
             'package_row_id' => 'required',
             'package_id' => 'required',
             'package_value' => 'required',
+            'uid' => 'required',
         ]);
         $package = User_Package::find($id);
         $package->status = $request->package_status;
+        $package_value = (int)$request->package_value;
         $status = (int)$request->package_status;
         $package_id = (int)$request->package_id;
+        $current_user= (int)$request->uid;
+        $package_row_id= (int)$request->package_row_id;
         if( $status == 1){
             
                 
-                $user_current_package = DB::table('packages')->where('id','=',$request->package_row_id)->get(); 
+                $user_current_package = DB::table('packages')->where('id','=',$package_row_id)->get(); 
                 // Commission function call
                 $previous_package = previous_package_check($package_id);
                 
                 
-                if ($previous_package == 1){
-                    dd($request->package_value,$request->package_id,$user_current_package[0]->id);
-                    buy_package($request->package_value,$request->package_id,$user_current_package[0]->id); 
+                if ($previous_package == 1){ 
                     
-                   
-                }else{
+                    buy_package($package_value,$package_id,$user_current_package[0]->id,$current_user); 
+                     
+                }else{ 
                     
-                    buy_package_secound_time($request->package_value,$request->package_id,$user_current_package[0]->id); 
-                    
+                    buy_package_secound_time($package_value,$package_id,$user_current_package[0]->id,$current_user);   
                 }
                 
             

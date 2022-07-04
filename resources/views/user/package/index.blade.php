@@ -30,7 +30,8 @@
                                 <div class="new-arrival-content text-center mt-3">
                                     <h4><a href="ecom-product-detail.html">{{ $package->package_name  }}</a></h4>
                                     <ul class="star-rating">
-                                        <h4>Info</h4>
+                                        <span class="pkg_duration">Validity Period : {{ $package->package_duration }} Days</span>
+                                        <span class="pkg_desc">{{ $package->package_description }}</span>
                                     </ul>
                                     
                                     @if (user_package_count() == 0)
@@ -39,7 +40,7 @@
                                     @else
                                     <span class="price">${{ $package->package_value  }}</span>
                                     @endif
-                                    
+                                    <h3>Buy Package</h3>
                                     
                                     <input type="hidden" name="package_id" value="{{ $package->id  }}">
                                     <input type="hidden" name="package_value" value="{{ $package->package_value  }}">
@@ -56,10 +57,10 @@
                                     
                                     @else
                                     @if (user_package_count() == 0)
-                                    <a class="btn btn-primary ml-3" href="buy_package/{{ $package->id }}/progress" role="button">Buy Package Crypto</a>  
+                                    <a class="btn btn-primary ml-3" href="buy_package/{{ $package->id }}/progress" role="button">Using Crypto</a>  
                                     @else
-                                    <a class="btn btn-primary ml-3" href="buy_package/{{ $package->id }}/progress" role="button">Buy Package Crypto</a>   
-                                    <a class="btn btn-primary ml-3" href="buy_package/{{ $package->id }}/wallet_buy" role="button">Buy Package Wallet</a>
+                                    <a class="btn btn-primary ml-3" href="buy_package/{{ $package->id }}/progress" role="button">Using Crypto</a>   
+                                    <a class="btn btn-primary ml-3" href="buy_package/{{ $package->id }}/wallet_buy" role="button">Using Wallet</a>
                                     @endif
                                     
                                     @endif    
