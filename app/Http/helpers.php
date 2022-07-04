@@ -13,6 +13,7 @@
     Use App\Models\Kyc;
     use App\Models\Package;
 
+use function PHPUnit\Framework\isEmpty;
 
    /**
    * Write code on Method
@@ -38,59 +39,130 @@ function previous_package_check($package_id){
 
 
 function geneology( $target_parent){
-  $target_parent=6;
+
+ 
  
   $parent_details = DB::table("kycs")
                   ->join('users',"users.uid", "=", "kycs.uid")
                   ->where("kycs.uid", "=", $target_parent)
                   ->select("users.uid","kycs.phone_number", "kycs.whatsapp_number", "users.email", "kycs.country", "kycs.created_at")
                   ->get();
-        
- $geneology = DB::table('users')
-            ->join('user__parents', 'user__parents.uid', '=', 'users.uid')
-            ->where('user__parents.virtual_parent','=' ,$target_parent)
-            ->select('user__parents.uid', 'user__parents.ref_s' , 'users.fname' , 'users.email' , 'users.created_at')
-            ->get();
-               echo $geneology;   
-  /* $child_elements='';  
-  $left_child='';
-  $right_child='';        
-            if(count($geneology)>0){
-              echo '<ul>';
-                foreach($geneology as $geneology_data){
-                    $geneology_data->geneology = geneology($geneology_data->ref_s);
-                    
-                    if($geneology_data->ref_s == 0){
-                      $left_child = 
-                      "<li class='left_child'>
-                          <a href='#' data-toggle='popover' title='User Details' data-content='Email- ".$geneology[0]->email."  Country-".$geneology[0]->country." Wtzapp- ".$geneology[0]->whatsapp_number."Registered Date -".$geneology[0]->created_at."'>".$geneology[0]->email."</a>
-                      </li>";
-                    }else{
-                      $right_child = 
-                      "<li class='right_child'>
-                          <a href='#' data-toggle='popover' title='User Details' data-content='Email- ".$geneology[0]->email."  Country-".$geneology[0]->country." Wtzapp- ".$geneology[0]->whatsapp_number."Registered Date -".$geneology[0]->created_at."'>".$geneology[0]->email."</a>
-                       </li>";
-                    }
-
-                  }
-                  if($left_child != ''){
-                    
-                    echo $left_child;
-                  }
-                  if($right_child != ''){
-                    
-                    echo $right_child;
-                  }
-                  
-                
-            }
-            echo '</ul>';
-*/
-
+   
+  if($parent_details->isEmpty()){
+    echo '
+    <div class="alert alert-warning" role="alert">
+        KYCS not yet approved for this user
+    </div>';
+    
+  }else{
+echo "
 	
+		<li class='current_parent'>
+    <a  title='User Details'>
+    
+                  
+                  <span class='geneology_child_info'>
+                    <lable>User id - ".$parent_details[0]->email." </lable>
+                  </span><br/>
+                  <span class='geneology_child_info'>
+                    <lable>Country - ".$parent_details[0]->country." </lable>
+                  </span><br/>
+                  <span class='geneology_child_info'>
+                    <lable>WhatsApp - ".$parent_details[0]->whatsapp_number." </lable>
+                  </span><br/>
+                  <span class='geneology_child_info'>
+                    <lable>Registered Date - ".$parent_details[0]->created_at." </lable>
+                  </span><br/>
+                  </a>
+               
+    </a>";
+			
+    
+    $geneology = DB::table('users')
+    ->join('user__parents', 'user__parents.uid', '=', 'users.uid')
+    ->join('kycs', 'kycs.uid', '=', 'users.uid')
+    ->where('user__parents.virtual_parent','=' ,$target_parent)
+    ->select('user__parents.uid',"kycs.phone_number", "kycs.whatsapp_number", "users.email", "kycs.country", "kycs.created_at",'user__parents.ref_s' , 'users.fname' , 'users.email' , 'users.created_at')
+    ->get();
+    if($geneology->isEmpty()){
+      echo '
+      <div class="alert alert-warning" role="alert">
+         No KYCS approved user yet
+      </div>';
+    }
+$child_elements='';  
+$left_child='';
+$right_child='';        
+    if(count($geneology)>0){
+      echo '<ul>';
+     
+        foreach($geneology as $geneology_data){
+            
+            
+            if($geneology_data->ref_s == 0){
+              $left_child = 
+              "<li class='left_child'>
+                  <a href='/genealogy/?parent=$geneology_data->uid' title='User Details'>
+                  <span class='geneology_child_info'>
+                    <lable>User id - ".$geneology_data->email." </lable>
+                  </span><br/>
+                  <span class='geneology_child_info'>
+                    <lable>Country - ".$geneology_data->country." </lable>
+                  </span><br/>
+                  <span class='geneology_child_info'>
+                    <lable>WhatsApp - ".$geneology_data->whatsapp_number." </lable>
+                  </span><br/>
+                  <span class='geneology_child_info'>
+                    <lable>Registered Date - ".$geneology_data->created_at." </lable>
+                  </span><br/>
+                  <span class='geneology_child_info'>
+                    <lable>User Side - LEFT </lable>
+                  </span><br/>
+                  </a>
+                </li>";
+            }else{
+              $right_child = 
+              "<li class='right_child'>
+                  <a href='/genealogy/?parent=$geneology_data->uid' title='User Details'>
+                  <span class='geneology_child_info'>
+                    <lable>User id - ".$geneology_data->email." </lable>
+                  </span><br/>
+                  <span class='geneology_child_info'>
+                    <lable>Country - ".$geneology_data->country." </lable>
+                  </span><br/>
+                  <span class='geneology_child_info'>
+                    <lable>WhatsApp - ".$geneology_data->whatsapp_number." </lable>
+                  </span><br/>
+                  <span class='geneology_child_info'>
+                    <lable>Registered Date - ".$geneology_data->created_at." </lable>
+                  </span><br/>
+                  <span class='geneology_child_info'>
+                    <lable>User Side - RIGHT </lable>
+                  </span><br/>
+                  </a>
+                </li>";;
+            }
 
- 
+          }
+          if($left_child != ''){
+            
+            echo $left_child;
+          }
+          if($right_child != ''){
+            
+            echo $right_child;
+          }
+          
+        
+    }
+    echo '</ul>
 
+    </li>
+							
+    
+  ';
+  }//end kyc check
+  
 }
 
 

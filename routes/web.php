@@ -54,6 +54,7 @@ Route::get('/package_earn' , [HomeController::class,'package_earn']);
 Route::post('/package_earn_tranfer' , [HomeController::class,'package_earn_tranfer']);
 
 Route::get('/genealogy' , [GeneologyController::class,'index']);
+Route::get('/genealogy/?parent={parent}' , [GeneologyController::class,'index']);
 
 Route::resource('/kyc', KycController::class);
 

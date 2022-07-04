@@ -389,6 +389,9 @@ const alert = document.getElementById('clickedMessage-2')
 
   }, 500);
 }
+$(this).popover({
+            html:true
+        });
 </script>
 
 

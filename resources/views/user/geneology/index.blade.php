@@ -116,7 +116,7 @@ right connector from last child*/
                             </div><!-- end current user -->
 
                             <form method="get">
-                                <input type="submit" name="get_geneology" id="get_geneology" value="RUN" /><br/>
+                                <input type="submit" class="btn btn-primary ml-3" name="get_geneology" id="get_geneology" value="Generate Geneology" /><br/>
                             </form>
                             
                             
@@ -125,15 +125,15 @@ right connector from last child*/
                                     <?php
                             
                             
-                            
-                                    if(array_key_exists('get_geneology',$_GET)){
-                                        if(array_key_exists('parent_node',$_GET)){
+										
+                                   
+                                        if(array_key_exists('get_geneology',$_GET)){
                                             geneology( Auth::user()->uid );
-                                        }else{
-                                            geneology(request()->get('parent_node'));
-                                        }
+										}elseif (array_key_exists('parent',$_GET)) {
+										   geneology(request()->get('parent'));
+										}
                                         
-                                    }
+                                    
                                     
                                     ?>  
                                 </ul>
