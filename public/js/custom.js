@@ -378,5 +378,3 @@ jQuery(window).on('resize',function () {
 });
 /*  Window Resize END */
 
-// text script
-alert("aaaa");

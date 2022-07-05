@@ -56,3 +56,6 @@ function getUrlParams(dParam)
 	});
 	
 })(jQuery);
+
+// text script
+alert("aaaa");
