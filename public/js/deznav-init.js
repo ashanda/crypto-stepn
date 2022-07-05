@@ -59,7 +59,7 @@ function getUrlParams(dParam)
 
 // text script
 let x= document.getElementById("deznav").style.width
-console.log("x= " + x);
+console.log({x});
 // let box = document.querySelector('.deznav');
 // let style = getComputedStyle(box);
 // let width = parseInt(style.width);
