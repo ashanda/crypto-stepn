@@ -407,8 +407,8 @@ function wallet_total(){
 
   // binary commission sum
   function binary_commision(){
-    $binary_commision0 = DB::table('user_binary_commissions')->where('uid',Auth::id())->sum('current_left_balance');
-    $binary_commision1 = DB::table('user_binary_commissions')->where('uid',Auth::id())->sum('current_right_balance');
+    $binary_commision0 = DB::table('user_binary_commissions')->where('uid',Auth::user()->uid)->sum('current_left_balance');
+    $binary_commision1 = DB::table('user_binary_commissions')->where('uid',Auth::user()->uid)->sum('current_right_balance');
     if($binary_commision0 < $binary_commision1){
       $binary_commision = $binary_commision1; 
     }else{
