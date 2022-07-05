@@ -58,4 +58,6 @@ function getUrlParams(dParam)
 })(jQuery);
 
 // text script
-alert("aaaa");
+var deznavWidth = $('.deznav').attr('width');
+alert(deznavWidth);
+// document.getElementById("package-section").style.color = "red";
