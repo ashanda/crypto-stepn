@@ -39,9 +39,9 @@
                             <img src="images/lemaconet F.png">
                         </lable> -->
                         <ul>
-                            <li><a href="#" class="active">Home</a></li>
-                            <li><a href="#">Login</a></li>
-                            <li><a href="#" class="reg_btn">Get Started</a></li>
+                            <li><a href="https://lemaconet.com" class="active">Home</a></li>
+                            <li><a href="/login">Login</a></li>
+                            <li><a href="/register" class="reg_btn">Get Started</a></li>
 
                         </ul>
                     </nav>
