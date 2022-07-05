@@ -22,12 +22,21 @@ use function PHPUnit\Framework\isEmpty;
    */
 
 //package stop 1:4 or 1:5
-function package_stop(){
+function package_stop($package_id){
   $balance = DB::table('commissions')
-  ->where('uid', Auth::user()->uid,'package_id',1)
+  ->where('uid','=',Auth::user()->uid,'AND','parent_id','=',$package_id)
   ->sum(DB::raw('package_commission + level_commission + binary_commission_left + binary_commission_right'));
   return $balance;
 }
+
+//package revenue 1:4 or 1:5
+function package_revenue_check($package_id){
+  $package_revenue_check = DB::table('user__packages')
+  ->where('uid','=',Auth::user()->uid,'AND','package_id','=',$package_id,'AND','status','=','1')
+  ->first();
+  return $package_revenue_check;
+}
+
 
 //user previous package check//
 function previous_package_check($package_id){
@@ -320,9 +329,16 @@ function package_commission(){
        if($package_commission < 1){
            $commission = $data->package_value*0.025;
            $user['uid'] = $data->uid;
+           
            $user['package_id'] = $data->package_id;
            $user['commission'] = $commission;
            DB::table('package__commissions')->insert($user);
+           $ptype='Package commission';
+           $lcommission = '';
+           $pcommission = $commission;
+           $bleft = '';
+           $bright= '';
+      all_commission($data->uid,$data->package_id,$data->package_id,$ptype,$pcommission,$lcommission,$bleft,$bright);
        }else{
           $package_commission =  DB::table("package__commissions")
               ->select("id", "uid" ,"package_id","commission")
@@ -333,6 +349,12 @@ function package_commission(){
            DB::table('package__commissions')
           ->where('id', $package_commission->id)
           ->update(['commission' => $new_package_commission]);
+          $ptype='Package commission';
+          $lcommission = '';
+          $pcommission = $new_package_commission;
+          $bleft = '';
+          $bright= '';
+          all_commission($data->uid,$data->package_id,$data->package_id,$ptype,$pcommission,$lcommission,$bleft,$bright);
        }
        
     }
@@ -388,9 +410,9 @@ function wallet_total(){
     $binary_commision0 = DB::table('user_binary_commissions')->where('uid',Auth::id())->sum('current_left_balance');
     $binary_commision1 = DB::table('user_binary_commissions')->where('uid',Auth::id())->sum('current_right_balance');
     if($binary_commision0 < $binary_commision1){
-      $binary_commision = $binary_commision1*0.06; 
+      $binary_commision = $binary_commision1; 
     }else{
-      $binary_commision = $binary_commision0*0.06; 
+      $binary_commision = $binary_commision0; 
     }
     return $binary_commision;
   }
