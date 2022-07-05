@@ -8,7 +8,7 @@
             <!-- Add Project -->
             
             
-            <div class="row package-section" style="margin-top: 85px;padding:20px; padding-left:25%;" >
+            <div class="row package-section" style="margin-top: 85px;padding:20px;" >
                 
                 <div class="col-xl-12 col-lg-12 col-sm-12">
                     @if(session('status'))
