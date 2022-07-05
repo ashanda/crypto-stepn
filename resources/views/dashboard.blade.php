@@ -20,7 +20,7 @@
 							<div class="card-info">
 
 								<div class="d-flex justify-content-between">
-									<h2 class="num-text text-white mb-2 font-w600">Left Chain(25)</h2>
+									<h2 class="num-text text-white mb-2 font-w600">Left Chain</h2>
 								</div>
 								<h3 id="">Business Volume ${{ binary_commision_left()}}</h3>
 								<div class="d-flex">
@@ -41,7 +41,7 @@
 							<div class="card-info">
 
 								<div class="d-flex justify-content-between">
-									<h2 class="num-text text-white mb-2 font-w600">Right Chain(25)</h2>
+									<h2 class="num-text text-white mb-2 font-w600">Right Chain</h2>
 								</div>
 								<h3 id="">Business Volume ${{ binary_commision_right() }}</h3>
 								<div class="d-flex">

@@ -21,6 +21,14 @@ use function PHPUnit\Framework\isEmpty;
    * @return response()
    */
 
+//package stop 1:4 or 1:5
+function package_stop(){
+  $balance = DB::table('commissions')
+  ->where('uid', Auth::user()->uid,'package_id',1)
+  ->sum(DB::raw('package_commission + level_commission + binary_commission_left + binary_commission_right'));
+  return $balance;
+}
+
 //user previous package check//
 function previous_package_check($package_id){
   $previous_package = User_Package::where('package_id', '=', $package_id,'AND', 'uid', '=',Auth::user()->uid)->count();
