@@ -13,9 +13,10 @@
         padding-left: 25% !important;
     }
 
-    @media screen and (max-width: 785px) {
+
+    @media screen and (max-width: 1350px) {
         .package-section {
-            padding-left: 20px !important;
+            padding-left: 290px !important;
         }
     }
 
@@ -25,11 +26,13 @@
         }
     }
 
-    @media screen and (max-width: 1350px) {
+    @media screen and (max-width: 785px) {
         .package-section {
-            padding-left: 290px !important;
+            padding-left: 20px !important;
         }
     }
+
+
 
     /* package-section Styles */
 </style>
