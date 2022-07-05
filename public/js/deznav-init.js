@@ -56,12 +56,3 @@ function getUrlParams(dParam)
 	});
 	
 })(jQuery);
-
-// text script
-let x= document.getElementById("deznav").style.width
-console.log({x});
-// let box = document.querySelector('.deznav');
-// let style = getComputedStyle(box);
-// let width = parseInt(style.width);
-// console.log({ width });
-// // document.getElementById("package-section").style.color = "red";
