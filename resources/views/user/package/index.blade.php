@@ -10,24 +10,24 @@
 <style>
     /* package-section Styles */
     .package-section {
-        padding-left: 25%;
+        padding-left: 25% !important;
     }
 
     @media screen and (max-width: 785px) {
         .package-section {
-            padding-left: 20px;
+            padding-left: 20px !important;
         }
     }
 
     @media screen and (max-width: 1040px) {
         .package-section {
-            padding-left: 120px;
+            padding-left: 120px !important;
         }
     }
 
     @media screen and (max-width: 1350px) {
         .package-section {
-            padding-left: 290px;
+            padding-left: 290px !important;
         }
     }
 
