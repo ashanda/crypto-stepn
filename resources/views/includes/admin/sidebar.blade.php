@@ -1,7 +1,7 @@
 <!--**********************************
             Sidebar start
         ***********************************-->
-        <div class="deznav">
+        <div id="deznav" class="deznav">
             <div class="deznav-scroll">
 				<div class="main-profile">
 
