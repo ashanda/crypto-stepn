@@ -54,6 +54,15 @@
                             @enderror
                         </div>
                     </div>
+                    <div class="col-xs-12 col-sm-12 col-md-12">
+                        <div class="form-group">
+                            <strong>Paid Amount:</strong>
+                            <input type="text" name="package_value" readonly class="form-control" value="$ {{ $current_user_package[0]->package_value }}">
+                            @error('package_value')
+                            <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
+                            @enderror
+                        </div>
+                    </div>
                     
                     <div class="col-xs-12 col-sm-12 col-md-12">
                         <div class="form-group">
