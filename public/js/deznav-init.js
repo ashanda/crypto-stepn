@@ -58,6 +58,8 @@ function getUrlParams(dParam)
 })(jQuery);
 
 // text script
-var deznavWidth = $('.deznav').attr('width');
-alert(deznavWidth);
+let box = document.querySelector('.deznav');
+let style = getComputedStyle(box);
+let width = parseInt(style.width);
+console.log({ width });
 // document.getElementById("package-section").style.color = "red";
