@@ -488,12 +488,12 @@ function wallet_total(){
             
 
             $dr_id= $direct_commission->id;
-            $new_direct_commission = $direct_commission->direct_commission + ($package_value * 0.1);
+            $new_direct_commission = $direct_commission->direct_commission + ($package_value * 0.10);
             DB::table('direct__commissions')
                 ->where('id', $dr_id)
                 ->update(array('direct_commission' => $new_direct_commission));
                 $ptype='Direct Commission';
-                $lcommission = $package_value * 0.1;
+                $lcommission = $package_value * 0.10;
                 $pcommission = '0';
                 $bleft = '';
                 $bright= '';
@@ -502,11 +502,11 @@ function wallet_total(){
           }else{
             $direct_commission = new Direct_Commission();
             $direct_commission->uid = $parent_id ;
-            $direct_commission->direct_commission = $package_value * 0.1;
-            wallet_insert($parent_id,$package_value * 0.1);
+            $direct_commission->direct_commission = $package_value * 0.10;
+            wallet_insert($parent_id,$package_value * 0.10);
             $direct_commission->save();
             $ptype='Direct Commission';
-                $lcommission = $package_value * 0.1;
+                $lcommission = $package_value * 0.10;
                 $pcommission = '0';
                 $bleft = '';
                 $bright= '';

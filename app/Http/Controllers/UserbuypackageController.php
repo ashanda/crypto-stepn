@@ -71,8 +71,8 @@ class UserbuypackageController extends Controller
                 $previous_package = previous_package_check($package_id);
                 
                 
-                if ($previous_package == 1){ 
-                    
+                if ($previous_package = 1){ 
+                    $package_value = $package_value-10;
                     buy_package($package_value,$package_id,$user_current_package[0]->id,$current_user); 
                     $package_value = $package->package_value;
                     store_fee( $package->uid,$package_value+10);
