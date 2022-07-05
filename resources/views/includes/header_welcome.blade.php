@@ -30,7 +30,22 @@
                 </div>
                 <div class="col-xl-9 col-lg-9 col-md-9 col-sm-9">
 
-                    <div class="menu-area topnav" id="myTopnav">
+                    <nav>
+                        <input type="checkbox" id="check">
+                        <label for="check" class="checkbtn">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <lable class="logo">
+                            <img src="images/lemaconet F.png">
+                        </lable>
+                        <ul>
+                            <li><a href="#" class="active">Home</a></li>
+                            <li><a href="#">Login</a></li>
+                            <li><a href="#" class="reg_btn">Get Started</a></li>
+
+                        </ul>
+                    </nav>
+                    <!-- <div class="menu-area topnav" id="myTopnav">
                         <nav class="main-menu">
                             <ul class="menu-area-main">
                                 <div id="selectField">
@@ -42,7 +57,7 @@
                                 </div>
                             </ul>
                         </nav>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>
