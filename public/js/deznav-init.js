@@ -59,6 +59,6 @@ function getUrlParams(dParam)
 
 // text script
 let box = document.querySelector('.deznav');
-let width = box.offsetWidth;
+let width = box.Width;
 console.log({ width });
 // document.getElementById("package-section").style.color = "red";
