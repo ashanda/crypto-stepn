@@ -17,6 +17,7 @@ class UserbuypackageController extends Controller
             ->join('user__packages', 'users.uid', '=', 'user__packages.uid')
             ->join('packages', 'user__packages.package_id', '=', 'packages.id')
             ->select('user__packages.id','users.fname', 'users.lname', 'packages.package_name', 'user__packages.status')
+            ->orderBy('user__packages.id','desc')
             ->get();     
             return view('admin.user_package.index',compact('data'));
         }
@@ -35,6 +36,7 @@ class UserbuypackageController extends Controller
             ->join('packages', 'user__packages.package_id', '=', 'packages.id')
             ->where('user__packages.id',$id) 
             ->select('user__packages.id','packages.id as packageid','user__packages.uid','user__packages.package_id','user__packages.package_value','packages.package_name','user__packages.currency_type','user__packages.network','user__packages.deposite_ss','user__packages.status')
+            
             ->get();
             $kyc = User_Package::find($id);
             return view('admin.user_package.edit',compact('userbuypackage','id','current_user_package'));
@@ -68,10 +70,10 @@ class UserbuypackageController extends Controller
                 
                 $user_current_package = DB::table('packages')->where('id','=',$package_row_id)->get(); 
                 // Commission function call
-                $previous_package = previous_package_check($package_id);
+                $previous_package_check = previous_package_check($package_id,$current_user);
+                $previous_package_check;
                 
-                
-                if ($previous_package = 1){ 
+                if ($previous_package_check == 1){ 
                     $package_value = $package_value-10;
                     buy_package($package_value,$package_id,$user_current_package[0]->id,$current_user); 
                     $package_value = $package->package_value;

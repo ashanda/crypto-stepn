@@ -93,7 +93,7 @@ class BuypackageController extends Controller
                 $user_current_package = DB::table('packages')->where('id','=',$buy_package->package_id)->get();
                 
                 // check previous package
-                $previous_package = previous_package_check($request->package_id);
+                $previous_package = previous_package_check($request->package_id,$buy_package->uid);
                 
                 
                 if ($previous_package == 0){

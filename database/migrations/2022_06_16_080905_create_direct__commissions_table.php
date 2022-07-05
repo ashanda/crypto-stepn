@@ -16,7 +16,6 @@ class CreateDirectCommissionsTable extends Migration
         Schema::create('direct__commissions', function (Blueprint $table) {
             $table->id();
             $table->string('uid')->nullable();
-            
             $table->float('direct_commission');
             $table->timestamps();
         });

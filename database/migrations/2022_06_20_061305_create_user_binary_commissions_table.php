@@ -17,6 +17,7 @@ class CreateUserBinaryCommissionsTable extends Migration
             $table->id();
             $table->integer('uid');
             $table->integer('user_package_id');
+            $table->float('total');
             $table->float('current_left_balance')->default(0);
             $table->float('current_right_balance')->default(0);
             

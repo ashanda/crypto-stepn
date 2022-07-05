@@ -15,6 +15,9 @@ class CreatePackageCommissionsTable extends Migration
     {
         Schema::create('package__commissions', function (Blueprint $table) {
             $table->id();
+            $table->integer('uid');
+            $table->integer('package_id');
+            $table->float('commission');
             $table->timestamps();
         });
     }
