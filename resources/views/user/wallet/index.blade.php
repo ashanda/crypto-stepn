@@ -177,74 +177,7 @@
 					</div>
 				</div>
 			</div>
-				<div class="col-xl-12">
-					<div class="card">
-						<div class="card-body">
-							<div class="row align-items-end">
-								<div class="col-xl-12 col-lg-12 col-xxl-12">
-									<div class="card">
-										<div class="card-header">
-											<h4 class="card-title">Earning History</h4>
-										</div>
-										<div class="card-body">
-											<div class="table-responsive">
-												<table id="example2" class="display" style="width:100%">
-													<thead>
-														<tr>
-															<th>Package Type</th>
-															<th>Package Rewards</th>
-															<th>Level Rewards</th>
-															<th>Bussiness Volume Rewards</th>
-															
-															<th>Date</th>
-														</tr>
-													</thead>
-													<tbody>
-														@php
-															$data = commssion_log();
-														@endphp
-														@if ($data == NULL)
-														
-														@else
-														@foreach ($data as $package)
-														
-														@php
-														$binary_commission;
-
-															$bc_l = $package->binary_commission_left;
-															$bc_r = $package->binary_commission_right;
-
-
-															if( $bc_l = 0){
-																$binary_commission = $bc_r;
-															}
-															if( $bc_r = 0){
-																$binary_commission = $bc_l;
-															}
-															dd($binary_commission);
-														@endphp	
-														<tr>
-															<td>{{ $package->package_type }}</td>
-															<td>{{ $package->package_commission  }} </td>
-															<td>{{ $package->level_commission  }} </td>
-															<td>{{ $binary_commission  }} </td>
-															
-															<td>{{ $package->created_at  }} </td>
-														</tr>
-														@endforeach	
-														@endif
-														
-													</tbody>
-												</table>
-											</div>
-										</div>
-									</div>
-								</div>
-								
-							</div>
-						</div>
-					</div>
-				</div>
+				
 
 					</div>
 				</div>
