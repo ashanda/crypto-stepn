@@ -87,7 +87,7 @@
 											<div class="card-info">
 												<p class="mb-1 text-white fs-14">Business Volume Rewards</p>
 												<div class="d-flex justify-content-between">
-													<h2 class="num-text text-white mb-5 font-w600">${{ binary_commision() }}</h2>
+													<h2 class="num-text text-white mb-5 font-w600">$ {{ binary_commision() }}</h2>
 													<svg width="55" height="34" viewBox="0 0 55 34" fill="none" xmlns="http://www.w3.org/2000/svg">
 														<circle cx="38.0091" cy="16.7788" r="16.7788" fill="white" fill-opacity="0.67"></circle>
 														<circle cx="17.4636" cy="16.7788" r="16.7788" fill="white" fill-opacity="0.67"></circle>
@@ -215,10 +215,10 @@
 															$bc_r = $package->binary_commission_right;
 
 
-															if( $bc_l == 0){
+															if( $bc_l = 0){
 																$binary_commission = $bc_r;
 															}
-															if( $bc_r == 0){
+															if( $bc_r = 0){
 																$binary_commission = $bc_l;
 															}
 														@endphp	
