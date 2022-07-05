@@ -1239,8 +1239,8 @@ nav ul li a:active, nav ul li a:hover {
     font-size: 30px;
     color: #fff;
     float: right;
-    line-height: 80px;
-    margin-right: 40px;
+    line-height: 1;
+    margin-right: 20px;
     cursor: pointer;
     display: none;
 }

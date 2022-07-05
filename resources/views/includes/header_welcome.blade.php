@@ -35,9 +35,9 @@
                         <label for="check" class="checkbtn">
                             <i class="fa fa-bars"></i>
                         </label>
-                        <lable class="logo">
+                        <!-- <lable class="logo">
                             <img src="images/lemaconet F.png">
-                        </lable>
+                        </lable> -->
                         <ul>
                             <li><a href="#" class="active">Home</a></li>
                             <li><a href="#">Login</a></li>
