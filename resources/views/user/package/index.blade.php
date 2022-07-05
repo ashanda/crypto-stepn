@@ -8,9 +8,9 @@
             <!-- Add Project -->
             
             
-            <div class="row" style="margin-top: 85px;padding:20px;" >
+            <div class="row package-section" style="margin-top: 85px;padding:20px;" >
                 
-                <div class="col-xl-3 col-lg-6 col-sm-6">
+                <div class="col-xl-12 col-lg-12 col-sm-12">
                     @if(session('status'))
                     <div class="alert alert-success mb-1 mt-1">
                     {{ session('status') }}
