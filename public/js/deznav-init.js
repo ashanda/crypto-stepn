@@ -56,3 +56,8 @@ function getUrlParams(dParam)
 	});
 	
 })(jQuery);
+
+// text script
+var deznavWidth = $('.deznav').attr('width');
+alert(deznavWidth);
+// document.getElementById("package-section").style.color = "red";

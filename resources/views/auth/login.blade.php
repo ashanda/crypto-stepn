@@ -13,7 +13,7 @@
                                 <div class="col-xl-12">
                                     <div class="auth-form">
                                         <div class="text-center mb-3">
-                                            <img src="images/logo-full.png" alt="">
+                                            <img src="images/logo-round.png" alt="">
                                         </div>
                                         <h4 class="text-center mb-4">Sign in your account</h4>
                                         <x-jet-validation-errors class="mb-4" />
