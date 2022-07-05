@@ -221,6 +221,7 @@
 															if( $bc_r = 0){
 																$binary_commission = $bc_l;
 															}
+															dd($binary_commission);
 														@endphp	
 														<tr>
 															<td>{{ $package->package_type }}</td>
