@@ -104,7 +104,12 @@ class BuypackageController extends Controller
                     $package_revenue_double = $request->package_value * 2;
                     $package_revenue = $request->package_value * 4;
                 }
-                $buy_package->package_value = $request->package_value;
+                if(user_package_count() == 0){
+                    $buy_package->package_value = $request->package_value+10;
+                }else{
+                    $buy_package->package_value = $request->package_value;
+                }
+                
                 $buy_package->package_double_value = $package_revenue_double;
                 $buy_package->package_revenue = $package_revenue;
                 $buy_package->currency_type = $request->currency_type;

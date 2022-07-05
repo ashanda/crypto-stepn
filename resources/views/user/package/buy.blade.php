@@ -34,10 +34,10 @@
                                 <label> Currency Type (select one):</label>
                                 <div class="dropdown bootstrap-select form-control default-select dropup">
                                     <select class="form-control default-select" id="sel1" tabindex="-98" name="currency_type" required>
-                                        <option value="1">USDT</option>
-                                        <option value="2">USDC</option>
-                                        <option value="3">BUSD</option>
-                                        <option value="4">DAI</option>
+                                        <option value="USDT">USDT</option>
+                                        <option value="USDC">USDC</option>
+                                        <option value="BUSD">BUSD</option>
+                                        <option value="DAI">DAI</option>
                                     </select>
                                 </div>
                             </div>
@@ -45,11 +45,11 @@
                                 <label> Network (select one):</label>
                                 <div class="dropdown bootstrap-select form-control default-select dropup">
                                     <select class="form-control default-select" id="sel2" tabindex="-98" name="network" required onchange="ChangeAddress()">
-                                        <option value="1">Tron (TRC20)</option>
-                                        <option value="2">BNB Smart Chain (BEP20)</option>
-                                        <option value="3">Ethereum (ERC20)</option>
-                                        <option value="4">Polygon</option>
-                                        <option value="5">Solana</option>
+                                        <option value="Tron-(TRC20)">Tron (TRC20)</option>
+                                        <option value="BNB-Smart-Chain-(BEP20)">BNB Smart Chain (BEP20)</option>
+                                        <option value="Ethereum-(ERC20)">Ethereum (ERC20)</option>
+                                        <option value="Polygon">Polygon</option>
+                                        <option value="Solana">Solana</option>
                                     </select>
                                 </div>
                             </div>
