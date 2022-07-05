@@ -21,14 +21,14 @@
     <div class="header">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col logo_section">
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-9 logo_section">
                     <div class="center-desk">
                         <div class="logo">
                             <a href="https://lemaconet.com"><img src="assets/images/lemaconet F.png"> </a>
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-9 col-lg-9 col-md-9 col-sm-9">
+                <div class="col-xl-9 col-lg-9 col-md-9 col-sm-9 col-3">
 
                     <nav>
                         <input type="checkbox" id="check">

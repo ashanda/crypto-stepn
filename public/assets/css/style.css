@@ -168,7 +168,7 @@ menu-area-main li i:hover {
 
     .logo a {
         font-size: 28px;
-        padding-left: 50px;
+        padding-left: 10px;
     }
 
     .nav_btn {
@@ -1192,7 +1192,7 @@ nav {
     background: #08071B;
     height: 80px;
     width: 100%;
-    padding-top: 10px;
+    padding-top: 0;
 }
 
 lable .logo img {
