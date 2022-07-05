@@ -378,6 +378,3 @@ jQuery(window).on('resize',function () {
 });
 /*  Window Resize END */
 
-// text script
-alert("aaaa");
-document.getElementById("package-section").style.display = "none";
