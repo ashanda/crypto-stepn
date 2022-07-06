@@ -28,43 +28,60 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/redirects', [HomeController::class,'index']);
-Route::get('/dashboard', [HomeController::class,'index']);
+if(Auth::check()){
+    Route::get('/redirects', [HomeController::class,'index']);
+    Route::get('/dashboard', [HomeController::class,'index']);
 
-Route::get('/disclaimer_notice', [HomeController::class,'disclaimer_notice']);
-Route::resource('/package', PackageController::class);
-Route::resource('/buy_package', BuypackageController::class);
+    Route::get('/disclaimer_notice', [HomeController::class,'disclaimer_notice']);
+    Route::resource('/package', PackageController::class);
+    Route::resource('/buy_package', BuypackageController::class);
 
-Route::get('/buy_package/{id}/progress',[BuypackageController::class,'buy']);
+    Route::get('/buy_package/{id}/progress',[BuypackageController::class,'buy']);
 
-Route::get('/buy_package/{id}/wallet_buy',[BuypackageController::class,'wallet_buy']);
+    Route::get('/buy_package/{id}/wallet_buy',[BuypackageController::class,'wallet_buy']);
 
-Route::get('/active_packages', [BuypackageController::class,'active']);
-Route::get('/user/profile', [UserController::class,'user']);
+    Route::get('/active_packages', [BuypackageController::class,'active']);
+    Route::get('/user/profile', [UserController::class,'user']);
 
-Route::resource('/user_buy_package', UserbuypackageController::class);
+    Route::resource('/user_buy_package', UserbuypackageController::class);
 
-Route::get('/withdraw' , [WithdrawController::class, 'index']);
+    Route::get('/withdraw' , [WithdrawController::class, 'index']);
 
-Route::get('/trans/p2p' , [TransController::class, 'p2p']);
+    Route::get('/trans/p2p' , [TransController::class, 'p2p']);
 
-Route::get('/trans/crypto' , [TransController::class, 'crypto']);
+    Route::get('/trans/crypto' , [TransController::class, 'crypto']);
 
-Route::get('/package_earn' , [HomeController::class,'package_earn']);
-Route::post('/package_earn_tranfer' , [HomeController::class,'package_earn_tranfer']);
+    Route::get('/package_earn' , [HomeController::class,'package_earn']);
+    Route::post('/package_earn_tranfer' , [HomeController::class,'package_earn_tranfer']);
 
-Route::get('/genealogy' , [GeneologyController::class,'index']);
-Route::get('/genealogy/?parent={parent}' , [GeneologyController::class,'index']);
+    Route::get('/genealogy' , [GeneologyController::class,'index']);
+    Route::get('/genealogy/?parent={parent}' , [GeneologyController::class,'index']);
 
-Route::resource('/kyc', KycController::class);
+    Route::resource('/kyc', KycController::class);
 
-Route::get('/user/profile', [UserController::class,'user']);
-Route::resource('/user', UserController::class);
+    Route::get('/user/profile', [UserController::class,'user']);
+    Route::resource('/user', UserController::class);
 
-Route::resource('/trans',TransController::class);
-Route::resource('/add_wallet', AddWalletCRUDController::class);
+    Route::resource('/trans',TransController::class);
+    Route::resource('/add_wallet', AddWalletCRUDController::class);
 
-Route::resource('/wallet', WalletController::class);
+    Route::resource('/wallet', WalletController::class);
+ }else{
+    Route::get('/', function () {
+        return view('welcome');
+    });
+}
+
+Route::group(['middleware' => 'prevent-back-history'],function(){
+	Auth::routes();
+	Route::get('/', function () {
+        return view('welcome');
+    });
+
+});
+
+
+
 
 Route::middleware([
     'auth:sanctum',

@@ -65,32 +65,36 @@ class UserbuypackageController extends Controller
         $package_id = (int)$request->package_id;
         $current_user= (int)$request->uid;
         $package_row_id= (int)$request->package_row_id;
-        if( $status == 1){
+        
+
+
+        if( $status == 1){    
+            $user_current_package = DB::table('packages')->where('id','=',$package_row_id)->get(); 
+            // Commission function call
+            $previous_package_check = previous_package_check($package_id,$current_user);
+            $previous_package_check;
             
-                
-                $user_current_package = DB::table('packages')->where('id','=',$package_row_id)->get(); 
-                // Commission function call
-                $previous_package_check = previous_package_check($package_id,$current_user);
-                $previous_package_check;
-                
-                if ($previous_package_check == 1){ 
+            if ($previous_package_check == 1){ 
+                $current_user_package_count = current_user_package_count($current_user);
+                if($current_user_package_count == 1){
                     $package_value = $package_value-10;
-                    buy_package($package_value,$package_id,$user_current_package[0]->id,$current_user); 
-                    $package_value = $package->package_value;
-                    store_fee( $package->uid,$package_value+10);
-                     
-                }else{ 
-                    
-                    buy_package_secound_time($package_value,$package_id,$user_current_package[0]->id,$current_user);   
-                    store_fee( $package->uid,$package_value);
+                }else{
+                    $package_value = $package_value;
                 }
                 
-            
-            
-            
-        }
-        $package->save();
-       
+                buy_package($package_value,$package_id,$user_current_package[0]->id,$current_user); 
+                $package_value = $package->package_value;
+                store_fee( $package->uid,$package_value+10);
+                 
+            }else{ 
+                
+                buy_package_secound_time($package_value,$package_id,$user_current_package[0]->id,$current_user);   
+                store_fee( $package->uid,$package_value);
+            }
+
+            $package->save();
+   
+     }
         return redirect()->route('user_buy_package.index')
         ->with('success','Package Has Been updated successfully');
         }

@@ -30,11 +30,12 @@
                             <strong>Package Category:</strong>
                             <div class="dropdown bootstrap-select form-control default-select">
                                 <select class="form-control default-select" tabindex="-98" name="package_category">
-                                  
-                                  <option value="Primary">Primary</option>
-                                  <option value="Superior">Superior</option>
-                                  <option value="VIP">VIP</option>
-                                  
+                                  @php
+                                      $package_cat_get = package_cat_get();
+                                  @endphp
+                                    @foreach($package_cat_get as $package_cat)
+                                        <option value="{{ $package_cat->cat_name }}">{{ $package_cat->cat_name }}</option>
+                                    @endforeach
                                   
                               </select>
                           </div>
