@@ -92,6 +92,7 @@
                                   
                                   
                               </select>
+                              
                               <input type="hidden" name="uid" value="{{ $current_user_package[0]->uid }}">
                               <input type="hidden" name="package_value" value="{{ $current_user_package[0]->package_value }}">
                               <input type="hidden" name="package_id" value="{{ $current_user_package[0]->package_id }}">

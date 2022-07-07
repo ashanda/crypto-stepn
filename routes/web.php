@@ -28,7 +28,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-if(Auth::check()){
+Route::middleware(['auth'])->group(function () {
     Route::get('/redirects', [HomeController::class,'index']);
     Route::get('/dashboard', [HomeController::class,'index']);
 
@@ -66,11 +66,7 @@ if(Auth::check()){
     Route::resource('/add_wallet', AddWalletCRUDController::class);
 
     Route::resource('/wallet', WalletController::class);
- }else{
-    Route::get('/', function () {
-        return view('welcome');
-    });
-}
+});
 
 Route::group(['middleware' => 'prevent-back-history'],function(){
 	Auth::routes();
@@ -92,3 +88,7 @@ Route::middleware([
     
     
 });
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

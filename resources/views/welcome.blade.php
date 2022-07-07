@@ -67,7 +67,7 @@
                 <h2>features</h2>
                 <h1>Crypto Live Price <br>Updates</h1>
                 <h3>Invest your crypto, gain massive benefits, grow your digital wealth with us.</h3>
-                <img src="https://toka.b-cdn.net/wp-content/uploads/2022/04/gttx.png">
+                <img src="assets/images/feature.png">
             </center>
         </div>
     </div>
@@ -110,13 +110,13 @@
             <div class="container">
                 <h2>payouts</h2>
                 <h1> Invest Crypto & <br/>Get Massive Benifits</h1>
-                <img class="payouts_img" src="https://toka.b-cdn.net/wp-content/uploads/2022/04/rfvfvs-1024x890.png">
-               
+                <!--<img class="payouts_img" src="https://toka.b-cdn.net/wp-content/uploads/2022/04/rfvfvs-1024x890.png">-->
+               <img class="payouts_img" src="assets/images/payouts.png">
             </div>
         </div>
     </div>
         <div class="right">
-            <h3>Send invoices, collect payment, convert payouts to fiat currency, <br/>or keep the cryptocurrency.</h3>
+            <!--<h3>Send invoices, collect payment, convert payouts to fiat currency, <br/>or keep the cryptocurrency.</h3>-->
             <div class="payout_card2">
                 <img src="assets/images/forex.png">
                 <h1 >Forex Trading</h1>

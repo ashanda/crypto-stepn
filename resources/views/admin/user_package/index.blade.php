@@ -44,10 +44,9 @@
             @endif
             <td>
                 <form action="{{ route('user_buy_package.destroy',$package->id) }}" method="Post">
-                <a class="btn btn-primary" href="{{ route('user_buy_package.edit',$package->id) }}">Edit</a>
+                <a class="btn btn-primary" href="{{ route('user_buy_package.edit',$package->id) }}">View</a>
                 @csrf
-                @method('DELETE')
-                <button type="submit" class="btn btn-danger">Delete</button>
+                
                 </form>
             </td>
             

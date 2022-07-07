@@ -32,8 +32,8 @@
 						<span class="nav-text">Packages</span>
 					</a>
 					<ul aria-expanded="false">
-						<li><a href="package">Create Package</a></li>
-						<li><a href="user_buy_package">Activate Packages</a></li>
+						<li><a href="/package">Create Package</a></li>
+						<li><a href="/user_buy_package">Activate Packages</a></li>
 					</ul>
 					</li>
                     
