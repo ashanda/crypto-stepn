@@ -65,7 +65,7 @@ class UserbuypackageController extends Controller
         $package_id = (int)$request->package_id;
         $current_user= (int)$request->uid;
         $package_row_id= (int)$request->package_row_id;
-        
+        $user_package_row_id = $package_row_id;
 
 
         if( $status == 1){    
@@ -82,13 +82,13 @@ class UserbuypackageController extends Controller
                     $package_value = $package_value;
                 }
                 
-                buy_package($package_value,$package_id,$user_current_package[0]->id,$current_user); 
+                buy_package($user_package_row_id,$package_value,$package_id,$user_current_package[0]->id,$current_user); 
                 $package_value = $package->package_value;
                 store_fee( $package->uid,$package_value+10);
                  
             }else{ 
                 
-                buy_package_secound_time($package_value,$package_id,$user_current_package[0]->id,$current_user);   
+                buy_package_secound_time($user_package_row_id,$package_value,$package_id,$user_current_package[0]->id,$current_user);   
                 store_fee( $package->uid,$package_value);
             }
 

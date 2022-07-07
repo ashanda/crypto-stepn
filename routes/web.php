@@ -69,7 +69,7 @@ Route::middleware(['auth'])->group(function () {
 });
 
 Route::group(['middleware' => 'prevent-back-history'],function(){
-	Auth::routes();
+	
 	Route::get('/', function () {
         return view('welcome');
     });
@@ -89,6 +89,4 @@ Route::middleware([
     
 });
 
-Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

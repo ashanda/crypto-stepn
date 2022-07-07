@@ -28,7 +28,10 @@ class BuypackageController extends Controller
             if($role==0){
                 $user_id = Auth::id();
                 $data = DB::table('packages')->get();   
-                $package_data = DB::table('user__packages')->where('uid', $user_id)->get();   
+                $package_data = DB::table('user__packages')
+                
+                ->where('uid', $user_id)
+                ->get();   
                 return view('user.package.index',compact('data','package_data'));
             }
         }
@@ -73,6 +76,7 @@ class BuypackageController extends Controller
             
                 
                 'package_id' => 'required',
+                'package_cat_id' => 'required',
                 'package_value' => 'required',
                 'currency_type' => 'required',
                 'network'=>'required',
@@ -109,9 +113,9 @@ class BuypackageController extends Controller
                 }else{
                     $buy_package->package_value = $request->package_value;
                 }
-                
+                $buy_package->package_cat_id = $request->package_cat_id;
                 $buy_package->package_double_value = $package_revenue_double;
-                $buy_package->package_revenue = $package_revenue;
+                $buy_package->package_max_revenue = $package_revenue;
                 $buy_package->currency_type = $request->currency_type;
                 $buy_package->network = $request->network;
                 $buy_package->save();
@@ -148,7 +152,11 @@ class BuypackageController extends Controller
                 }
                 if($role==0){
                     
-                    $buy_package = DB::table('packages')->where('id', $id)->get();  
+                    $buy_package = DB::table('packages')
+                    ->join('package__categories','package__categories.cat_name','=','packages.package_category')
+                    ->where('packages.id', $id)
+                    ->select('packages.id','package__categories.id as package_cat_id','packages.package_category','packages.package_name', 'packages.package_value', 'packages.package_status')
+                    ->get();  
                     
                     return view('user.package.buy',compact('buy_package','id'));
                 }
