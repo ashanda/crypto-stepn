@@ -55,7 +55,7 @@
                             </div>
                             <div class="form-group">
                                 <label> Deposit Address:</label>
-                                <input type="text" name="deposit_add" id="deposit_add" readonly value="123456789">
+                                <input type="text" name="deposit_add" id="deposit_add" readonly value="">
                             </div>
                             <div class="form-group">
                                 <strong>Profe Screen Shot:</strong>

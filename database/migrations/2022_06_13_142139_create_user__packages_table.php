@@ -21,11 +21,8 @@ class CreateUserPackagesTable extends Migration
             $table->float('package_value');
             $table->float('package_double_value');
             $table->float('package_max_revenue');
-            $table->float('package_commission')->default(0);
             $table->dateTime('package_commission_update_at')->nullable();
-            $table->float('package_level_commission')->default(0);
             $table->dateTime('package_level_commission_at')->nullable();
-            $table->float('package_binary_commsion')->default(0);
             $table->dateTime('package_binary_commsion_at')->nullable();
             $table->float('total')->default(0);
             $table->string('currency_type');

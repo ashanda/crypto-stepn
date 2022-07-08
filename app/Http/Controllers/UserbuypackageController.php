@@ -16,8 +16,9 @@ class UserbuypackageController extends Controller
             $data =DB::table('users')
             ->join('user__packages', 'users.uid', '=', 'user__packages.uid')
             ->join('packages', 'user__packages.package_id', '=', 'packages.id')
+            ->where('user__packages.status', '=', '2')
             ->select('user__packages.id','users.fname', 'users.lname', 'packages.package_name', 'user__packages.status')
-            ->orderBy('user__packages.id','desc')
+            ->orderBy('user__packages.id','asc')
             ->get();     
             return view('admin.user_package.index',compact('data'));
         }
@@ -35,7 +36,7 @@ class UserbuypackageController extends Controller
             ->join('user__packages', 'users.uid', '=', 'user__packages.uid')
             ->join('packages', 'user__packages.package_id', '=', 'packages.id')
             ->where('user__packages.id',$id) 
-            ->select('user__packages.id','packages.id as packageid','user__packages.uid','user__packages.package_id','user__packages.package_value','packages.package_name','user__packages.currency_type','user__packages.network','user__packages.deposite_ss','user__packages.status')
+            ->select('user__packages.id','packages.id as packageid','user__packages.uid','user__packages.package_id','user__packages.package_double_value','user__packages.package_value','packages.package_name','user__packages.currency_type','user__packages.network','user__packages.deposite_ss','user__packages.status')
             
             ->get();
             $kyc = User_Package::find($id);
@@ -52,6 +53,7 @@ class UserbuypackageController extends Controller
         {
         $request->validate([
             
+            'package_cat_id' => 'required',
             'package_status' => 'required',
             'package_row_id' => 'required',
             'package_id' => 'required',
@@ -66,29 +68,25 @@ class UserbuypackageController extends Controller
         $current_user= (int)$request->uid;
         $package_row_id= (int)$request->package_row_id;
         $user_package_row_id = $package_row_id;
-
+        $package_cat_id = (int)$request->package_row_id;
 
         if( $status == 1){    
+            $package->current_status = 1;
             $user_current_package = DB::table('packages')->where('id','=',$package_row_id)->get(); 
             // Commission function call
             $previous_package_check = previous_package_check($package_id,$current_user);
-            $previous_package_check;
             
-            if ($previous_package_check == 1){ 
-                $current_user_package_count = current_user_package_count($current_user);
-                if($current_user_package_count == 1){
-                    $package_value = $package_value-10;
-                }else{
-                    $package_value = $package_value;
-                }
+           
+            if ($previous_package_check == 0){ 
+               
                 
-                buy_package($user_package_row_id,$package_value,$package_id,$user_current_package[0]->id,$current_user); 
+                buy_package($user_package_row_id,$package_value,$package_id,$user_current_package[0]->id,$current_user,$package_cat_id); 
                 $package_value = $package->package_value;
                 store_fee( $package->uid,$package_value+10);
                  
             }else{ 
-                
-                buy_package_secound_time($user_package_row_id,$package_value,$package_id,$user_current_package[0]->id,$current_user);   
+               
+                buy_package_secound_time($user_package_row_id,$package_value,$package_id,$user_current_package[0]->id,$current_user,$package_cat_id);   
                 store_fee( $package->uid,$package_value);
             }
 

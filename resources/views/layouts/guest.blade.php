@@ -1,10 +1,10 @@
-@include('includes.header');
+@include('includes.header_auth');
 
-@include('includes.sidebar');
+
 
 @yield('content');
 
-@include('includes.footer');
+@include('includes.footer_auth');
 
 
 
