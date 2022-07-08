@@ -856,7 +856,7 @@ if($direct_commission != NULL){
 
   // buy package secound time function //
 
-  function buy_package_secound_time($package_value,$package_id,$package_cat,$current_user){
+  function buy_package_secound_time($user_package_row_id,$package_value,$package_id,$package_cat,$current_user,$package_cat_id){
     
     
     
@@ -959,19 +959,33 @@ if($direct_commission != NULL){
         ->select("id", "uid","total","current_left_balance", "current_right_balance")
         ->where("uid", "=", $virtual_parentid )
         ->get();
-        $package_category = DB::table('packages')->where('id','=',$package_cat)->get();
+
+        
+        
+        $binary_commission_count = count((array)$userbinarycommision);
+
+        $package_category = DB::table('package__categories')->where('id','=',$package_cat_id)->get();
+        
         $package_cat_commission=0;
         
-        //$current_user_package_commission = current_user_package_commission($virtual_parentid);
+       // $current_user_package_commission = current_user_package_commission($virtual_parentid);
         
-				if(!isset($current_user_package_commission[0] )){
+				if(!isset($package_category[0] )){
           
 				}else{
-          $package_cat_commission = $current_user_package_commission[0]->cat_commission;
+          $package_cat_commission = $package_category[0]->cat_commission;
           
 				}
-        binary_commission_update_query($ref_s,$userbinarycommision,$virtual_parentid,$package_id,$package_value,$package_cat_commission,$current_row_uid);
-  
+        
+        $new_binary_commission = binary_commission_find($current_row_uid, $package_value, $binary_commission_count,$package_cat_commission);   
+        validate_binary_commissions( $ref_s,$userbinarycommision,$virtual_parentid,$current_row_uid,$new_binary_commission  );
+        
+        
+        
+        
+     
+      //echo $virtual_parentid.'/';
+      //echo $direct_parent_dna.'/';
       if($current_row_uid == 2 ){
       
         break;
