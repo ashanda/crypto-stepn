@@ -865,7 +865,7 @@ if($direct_commission != NULL){
     $direct_commission->uid = $current_row_uid ;
     $direct_commission->direct_commission = $new_direct_commission;
     $direct_commission->save();
-    wallet_insert($current_row_uid,$new_direct_commission);
+    
     
 
 }
