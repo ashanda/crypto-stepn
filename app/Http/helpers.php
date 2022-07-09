@@ -578,7 +578,7 @@ function binary_commission_update_query($ref_s,$userbinarycommision,$virtual_par
         // Update Wallet 
         DB::table('user_binary_commissions')
         ->where('id', $id)
-        ->update(array('current_left_balance' => 0, 'current_right_balance' => 0,'total'=>$total));	
+        ->update(array('current_left_balance' => 0, 'current_right_balance' => 0,'total'=>$total+($current_right_balance/2)));	
         
           wallet_update($virtual_parentid,$current_left_balance); 
 

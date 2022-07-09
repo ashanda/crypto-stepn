@@ -49,9 +49,9 @@
                                             </ul>
                                         </div>
                                         
-                                            <div class="card-header">{{ __('Two Factor Authentication') }}</div>
+                                        <h4 class="fs-16 text-black">{{ __('Two Factor Authentication') }}</h4>
                             
-                                            <div class="card-body">
+                                            
                                                 @if (session('status') == "two-factor-authentication-disabled")
                                                     <div class="alert alert-success" role="alert">
                                                         Two factor Authentication has been disabled.
@@ -91,7 +91,7 @@
                                                     @endif
                                                 </form>
                                            
-                                        </div>
+                                       
 									</div>
 									
 										
