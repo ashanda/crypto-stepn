@@ -470,7 +470,7 @@ function wallet_total(){
 
   // binary commission sum
   function binary_commision(){
-    $binary_commision = DB::table('user_binary_commissions')->where('uid',Auth::user()->uid)->sum('total');
+    $binary_commision = DB::table('wallets')->where('uid',Auth::user()->uid)->sum('binary_balance');
     
     
     return $binary_commision;
@@ -862,7 +862,7 @@ if($direct_commission != NULL){
     $direct_commission->uid = $current_row_uid ;
     $direct_commission->direct_commission = $new_direct_commission;
     $direct_commission->save();
-    
+
     DB::table('wallets')->insert([
       'uid' => $current_row_uid,
       'wallet_balance' => $new_direct_commission,
