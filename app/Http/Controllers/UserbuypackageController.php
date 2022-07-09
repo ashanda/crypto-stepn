@@ -17,7 +17,7 @@ class UserbuypackageController extends Controller
             ->join('user__packages', 'users.uid', '=', 'user__packages.uid')
             ->join('packages', 'user__packages.package_id', '=', 'packages.id')
             ->where('user__packages.status', '=', '2')
-            ->orderBy('user__packages.id','asc')
+            
             ->select('user__packages.id','users.fname', 'users.lname', 'packages.package_name', 'user__packages.status')
             
             ->get();     
