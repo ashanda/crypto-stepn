@@ -578,7 +578,7 @@ function binary_commission_update_query($ref_s,$userbinarycommision,$virtual_par
         // Update Wallet 
         DB::table('user_binary_commissions')
         ->where('id', $id)
-        ->update(array('current_left_balance' => 0, 'current_right_balance' => 0,'total'=>$total+$current_right_balance));	
+        ->update(array('current_left_balance' => 0, 'current_right_balance' => 0,'total'=>$total));	
         
           wallet_update($virtual_parentid,$current_left_balance); 
 
@@ -593,14 +593,14 @@ function binary_commission_update_query($ref_s,$userbinarycommision,$virtual_par
         wallet_update($virtual_parentid,$current_left_balance);
         DB::table('user_binary_commissions')
         ->where('id', $id)
-        ->update(array('current_left_balance' => $current_left_balance, 'current_right_balance' => $current_right_balance,'total'=>($total+($current_left_balance))));
+        ->update(array('current_left_balance' => $current_left_balance, 'current_right_balance' => $current_right_balance,'total'=>($total+($current_left_balance/2))));
         
       }else{
         
         wallet_update($virtual_parentid,$current_right_balance);
         DB::table('user_binary_commissions')
         ->where('id', $id)
-        ->update(array('current_left_balance' => $current_left_balance, 'current_right_balance' => $current_right_balance,'total'=>($total+($current_right_balance))));
+        ->update(array('current_left_balance' => $current_left_balance, 'current_right_balance' => $current_right_balance,'total'=>($total+($current_right_balance/2))));
      }    
 
     }
