@@ -669,22 +669,22 @@ function binary_commission_update_query($ref_s,$userbinarycommision,$virtual_par
       switch ( $parent_user_level ) {
         case 0:    
                 
-             $new_direct_commission = direct_commission_find($package_value,  $commission_ratio[0]->first_time_direct ,  $direct_commission_count);
+             $new_direct_commission = $package_value * $commission_ratio[0]->first_time_direct;
              validate_user_commissions( $current_row_uid,$new_direct_commission , $direct_commission_count,$package_value );               
             break;
         case 1:    
                
-            $new_direct_commission = direct_commission_find($package_value,  $commission_ratio[0]->first_time_direct_01 ,  $direct_commission_count);
+            $new_direct_commission = $package_value * $commission_ratio[0]->first_time_direct_01;
             validate_user_commissions( $current_row_uid,$new_direct_commission , $direct_commission_count,$package_value );
              break;
         case 2:  
           
-            $new_direct_commission = direct_commission_find( $package_value,  $commission_ratio[0]->first_time_direct_02 ,  $direct_commission_count);
+            $new_direct_commission = $package_value * $commission_ratio[0]->first_time_direct_02;
             validate_user_commissions( $current_row_uid,$new_direct_commission , $direct_commission_count,$package_value );
             break;	
         case 3:     
                    
-            $new_direct_commission = direct_commission_find($package_value,  $commission_ratio[0]->first_time_direct_03 ,  $direct_commission_count);
+            $new_direct_commission = $package_value * $commission_ratio[0]->first_time_direct_03;
             validate_user_commissions( $current_row_uid,$new_direct_commission , $direct_commission_count,$package_value );
             break;
       } 
@@ -912,22 +912,22 @@ if($direct_commission != NULL){
       switch ( $parent_user_level ) {
         case 0:    
                 
-             $new_direct_commission = direct_commission_find($package_value,  $commission_ratio[0]->secound_time_direct ,  $direct_commission_count);
+             $new_direct_commission = $package_value * $commission_ratio[0]->secound_time_direct;
              validate_user_commissions( $current_row_uid,$new_direct_commission , $direct_commission_count,$package_value );               
             break;
         case 1:    
                
-            $new_direct_commission = direct_commission_find($package_value,  $commission_ratio[0]->secound_time_direct_01 ,  $direct_commission_count);
+            $new_direct_commission = $package_value  * $commission_ratio[0]->secound_time_direct_01;
             validate_user_commissions( $current_row_uid,$new_direct_commission , $direct_commission_count,$package_value );
              break;
         case 2:  
           
-            $new_direct_commission = direct_commission_find( $package_value,  $commission_ratio[0]->secound_time_direct_02 ,  $direct_commission_count);
+            $new_direct_commission = $package_value * $commission_ratio[0]->secound_time_direct_02;
             validate_user_commissions( $current_row_uid,$new_direct_commission , $direct_commission_count,$package_value );
             break;	
         case 3:     
                    
-            $new_direct_commission = direct_commission_find($package_value,  $commission_ratio[0]->secound_time_direct_03 ,  $direct_commission_count);
+            $new_direct_commission = $package_value * $commission_ratio[0]->secound_time_direct_03;
             validate_user_commissions( $current_row_uid,$new_direct_commission , $direct_commission_count,$package_value );
             break;
       } 
