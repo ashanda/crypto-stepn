@@ -14,11 +14,11 @@ class UserbuypackageController extends Controller
         $role=Auth::user()->role;
         if($role==1){
             $data =DB::table('users')
-            ->join('user__packages as up', 'users.uid', '=', 'up.uid')
-            ->join('packages', 'up.package_id', '=', 'packages.id')
-            ->where('up.status', '=', '2')
-            ->select('up.id','users.fname', 'users.lname', 'packages.package_name', 'up.status')
-            ->orderBy('up.id','asc')
+            ->join('user__packages as up', 'users.uid', '=', 'user__packages.uid')
+            ->join('packages', 'user__packages.package_id', '=', 'packages.id')
+            ->where('user__packages.status', '=', '2')
+            ->select('user__packages.uid','user__packages.id','users.fname', 'users.lname', 'packages.package_name', 'user__packages.status')
+            ->orderBy('user__packages.uid','asc')
             ->get();     
             return view('admin.user_package.index',compact('data'));
         }
