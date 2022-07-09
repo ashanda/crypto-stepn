@@ -630,7 +630,9 @@ function binary_commission_update_query($ref_s,$userbinarycommision,$virtual_par
         ->update(array('current_left_balance' => $current_left_balance, 'current_right_balance' => $current_right_balance,'total'=>($total+($current_right_balance))));
         
       }else{
-        
+        $current_left_balance = $current_left_balance - $current_right_balance;
+        $current_right_balance = 0;
+
         wallet_update_binary($virtual_parentid,$current_right_balance);
         DB::table('user_binary_commissions')
         ->where('id', $id)
@@ -865,7 +867,7 @@ if($direct_commission != NULL){
     $direct_commission->uid = $current_row_uid ;
     $direct_commission->direct_commission = $new_direct_commission;
     $direct_commission->save();
-    wallet_insert($current_row_uid,$new_direct_commission);
+    
     
 
 }
