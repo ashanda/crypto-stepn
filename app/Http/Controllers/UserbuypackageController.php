@@ -14,7 +14,7 @@ class UserbuypackageController extends Controller
         $role=Auth::user()->role;
         if($role==1){
             $data =DB::table('users')
-            ->join('user__packages as up', 'users.uid', '=', 'user__packages.uid')
+            ->join('user__packages', 'users.uid', '=', 'user__packages.uid')
             ->join('packages', 'user__packages.package_id', '=', 'packages.id')
             ->where('user__packages.status', '=', '2')
             ->select('user__packages.uid','user__packages.id','users.fname', 'users.lname', 'packages.package_name', 'user__packages.status')
