@@ -55,7 +55,7 @@
                             </div>
                             <div class="form-group">
                                 <label> Deposit Address:</label>
-                                <input type="text" name="deposit_add" id="deposit_add" readonly value="">
+                                <input type="text" name="deposit_add" id="deposit_add" readonly value="No address yet">
                             </div>
                             <div class="form-group">
                                 <strong>Profe Screen Shot:</strong>
@@ -126,64 +126,64 @@
         var x = document.getElementById("sel1").value;
         var y = document.getElementById("sel2").value;
         var z;
-        if (x == USDT && y == Tron-(TRC20)) {
+        if (x == "USDT" && y == "Tron-(TRC20)") {
             z = "TJftK2SA5X13znBu3crSDgPdcjzrG8jiV8";
         }
-        if (x == 'USDT' && y == 'BNB-Smart-Chain-(BEP20)') {
+        if (x == "USDT" && y == "BNB-Smart-Chain-(BEP20)") {
             z = "0x024406145cee6a4c209e28cfec7faea8e1bed67f";
         }
-        if (x == USDT && y == 3) {
+        if (x == "USDT" && y == "Ethereum-(ERC20)") {
             z = "0x024406145cee6a4c209e28cfec7faea8e1bed67f";
         }
-        if (x == USDT && y == 4) {
+        if (x == "USDT" && y == "Polygon") {
             z = "0x024406145cee6a4c209e28cfec7faea8e1bed67f";
         }
-        if (x == USDT && y == 5) {
+        if (x == "USDT" && y == "Solana") {
             z = "DdJWtY4AngbHFS2zEmjvJwzrcqXEybavbxEWyYssdW4D";
         }
-        if (x == 2 && y == 1) {
+        if (x == "USDC" && y == "Tron-(TRC20)") {
             z = "TJftK2SA5X13znBu3crSDgPdcjzrG8jiV8";
         }
-        if (x == 2 && y == 2) {
+        if (x == "USDC" && y == "BNB-Smart-Chain-(BEP20)") {
             z = "No address yet";
         }
-        if (x == 2 && y == 3) {
+        if (x == "USDC" && y == "Ethereum-(ERC20)") {
             z = "0x024406145cee6a4c209e28cfec7faea8e1bed67f";
         }
-        if (x == 2 && y == 4) {
+        if (x == "USDC" && y == "Polygon") {
             z = "0x024406145cee6a4c209e28cfec7faea8e1bed67f";
         }
-        if (x == 2 && y == 5) {
+        if (x == "USDC" && y == "Solana") {
             z = "DdJWtY4AngbHFS2zEmjvJwzrcqXEybavbxEWyYssdW4D";
         }
-        if (x == 3 && y == 1) {
+        if (x == "BUSD" && y == "Tron-(TRC20)") {
             z = "No address yet";
         }
-        if (x == 3 && y == 2) {
+        if (x == "BUSD" && y == "BNB-Smart-Chain-(BEP20)") {
             z = "0x024406145cee6a4c209e28cfec7faea8e1bed67f";
         }
-        if (x == 3 && y == 3) {
+        if (x == "BUSD" && y == "Ethereum-(ERC20)") {
             z = "0x024406145cee6a4c209e28cfec7faea8e1bed67f";
         }
-        if (x == 3 && y == 4) {
+        if (x == "BUSD" && y == "Polygon") {
             z = "No address yet";
         }
-        if (x == 3 && y == 5) {
+        if (x == "BUSD" && y == "Solana") {
             z = "No address yet";
         }
-        if (x == 4 && y == 1) {
+        if (x == "DAI" && y == "Tron-(TRC20)") {
             z = "No address yet";
         }
-        if (x == 4 && y == 2) {
+        if (x == "DAI" && y == "BNB-Smart-Chain-(BEP20)") {
             z = "0x024406145cee6a4c209e28cfec7faea8e1bed67f";
         }
-        if (x == 4 && y == 3) {
+        if (x == "DAI" && y == "Ethereum-(ERC20)") {
             z = "0x024406145cee6a4c209e28cfec7faea8e1bed67f";
         }
-        if (x == 4 && y == 4) {
+        if (x == "DAI" && y == "Polygon") {
             z = "No address yet";
         }
-        if (x == 4 && y == 5) {
+        if (x == "DAI" && y == "Solana") {
             z = "No address yet";
         }
         document.getElementById("deposit_add").value = z;
