@@ -18,7 +18,7 @@ class UserbuypackageController extends Controller
             ->join('packages', 'user__packages.package_id', '=', 'packages.id')
             ->where('user__packages.status', '=', '2')
             ->select('user__packages.id','users.fname', 'users.lname', 'packages.package_name', 'user__packages.status')
-            ->orderBy('user__packages.id','asc')
+            ->orderBy('user__packages.id','desc')
             ->get();     
             return view('admin.user_package.index',compact('data'));
         }
