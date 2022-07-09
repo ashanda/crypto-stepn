@@ -281,11 +281,11 @@ function get_user_wallets_data(){
 
   function wallet_update_direct($uid,$wallet_balance){
     $wallet_balance_update =  DB::table("wallets")
-            ->select("id", "uid" ,"wallet_balance")
+            ->select("id", "uid" ,"wallet_balance",'binary_balance','direct_balance')
             ->where("uid", "=", $uid )
             ->first();
             $wallet_balance_update_check =  DB::table("wallets")
-            ->select("id", "uid" ,"wallet_balance")
+            ->select("id", "uid" ,"wallet_balance",'binary_balance','direct_balance')
             ->where("uid", "=", $uid )
             ->count();
 
@@ -312,11 +312,11 @@ function get_user_wallets_data(){
 
   function wallet_update_binary($uid,$wallet_balance){
     $wallet_balance_update =  DB::table("wallets")
-            ->select("id", "uid" ,"wallet_balance")
+            ->select("id", "uid" ,"wallet_balance",'binary_balance','direct_balance')
             ->where("uid", "=", $uid )
             ->first();
             $wallet_balance_update_check =  DB::table("wallets")
-            ->select("id", "uid" ,"wallet_balance")
+            ->select("id", "uid" ,"wallet_balance",'binary_balance','direct_balance')
             ->where("uid", "=", $uid )
             ->count();
 
