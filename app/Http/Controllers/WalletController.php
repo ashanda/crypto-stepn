@@ -69,13 +69,32 @@ class WalletController extends Controller
         $wallet_balance->available_balance = $wallet_balance->available_balance - $request->amount; 
     }else if($request->package_status == 1){
         store_fee($request->uid,$fee);
+        if($wallet_balance->direct_balance > $wallet_balance->binary_balance){
+            $new_balance_direct = $wallet_balance->direct_balance - $request->amount;
+
+            // check if the direct balance is less than the binary balance
+            if($new_balance_direct == 0){
+                $wallet_balance->direct_balance = $new_balance_direct;
+            }else{
+                $new_balance_binary = $wallet_balance->binary_balance - $new_balance_direct;
+                $wallet_balance->binary_balance  = $new_balance_binary;
+            } 
+        }else{
+
+            $new_balance_binary = $wallet_balance->binary_balance - $request->amount;
+
+            // check if the direct balance is less than the binary balance
+            if($new_balance_binary == 0){
+                $wallet_balance->binary_balance = $new_balance_binary;
+            }else{
+                $new_direct_balance = $wallet_balance->binary_balance - $new_balance_binary;
+                $wallet_balance->direct_balance  = $new_direct_balance;
+            } 
+
+        }   
         $wallet_balance->available_balance = $old__available_balance - ($request->amount+$fee);
         $wallet_balance->wallet_balance = $old_balance - ($request->amount + $fee);
-    }
-
-       
-       $wallet_balance->wallet_out = $change_wallet_balance->wallet_out + $request->amount;
-       
+       }
        $wallet_balance->save();
        $withdraw->save();
         return redirect()->route('wallet.index')

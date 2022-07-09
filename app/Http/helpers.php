@@ -278,7 +278,8 @@ function get_user_wallets_data(){
   ]);
   }
 
-  function wallet_update($uid,$wallet_balance){
+
+  function wallet_update_direct($uid,$wallet_balance){
     $wallet_balance_update =  DB::table("wallets")
             ->select("id", "uid" ,"wallet_balance")
             ->where("uid", "=", $uid )
@@ -291,15 +292,48 @@ function get_user_wallets_data(){
            if($wallet_balance_update_check > 0){
             $wallet_id= $wallet_balance_update->id;
             $new_wallet_balance = $wallet_balance_update->wallet_balance + ($wallet_balance);
+            $new_direct_balance = $wallet_balance_update->direct_balance + ($wallet_balance);
+            
     DB::table('wallets')
               ->where('id', $wallet_id)
-              ->update(['wallet_balance' => $new_wallet_balance,'available_balance' =>$new_wallet_balance,'wallet_in' =>$wallet_balance]);
+              ->update(['wallet_balance' => $new_wallet_balance,'available_balance' =>$new_wallet_balance,'direct_balance' =>$new_direct_balance]);
            }else{
             DB::table('wallets')->insert([
               'uid' => $uid,
               'wallet_balance' => $wallet_balance,
               'available_balance' => $wallet_balance,
-              'wallet_in' => $wallet_balance,
+              'direct_balance' => $wallet_balance,
+          ]);
+            
+           }
+  }
+
+
+
+  function wallet_update_binary($uid,$wallet_balance){
+    $wallet_balance_update =  DB::table("wallets")
+            ->select("id", "uid" ,"wallet_balance")
+            ->where("uid", "=", $uid )
+            ->first();
+            $wallet_balance_update_check =  DB::table("wallets")
+            ->select("id", "uid" ,"wallet_balance")
+            ->where("uid", "=", $uid )
+            ->count();
+
+           if($wallet_balance_update_check > 0){
+            $wallet_id= $wallet_balance_update->id;
+            $new_wallet_balance = $wallet_balance_update->wallet_balance + ($wallet_balance);
+            $new_binary_balance = $wallet_balance_update->binary_balance + ($wallet_balance);
+            
+    DB::table('wallets')
+              ->where('id', $wallet_id)
+              ->update(['wallet_balance' => $new_wallet_balance,'available_balance' =>$new_wallet_balance,'binary_balance' =>$new_binary_balance]);
+           }else{
+            DB::table('wallets')->insert([
+              'uid' => $uid,
+              'wallet_balance' => $wallet_balance,
+              'available_balance' => $wallet_balance,
+              'binary_balance' => $wallet_balance,
           ]);
             
            }
@@ -578,9 +612,9 @@ function binary_commission_update_query($ref_s,$userbinarycommision,$virtual_par
         // Update Wallet 
         DB::table('user_binary_commissions')
         ->where('id', $id)
-        ->update(array('current_left_balance' => 0, 'current_right_balance' => 0,'total'=>$total+($current_right_balance/2)));	
+        ->update(array('current_left_balance' => 0, 'current_right_balance' => 0,'total'=>$total+($current_right_balance)));	
         
-          wallet_update($virtual_parentid,$current_left_balance); 
+        wallet_update_binary($virtual_parentid,$current_left_balance); 
 
        } else if( $current_left_balance < $current_right_balance ){				
         // Update Wallet 
@@ -590,17 +624,17 @@ function binary_commission_update_query($ref_s,$userbinarycommision,$virtual_par
         $current_left_balance = 0;
         
         //wallete update < right binary value
-        wallet_update($virtual_parentid,$current_left_balance);
+        wallet_update_binary($virtual_parentid,$current_left_balance);
         DB::table('user_binary_commissions')
         ->where('id', $id)
-        ->update(array('current_left_balance' => $current_left_balance, 'current_right_balance' => $current_right_balance,'total'=>($total+($current_left_balance/2))));
+        ->update(array('current_left_balance' => $current_left_balance, 'current_right_balance' => $current_right_balance,'total'=>($total+($current_right_balance))));
         
       }else{
         
-        wallet_update($virtual_parentid,$current_right_balance);
+        wallet_update_binary($virtual_parentid,$current_right_balance);
         DB::table('user_binary_commissions')
         ->where('id', $id)
-        ->update(array('current_left_balance' => $current_left_balance, 'current_right_balance' => $current_right_balance,'total'=>($total+($current_right_balance/2))));
+        ->update(array('current_left_balance' => $current_left_balance, 'current_right_balance' => $current_right_balance,'total'=>($total+($current_left_balance))));
      }    
 
     }
@@ -822,7 +856,7 @@ if($direct_commission != NULL){
       ->where('id', $direct_commision_id)
       ->update(array('direct_commission' => $direct_commission_total ));
 
-   wallet_update($current_row_uid, $new_direct_commission );
+   wallet_update_direct($current_row_uid, $new_direct_commission );
 
   
   }else{
