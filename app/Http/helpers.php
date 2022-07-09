@@ -863,6 +863,13 @@ if($direct_commission != NULL){
     $direct_commission->direct_commission = $new_direct_commission;
     $direct_commission->save();
     
+    DB::table('wallets')->insert([
+      'uid' => $current_row_uid,
+      'wallet_balance' => $new_direct_commission,
+      'available_balance' => $new_direct_commission,
+      'direct_balance' => $new_direct_commission,
+  ]);
+    
     
 
 }
