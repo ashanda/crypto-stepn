@@ -274,7 +274,7 @@ function get_user_wallets_data(){
       'uid' => $uid,
       'wallet_balance' => $wallet_balance,
       'available_balance' => $wallet_balance,
-      'wallet_in' => $wallet_balance,
+      'direct_balance' => $wallet_balance,
   ]);
   }
 
