@@ -40,8 +40,7 @@
                                         <label>  Your Wallet Address:</label>
                                         <select class="form-control default-select" id="sel1" tabindex="-98" name="wallet_address" required>
                                             <option value="{{  $get_user_wallets[0]->id}}">{{  $get_user_wallets[0]->wallet_address}}</option>
-                                            <option value="{{  $get_user_wallets[1]->id}}">{{ $get_user_wallets[1]->wallet_address}}</option>
-                                            <option value="{{  $get_user_wallets[2]->id}}">{{ $get_user_wallets[2]->wallet_address}}</option>
+                                            
                                     </select>
                                         
                                     </div>    
