@@ -39,10 +39,10 @@
 <div class="row package-section" style="margin-top: 85px;padding:20px;">
 
     <div class="col-xl-12 col-lg-12 col-sm-12">
-        @if(session('status'))
-        <div class="alert alert-success mb-1 mt-1">
-            {{ session('status') }}
-        </div>
+        @if ($message = Session::get('success'))
+            <div class="alert alert-success">
+            <p>{{ $message }}</p>
+            </div>
         @endif
     </div>
 
