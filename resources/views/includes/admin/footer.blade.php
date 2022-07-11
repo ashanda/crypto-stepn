@@ -89,6 +89,8 @@ Scripts
 
 </script> 
 
+@yield('chart')
+
 
 
 
