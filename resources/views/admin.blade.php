@@ -11,8 +11,16 @@
 					<h2 class="font-w600 mb-2 mr-auto ">Admin</h2>
 					<div class="col-xl-6 col-xxl-12">
 						<div class="row">
-							{{ previous_package_check(1,10)}}
-							
+							<div class="col-xl-6">
+								<div class="card">
+									
+								</div>
+							</div>
+							<div class="col-xl-6">
+								<div class="card">
+									<canvas id="pie-chart"></canvas>
+								</div>
+							</div>
 						</div>
 					</div>
 					

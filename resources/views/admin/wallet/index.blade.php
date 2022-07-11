@@ -42,10 +42,13 @@
             <td>{{ $package->currency_type}}</td>
             <td>{{ $package->network}}</td>
             <td>{{ $package->wallet_address}}</td>
-            @if ($package->status=0)
+            
+            @if ($package->trstatus=='0')
             <td>{{ 'Pending' }}</td>
-            @else
-            <td>{{ 'withdrow' }}</td>
+            @elseif($package->trstatus=='1')
+            <td>{{ 'Approve' }}</td> 
+            @elseif($package->trstatus=='2')
+            <td>{{ 'reject' }}</td>
             @endif
             <td>
                 <form action="{{ route('wallet.destroy',$package->id) }}" method="Post">

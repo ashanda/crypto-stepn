@@ -17,6 +17,7 @@ class WalletController extends Controller
             
             $data = DB::table('transections')
             ->join('users', 'transections.uid', '=', 'users.uid')
+            ->select('users.*', 'transections.*', 'transections.status as trstatus')
             ->get();        
             return view('admin.wallet.index',compact('data'));
         }
@@ -64,7 +65,7 @@ class WalletController extends Controller
        $wallet_balance = wallet::find($id_update_row);
 
        if($request->package_status == 2){
-        $wallet_balance->available_balance = $wallet_balance->available_balance + $request->amount;
+        $wallet_balance->available_balance = $wallet_balance->available_balance + $request->amount+$fee;
     }else if($request->package_status == 0){
         $wallet_balance->available_balance = $wallet_balance->available_balance - $request->amount; 
     }else if($request->package_status == 1){
