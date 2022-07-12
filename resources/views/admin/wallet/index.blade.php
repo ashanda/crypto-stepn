@@ -21,6 +21,7 @@
             <tr>
             <th>No</th>
             <th>User Name</th>
+            <th>Fee</th>
             <th>Amount</th>
             <th>P2P ID</th>
             <th>Currency Type</th>
@@ -37,6 +38,7 @@
             <tr>
             <td>{{ $i }}</td>
             <td>{{ $package->fname ." ".$package->lname }}</td>
+            <td>{{ $package->fee }}</td>
             <td>{{ $package->amount}}</td>
             <td>{{ $package->p2p_id}}</td>
             <td>{{ $package->currency_type}}</td>

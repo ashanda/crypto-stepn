@@ -41,7 +41,7 @@
                     <div class="col-xs-12 col-sm-12 col-md-12">
                         <div class="form-group">
                             <strong>Withdraw Amount:</strong>
-                            <input type="text" name="amount" class="form-control" value="{{$withdraw->amount  }}">
+                            <input type="text" name="amount" class="form-control" value="${{$withdraw->amount  }}">
                             @error('amount')
                             <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                             @enderror
@@ -50,14 +50,14 @@
                     <div class="col-xs-12 col-sm-12 col-md-12">
                         <div class="form-group">
                             <strong>Tranfer fee:</strong>
-                            <input type="text"  class="form-control" value="{{$withdraw->fee  }}">
+                            <input type="text"  class="form-control" value="${{$withdraw->fee  }}">
                            
                         </div>
                     </div>
                     <div class="col-xs-12 col-sm-12 col-md-12">
                         <div class="form-group">
                             <strong>Tranfer Amount:</strong>
-                            <input type="text"  class="form-control" value="{{$withdraw->amount - $withdraw->fee  }}">
+                            <input type="text"  class="form-control" value="${{$withdraw->amount - $withdraw->fee  }}">
                            
                         </div>
                     </div>
