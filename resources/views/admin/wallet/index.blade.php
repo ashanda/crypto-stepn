@@ -38,8 +38,8 @@
             <tr>
             <td>{{ $i }}</td>
             <td>{{ $package->fname ." ".$package->lname }}</td>
-            <td>{{ $package->fee }}</td>
-            <td>{{ $package->amount}}</td>
+            <td>${{ $package->amount}}</td>
+            <td>${{ $package->fee }}</td>
             <td>{{ $package->p2p_id}}</td>
             <td>{{ $package->currency_type}}</td>
             <td>{{ $package->network}}</td>
