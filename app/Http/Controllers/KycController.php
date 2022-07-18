@@ -18,6 +18,7 @@ class KycController extends Controller
             $user_id = Auth::id();
             $data = DB::table('users')
             ->join('kycs', 'kycs.uid', '=', 'users.uid')
+            ->orderBy('kycs.created_at', 'desc')
             ->get();        
             return view('admin.kyc.index',compact('data'));
         }
