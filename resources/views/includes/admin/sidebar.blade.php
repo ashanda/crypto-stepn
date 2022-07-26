@@ -57,7 +57,15 @@
 							<span class="nav-text">Wallets</span>
 						</a>
 					</li>
-                    
+					<li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+						<i class="flaticon-061-puzzle"></i>
+						<span class="nav-text">Reports</span>
+					</a>
+					<ul aria-expanded="false">
+						<li><a href="/report_kyc">Sign up but not kyc</a></li>
+						<li><a href="/report_user">Users</a></li>
+					</ul>
+					</li>   
                     
                     
                 </ul>

@@ -88,7 +88,7 @@
                                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                                 <div class="form-group">
                                                 <strong>Phone Number:</strong>
-                                                <input type="text" name="phone_number" class="form-control" placeholder="Phone Number">
+                                                <input type="text" name="phone_number" class="form-control" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" placeholder="Phone Number">
                                                 @error('phone_number')
                                                 <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                                                 @enderror

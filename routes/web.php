@@ -13,6 +13,7 @@ use App\Http\Controllers\WithdrawController;
 use App\Http\Controllers\TransController;
 use App\Http\Controllers\AddWalletCRUDController;
 use App\Http\Controllers\GeneologyController;
+use App\Http\Controllers\ReportController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -68,6 +69,9 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('/add_wallet', AddWalletCRUDController::class);
 
     Route::resource('/wallet', WalletController::class);
+
+    Route::get('/report_kyc', [ReportController::class,'report_kyc']);
+    Route::get('/report_users', [ReportController::class,'report_user']);
 });
 
 Route::group(['middleware' => 'prevent-back-history'],function(){
