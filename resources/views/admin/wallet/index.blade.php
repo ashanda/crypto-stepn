@@ -17,7 +17,8 @@
             <p>{{ $message }}</p>
             </div>
             @endif
-            <table class="table table-bordered">
+            <table id="example2" class="display" style="width:100%">
+                <thead>
             <tr>
             <th>No</th>
             <th>User Name</th>
@@ -30,10 +31,11 @@
             <th>Package status</th>
             <th width="280px">Action</th>
             </tr>
+        </thead>
             @php
                 $i = 1;
             @endphp
-            
+            <tbody>
             @foreach ($data as $package)
             <tr>
             <td>{{ $i }}</td>
@@ -68,6 +70,7 @@
                 $i++;
             @endphp
             @endforeach
+        </tbody>
             </table>
         </div>
             </div>

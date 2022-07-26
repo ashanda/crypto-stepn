@@ -58,6 +58,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/genealogy/?parent={parent}' , [GeneologyController::class,'index']);
 
     Route::resource('/kyc', KycController::class);
+    Route::get('/kyc_all', [KycController::class,'all_kyc']);
+
 
     Route::get('/user/profile', [UserController::class,'user']);
     Route::resource('/user', UserController::class);

@@ -21,6 +21,21 @@ use function PHPUnit\Framework\isEmpty;
    * @return response()
    */
 
+
+// pending Kyc count
+function pendingKycCount()
+{
+    $pendingKyc = Kyc::where('status', '0')->count();
+    return $pendingKyc;
+}
+
+//pending package count
+function pendingPackageCount()
+{
+    $pendingPackage = User_Package::where('status', '2')->count();
+    return $pendingPackage;
+}
+
 //package commission percentage get
 function direct_package_commission_percentage(){
     $direct_commssion_precentages = DB::table('direct_commssion_precentages')->get();
@@ -96,7 +111,7 @@ function geneology( $target_parent){
   $parent_details = DB::table("kycs")
                   ->join('users',"users.uid", "=", "kycs.uid")
                   ->where("kycs.uid", "=", $target_parent)
-                  ->select("users.uid","kycs.phone_number", "kycs.whatsapp_number", "users.email", "kycs.country", "kycs.created_at")
+                  ->select("users.uid","users.system_id","kycs.phone_number", "kycs.whatsapp_number", "users.email", "kycs.country", "kycs.created_at")
                   ->get();
    
   if($parent_details->isEmpty()){
@@ -113,14 +128,14 @@ echo "
     
                   
                   <span class='geneology_child_info'>
-                    <lable>User id - ".$parent_details[0]->email." </lable>
+                    <lable>User id - ".$parent_details[0]->system_id." </lable>
+                  </span><br/>
+                  <span class='geneology_child_info'>
+                    <lable>Email - ".$parent_details[0]->email." </lable>
                   </span><br/>
                   <span class='geneology_child_info'>
                     <lable>Country - ".$parent_details[0]->country." </lable>
-                  </span><br/>
-                  <span class='geneology_child_info'>
-                    <lable>WhatsApp - ".$parent_details[0]->whatsapp_number." </lable>
-                  </span><br/>
+                  </span><br/>                 
                   <span class='geneology_child_info'>
                     <lable>Registered Date - ".$parent_details[0]->created_at." </lable>
                   </span><br/>

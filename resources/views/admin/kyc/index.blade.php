@@ -5,12 +5,13 @@
             Content body start
         ***********************************-->
         <div class="content-body">
+            
             <div class="container-fluid">
                 <div class="container mt-2">
                     <div class="row">
                     <div class="col-lg-12 margin-tb">
                     <div class="pull-left">
-                    <h2>All KYC</h2>
+                    <h2>Pending KYC</h2>
                     </div>
                     
                     </div>
@@ -20,15 +21,20 @@
                     <p>{{ $message }}</p>
                     </div>
                     @endif
-                    <table class="table table-bordered">
-                    <tr>
-                    <th>S.No</th>
-                    <th>Name</th>
-                    <th>Status</th>
                     
-                    <th width="280px">Action</th>
-                    </tr>
-                    @foreach ($data as $kyc)
+                        <div class="table-responsive">
+                            <table id="example2" class="display" style="width:100%">
+                                <thead>
+                                    <tr>
+                                        <th>S.No</th>
+                                        <th>Name</th>
+                                        <th>Status</th>
+                                        
+                                        <th width="280px">Action</th>
+                                        </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($data as $kyc)
                     <tr>
                     <td>{{ $kyc->id }}</td>
                     <td>{{ $kyc->fname .' '. $kyc->lname}}</td>
@@ -54,8 +60,14 @@
                     </td>
                     </tr>
                     @endforeach
-                    </table>
-                </div>
+                                    
+                                </tbody>
+                               
+                            </table>
+                        </div>
+                    </div>
+                    
+                
             </div>    
         </div>
             

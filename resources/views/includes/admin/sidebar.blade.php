@@ -21,11 +21,14 @@
                         
 
                     </li>
-                    <li><a class="has-arrow ai-icon" href="/kyc" aria-expanded="false">
+                    <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
 						<i class="flaticon-077-menu-1"></i>
 							<span class="nav-text">KYC</span>
 						</a>
-                        
+						<ul aria-expanded="false">
+							<li><a href="/kyc">Un-approved KYCs</a></li>
+							<li><a href="/kyc_all">All KYCs</a></li>
+						</ul>   
                     </li>
 					<li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
 						<i class="flaticon-061-puzzle"></i>
@@ -46,7 +49,7 @@
                     </li>
 					<li><a href="/package_earn" class="ai-icon" aria-expanded="false">
 						<i class="flaticon-381-settings-2"></i>
-						<span class="nav-text">Package Earning Tranfer</span>
+						<span class="nav-text">Package Earning</span>
 					</a>
 				</li>
                     <li><a href="/wallet" class="ai-icon" aria-expanded="false">

@@ -17,20 +17,23 @@
             <p>{{ $message }}</p>
             </div>
             @endif
-            <table class="table table-bordered">
-            <tr>
-            <th>S.No</th>
-            <th>User Name</th>
-            <th>Package Name</th>
-            
-            <th>Package status</th>
-            <th width="280px">Action</th>
-            </tr>
-            @php
-                $i = 1;
-            @endphp
-            
-            @foreach ($data as $package)
+            <div class="table-responsive">
+                <table id="example2" class="display" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>S.No</th>
+                            <th>User Name</th>
+                            <th>Package Name</th>
+                            
+                            <th>Package status</th>
+                            <th width="280px">Action</th>
+                            </tr>
+                            @php
+                                $i = 1;
+                            @endphp
+                    </thead>
+                    <tbody>
+                        @foreach ($data as $package)
             <tr>
             <td>{{ $i }}</td>
             <td>{{ $package->fname ." ".$package->lname}}</td>
@@ -57,7 +60,12 @@
                 $i++;
             @endphp
             @endforeach
-            </table>
+                        
+                    </tbody>
+                   
+                </table>
+            </div>
+            
         </div>
             </div>
         </div>

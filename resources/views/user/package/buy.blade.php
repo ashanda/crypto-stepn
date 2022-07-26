@@ -56,6 +56,7 @@
                             <div class="form-group">
                                 <label> Deposit Address:</label>
                                 <input type="text" name="deposit_add" id="deposit_add" readonly value="No address yet">
+                            <button onclick="myFunction()">Copy</button>
                             </div>
                             <div class="form-group">
                                 <strong>Profe Screen Shot:</strong>
@@ -71,7 +72,7 @@
                             <input type="hidden" name="package_value" value="{{ $buy_package[0]->package_value  }}">
                             <div class="form-group">
                                 <div class="custom-control custom-checkbox ml-1">
-                                    <input type="checkbox" class="custom-control-input" id="basic_checkbox_1">
+                                    <input type="checkbox" class="custom-control-input" id="basic_checkbox_1" required>
                                     <label class="custom-control-label" for="basic_checkbox_1"><a target="_blank" href="/disclaimer_notice">Disclaimer Notice</a></label>
                                 </div>
                             </div>

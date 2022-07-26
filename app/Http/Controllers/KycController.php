@@ -18,9 +18,29 @@ class KycController extends Controller
             $user_id = Auth::id();
             $data = DB::table('users')
             ->join('kycs', 'kycs.uid', '=', 'users.uid')
+            ->where('kycs.status','=','0')
             ->orderBy('kycs.created_at', 'desc')
             ->get();        
             return view('admin.kyc.index',compact('data'));
+        }
+        if($role==0){
+            $user_id = Auth::id();
+            $data = DB::table('kycs')->where('uid', $user_id)->get();        
+            return view('user.kyc.index',compact('data'));
+        }
+    
+    }
+
+    public function all_kyc(kyc $data)
+    {
+        $role=Auth::user()->role;
+        if($role==1){
+            $user_id = Auth::id();
+            $data = DB::table('users')
+            ->join('kycs', 'kycs.uid', '=', 'users.uid')
+            ->orderBy('kycs.created_at', 'desc')
+            ->get();        
+            return view('admin.kyc.all',compact('data'));
         }
         if($role==0){
             $user_id = Auth::id();

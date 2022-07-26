@@ -29,7 +29,8 @@ Scripts
 
 <script src="{{ asset('vendor/owl-carousel/owl.carousel.js') }}"></script>
 <script src="{{ asset('js/custom.min.js') }}"></script>
-<script src="{{ asset('js/deznav-init.js') }}"></script>    
+<script src="{{ asset('js/deznav-init.js') }}"></script>  
+
 <script src="{{ asset('vendor/datatables/js/jquery.dataTables.min.js') }}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.js"></script>
     <script src="{{ asset('js/plugins-init/datatables.init.js') }}"></script>
