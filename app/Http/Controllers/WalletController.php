@@ -17,6 +17,7 @@ class WalletController extends Controller
             
             $data = DB::table('transections')
             ->join('users', 'transections.uid', '=', 'users.uid')
+            ->where('transections.status', '=', '1')
             ->select('users.*', 'transections.*', 'transections.status as trstatus')
             ->get();        
             return view('admin.wallet.index',compact('data'));
