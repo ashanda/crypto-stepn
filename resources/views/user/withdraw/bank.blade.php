@@ -9,9 +9,11 @@
         <div class="content-body" style="min-height: 796px;">
 			<div class="container-fluid">
 			    <div class="col-xl-9 col-lg-9 col-sm-9">
-                    
-                                  @if (get_user_wallets_data() != null)
-                                    @php $get_user_wallets = get_user_wallets_data(); @endphp
+                                    @php $get_user_wallets = get_user_wallets_data(); 
+                                    
+                                    @endphp
+                                  @if ( !empty($get_user_wallets[0]))
+                                    
                                     <div class="card">
                                         <div class="card-body">
                                             <form action="{{ route('trans.store') }}" method="POST" enctype="multipart/form-data">
