@@ -15,8 +15,11 @@
                                 @csrf
                                 <div class="new-arrival-product">
                                   @php
-                                     $get_user_wallets = get_user_wallets_data();
-                                     
+                                  if (isset(get_user_wallets_data())) {
+                                    $get_user_wallets = get_user_wallets_data();
+                                  }else{
+                                    echo "Please add your wallet address";
+                                  }  
                                   @endphp
                                
                                 <div class="new-arrival-content text-center mt-3">
