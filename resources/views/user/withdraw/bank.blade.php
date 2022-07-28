@@ -34,29 +34,10 @@
                                                             </div>
                                                         </div>
                                                         <div class="divTable">
-                                                            <div class="divTableBody">
-                                                            <div class="divTableRow">
-                                                            <div class="divTableCell">
-                                                            <h4>Withdraw Amount</h4>
-                                                            </div>
-                                                            <div class="divTableCell">
-                                                            <h4>Transaction Charge($)</h4>
-                                                            </div>
-                                                            </div>
-                                                            <div class="divTableRow">
-                                                            <div class="divTableCell">&nbsp;10$ - 49$</div>
-                                                            <div class="divTableCell">&nbsp;$1</div>
-                                                            </div>
-                                                            <div class="divTableRow">
-                                                            <div class="divTableCell">&nbsp;&nbsp;50$ - 99$</div>
-                                                            <div class="divTableCell">&nbsp;$3</div>
-                                                            </div>
-                                                            <div class="divTableRow">
-                                                            <div class="divTableCell">&nbsp;Above 99$</div>
-                                                            <div class="divTableCell">&nbsp;$5</div>
-                                                            </div>
-                                                            </div>
-                                                            </div>
+                                                            
+                                                            <h4>2$ is charged per withdrawal</h4>
+                                                        </div>
+                                                            
                                                             
                                                             <style>
                                                               .divTable{

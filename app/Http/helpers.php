@@ -247,9 +247,9 @@ function get_trxfee($req_amount){
     $fee= 2;
     
 }elseif(49 < $req_amount && $req_amount< 100){
-    $fee= 3;
+    $fee= 2;
 }elseif( $req_amount > 99){
-    $fee= 5;
+    $fee= 2;
 }else{
     $fee = -1;
 }
