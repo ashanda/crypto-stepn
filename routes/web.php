@@ -69,9 +69,12 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('/add_wallet', AddWalletCRUDController::class);
 
     Route::resource('/wallet', WalletController::class);
+    Route::get('/wallet_approved', [WalletController::class,'wallet_approved']);
+    Route::get('/wallet_rejects', [WalletController::class,'wallet_rejects']);
 
     Route::get('/report_kyc', [ReportController::class,'report_kyc']);
     Route::get('/report_users', [ReportController::class,'report_user']);
+    Route::get('/report_earn', [ReportController::class,'report_earn']);
 });
 
 Route::group(['middleware' => 'prevent-back-history'],function(){

@@ -52,16 +52,22 @@
 						<span class="nav-text">Package Earning</span>
 					</a>
 				</li>
-                    <li><a href="/wallet" class="ai-icon" aria-expanded="false">
+                    <li><a href="javascript:void()" class="ai-icon" aria-expanded="false">
 							<i class="flaticon-381-settings-2"></i>
 							<span class="nav-text">Wallets</span>
 						</a>
+						<ul aria-expanded="false">
+							<li><a href="/wallet">New withdrawels</a></li>
+							<li><a href="/wallet_approved">Approved withdrawels</a></li>
+							<li><a href="/wallet_rejects">Rejects withdrawels</a></li>
+						</ul>
 					</li>
 					<li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
 						<i class="flaticon-061-puzzle"></i>
 						<span class="nav-text">Reports</span>
 					</a>
 					<ul aria-expanded="false">
+						<li><a href="/report_earn">User earn</a></li>
 						<li><a href="/report_kyc">Sign up but not kyc</a></li>
 						<li><a href="/report_user">Users</a></li>
 					</ul>

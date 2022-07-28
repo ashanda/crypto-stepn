@@ -17,10 +17,48 @@ class WalletController extends Controller
             
             $data = DB::table('transections')
             ->join('users', 'transections.uid', '=', 'users.uid')
-            ->where('transections.status', '=', '1')
+            ->where('transections.status', '=', '0')
             ->select('users.*', 'transections.*', 'transections.status as trstatus')
             ->get();        
             return view('admin.wallet.index',compact('data'));
+        }
+        if($role==0){
+                  
+            return view('user.wallet.index');
+        }
+    
+    }
+
+
+    public function wallet_approved()
+    {
+        $role=Auth::user()->role;
+        if($role==1){
+            
+            $data = DB::table('transections')
+            ->join('users', 'transections.uid', '=', 'users.uid')
+            ->where('transections.status', '=', '1')
+            ->select('users.*', 'transections.*', 'transections.status as trstatus')
+            ->get();        
+            return view('admin.wallet.approved',compact('data'));
+        }
+        if($role==0){
+                  
+            return view('user.wallet.index');
+        }
+    
+    }
+    public function wallet_rejects()
+    {
+        $role=Auth::user()->role;
+        if($role==1){
+            
+            $data = DB::table('transections')
+            ->join('users', 'transections.uid', '=', 'users.uid')
+            ->where('transections.status', '=', '2')
+            ->select('users.*', 'transections.*', 'transections.status as trstatus')
+            ->get();        
+            return view('admin.wallet.rejects',compact('data'));
         }
         if($role==0){
                   

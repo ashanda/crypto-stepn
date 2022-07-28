@@ -23,4 +23,16 @@ class ReportController extends Controller
         
     
     }
+
+    public function report_earn(){
+        $role=Auth::user()->role;
+        if($role==1){
+            $data = DB::table('users')
+            ->join('user__packages', 'users.uid', '=', 'user__packages.uid')
+            ->join('packages', 'user__packages.package_id', '=', 'packages.id')
+            ->join('package__categories', 'package__categories.id', '=', 'user__packages.package_cat_id')
+            ->get();
+            return view('admin.report.user_earn',compact('data'));
+        }
+    }
 }
