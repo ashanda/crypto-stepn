@@ -92,9 +92,10 @@ return redirect()->route('add_wallet.index')
 * @param  \App\UserCryptoWallet  $usercryptowallet
 * @return \Illuminate\Http\Response
 */
-public function destroy($usercryptowallet)
+public function destroy($id)
 {
-DB::delete('delete from user_crypto_wallets where id = ?',$usercryptowallet);    
+DB::table('user_crypto_wallets')->where('id', $id)->delete();
+    
 return redirect()->route('add_wallet.index')
 ->with('success','UserCryptoWallet has been deleted successfully');
 }
