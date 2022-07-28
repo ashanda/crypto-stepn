@@ -45,6 +45,9 @@
                                                                 width: 100%;
                                                                 text-align: center;
                                                             }
+                                                            .divTable h4{
+                                                                font-size: 12px;
+                                                            }
                                                             .divTableRow {
                                                                 display: table-row;
                                                             }
