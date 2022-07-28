@@ -43,6 +43,7 @@
                                                               .divTable{
                                                                 display: table;
                                                                 width: 100%;
+                                                                text-align: center;
                                                             }
                                                             .divTableRow {
                                                                 display: table-row;
