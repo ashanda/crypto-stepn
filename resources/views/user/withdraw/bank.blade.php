@@ -15,7 +15,8 @@
                                 @csrf
                                 <div class="new-arrival-product">
                                   @php
-                                  if (isset(get_user_wallets_data())) {
+                                  if (get_user_wallets_data() ==! null) {
+                                      $wallet_data = get_user_wallets_data();
                                     $get_user_wallets = get_user_wallets_data();
                                   }else{
                                     echo "Please add your wallet address";
