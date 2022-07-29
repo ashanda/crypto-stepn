@@ -53,8 +53,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/trans/crypto' , [TransController::class, 'crypto']);
 
-    Route::get('/package_earn' , [HomeController::class,'package_earn']);
-    Route::post('/package_earn_tranfer' , [HomeController::class,'package_earn_tranfer']);
+    
 
     Route::get('/genealogy' , [GeneologyController::class,'index']);
     Route::get('/genealogy/?parent={parent}' , [GeneologyController::class,'index']);
@@ -76,6 +75,11 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/report_kyc', [ReportController::class,'report_kyc']);
     Route::get('/report_users', [ReportController::class,'report_user']);
     Route::get('/report_earn', [ReportController::class,'report_earn']);
+
+    Route::get('/package_earn_trans', [TransController::class,'package_earn_trans']);
+    Route::get('/package_earn' , [TransController::class,'package_earn']);
+    
+    Route::post('/package_earn_tranfer' , [TransController::class,'tranfer_package_earn']);
 
 
     Route::get('/user/profile/change-password', [ChangePasswordController::class,'index']);

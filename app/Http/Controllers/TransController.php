@@ -9,6 +9,7 @@ use App\Models\UserCryptoWallet;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use App\Models\Package_Commission;
 
 class TransController extends Controller
 {
@@ -28,6 +29,53 @@ class TransController extends Controller
         }
         
     }
+
+    public function package_earn (){
+        $role=Auth::user()->role;
+        if($role==1){
+            return view('admin.package_earn.index');
+            }
+
+           
+        }
+
+        public function package_earn_trans(){
+            $role=Auth::user()->role;
+            if($role==1){
+                
+                return view('admin.package_earn.package_earn');  
+            }
+            
+    
+        }
+
+        public function tranfer_package_earn(request $request){
+            $role=Auth::user()->role;
+            if($role==1){
+                $profit = $request->profit;
+                $total_invest = $request->total_invest;
+                
+                $package_earn_cal = ($profit/$total_invest);
+                foreach (package_earn_satisfy() as $current_earn){
+                   $package_value = $current_earn->package_double_value/2;
+                   $package_earn = $package_earn_cal*$package_value;
+                   $user_id = $current_earn->uid;
+
+                   DB::table('package_commission')->insert([
+                    'uid' => $user_id,
+                    'package_commission' => $package_earn ,
+                     ]);
+                     
+                    
+                   
+
+                }
+                return view('admin.package_earn.package_earn');  
+            }
+            
+    
+        }
+
 
     public function crypto()
     {
