@@ -29,7 +29,7 @@
                                                         <div class="form-group">
                                                             <label>Amount:</label>
                                                             
-                                                            <input type="number" name="amount" min="0" max="{{ wallet_total() - 0.05 }}">
+                                                            <input type="number" name="amount" min="12" max="{{ wallet_total()}}">
                                                                 
                                                             </div>
                                                         </div>
@@ -78,7 +78,7 @@
                                                         
                                                         
                                                         <div class="form-group">
-                                                            <label>  Your Wallet Address:</label>
+                                                            <label>Your Wallet Address:</label>
                                                             <select class="form-control default-select" id="sel1" tabindex="-98" name="wallet_address" required>
                                                                 <option value="{{  $get_user_wallets[0]->id}}">{{  $get_user_wallets[0]->wallet_address}}</option>
                                                                 
