@@ -21,6 +21,21 @@ use function PHPUnit\Framework\isEmpty;
    * @return response()
    */
 
+
+// 1:2 package and users
+
+function package_earn_satisfy(){
+  $ldate = date('Y-m-d ');
+  $newdate = date('Y-m-d', strtotime($ldate. ' - 14 days'));
+  $package_earn_satisfy = DB::table('user__packages')
+    
+    ->where('user__packages.package_level_commission_at', '<=', $newdate ,'AND', 'user__packages.package_binary_commsion_at', '<=', $ldate)
+    ->join('users', 'user__packages.uid', '=', 'users.uid')
+    ->orderBy('user__packages.total', 'desc')
+    ->get();
+    return $package_earn_satisfy;
+}
+
 //client ip
 function client_ip(Request $request)
 {
