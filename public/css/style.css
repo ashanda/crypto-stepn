@@ -66756,7 +66756,7 @@ html[dir="rtl"] [direction="rtl"][data-sidebar-style="compact"]:not([data-layout
 }
 
 [data-theme-version="dark"] .form-control {
-    background-color: transparent;
+    background-color: #ffffff2e;
     border-color: #5b5289;
     color: #fff;
 }
@@ -68166,7 +68166,7 @@ html[dir="rtl"] [direction="rtl"][data-sidebar-style="compact"]:not([data-layout
 }
 
 [data-theme-version="dark"] .form-control {
-    border-color: #ffffff00;
+    border-color: #ffffff2e;
     padding: 0;
 }
 

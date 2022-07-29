@@ -7,9 +7,15 @@
         <div class="content-body">
             <div class="container-fluid">
 				<!-- Add Project -->
-                
+                <div class="col-xl-12 col-lg-12 col-sm-12">
+                    @if ($message = Session::get('success'))
+                        <div class="alert alert-success"> 
+                        <p>{{ $message }}</p>
+                        </div>
+                    @endif
+                </div>
 					<div class="tab-pane fade show active" id="Monero">
-                        <form action="{{ route('user.update',$user_id) }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('user.update',Auth::user()->uid) }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
 						<div class="row">
@@ -44,7 +50,10 @@
 										<h4 class="fs-16 text-black">Browser Sessions</h4>
                                         <div class="mt-10 sm:mt-0">
                                             <ul>
-                                                <li><span class="text-black">IP : </span>{{ $ip_address }}</li>
+                                                @php
+                                                    $clientIP = request()->ip();
+                                                @endphp
+                                                <li><span class="text-black">IP : </span>{{ $clientIP }}</li>
                                                 
                                             </ul>
                                         </div>
@@ -127,11 +136,12 @@
                                                     </div>
                                                     <div class="col-sm-6 mt-2 mt-sm-2">
                                                         <label class="text-black">Email</label>
-                                                        <input type="email" class="form-control" name="email" value="{{ Auth::user()->email }}">
+                                                        <input type="email" class="form-control" name="email" readonly value="{{ Auth::user()->email }}">
                                                     </div>
                                                     <div class="col-sm-6 mt-2 mt-sm-2">
-                                                        <label class="text-black">Password</label>
-                                                        <input type="Password" class="form-control" name="password" value="{{ Auth::user()->password }}">
+                                                        <label class="text-black">Change password</label>
+                                                        <a class="btn btn-primary" href="/user/profile/change-password" role="button">Click and change</a>
+                                                        
                                                     </div>
                                                     <div class="col-sm-12 mt-2 mt-sm-2">
                                                     <button type="submit" style="width: 100%;margin-top:50px;" class="btn btn-primary">Update</button>
@@ -139,45 +149,6 @@
                                                 </div>
                                                 
                                             </div>
-                                            <x-jet-form-section submit="updatePassword">
-                                                <x-slot name="title">
-                                                    {{ __('Update Password') }}
-                                                </x-slot>
-                                            
-                                                <x-slot name="description">
-                                                    {{ __('Ensure your account is using a long, random password to stay secure.') }}
-                                                </x-slot>
-                                            
-                                                <x-slot name="form">
-                                                    <div class="col-span-6 sm:col-span-4">
-                                                        <x-jet-label for="current_password" value="{{ __('Current Password') }}" />
-                                                        <x-jet-input id="current_password" type="password" class="mt-1 block w-full" wire:model.defer="state.current_password" autocomplete="current-password" />
-                                                        <x-jet-input-error for="current_password" class="mt-2" />
-                                                    </div>
-                                            
-                                                    <div class="col-span-6 sm:col-span-4">
-                                                        <x-jet-label for="password" value="{{ __('New Password') }}" />
-                                                        <x-jet-input id="password" type="password" class="mt-1 block w-full" wire:model.defer="state.password" autocomplete="new-password" />
-                                                        <x-jet-input-error for="password" class="mt-2" />
-                                                    </div>
-                                            
-                                                    <div class="col-span-6 sm:col-span-4">
-                                                        <x-jet-label for="password_confirmation" value="{{ __('Confirm Password') }}" />
-                                                        <x-jet-input id="password_confirmation" type="password" class="mt-1 block w-full" wire:model.defer="state.password_confirmation" autocomplete="new-password" />
-                                                        <x-jet-input-error for="password_confirmation" class="mt-2" />
-                                                    </div>
-                                                </x-slot>
-                                            
-                                                <x-slot name="actions">
-                                                    <x-jet-action-message class="mr-3" on="saved">
-                                                        {{ __('Saved.') }}
-                                                    </x-jet-action-message>
-                                            
-                                                    <x-jet-button>
-                                                        {{ __('Save') }}
-                                                    </x-jet-button>
-                                                </x-slot>
-                                            </x-jet-form-section>
 									<div class="resize-triggers"><div class="expand-trigger"><div style="width: 603px; height: 484px;"></div></div><div class="contract-trigger"></div></div></div>
 								</div>
                                 

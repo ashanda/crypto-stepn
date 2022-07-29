@@ -14,6 +14,7 @@ use App\Http\Controllers\TransController;
 use App\Http\Controllers\AddWalletCRUDController;
 use App\Http\Controllers\GeneologyController;
 use App\Http\Controllers\ReportController;
+use App\Http\Controllers\ChangePasswordController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -75,6 +76,10 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/report_kyc', [ReportController::class,'report_kyc']);
     Route::get('/report_users', [ReportController::class,'report_user']);
     Route::get('/report_earn', [ReportController::class,'report_earn']);
+
+
+    Route::get('/user/profile/change-password', [ChangePasswordController::class,'index']);
+    Route::post('/user/profile/change-password', [ChangePasswordController::class,'store'])->name('change.password');
 });
 
 Route::group(['middleware' => 'prevent-back-history'],function(){

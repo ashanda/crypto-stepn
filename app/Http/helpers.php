@@ -2,7 +2,7 @@
     
     use Illuminate\Support\Facades\Auth;
     use Illuminate\Support\Facades\DB;
-    
+    use Illuminate\Http\Request;
     use App\Models\Master_Data;
     use App\Models\User_Package;
     use App\Models\User_Parent;
@@ -20,6 +20,12 @@ use function PHPUnit\Framework\isEmpty;
    *
    * @return response()
    */
+
+//client ip
+function client_ip(Request $request)
+{
+   ($request->ip());
+}
 
 
 // pending Kyc count
