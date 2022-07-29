@@ -50,8 +50,10 @@
 										<h4 class="fs-16 text-black">Browser Sessions</h4>
                                         <div class="mt-10 sm:mt-0">
                                             <ul>
-                                                
-                                                <li><span class="text-black">IP : </span></li>
+                                                @php
+                                                    $clientIP = request()->ip();
+                                                @endphp
+                                                <li><span class="text-black">IP : </span>{{ $clientIP }}</li>
                                                 
                                             </ul>
                                         </div>
