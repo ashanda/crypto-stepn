@@ -9,7 +9,8 @@ use App\Models\UserCryptoWallet;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use App\Models\Package_Commission;
+use App\Models\Package_Commissons;
+use App\Models\wallet;
 
 class TransController extends Controller
 {
@@ -61,16 +62,46 @@ class TransController extends Controller
                    $package_earn = $package_earn_cal*$package_value;
                    $user_id = $current_earn->uid;
 
-                   DB::table('package_commission')->insert([
+                   $data = Package_Commissons::where('uid','=',$user_id ,'AND','package_id','=',$current_earn->package_id)->first();
+                   $wallet = wallet::where('uid','=',$user_id)->first();
+                   
+                   if($data!=null){
+                    $id = $data->id;
+                    $new_package_earn = $data->package_commission + $package_earn;
+                    
+                    
+                    if($wallet!=null){
+                        $wid = $wallet->id;
+                        $new_available_balance = $wallet->available_balance + $package_earn;
+                        $new_wallet_balance = $wallet->available_balance + $package_earn;
+                        DB::table('wallets')
+                        ->where('id', $wid)
+                        ->update(['available_balance' => $new_available_balance, 'wallet_balance' => $new_wallet_balance]);
+                    }else{
+                        DB::table('wallets')->insert([
+                            'uid' => $user_id,
+                            'wallet_balance' => $package_earn,
+                            'available_balance' => $package_earn ,
+                        ]);
+                    }
+                    
+                   
+                    DB::table('package__commissons')
+                    ->where('id', $id)
+                    ->update(['package_commission' => $new_package_earn]);
+
+                    } else {
+                   DB::table('package__commissons')->insert([
                     'uid' => $user_id,
+                    'package_id' => $current_earn->package_id,
                     'package_commission' => $package_earn ,
                      ]);
-                     
+                    } 
                     
                    
 
                 }
-                return view('admin.package_earn.package_earn');  
+                return view('admin.package_earn.package_earn')->with('successMsg','Package Earning Tranfer Sucessfull');;  
             }
             
     

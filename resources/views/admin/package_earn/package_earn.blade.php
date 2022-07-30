@@ -7,7 +7,10 @@
 	<div class="container-fluid">
          <div class="container mt-2">
             <div class="container mt-4">
+                @if(!empty($successMsg))
+                <div class="alert alert-success"> {{ $successMsg }}</div>
                 
+                @endif
                 
                   <form name="add-blog-post-form" id="add-blog-post-form" enctype="multipart/form-data" method="POST" action="{{url('package_earn_tranfer')}}">
                     @csrf
