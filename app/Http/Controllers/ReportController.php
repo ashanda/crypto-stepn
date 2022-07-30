@@ -13,11 +13,14 @@ class ReportController extends Controller
         $role=Auth::user()->role;
         if($role==1){
             $user_id = Auth::id();
-            $data = DB::table('users')
-            ->leftjoin('kycs', 'users.uid', '=', 'kycs.uid')
-            ->where('kycs.uid', 'IS NULL')
-            ->orderBy('kycs.created_at', 'desc')
-            ->get();        
+            $data =DB::table("users")
+            ->leftJoin("kycs", function($join){
+                $join->on("users.uid", "=", "kycs.uid");
+            })
+            ->select("users.fname", "users.lname", "users.email", "users.created_at")
+            ->whereNull("kycs.uid")
+            ->get();
+                    
             return view('admin.report.all',compact('data'));
         }
         
