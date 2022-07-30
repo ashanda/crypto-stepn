@@ -90,7 +90,14 @@ Scripts
 
 </script> 
 
- 
+ <script>
+  $(document).ready(function() {
+  $("#aButton").click(function() {
+    var value = $("#input1").val();
+    $("#input2").val(value);
+  });
+});
+ </script>
 
 </body>
 </html>

@@ -25,14 +25,20 @@ use function PHPUnit\Framework\isEmpty;
 // 1:2 package and users
 
 function package_earn_satisfy(){
-  $ldate = date('Y-m-d ');
+  $ldate = date('Y-m-d');
   $newdate = date('Y-m-d', strtotime($ldate. ' - 14 days'));
   $package_earn_satisfy = DB::table('user__packages')
-    ->where('user__packages.package_level_commission_at', '<=', $newdate ,'AND', 'user__packages.package_binary_commsion_at', '<=', $ldate, 'AND', 'user__packages.package_commission_update_at', '<=', $ldate,'AND','user__packages.status','=','1')
+    ->whereColumn('user__packages.package_double_value','>','user__packages.total')
+    ->where('user__packages.package_level_commission_at', '<=', $newdate)
+    ->where('user__packages.package_binary_commsion_at', '<=', $newdate)
+    ->where('user__packages.package_commission_update_at', '<=', $newdate)
+    ->where('user__packages.status','=','1')
     ->join('users', 'user__packages.uid', '=', 'users.uid')
     ->orderBy('user__packages.total', 'desc')
     ->get();
+    
     return $package_earn_satisfy;
+    
 }
 
 //client ip

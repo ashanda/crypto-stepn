@@ -14,11 +14,9 @@
                   
                   </div>
                   </div>
-                  @if ($message = Session::get('success'))
-                  <div class="alert alert-success">
-                  <p>{{ $message }}</p>
-                  </div>
-                  @endif
+                @if(!empty($successMsg))
+                <div class="alert alert-success"> {{ $successMsg }}</div>
+                @endif
                   <div class="table-responsive">
                       <table id="example2" class="display" style="width:100%">
                           <thead>

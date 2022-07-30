@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Models\Package_Commissons;
 use App\Models\wallet;
+use App\Models\User_Package;
 
 class TransController extends Controller
 {
@@ -54,14 +55,18 @@ class TransController extends Controller
             $role=Auth::user()->role;
             if($role==1){
                 $profit = $request->profit;
-                $total_invest = $request->total_invest;
-                
+                if($request->total_invest == 0){
+                    return view('admin.package_earn.package_earn')->with('successMsg','Not Package Earning Eligible Users'); 
+                }else{
+                    $total_invest = $request->total_invest;
                 $package_earn_cal = ($profit/$total_invest);
                 foreach (package_earn_satisfy() as $current_earn){
                    $package_value = $current_earn->package_double_value/2;
                    $package_earn = $package_earn_cal*$package_value;
                    $user_id = $current_earn->uid;
-
+                   $current_user_package_id = $current_earn->id;
+                   $new_total = $package_earn + $current_earn->total;
+                   User_Package::whereId($current_user_package_id)->update(['total' => $new_total,'package_commission_update_at' => date('Y-m-d H:i:s')]);
                    $data = Package_Commissons::where('uid','=',$user_id ,'AND','package_id','=',$current_earn->package_id)->first();
                    $wallet = wallet::where('uid','=',$user_id)->first();
                    
@@ -101,7 +106,9 @@ class TransController extends Controller
                    
 
                 }
-                return view('admin.package_earn.package_earn')->with('successMsg','Package Earning Tranfer Sucessfull');;  
+                }
+                
+                return view('admin.package_earn.index')->with('successMsg','Package Earning Tranfer Sucessfull'); 
             }
             
     
