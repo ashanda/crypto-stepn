@@ -902,14 +902,14 @@ function validate_binary_commissions( $ref_s,$virtual_parentid,$current_row_uid,
         $current_left_balance = 0;
         DB::table('user__packages')
         ->where('id', $User_packages_details[0]->id )
-        ->update(array('total' => ( $User_packages_details[0]->total + $current_left_balance),'package_binary_commsion_at'=> date("Y-m-d H:i:s")  ));
+        ->update(array('total' => ( $User_packages_details[0]->total + $current_right_balance),'package_binary_commsion_at'=> date("Y-m-d H:i:s")  ));
         
       }else if($current_left_balance > $current_right_balance){
         $current_left_balance = $current_left_balance - $current_right_balance;
         $current_right_balance = 0;
         DB::table('user__packages')
         ->where('id', $User_packages_details[0]->id )
-        ->update(array('total' => ( $User_packages_details[0]->total + $current_right_balance),'package_binary_commsion_at'=> date("Y-m-d H:i:s")  ));
+        ->update(array('total' => ( $User_packages_details[0]->total + $current_left_balance),'package_binary_commsion_at'=> date("Y-m-d H:i:s")  ));
         
         
      }
