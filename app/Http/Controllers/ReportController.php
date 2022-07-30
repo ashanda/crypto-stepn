@@ -27,6 +27,22 @@ class ReportController extends Controller
     
     }
 
+    public function report_user()
+    {
+        $role=Auth::user()->role;
+        if($role==1){
+            $user_id = Auth::id();
+            $data =DB::table("users")
+            ->join('user__parents', 'users.uid', '=', 'user__parents.uid')
+            ->get();
+            
+                    
+            return view('admin.report.users',compact('data'));
+        }
+        
+    
+    }
+
     public function report_earn(){
         $role=Auth::user()->role;
         if($role==1){

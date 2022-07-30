@@ -21,6 +21,15 @@ use function PHPUnit\Framework\isEmpty;
    * @return response()
    */
 
+// get parent name and email
+function get_parent_name_email($uid){
+    $parent_name_email = DB::table('users')
+    ->select('users.fname', 'users.lname', 'users.email')
+    ->where('users.uid', '=', $uid)
+    ->first();
+    return $parent_name_email;
+}
+
 
 // 1:2 package and users
 
