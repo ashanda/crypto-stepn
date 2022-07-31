@@ -50,6 +50,16 @@
 											<div class="card-info">
 												<p class="mb-1 text-white fs-14">Package Rewards</p>
 												<div class="d-flex justify-content-between">
+													@php
+														$pck_earn = get_package_earning_amount(Auth::user()->uid);
+											
+													@endphp
+													@if ($pck_earn[0]->count == NULL)
+													<h2 class="num-text text-white mb-5 font-w600">$0</h2>
+													@else
+													<h2 class="num-text text-white mb-5 font-w600">${{ $pck_earn[0]->count }}</h2>
+													
+													@endif
 													<h2 class="num-text text-white mb-5 font-w600">$</h2>
 													<svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
 														<path d="M19.2744 18.8013H16.0334V23.616H19.2744C19.9286 23.616 20.5354 23.3506 20.9613 22.9053C21.4066 22.4784 21.672 21.8726 21.672 21.1989C21.673 19.8813 20.592 18.8013 19.2744 18.8013Z" fill="white"></path>
