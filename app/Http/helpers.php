@@ -21,6 +21,16 @@ use function PHPUnit\Framework\isEmpty;
    * @return response()
    */
 
+//get package_earning_amount
+function get_package_earning_amount($user_id){
+  $package_earning_amount = DB::table('package__commissons')
+  ->select(DB::raw("SUM(package_commission) as count"))
+  ->where ('uid', $user_id)
+  ->get();
+
+  return $package_earning_amount;
+}
+
 // get parent name and email
 function get_parent_name_email($uid){
     $parent_name_email = DB::table('users')

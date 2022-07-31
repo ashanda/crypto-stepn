@@ -88,7 +88,15 @@
 								<table width="100%">
 									<tr>
 										<td>Package Rewards</td>
-										<td>$0</td>
+										@php
+											$pck_earn = get_package_earning_amount(Auth::user()->uid);
+										@endphp
+										@if ($pck_earn[0] == null)
+											<td>$0</td>
+										@else
+										 <td>${{ $pck_earn[0]->count }} </td>
+										@endif
+										
 									</tr>
 									<tr>
 										<td>Referrel Rewards</td>
