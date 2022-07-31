@@ -90,8 +90,9 @@
 										<td>Package Rewards</td>
 										@php
 											$pck_earn = get_package_earning_amount(Auth::user()->uid);
+											
 										@endphp
-										@if ($pck_earn[0] == null)
+										@if ($pck_earn[0]->count == NULL)
 											<td>$0</td>
 										@else
 										 <td>${{ $pck_earn[0]->count }} </td>

@@ -59,7 +59,7 @@
                     <div class="col-xs-6 col-sm-6 col-md-6">
                         <div class="form-group">
                             <strong>Enter Profit:</strong>
-                            <input type="number" id="input1" min="1" id="profit" name="profit" class="form-control" value="{{ $sum }}">
+                            <input type="number" id="input1" min="1" id="profit" name="profit" class="form-control" value="">
                             
 
                             
