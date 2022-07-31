@@ -101,6 +101,21 @@ class TransController extends Controller
                     'package_id' => $current_earn->package_id,
                     'package_commission' => $package_earn ,
                      ]);
+                    
+                     if($wallet!=null){
+                        $wid = $wallet->id;
+                        $new_available_balance = $wallet->available_balance + $package_earn;
+                        $new_wallet_balance = $wallet->available_balance + $package_earn;
+                        DB::table('wallets')
+                        ->where('id', $wid)
+                        ->update(['available_balance' => $new_available_balance, 'wallet_balance' => $new_wallet_balance]);
+                    }else{
+                        DB::table('wallets')->insert([
+                            'uid' => $user_id,
+                            'wallet_balance' => $package_earn,
+                            'available_balance' => $package_earn ,
+                        ]);
+                    }  
                     } 
                     
                    
