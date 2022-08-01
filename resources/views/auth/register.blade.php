@@ -26,7 +26,7 @@
 										<img src="images/logo-round.png" alt="">
 									</div>
                                     <h4 class="text-center mb-4">Sign up your account</h4>
-                                    <x-jet-validation-errors class="mb-4" />
+                                    <x-jet-validation-errors class="mb-4 error-msg" />
                                     <form method="POST" action="{{ route('register') }}">
                                         @csrf
                             

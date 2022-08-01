@@ -68276,5 +68276,13 @@ form a.btn.btn-primary {
     }
 }
 
+.error-msg {
+    background-color: red;
+    color: white;
+    border-radius: 20px;
+    text-align: center;
+    padding: 5px;
+}
+
 
 /* styles kasun */
