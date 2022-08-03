@@ -195,6 +195,8 @@ echo "
     ->where('user__parents.virtual_parent','=' ,$target_parent)
     ->select('user__parents.uid',"kycs.phone_number", "kycs.whatsapp_number", "users.email", "kycs.country", "kycs.created_at",'user__parents.ref_s' , 'users.fname' , 'users.email' , 'users.created_at')
     ->get();
+
+    
     if($geneology->isEmpty()){
       echo '
       <div class="alert alert-warning" role="alert">
@@ -231,7 +233,14 @@ $right_child='';
                   </span><br/>
                   </a>
                 </li>";
-            }else{
+            }elseif($geneology_data->ref_s == 0){
+              $left_child = 
+              "<li class='left_child'>
+                  No data or not submit kycs yet
+                </li>";
+            
+              
+            }elseif($geneology_data->ref_s == 1){
               $right_child = 
               "<li class='right_child'>
                   <a href='/genealogy/?parent=$geneology_data->uid' title='User Details'>
@@ -252,6 +261,10 @@ $right_child='';
                   </span><br/>
                   </a>
                 </li>";;
+            }else{
+              $right_child = "<li class='left_child'>
+              No data or not submit kycs yet
+            </li>";
             }
 
           }
