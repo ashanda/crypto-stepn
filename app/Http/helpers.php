@@ -218,8 +218,8 @@ $right_child='';
           ->select("users.fname", "users.lname", "users.email", "users.created_at")
           ->where("kycs.uid",'=',$geneology_data->uid)
           ->first();
-            var_dump($data);
-            if($geneology_data->ref_s == 0){
+            
+            if($geneology_data->ref_s == 0 && $data > 0){
               $left_child = 
               "<li class='left_child'>
                   <a href='/genealogy/?parent=$geneology_data->uid' title='User Details'>
@@ -240,7 +240,13 @@ $right_child='';
                   </span><br/>
                   </a>
                 </li>";
-            }else{
+
+            }elseif($geneology_data->ref_s == 0 && $data < 0){
+              $left_child = 
+              "<li class='left_child'>
+                  No data or KYCS not yet sumbitted
+                </li>";
+            }elseif($geneology_data->ref_s == 1 && $data > 0){
               $right_child = 
               "<li class='right_child'>
                   <a href='/genealogy/?parent=$geneology_data->uid' title='User Details'>
@@ -260,7 +266,12 @@ $right_child='';
                     <lable>User Side - RIGHT </lable>
                   </span><br/>
                   </a>
-                </li>";;
+                </li>";
+            }else{
+              $right_child = 
+              "<li class='right_child'>
+                  No data or KYCS not yet sumbitted
+               </li>";
             }
 
           }
