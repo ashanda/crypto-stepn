@@ -216,7 +216,7 @@ $right_child='';
               $join->on("users.uid", "=", "kycs.uid");
           })
           ->select("users.fname", "users.lname", "users.email", "users.created_at")
-          ->whereNull("kycs.uid",'=',$geneology_data->uid)
+          ->where("kycs.uid",'=',$geneology_data->uid)
           ->first();
             var_dump($data);
             if($geneology_data->ref_s == 0){
