@@ -197,6 +197,7 @@ echo "
     ->get();
 
     
+
     if($geneology->isEmpty()){
       echo '
       <div class="alert alert-warning" role="alert">
@@ -210,8 +211,14 @@ $right_child='';
       echo '<ul>';
      
         foreach($geneology as $geneology_data){
-            
-            
+          $data =DB::table("users")
+          ->leftJoin("kycs", function($join){
+              $join->on("users.uid", "=", "kycs.uid");
+          })
+          ->select("users.fname", "users.lname", "users.email", "users.created_at")
+          ->whereNull("kycs.uid",'=',$geneology_data->uid)
+          ->first();
+            var_dump($data);
             if($geneology_data->ref_s == 0){
               $left_child = 
               "<li class='left_child'>
@@ -233,14 +240,7 @@ $right_child='';
                   </span><br/>
                   </a>
                 </li>";
-            }elseif($geneology_data->ref_s == 0){
-              $left_child = 
-              "<li class='left_child'>
-                  No data or not submit kycs yet
-                </li>";
-            
-              
-            }elseif($geneology_data->ref_s == 1){
+            }else{
               $right_child = 
               "<li class='right_child'>
                   <a href='/genealogy/?parent=$geneology_data->uid' title='User Details'>
@@ -261,10 +261,6 @@ $right_child='';
                   </span><br/>
                   </a>
                 </li>";;
-            }else{
-              $right_child = "<li class='left_child'>
-              No data or not submit kycs yet
-            </li>";
             }
 
           }
