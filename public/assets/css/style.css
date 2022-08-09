@@ -1321,7 +1321,7 @@ nav ul li a:hover {
 }
 
 /* dashboard coin text hide */
-#sample .currency-icon .fs-13,
-#sample .currency-icon .fs-14 {
+#sample .card-coin p.mb-0.fs-14,
+#sample .card-coin p.mb-0.fs-14 {
     display: none;
 }
