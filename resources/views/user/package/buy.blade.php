@@ -34,6 +34,7 @@
                                 <label> Currency Type (select one):</label>
                                 <div class="dropdown bootstrap-select form-control default-select dropup">
                                     <select class="form-control default-select" id="sel1" tabindex="-98" name="currency_type" required>
+                                        <option value="click">Click to select</option>
                                         <option value="USDT">USDT</option>
                                         <option value="USDC">USDC</option>
                                         <option value="BUSD">BUSD</option>
@@ -45,6 +46,7 @@
                                 <label> Network (select one):</label>
                                 <div class="dropdown bootstrap-select form-control default-select dropup">
                                     <select class="form-control default-select" id="sel2" tabindex="-98" name="network" required onchange="ChangeAddress()">
+                                        <option value="click">Click to select</option>
                                         <option value="Tron-(TRC20)">Tron (TRC20)</option>
                                         <option value="BNB-Smart-Chain-(BEP20)">BNB Smart Chain (BEP20)</option>
                                         <option value="Ethereum-(ERC20)">Ethereum (ERC20)</option>
@@ -56,7 +58,7 @@
                             <div class="form-group">
                                 <label> Deposit Address:</label>
                                 <input type="text" name="deposit_add" id="deposit_add" readonly value="No address yet">
-                            <button onclick="myFunction()">Copy</button>
+                                <button onclick="myFunction()">Copy</button>
                             </div>
                             <div class="form-group">
                                 <strong>Profe Screen Shot:</strong>
@@ -82,7 +84,7 @@
                             @else
                             <span class="price">${{ $buy_package[0]->package_value  }}</span>
                             @endif
-                            
+
                             <div>
                                 @php
                                 if(!empty($buy_package[0]->status)){
@@ -111,10 +113,6 @@
             </div>
         </div>
     </div>
-
-
-
-
 
 
 </div>
@@ -186,6 +184,9 @@
         }
         if (x == "DAI" && y == "Solana") {
             z = "No address yet";
+        }
+        if (x == "click" ||y == "click") {
+            z = "Please select currencies";
         }
         document.getElementById("deposit_add").value = z;
     }

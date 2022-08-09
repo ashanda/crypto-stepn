@@ -70,7 +70,7 @@
 							<div class="card-info">
 
 								<div class="d-flex justify-content-between">
-									<h2 class="num-text text-white mb-2 font-w600">Total Invesments</h2>
+									<h2 class="num-text text-white mb-2 font-w600">Total Investments</h2>
 								</div>
 								<h3 id="">${{ invest() }}</h3>
 
@@ -100,7 +100,7 @@
 										
 									</tr>
 									<tr>
-										<td>Referrel Rewards</td>
+										<td>Referral Rewards</td>
 										<td>${{ direct_commision() }}</td>
 									</tr>
 									<tr>

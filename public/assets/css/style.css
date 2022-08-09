@@ -75,7 +75,8 @@ nav.main-menu a {
     color: #1a5c51;
 }
 
-nav.main-menu a, nav.main-menu button {
+nav.main-menu a,
+nav.main-menu button {
     color: #fff;
     font-size: 16px;
     text-decoration: none;
@@ -270,7 +271,8 @@ nav ul .reg_btn:hover {
     color: #08071B;
 }
 
-nav ul li a:active, nav ul li a:hover {
+nav ul li a:active,
+nav ul li a:hover {
     color: #2CBCA5;
 }
 
@@ -385,7 +387,9 @@ nav ul li a:active, nav ul li a:hover {
     float: right;
 }
 
-.banner h2, .banner h3, .banner h3 {
+.banner h2,
+.banner h3,
+.banner h3 {
     line-height: 60px;
 }
 
@@ -503,7 +507,8 @@ nav ul li a:active, nav ul li a:hover {
     background-color: rgb(35, 110, 106);
 }
 
-.card h1, .card h2 {
+.card h1,
+.card h2 {
     background-color: transparent;
 
 }
@@ -531,7 +536,9 @@ nav ul li a:active, nav ul li a:hover {
     align-content: center;
 }
 
-.features h1, .features h2, .features h3 {
+.features h1,
+.features h2,
+.features h3 {
     align-content: center;
 }
 
@@ -685,7 +692,9 @@ nav ul li a:active, nav ul li a:hover {
     padding-top: 105px;
 }
 
-.payout_card1, .payout_card2, .payout_card3 {
+.payout_card1,
+.payout_card2,
+.payout_card3 {
     margin: auto;
     width: 650px;
     background-color: rgb(26, 28, 44, 0.5);
@@ -701,7 +710,9 @@ nav ul li a:active, nav ul li a:hover {
     padding-bottom: 5px;
 }
 
-.payout_card1 img, .payout_card2 img, .payout_card3 img {
+.payout_card1 img,
+.payout_card2 img,
+.payout_card3 img {
     width: 70px;
     background-color: transparent;
     padding-left: 20px;
@@ -710,7 +721,9 @@ nav ul li a:active, nav ul li a:hover {
     justify-content: center;
 }
 
-.payout_card1 h1, .payout_card2 h1, .payout_card3 h1 {
+.payout_card1 h1,
+.payout_card2 h1,
+.payout_card3 h1 {
     display: inline-block;
     font-size: 24px;
     font-weight: 600;
@@ -732,7 +745,9 @@ nav ul li a:active, nav ul li a:hover {
     color: #C742F7;
 }
 
-.payout_card1 p, .payout_card2 p, .payout_card3 p {
+.payout_card1 p,
+.payout_card2 p,
+.payout_card3 p {
     font-size: 18px;
     line-height: 1.7em;
     color: #B7B4CBD4;
@@ -786,25 +801,33 @@ nav ul li a:active, nav ul li a:hover {
         float: left;
     }
 
-    .payout_card1, .payouts .payout_card2, .payout_card3 {
+    .payout_card1,
+    .payouts .payout_card2,
+    .payout_card3 {
         margin-left: 10px;
         width: 400px;
         padding-top: 5px;
         padding-bottom: 5px;
     }
 
-    .payout_card1 img, .payout_card2 img, .payout_card3 img {
+    .payout_card1 img,
+    .payout_card2 img,
+    .payout_card3 img {
         width: 50px;
     }
 
-    .payout_card1 h1, .payout_card2 h1, .payout_card3 h1 {
+    .payout_card1 h1,
+    .payout_card2 h1,
+    .payout_card3 h1 {
         font-size: 16px;
         background-color: transparent;
         padding-left: 15px;
 
     }
 
-    .payout_card1 p, .payout_card2 p, .payout_card3 p {
+    .payout_card1 p,
+    .payout_card2 p,
+    .payout_card3 p {
         font-size: 16px;
         padding-left: 70px;
     }
@@ -875,7 +898,8 @@ nav ul li a:active, nav ul li a:hover {
     box-shadow: #2CBCA5;
 }
 
-.pricing .card h1, .pricing .card h2 {
+.pricing .card h1,
+.pricing .card h2 {
     background-color: transparent;
 
 }
@@ -1033,7 +1057,8 @@ nav ul li a:active, nav ul li a:hover {
     background-color: rgb(26, 28, 44, 0.5);
 }
 
-.get_started h2, .get_started h1 {
+.get_started h2,
+.get_started h1 {
     background-color: transparent;
 }
 
@@ -1100,7 +1125,9 @@ nav ul li a:active, nav ul li a:hover {
     background-color: rgb(26, 28, 44, 0.5);
 }
 
-.footer .card1, .footer .card2, .footer .card3 {
+.footer .card1,
+.footer .card2,
+.footer .card3 {
     display: inline-block;
     position: relative;
     width: 400px;
@@ -1108,7 +1135,8 @@ nav ul li a:active, nav ul li a:hover {
     background-color: rgb(26, 28, 44, 0.5);
 }
 
-.footer .card2, .footer .card3 {
+.footer .card2,
+.footer .card3 {
     padding-top: 70px;
     background-color: rgb(26, 28, 44, 0.5);
 
@@ -1124,7 +1152,8 @@ nav ul li a:active, nav ul li a:hover {
     background-color: rgb(26, 28, 44, 0.5);
 }
 
-.card2, .card3 {
+.card2,
+.card3 {
     background-color: rgb(26, 28, 44, 0.5);
 
 }
@@ -1230,7 +1259,8 @@ nav ul .reg_btn:hover {
     color: #08071B;
 }
 
-nav ul li a:active, nav ul li a:hover {
+nav ul li a:active,
+nav ul li a:hover {
     color: #2CBCA5;
 }
 
@@ -1288,4 +1318,10 @@ nav ul li a:active, nav ul li a:hover {
         left: 0;
     }
 
+}
+
+/* dashboard coin text hide */
+#sample .currency-icon .mb-0 fs-13,
+#sample .currency-icon .mb-0 fs-14 {
+    display: none;
 }
