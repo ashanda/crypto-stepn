@@ -13,9 +13,14 @@ class Kernel extends ConsoleKernel
      * @param  \Illuminate\Console\Scheduling\Schedule  $schedule
      * @return void
      */
+    protected $commands = [
+        Commands\PackageEarn::class,
+    ];
+
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')->hourly();
+        $schedule->command('PackageEarn:cron')->dailyAt('00:00');
+        $schedule->command('backup:run')->everyMinute();
     }
 
     /**

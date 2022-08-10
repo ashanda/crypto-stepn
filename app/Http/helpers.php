@@ -21,6 +21,18 @@ use function PHPUnit\Framework\isEmpty;
    * @return response()
    */
 
+// get user and package commission
+function get_package_commission_list(){
+$get_package_commission_list = DB::table('users')
+->join('package__commissons', 'users.uid', '=', 'package__commissons.uid')
+->join('packages', 'packages.id', '=', 'package__commissons.package_id')
+->orderBy('package__commissons.uid', 'desc')
+->get();
+
+return $get_package_commission_list;
+
+}
+
 //get package_earning_amount
 function get_package_earning_amount($user_id){
   $package_earning_amount = DB::table('package__commissons')
@@ -41,21 +53,16 @@ function get_parent_name_email($uid){
 }
 
 
-// 1:2 package and users
+// 1:3 package and users
 
 function package_earn_satisfy(){
-  $ldate = date('Y-m-d');
-  $newdate = date('Y-m-d', strtotime($ldate. ' - 14 days'));
+
   $package_earn_satisfy = DB::table('user__packages')
-    ->whereColumn('user__packages.package_double_value','>','user__packages.total')
-    ->where('user__packages.package_level_commission_at', '<=', $newdate)
-    ->where('user__packages.package_binary_commsion_at', '<=', $newdate)
-    ->where('user__packages.package_commission_update_at', '<=', $newdate)
+    ->whereColumn('user__packages.package_triple_value','>','user__packages.total')
     ->where('user__packages.status','=','1')
     ->join('users', 'user__packages.uid', '=', 'users.uid')
-    ->orderBy('user__packages.total', 'desc')
+    ->join('packages', 'packages.id', '=', 'user__packages.package_id')
     ->get();
-    
     return $package_earn_satisfy;
     
 }

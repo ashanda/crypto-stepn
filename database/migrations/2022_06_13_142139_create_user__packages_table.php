@@ -20,6 +20,7 @@ class CreateUserPackagesTable extends Migration
             $table->string('package_id');
             $table->float('package_value');
             $table->float('package_double_value');
+            $table->float('package_triple_value');
             $table->float('package_max_revenue');
             $table->dateTime('package_commission_update_at')->nullable();
             $table->dateTime('package_level_commission_at')->nullable();

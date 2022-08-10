@@ -104,8 +104,10 @@ class BuypackageController extends Controller
                      
                     $package_revenue = $request->package_value * 5;
                     $package_revenue_double = $request->package_value * 2;
+                    $package_revenue_triple = $request->package_value * 3;
                 }else{
                     $package_revenue_double = $request->package_value * 2;
+                    $package_revenue_triple = $request->package_value * 3;
                     $package_revenue = $request->package_value * 4;
                 }
                 if(user_package_count() == 0){
@@ -115,6 +117,7 @@ class BuypackageController extends Controller
                 }
                 $buy_package->package_cat_id = $request->package_cat_id;
                 $buy_package->package_double_value = $package_revenue_double;
+                $buy_package->package_triple_value = $package_revenue_triple;
                 $buy_package->package_max_revenue = $package_revenue;
                 $buy_package->currency_type = $request->currency_type;
                 $buy_package->network = $request->network;
