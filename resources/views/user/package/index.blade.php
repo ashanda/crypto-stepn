@@ -44,10 +44,10 @@
             <p>{{ $message }}</p>
             </div>
         @endif
-  
+    </div>
 
     @foreach ( $data as $package)
-    <div class="col-xl-4 col-lg-6 col-sm-6">
+    <div class="col-xl-3 col-lg-6 col-sm-6">
         <div class="card">
             <div class="card-body">
 
@@ -87,7 +87,7 @@
                             @if (user_package_count() == 0)
                             <a class="btn btn-primary ml-3" href="buy_package/{{ $package->id }}/progress" role="button">Using Crypto</a>
                             @else
-                            <a class="btn btn-primary ml-3" href="buy_package/{{ $package->id }}/progress" role="button">Using Crypto</a>
+                            <a class="btn btn-primary ml-3 mb-2" href="buy_package/{{ $package->id }}/progress" role="button">Using Crypto</a>
                             <a class="btn btn-primary ml-3" href="buy_package/{{ $package->id }}/wallet_buy" role="button">Using Wallet</a>
                             @endif
 
