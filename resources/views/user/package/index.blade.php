@@ -38,7 +38,7 @@
 </style>
 <div class="row package-section" style="margin-top: 85px;padding:20px;">
 
-    <div class="package_wrapper">
+    
         @if ($message = Session::get('success'))
             <div class="alert alert-success">
             <p>{{ $message }}</p>
