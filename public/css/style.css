@@ -68284,5 +68284,8 @@ form a.btn.btn-primary {
     padding: 5px;
 }
 
-
+.card-coin .p.mb-0.fs-14,
+.card-coin .p.mb-0.fs-13{
+    display: none;
+}
 /* styles kasun */
