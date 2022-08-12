@@ -47,7 +47,7 @@
    
 
     @foreach ( $data as $package)
-    <div class="col-xl-3 col-lg-6 col-sm-6">
+    <div class="col-xl-3 col-lg-3 col-sm-3">
         <div class="card">
             <div class="card-body">
 
