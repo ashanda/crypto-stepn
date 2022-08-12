@@ -4,7 +4,7 @@ namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
-
+use Illuminate\Support\Facades\Log;
 class Kernel extends ConsoleKernel
 {
     /**
@@ -21,6 +21,10 @@ class Kernel extends ConsoleKernel
     {
         $schedule->command('PackageEarn:cron')->dailyAt('00:00');
         $schedule->command('backup:run')->dailyAt('00:00');
+
+        $schedule->call(function () {
+            Log::info("Cronjob is run");;
+        })->everyMinute();
     }
 
     /**
