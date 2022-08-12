@@ -56,12 +56,18 @@ function get_parent_name_email($uid){
 // 1:3 package and users
 
 function package_earn_satisfy(){
-
+  $date = date('Y-m-d H:i:s');
+  $date = strtotime($date);
+  $date = strtotime("-7 day", $date);
+  $new_date = date('Y-m-d H:i:s', $date);
+  echo $new_date;
   $package_earn_satisfy = DB::table('user__packages')
     ->whereColumn('user__packages.package_triple_value','>','user__packages.total')
     ->where('user__packages.status','=','1')
+    
     ->join('users', 'user__packages.uid', '=', 'users.uid')
     ->join('packages', 'packages.id', '=', 'user__packages.package_id')
+    ->where('user__packages.updated_at','<',$new_date)
     ->get();
     return $package_earn_satisfy;
     

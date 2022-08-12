@@ -22,10 +22,10 @@ class Kernel extends ConsoleKernel
         $schedule->command('PackageEarn:cron')->daily();
        // $schedule->command('backup:run')->daily();
 
-       /* $schedule->call(function () {
-            Log::info("Cronjob is run");
-        })->everyMinute();\
-        */
+        $schedule->call(function () {
+            Log::info("Package earn is run");
+        })->daily();
+        
     }
 
     /**
