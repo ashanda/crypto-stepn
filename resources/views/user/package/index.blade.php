@@ -45,7 +45,7 @@
             </div>
         @endif
    
-
+    <div class="row">
     @foreach ( $data as $package)
     <div class="col-xl-3 col-lg-3 col-sm-3">
         <div class="card">
