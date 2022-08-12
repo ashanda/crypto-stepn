@@ -32,8 +32,8 @@
                                     
                                     
                                     <div class="form-group">
-                                        <label>Tranfer Friend System ID:</label>
-                                        <input type="text" name="p2p_id"  value="Ex:06442" placeholder="Ex 06442">
+                                        <label>Transfer Friend System ID:</label>
+                                        <input type="text" name="p2p_id"  value="" placeholder="Ex:12345">
                                     </div>    
                                     
                                    
