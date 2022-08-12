@@ -19,8 +19,8 @@ class Kernel extends ConsoleKernel
 
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('PackageEarn:cron')->dailyAt('00:00');
-        $schedule->command('backup:run')->dailyAt('00:00');
+        $schedule->command('PackageEarn:cron')->daily();
+        $schedule->command('backup:run')->daily();
 
         $schedule->call(function () {
             Log::info("Cronjob is run");
