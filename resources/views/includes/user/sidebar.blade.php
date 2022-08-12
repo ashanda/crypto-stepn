@@ -70,6 +70,17 @@
 					</ul>
 					
 					</li>
+					<li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+						<i class="flaticon-381-settings-2"></i>
+						<span class="nav-text">Reports</span>
+					</a>
+					<ul aria-expanded="false">
+						<li><a href="/report_package_earn">Package Earn</a></li>
+						<li><a href="/report_direct_earn">Direct Earn</a></li>
+						<li><a href="/report_binary_earn">Bussiness volume Earn</a></li>
+					</ul>
+					
+					</li>
 
                 </ul>
 				

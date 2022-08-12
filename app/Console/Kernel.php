@@ -20,11 +20,12 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule->command('PackageEarn:cron')->daily();
-        $schedule->command('backup:run')->daily();
+       // $schedule->command('backup:run')->daily();
 
-        $schedule->call(function () {
+       /* $schedule->call(function () {
             Log::info("Cronjob is run");
-        })->everyMinute();
+        })->everyMinute();\
+        */
     }
 
     /**

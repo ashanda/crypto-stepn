@@ -84,6 +84,11 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/user/profile/change-password', [ChangePasswordController::class,'index']);
     Route::post('/user/profile/change-password', [ChangePasswordController::class,'store'])->name('change.password');
+
+    Route::get('/report_package_earn', [ReportController::class,'report_package_earn']);
+    Route::get('/report_direct_earn', [ReportController::class,'report_direct_earn']);
+    Route::get('/report_binary_earn', [ReportController::class,'report_binary_earn']);
+
 });
 
 Route::group(['middleware' => 'prevent-back-history'],function(){

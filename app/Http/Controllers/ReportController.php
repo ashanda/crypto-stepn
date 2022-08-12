@@ -54,4 +54,31 @@ class ReportController extends Controller
             return view('admin.report.user_earn',compact('data'));
         }
     }
+
+    public function report_package_earn(){
+            $data = DB::table('users')
+            ->join('package__commissons', 'users.uid', '=', 'package__commissons.uid')
+            ->where('users.uid',Auth::user()->uid)
+            ->get();
+            return view('user.reports.package_earn',compact('data'));
+      
+    }
+
+    public function report_direct_earn(){
+            $data = DB::table('users')
+            ->join('direct__commissions', 'users.uid', '=', 'direct__commissions.uid')
+            ->where('users.uid',Auth::user()->uid)
+            ->get();
+            return view('user.reports.direct_earn',compact('data'));
+        
+    }
+
+    public function report_binary_earn(){
+                $data = DB::table('users')
+                ->join('user_binary_commissions', 'users.uid', '=', 'user_binary_commissions.uid')
+                ->where('users.uid',Auth::user()->uid)
+                ->get();
+            return view('user.reports.binary_earn',compact('data'));
+        
+    }
 }
