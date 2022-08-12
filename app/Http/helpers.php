@@ -301,13 +301,14 @@ DB::table('company_profit_fee')->insert($store_fee);
 
  // fee
 function get_trxfee($req_amount){
+  $fee_value = DB::table('tranfer_fee')->where('id', '=', 1)->get();
   if(9 < $req_amount && $req_amount< 50 ){
-    $fee= 2;
+    $fee= $fee_value[0]->fee_value;
     
 }elseif(49 < $req_amount && $req_amount< 100){
-    $fee= 2;
+  $fee= $fee_value[0]->fee_value;
 }elseif( $req_amount > 99){
-    $fee= 2;
+  $fee= $fee_value[0]->fee_value;
 }else{
     $fee = -1;
 }
