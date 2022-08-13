@@ -25,9 +25,8 @@
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>Name</th>
-                                    <th>Current Left Balance</th>
-                                    <th>Current Right Balance</th>
+                                    <th>Earn ($)</th>
+                                    <th>Date</th>
                                     
                                     
                                     
@@ -40,9 +39,9 @@
                                 @foreach ($data as $current_earn)
                 <tr>
                 <td>{{ $i }}</td>
-                <td>{{ $current_earn->fname .' '. $current_earn->lname}}</td>
-                <td>{{ $current_earn->current_left_balance}}</td>
-                <td>{{ $current_earn->current_right_balance}}</td>
+                <td>{{ $current_earn->earn}}</td>
+                <td>{{ $current_earn->created_at}}</td>
+                
                 </tr>
                 @php
                 $i++;

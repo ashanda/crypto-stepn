@@ -25,8 +25,7 @@
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>Name</th>
-                                    <th>Value($)</th>
+                                    <th>Earn ($)</th>
                                     <th>Date</th>
                                     
                                     
@@ -39,10 +38,9 @@
                                 @endphp
                                 @foreach ($data as $current_earn)
                 <tr>
-                <td>{{ $i }}</td>
-                <td>{{ $current_earn->fname .' '. $current_earn->lname}}</td>
-                <td>{{ $current_earn->direct_commission}}</td>
-                <td>{{ $current_earn->updated_at}}</td>
+                    <td>{{ $i }}</td>
+                    <td>{{ $current_earn->earn}}</td>
+                    <td>{{ $current_earn->created_at}}</td>
               
                 </tr>
                 @php
