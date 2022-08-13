@@ -66,6 +66,7 @@ class PackageEarn extends Command
                         DB::table('wallets')
                         ->where('id', $wid)
                         ->update(['available_balance' => $new_available_balance, 'wallet_balance' => $new_wallet_balance]);
+                        
                     }else{
                         DB::table('wallets')->insert([
                             'uid' => $user_id,
@@ -79,13 +80,14 @@ class PackageEarn extends Command
                     ->where('id', $id)
                     ->update(['package_commission' => $new_package_earn]);
 
+                    package_earn_log($user_id ,$current_earn->package_id,$package_earn);
                     } else {
                    DB::table('package__commissons')->insert([
                     'uid' => $user_id,
                     'package_id' => $current_earn->package_id,
                     'package_commission' => $package_earn ,
                      ]);
-                    
+                     package_earn_log($user_id ,$current_earn->package_id,$package_earn);
                      if($wallet!=null){
                         $wid = $wallet->id;
                         $new_available_balance = $wallet->available_balance + $package_earn;

@@ -21,6 +21,35 @@ use function PHPUnit\Framework\isEmpty;
    * @return response()
    */
 
+// log data
+function binary_earn_log($user_id,$package_id,$earn){
+
+  DB::table('binary_earn_log')->insert([
+    'uid' => $user_id,
+    'package_id' => $package_id,
+    'earn' => $earn,
+  ]);
+
+}
+function direct_earn_log($user_id,$package_id,$earn){
+
+  DB::table('direct_earn_log')->insert([
+    'uid' => $user_id,
+    'package_id' => $package_id,
+    'earn' => $earn,
+  ]);
+
+}
+function package_earn_log($user_id,$package_id,$earn){
+
+  DB::table('package_earn_log')->insert([
+    'uid' => $user_id,
+    'package_id' => $package_id,
+    'earn' => $earn,
+  ]);
+
+}
+
 // get user and package commission
 function get_package_commission_list(){
 $get_package_commission_list = DB::table('users')
@@ -780,7 +809,7 @@ function direct_commission_update_queries( $current_row_uid,$new_direct_commissi
   ->where("uid", "=", $current_row_uid )
   ->first();
   
-  
+  direct_earn_log($current_row_uid,1,$new_direct_commission);
 
 if($direct_commission != NULL){
   //echo $current_row_uid.'update ';
@@ -1009,7 +1038,7 @@ function binary_commission_update_query($ref_s,$User_binary_details,$virtual_par
         ->update(array('current_left_balance' => 0, 'current_right_balance' => 0,'total'=>$total+($current_right_balance)));	
         
         wallet_update_binary($virtual_parentid,$current_left_balance); 
-
+        binary_earn_log($user_id,1,$current_right_balance);
        } else if( $current_left_balance < $current_right_balance ){				
         // Update Wallet 
        
@@ -1023,7 +1052,7 @@ function binary_commission_update_query($ref_s,$User_binary_details,$virtual_par
         DB::table('user_binary_commissions')
         ->where('id', $id)
         ->update(array('current_left_balance' => $current_left_balance, 'current_right_balance' => $current_right_balance,'total'=>($total+($current_right_balance))));
-        
+        binary_earn_log($user_id,1,$current_right_balance);
       }else if($current_left_balance > $current_right_balance){
         $current_left_balance = $current_left_balance - $current_right_balance;
       
@@ -1033,7 +1062,8 @@ function binary_commission_update_query($ref_s,$User_binary_details,$virtual_par
         DB::table('user_binary_commissions')
         ->where('id', $id)
         ->update(array('current_left_balance' => $current_left_balance, 'current_right_balance' => $current_right_balance,'total'=>($total+($current_left_balance))));
-     }    
+        binary_earn_log($user_id,1,$current_left_balance);
+      }    
 
     }
   }
