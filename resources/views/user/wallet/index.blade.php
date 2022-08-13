@@ -48,7 +48,7 @@
 										<div class="card-bx stacked card">
 											<img src="images/card/card1.jpg" alt="">
 											<div class="card-info">
-												<p class="mb-1 text-white fs-14">Package Rewards</p>
+												<p class="mb-1 text-white fs-14">Daily Rewards</p>
 												<div class="d-flex justify-content-between">
 													@php
 														$pck_earn = get_package_earning_amount(Auth::user()->uid);

@@ -87,7 +87,7 @@
 								</div>
 								<table width="100%">
 									<tr>
-										<td>Package Rewards</td>
+										<td>Daily Rewards</td>
 										@php
 											$pck_earn = get_package_earning_amount(Auth::user()->uid);
 											
