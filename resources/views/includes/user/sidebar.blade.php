@@ -75,9 +75,9 @@
 						<span class="nav-text">Reports</span>
 					</a>
 					<ul aria-expanded="false">
-						<li><a href="/report_package_earn">Package Earn</a></li>
-						<li><a href="/report_direct_earn">Direct Earn</a></li>
-						<li><a href="/report_binary_earn">Bussiness volume Earn</a></li>
+						<li><a href="/report_package_earn">Daily Rewards</a></li>
+						<li><a href="/report_direct_earn">Referrel Earn</a></li>
+						<li><a href="/report_binary_earn">Bussiness Volume Rewards</a></li>
 					</ul>
 					
 					</li>
