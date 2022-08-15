@@ -26,6 +26,7 @@
                                                         <ul class="star-rating">
                                                             <h4>Withdrawal Request</h4>
                                                         </ul>
+                                                        @if ( 10 < wallet_total())
                                                         <div class="form-group">
                                                             <label>Amount:</label>
                                                             
@@ -84,7 +85,11 @@
                                                                 
                                                         </select>
                                                             
-                                                        </div>    
+                                                        </div> 
+                                                        @else
+                                                        <h3>Youer Wallet Balamce are less in $10</h3>
+                                                        @endif
+                                                           
                                                         
                                                        
                                                         <div>
