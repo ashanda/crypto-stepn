@@ -38,7 +38,7 @@
                                    
                                     <div>
                                     @else
-                                     <h3>Youer Wallet Balamce are less in $10</h3>
+                                     <h3>Youer Wallet Balance are less in $10</h3>
                                     @endif
                                     
                                     @php
