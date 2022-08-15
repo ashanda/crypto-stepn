@@ -1052,7 +1052,7 @@ function binary_commission_update_query($ref_s,$User_binary_details,$virtual_par
         DB::table('user_binary_commissions')
         ->where('id', $id)
         ->update(array('current_left_balance' => $current_left_balance, 'current_right_balance' => $current_right_balance,'total'=>($total+($current_right_balance))));
-        binary_earn_log($user_id,1,$current_right_balance);
+        binary_earn_log($user_id,1,$current_left_balance);
       }else if($current_left_balance > $current_right_balance){
         $current_left_balance = $current_left_balance - $current_right_balance;
       
@@ -1062,7 +1062,7 @@ function binary_commission_update_query($ref_s,$User_binary_details,$virtual_par
         DB::table('user_binary_commissions')
         ->where('id', $id)
         ->update(array('current_left_balance' => $current_left_balance, 'current_right_balance' => $current_right_balance,'total'=>($total+($current_left_balance))));
-        binary_earn_log($user_id,1,$current_left_balance);
+        binary_earn_log($user_id,1,$current_right_balance);
       }    
 
     }
