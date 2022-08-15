@@ -113,12 +113,12 @@ class TransController extends Controller
             
               DB::table('wallets')
               ->where('id', $wallet_id)
-              ->update(['wallet_out' => $new_wallet_balance,'available_balance' => $new_available_balance]);
+              ->update(['wallet_out' => $new_wallet_balance+$fee,'available_balance' => $new_available_balance]);
 
                 }else{
                     DB::table('wallets')->insert([
                         'uid' => Auth::user()->uid,
-                        'wallet_out' => $request->amount,
+                        'wallet_out' => $request->amount+$fee,
                     ]);
                 }
 
