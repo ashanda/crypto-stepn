@@ -24,7 +24,7 @@
                                         <label>Amount:</label>
                                         
                                         
-                                        <input type="number" name="amount" min="0" max="{{ wallet_total() - 0.05 }}">
+                                        <input type="number" name="amount" min="10" max="{{ wallet_total() - 2 }}">
                                             
                                         </div>
                                     </div>

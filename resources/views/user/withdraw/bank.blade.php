@@ -29,7 +29,7 @@
                                                         <div class="form-group">
                                                             <label>Amount:</label>
                                                             
-                                                            <input type="number" name="amount" step="0.01" min="10" max="{{ wallet_total()}}">
+                                                            <input type="number" name="amount" step="0.01" min="10" max="{{ wallet_total()-2}}">
                                                                 
                                                             </div>
                                                         </div>
