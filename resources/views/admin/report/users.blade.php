@@ -32,12 +32,10 @@
                                     </tr>
                             </thead>
                             <tbody>
-                                @php
-                                $i=1;
-                                @endphp
+                               
                                 @foreach ($data as $kyc)
                 <tr>
-                <td>{{ $i }}</td>
+                <td>{{ $kyc->system_id }}</td>
                 <td>{{ $kyc->fname .' '. $kyc->lname}}</td>
                 
                 
@@ -54,9 +52,7 @@
                 
                 
                 </tr>
-                @php
-                $i++;
-                @endphp
+                
                 @endforeach
                                 
                             </tbody>

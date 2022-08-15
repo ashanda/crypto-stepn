@@ -203,16 +203,14 @@ function geneology( $target_parent){
 
  
  
-  $parent_details = DB::table("kycs")
-                  ->join('users',"users.uid", "=", "kycs.uid")
-                  ->where("kycs.uid", "=", $target_parent)
-                  ->select("users.uid","users.system_id","kycs.phone_number", "kycs.whatsapp_number", "users.email", "kycs.country", "kycs.created_at")
+  $parent_details = DB::table("users")
+                  ->where("users.uid", "=", $target_parent) 
                   ->get();
-   
+  
   if($parent_details->isEmpty()){
     echo '
     <div class="alert alert-warning" role="alert">
-        KYCS not yet approved for this user
+     <strong>Warning!</strong> No Geneology Found.
     </div>';
     
   }else{
@@ -226,11 +224,8 @@ echo "
                     <lable>User id - ".$parent_details[0]->system_id." </lable>
                   </span><br/>
                   <span class='geneology_child_info'>
-                    <lable>Email - ".$parent_details[0]->email." </lable>
-                  </span><br/>
-                  <span class='geneology_child_info'>
-                    <lable>Country - ".$parent_details[0]->country." </lable>
-                  </span><br/>                 
+                  <lable>Name - ".$parent_details[0]->fname." ".$parent_details[0]->lname." </lable>
+                </span><br/>                
                   <span class='geneology_child_info'>
                     <lable>Registered Date - ".$parent_details[0]->created_at." </lable>
                   </span><br/>
@@ -241,9 +236,8 @@ echo "
     
     $geneology = DB::table('users')
     ->join('user__parents', 'user__parents.uid', '=', 'users.uid')
-    ->join('kycs', 'kycs.uid', '=', 'users.uid')
     ->where('user__parents.virtual_parent','=' ,$target_parent)
-    ->select('user__parents.uid',"kycs.phone_number", "kycs.whatsapp_number", "users.email", "kycs.country", "kycs.created_at",'user__parents.ref_s' , 'users.fname' , 'users.email' , 'users.created_at')
+    ->select('user__parents.uid','users.fname','users.lname',"users.system_id", "users.email",'user__parents.ref_s' , 'users.fname' , 'users.email' , 'users.created_at')
     ->get();
     if($geneology->isEmpty()){
       echo '
@@ -265,13 +259,10 @@ $right_child='';
               "<li class='left_child'>
                   <a href='/genealogy/?parent=$geneology_data->uid' title='User Details'>
                   <span class='geneology_child_info'>
-                    <lable>User id - ".$geneology_data->email." </lable>
+                    <lable>User id - ".$geneology_data->system_id." </lable>
                   </span><br/>
                   <span class='geneology_child_info'>
-                    <lable>Country - ".$geneology_data->country." </lable>
-                  </span><br/>
-                  <span class='geneology_child_info'>
-                    <lable>WhatsApp - ".$geneology_data->whatsapp_number." </lable>
+                    <lable>Name - ".$geneology_data->fname." ".$geneology_data->lname." </lable>
                   </span><br/>
                   <span class='geneology_child_info'>
                     <lable>Registered Date - ".$geneology_data->created_at." </lable>
@@ -286,14 +277,12 @@ $right_child='';
               "<li class='right_child'>
                   <a href='/genealogy/?parent=$geneology_data->uid' title='User Details'>
                   <span class='geneology_child_info'>
-                    <lable>User id - ".$geneology_data->email." </lable>
+                    <lable>User id - ".$geneology_data->system_id." </lable>
                   </span><br/>
                   <span class='geneology_child_info'>
-                    <lable>Country - ".$geneology_data->country." </lable>
+                    <lable>Name - ".$geneology_data->fname." ".$geneology_data->lname." </lable>
                   </span><br/>
-                  <span class='geneology_child_info'>
-                    <lable>WhatsApp - ".$geneology_data->whatsapp_number." </lable>
-                  </span><br/>
+                  
                   <span class='geneology_child_info'>
                     <lable>Registered Date - ".$geneology_data->created_at." </lable>
                   </span><br/>
