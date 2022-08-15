@@ -157,7 +157,7 @@
 												@else
 												@foreach ($data as $package)
 												<tr>
-													<td>${{ $package->amount+$package->fee }}</td>												
+													<td>${{ $package->amount}}</td>												
 													<td>{{ $package->p2p_id  }} </td>
 													<td>{{ $package->currency_type  }} </td>
 													<td>{{ $package->network  }} </td>
