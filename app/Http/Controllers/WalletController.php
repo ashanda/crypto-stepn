@@ -140,7 +140,7 @@ class WalletController extends Controller
         if( $old__available_balance == 0){
             $wallet_balance->available_balance = 0; 
         }else{
-            $wallet_balance->available_balance = $old__available_balance - ($request->amount+$fee);
+            $wallet_balance->available_balance = $old__available_balance ;
         }
         
         $wallet_balance->wallet_balance = $old_balance - ($request->amount + $fee);

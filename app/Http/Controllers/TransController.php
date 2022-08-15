@@ -173,14 +173,14 @@ class TransController extends Controller
             ->first();
             $wallet_id= $wallet_balance_update->id;
             
-                $new_available_balance = $wallet_balance_update->available_balance - ($request->amount);
+                $new_available_balance = $wallet_balance_update->available_balance + ($request->amount+$fee);
                 $new_wallet_balance = $wallet_balance_update->wallet_balance ;
             
             
             
               DB::table('wallets')
               ->where('id', $wallet_id)
-              ->update(['wallet_out' => $new_wallet_balance,'available_balance' => $new_available_balance]);
+              ->update(['wallet_out' => $new_available_balance,'available_balance' => $new_available_balance]);
 
                 }else{
                     DB::table('wallets')->insert([
