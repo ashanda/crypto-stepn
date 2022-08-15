@@ -23,7 +23,7 @@
                                     @if ( 10 < wallet_total())
                                     <div class="form-group">
                                         <label>Amount:</label>
-                                        <input type="number" name="amount" min="10" max="{{ wallet_total() - 2 }}" required>
+                                        <input type="number" name="amount" step="0.01" min="10" max="{{ wallet_total() }}" required>
                                             
                                         </div>
                                     </div>
