@@ -105,10 +105,9 @@ class WalletController extends Controller
 
        if($request->package_status == 2){
         
-        $wallet_balance->available_balance = $wallet_balance->available_balance + $request->amount+$fee;
+        $wallet_balance->available_balance = $wallet_balance->available_balance + $request->amount;
         
-    }else if($request->package_status == 0){
-        $wallet_balance->available_balance = $wallet_balance->available_balance - $request->amount; 
+    
     }else if($request->package_status == 1){
         store_fee($request->uid,$fee);
         /*if($wallet_balance->direct_balance > $wallet_balance->binary_balance){
@@ -143,7 +142,7 @@ class WalletController extends Controller
             $wallet_balance->available_balance = $old__available_balance ;
         }
         
-        $wallet_balance->wallet_balance = $old_balance - ($request->amount + $fee);
+        $wallet_balance->wallet_balance = $old_balance - ($request->amount);
        }
        $wallet_balance->save();
        $withdraw->save();
