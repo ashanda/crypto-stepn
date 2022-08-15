@@ -24,7 +24,7 @@
                                         <label>Amount:</label>
                                         
                                         
-                                        <input type="number" name="amount" min="10" max="{{ wallet_total() - 2 }}">
+                                        <input type="number" name="amount" min="10" max="{{ wallet_total() - 2 }}" required>
                                             
                                         </div>
                                     </div>
@@ -33,7 +33,7 @@
                                     
                                     <div class="form-group">
                                         <label>Transfer Friend System ID:</label>
-                                        <input type="text" name="p2p_id"  value="" placeholder="Ex:12345">
+                                        <input type="text" name="p2p_id"  value="" placeholder="Ex:12345" required>
                                     </div>    
                                     
                                    
