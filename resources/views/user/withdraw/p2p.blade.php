@@ -37,11 +37,7 @@
                                     
                                    
                                     <div>
-                                    @else
-                                     <h3>Youer Wallet Balance are less in $10</h3>
-                                    @endif
-                                    
-                                    @php
+                                        @php
                                         if(!empty($buy_package[0]->status)){
                                             $package_data =  $buy_package[0]->status;
                                         }else{
@@ -57,6 +53,11 @@
                                     @else
                                       <button type="submit" class="btn btn-primary ml-3">Withdraw request send</button>
                                     @endif
+                                    @else
+                                     <h3>Youer Wallet Balance are less in $10</h3>
+                                    @endif
+                                    
+                                    
                                                                              
                                       
                                     

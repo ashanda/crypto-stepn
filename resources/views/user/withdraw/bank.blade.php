@@ -86,33 +86,34 @@
                                                         </select>
                                                             
                                                         </div> 
+                                                        <div>
+                                                            @php
+                                                                if(!empty($buy_package[0]->status)){
+                                                                    $package_data =  $buy_package[0]->status;
+                                                                }else{
+                                                                    $package_data = 'null';
+                                                                }
+                                                            @endphp    
+                                                            @if ( $package_data == '1')
+                                                            
+                                                              <button type="submit" class="btn btn-primary" disabled>Insufficient</button>
+                                                                
+                                                            @elseif($package_data == '2')
+                                                            <button type="submit" class="btn btn-primary" disabled>Wait For Admin Approve</button>
+                                                            @else
+                                                              <button type="submit" class="btn btn-primary ml-3">Withdraw request send</button>
+                                                            @endif
+                                                                                                     
+                                                              
+                                                            
+                                                            </div>
                                                         @else
                                                         <h3>Youer Wallet Balance are less in $10</h3>
                                                         @endif
                                                            
                                                         
                                                        
-                                                        <div>
-                                                        @php
-                                                            if(!empty($buy_package[0]->status)){
-                                                                $package_data =  $buy_package[0]->status;
-                                                            }else{
-                                                                $package_data = 'null';
-                                                            }
-                                                        @endphp    
-                                                        @if ( $package_data == '1')
                                                         
-                                                          <button type="submit" class="btn btn-primary" disabled>Insufficient</button>
-                                                            
-                                                        @elseif($package_data == '2')
-                                                        <button type="submit" class="btn btn-primary" disabled>Wait For Admin Approve</button>
-                                                        @else
-                                                          <button type="submit" class="btn btn-primary ml-3">Withdraw request send</button>
-                                                        @endif
-                                                                                                 
-                                                          
-                                                        
-                                                        </div>
                                                     </div>
                                                     
                                                 </div>
