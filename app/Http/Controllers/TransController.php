@@ -148,7 +148,7 @@ class TransController extends Controller
                    // return;
                 }
                 $withdraw->fee= $fee;
-                $withdraw->amount = $request->amount-$fee;
+                $withdraw->amount = $request->amount;
                 $withdraw->p2p_id = $request->p2p_id;
                 if($wallet_address == NULL){
                     
