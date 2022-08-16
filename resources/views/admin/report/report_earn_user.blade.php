@@ -26,57 +26,60 @@
                                 <tr>
                                     <th>S.No</th>
                                     <th>Name</th>
-                                    <th>Phone</th>
-                                    <th>Sponser Name</th>
-                                    <th>Sponser phone</th>
-                                    <th>Package status</th>
-                                    <th width="280px">Action</th>
+                                    <th>System ID</th>
+                                    <th>Package Value</th>
+                                    <th>Approved Date</th>
+                                    <th>Network Eligibility</th>
+                                    <th>Total Paid</th>
+                                    <th>Paid for 3X</th>
+                                    <th>Balance to 3X Payment</th>
+                                    <th>Paid for 5X & 4X</th>
+                                    <th>Balance to  5X & 4X</th>
+                                    
+                                    
                                     
                                     </tr>
                             </thead>
                             <tbody>
-                               
+                                @php
+                                $i=1;
+                                @endphp
                                 @foreach ($data as $kyc)
                 <tr>
-                <td>{{ $kyc->system_id }}</td>
+                <td>{{ $i }}</td>
                 <td>{{ $kyc->fname .' '. $kyc->lname}}</td>
-                @if ($kyc->phone_number == null)
-                <td><span class="badge light badge-danger">{{ 'Kyc Not Submit' }}</span></td>
-                @else
-                <td>{{ $kyc->phone_number }}</td> 
-                @endif
                 
-                
+                <td>{{ $kyc->system_id}}</td>
+                <td>{{ $kyc->package_double_value/2}}</td>
+                <td>{{ $kyc->updated_at}}</td>
                 @php
-                $get_parent = get_parent_name_email($kyc->parent_id);
-                
+                    $cal_pack = $kyc->package_max_revenue / ($kyc->package_double_value/2);
                 @endphp
-                @if ($get_parent==null)
-                <td>{{ 'No Parent name' }}</td>
-                <td><span class="badge light badge-danger">{{ 'Kyc Not Submit' }}</span></td>
+                <td>{{ $cal_pack.'X' }}</td>
+                <td>{{ $kyc->total}}</td>
+                @if ($kyc->package_triple_value >= $kyc->total)
+                <td>{{ $kyc->total}}</td>
+                <td>{{ $kyc->package_triple_value - $kyc->total}}</td>
                 @else
-                <td>{{ $get_parent->fname .' '.$get_parent->lname }}</td>
-                @if ($get_parent->phone_number == null)
-                <td><span class="badge light badge-danger">{{ 'Kyc Not Submit' }}</span></td>
-                @else
-                <td>{{ $get_parent->phone_number}}</td>
+                <td>{{ $kyc->package_triple_value}}</td>
+                <td>{{ '0.00'}}</td>
                 @endif
                 
+                @if ($kyc->package_triple_value < $kyc->total && $kyc->total <= $kyc->package_max_revenue)
+                <td>{{ $kyc->total - $kyc->package_triple_value}}</td>
+                <td>{{ $kyc->package_max_revenue - $kyc->total}}</td>
+                @else
+                <td>{{ '0.00'}}</td>   
+                <td>{{ '0.00'}}</td> 
                 @endif
-               
+
+
                 
-                
-                @if ($kyc->status==0)
-            <td><span class="badge light badge-danger">{{ 'Banned' }}</span></td>
-            @else
-            <td><span class="badge badge-warning">{{ 'Activate' }}</span></td>
-            @endif
-            <td>
-                <a class="btn btn-primary" href="{{ route('user.edit',$kyc->uid) }}">View</a>
-            </td>
-                
+
                 </tr>
-            
+                @php
+                $i++;
+                @endphp
                 @endforeach
                                 
                             </tbody>

@@ -36,31 +36,66 @@ class UserController extends Controller
             return view('auth.login');
         }
     }
+
+    public function edit(Request $request, $id){
+       
+        $role = Auth::user()->role;
+        if($role==1){
+           
+         $user_data = DB::table('users')->where('uid', $id)->first();  
+       
+            return view('admin.user.edit',compact('user_data','id'));
+        }
+    }
+
+    
     public function update(Request $request, $id)
     {
         
         if(Auth::check()){
-            $request->validate([
+            $role = Auth::user()->role;
+            if($role==1){
+                $request->validate([
                 
-                'fname' => 'required',
-                'lname' => 'required',
-                'email' => 'required',
-                'password' => 'required',
+                    
+                    'verify_email' => 'required',
+                    'password' => 'required',
+                    
+                    ]);
+                    $user = user::find($id);
+                    $user->status = $request->status;
+                    $user->email_verified_at = $request->verify_email;
+                    $user->password = $request->password;
+                    
+                    $user->save();
+                    
+                   return redirect('/report_users')->with('success', 'User has been updated');
+            }else{
+                $request->validate([
                 
-                ]);
-                $user = user::find($id);
-                if($request->file('profile_pic')){
-                    $file= $request->file('profile_pic');
-                    $filename= date('YmdHi').$file->getClientOriginalName();
-                    $file-> move(public_path('/profile/img'), $filename);
-                    $user->profile_pic = $filename;
-                }
-                $user->fname= $request->fname;
-                $user->lname = $request->lname;
+                    'fname' => 'required',
+                    'lname' => 'required',
+                    'email' => 'required',
+                    'password' => 'required',
+                    
+                    ]);
+                    $user = user::find($id);
+                    if($request->file('profile_pic')){
+                        $file= $request->file('profile_pic');
+                        $filename= date('YmdHi').$file->getClientOriginalName();
+                        $file-> move(public_path('/profile/img'), $filename);
+                        $user->profile_pic = $filename;
+                    }
                 
-                $user->save();
-                return redirect()->route('user.index')
-                ->with('success','profile Has Been updated successfully');
+                    $user->fname= $request->fname;
+                    $user->lname = $request->lname;
+                    
+                    $user->save();
+                    return redirect()->route('user.index')
+                    ->with('success','profile Has Been updated successfully');
+
+            }
+            
         }else{
             return redirect()->route('login');
         }

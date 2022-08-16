@@ -19,7 +19,7 @@ class Kernel extends ConsoleKernel
 
     protected function schedule(Schedule $schedule)
     {
-       // $schedule->command('PackageEarn:cron')->daily();
+        $schedule->command('PackageEarn:cron')->daily();
         $schedule->command('AutoRemoveNotBuyUser:cron')->daily();
        // $schedule->command('backup:run')->daily();
 

@@ -33,7 +33,11 @@ class ReportController extends Controller
         if($role==1){
             $user_id = Auth::id();
             $data =DB::table("users")
+            ->leftJoin("kycs", function($join){
+                $join->on("users.uid", "=", "kycs.uid");
+            })
             ->join('user__parents', 'users.uid', '=', 'user__parents.uid')
+            ->select("users.uid","users.system_id","users.fname", "users.lname", "users.password", "users.email_verified_at", "users.status","user__parents.*","kycs.phone_number")
             ->get();
             
                     
@@ -76,6 +80,16 @@ class ReportController extends Controller
         ->where('uid',Auth::user()->uid)
         ->get();
         return view('user.reports.binary_earn',compact('data'));
+        
+    }
+
+
+    public function report_earn_user(){
+        $data = DB::table('users')
+        ->join('user__packages', 'users.uid', '=', 'user__packages.uid')
+        ->where('user__packages.status',1)
+        ->get();
+        return view('admin.report.report_earn_user',compact('data'));
         
     }
 }

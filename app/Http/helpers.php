@@ -85,7 +85,10 @@ function get_package_earning_amount($user_id){
 // get parent name and email
 function get_parent_name_email($uid){
     $parent_name_email = DB::table('users')
-    ->select('users.fname', 'users.lname', 'users.email')
+    ->leftJoin("kycs", function($join){
+      $join->on("users.uid", "=", "kycs.uid");
+  })
+  ->select("users.uid","users.system_id","users.fname", "users.lname", "users.password", "users.email_verified_at", "users.status","kycs.phone_number")
     ->where('users.uid', '=', $uid)
     ->first();
     return $parent_name_email;
@@ -594,8 +597,9 @@ function wallet_total(){
 
 
   function invest(){
-    $invest = DB::table('user__packages')->where('uid',Auth::id())->sum('package_value');
-    return $invest;
+    $invest = DB::table('user__packages')->where('uid',Auth::id())->sum('package_double_value');
+    $total_invest = $invest/2;
+    return $total_invest;
   }
 
   // buy package function 

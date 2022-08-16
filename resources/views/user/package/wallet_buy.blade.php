@@ -38,19 +38,19 @@
 
                             <input type="hidden" name="pref_id" value="{{ get_ref()->parent_id }}">
                             <input type="hidden" name="package_id" value="{{ $buy_package[0]->id  }}">
-                            <input type="hidden" name="package_value" value="{{ $buy_package[0]->package_value  }}">
+                            <input type="hidden" name="package_value" value="{{ $buy_package[0]->package_value+10  }}">
                             <div class="form-group">
                                 <div class="custom-control custom-checkbox ml-1">
                                     <input type="checkbox" class="custom-control-input" id="basic_checkbox_1">
                                     <label class="custom-control-label" for="basic_checkbox_1"><a target="_blank" href="/disclaimer_notice">Disclaimer Notice</a></label>
                                 </div>
                             </div>
-                            <span class="price">${{ $buy_package[0]->package_value  }}</span>
+                            <span class="price">${{ $buy_package[0]->package_value+10  }}</span>
                             <div>
                                 @php
                                 $package_value = $buy_package[0]->package_value;
                                 $available_balance = wallet_available_balance_sum();
-                                $package_value_convert = (float)$package_value;
+                                $package_value_convert = (float)$package_value+10;
                                 
                                 @endphp
                                 @if ( $package_value_convert < $available_balance)

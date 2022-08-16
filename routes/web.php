@@ -38,6 +38,8 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('/package', PackageController::class);
     Route::resource('/buy_package', BuypackageController::class);
 
+    
+    
     Route::get('/buy_package/{id}/progress',[BuypackageController::class,'buy']);
 
     Route::get('/buy_package/{id}/wallet_buy',[BuypackageController::class,'wallet_buy']);
@@ -75,6 +77,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/report_kyc', [ReportController::class,'report_kyc']);
     Route::get('/report_users', [ReportController::class,'report_user']);
     Route::get('/report_earn', [ReportController::class,'report_earn']);
+    Route::get('/report_earn_user', [ReportController::class,'report_earn_user']);
 
     Route::get('/package_earn_trans', [TransController::class,'package_earn_trans']);
     Route::get('/package_earn' , [TransController::class,'package_earn']);

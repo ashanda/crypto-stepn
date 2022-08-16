@@ -68,6 +68,7 @@
 					</a>
 					<ul aria-expanded="false">
 						<li><a href="/report_earn">User earn</a></li>
+						<li><a href="/report_earn_user">Approved Package Details</a></li>
 						<li><a href="/report_kyc">Sign up but not kyc</a></li>
 						<li><a href="/report_users">Users</a></li>
 					</ul>

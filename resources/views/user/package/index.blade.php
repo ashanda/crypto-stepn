@@ -62,12 +62,10 @@
                             <span class="pkg_desc">{{ $package->package_description }}</span>
                         </ul>
 
-                        @if (user_package_count() == 0)
+                        
                         <span class="price">${{ $package->package_value }}</span>
-                        <span class="userMsg">{{ 'One Time Service Fee: $10' }}</span>
-                        @else
-                        <span class="price">${{ $package->package_value  }}</span>
-                        @endif
+                        <span class="userMsg">{{ 'Will be charged $10 as a service charge' }}</span>
+                        
                         <h3>Buy Package</h3>
 
                         <input type="hidden" name="package_id" value="{{ $package->id  }}">
