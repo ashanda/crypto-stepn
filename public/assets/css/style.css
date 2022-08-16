@@ -364,9 +364,11 @@ nav ul li a:hover {
     border: 1px solid;
     border-radius: 20px;
     background-color: #2CBCA5;
-    color: #08071B;
-    box-shadow: #fff;
     margin-top: 20px;
+    display: inline-flex;
+    text-decoration: none;
+    color: #ffff;
+    border-color: #2CBCA5;
 }
 
 .cover_btn:hover {
