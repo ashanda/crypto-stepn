@@ -21,15 +21,7 @@ use function PHPUnit\Framework\isEmpty;
    * @return response()
    */
 
-//auto remove not buy users
-function autoRemoveNotBuyUsers(){
-  $autoRemoveNotBuyUsers = DB::table('users')
-  ->join('user__packages', 'users.uid', '=', 'user__packages.uid')
-  ->whereNull('user__packages.uid')
-  ->get();
 
-  return  $autoRemoveNotBuyUsers;
-}
 
 //user_package total
 

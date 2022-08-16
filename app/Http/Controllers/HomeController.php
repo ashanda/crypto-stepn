@@ -41,7 +41,7 @@ class HomeController extends Controller
             $user_id = Auth::id();
             $user_data = DB::table('users')->where('uid', $user_id)->get();
             return view('dashboard',compact('user_data'));
-        }
+        }    
     }
 
 

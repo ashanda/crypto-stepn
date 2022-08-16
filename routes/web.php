@@ -30,7 +30,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth'])->group(function () {   
     Route::get('/redirects', [HomeController::class,'index']);
     Route::get('/dashboard', [HomeController::class,'index']);
 

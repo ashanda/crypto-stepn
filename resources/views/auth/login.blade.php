@@ -10,11 +10,16 @@
                     <div class="col-md-6">
                         <div class="authincation-content">
                             <div class="row no-gutters">
-                                <div class="col-xl-12">
+                                <div class="col-xl-12">                                    
                                     <div class="auth-form">
                                         <div class="text-center mb-3">
                                             <img src="images/logo-round.png" alt="">
                                         </div>
+                                        @if (session('error'))
+                                        <div class="alert alert-danger">
+                                            {{ session('error') }}
+                                        </div>
+                                        @endif
                                         <h4 class="text-center mb-4">Sign in your account</h4>
                                         <x-jet-validation-errors class="mb-4" />
                                         @if (session('status'))
