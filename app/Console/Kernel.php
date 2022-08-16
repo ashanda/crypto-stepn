@@ -19,14 +19,14 @@ class Kernel extends ConsoleKernel
 
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('PackageEarn:cron')->daily();
-        $schedule->command('AutoRemoveNotBuyUser:cron')->daily();
+        $schedule->command('PackageEarn:cron')->timezone('Asia/Colombo')->dailyAt('02:00');
+        $schedule->command('AutoRemoveNotBuyUser:cron')->timezone('Asia/Colombo')->dailyAt('02:00');
        // $schedule->command('backup:run')->daily();
 
         $schedule->call(function () {
-            Log::info(date("cron job is run"));
+            Log::info("cron job is run");
         })->timezone('Asia/Colombo')
-          ->dailyAt('18:13');
+          ->dailyAt('02:00');
         
     }
 
