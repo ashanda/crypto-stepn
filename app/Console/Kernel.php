@@ -24,8 +24,9 @@ class Kernel extends ConsoleKernel
        // $schedule->command('backup:run')->daily();
 
         $schedule->call(function () {
-            Log::info("Package earn is run");
-        })->daily();
+            Log::info(date("cron job is run"));
+        })->timezone('Asia/Colombo')
+          ->dailyAt('18:13');
         
     }
 
