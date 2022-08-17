@@ -13,7 +13,7 @@
                     @endif
 					<a href="/dashboard"><i class="fa fa-cog" aria-hidden="true"></i></a>
 					<h5 class="mb-0 fs-20 text-black "><span class="font-w400">Hello,</span> {{ Auth::user()->fname.' '.Auth::user()->lname }}</h5>
-					<p class="mb-0 fs-14 font-w400">info@lemaconet.com</p>
+					<p class="mb-0 fs-14 font-w400">{{ Auth::user()->email }}</p>
 				</div>
 				<ul class="metismenu" id="menu">
                     <li><a class="has-arrow ai-icon" href="/dashboard" aria-expanded="false">
