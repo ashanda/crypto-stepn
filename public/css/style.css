@@ -67955,7 +67955,7 @@ html[dir="rtl"] [direction="rtl"][data-sidebar-style="compact"]:not([data-layout
 }
 
 .profile_pic {
-    height: 520px;
+    height: 580px;
 }
 
 #msform {
@@ -68285,7 +68285,9 @@ form a.btn.btn-primary {
 }
 
 .card-coin .p.mb-0.fs-14,
-.card-coin .p.mb-0.fs-13{
+.card-coin .p.mb-0.fs-13 {
     display: none;
 }
+
+
 /* styles kasun */

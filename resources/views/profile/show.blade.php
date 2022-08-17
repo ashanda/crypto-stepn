@@ -50,6 +50,7 @@
 										<h4 class="fs-16 text-black">Browser Sessions</h4>
                                         <div class="mt-10 sm:mt-0">
                                             <ul>
+                                                <li><span class="text-black">Register Date : </span>{{ Auth::user()->created_at }}</li>
                                                 @php
                                                     $clientIP = request()->ip();
                                                 @endphp

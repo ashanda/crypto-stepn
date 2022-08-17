@@ -109,7 +109,7 @@
 									</tr>
 									<tr>
 										<td>Total</td>
-										<td>${{ binary_commision() + direct_commision() }}</td>
+										<td>${{ binary_commision() + direct_commision()+$pck_earn[0]->count }}</td>
 									</tr>
 								</table>
 							</div>
