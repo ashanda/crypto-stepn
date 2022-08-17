@@ -109,7 +109,13 @@ function package_earn_satisfy(){
     
     ->join('users', 'user__packages.uid', '=', 'users.uid')
     ->join('packages', 'packages.id', '=', 'user__packages.package_id')
-    ->where('user__packages.updated_at','<',$new_date)
+    ->where('user__packages.created_at','<',$new_date)
+    ->select('user__packages.id as upid','user__packages.uid','user__packages.package_cat_id','user__packages.package_id','user__packages.package_id','user__packages.package_value','user__packages.package_double_value','user__packages.package_triple_value',
+    'user__packages.package_max_revenue',
+    'user__packages.package_commission_update_at',
+    
+    'user__packages.total',
+    'user__packages.status','users.*','packages.*')
     ->get();
     return $package_earn_satisfy;
     

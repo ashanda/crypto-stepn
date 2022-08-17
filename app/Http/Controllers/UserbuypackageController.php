@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\User_Package;
-
+use Carbon\Carbon;
 class UserbuypackageController extends Controller
 {
     public function index(User_Package $data)
@@ -75,7 +75,8 @@ class UserbuypackageController extends Controller
             $user_current_package = DB::table('packages')->where('id','=',$package_row_id)->get(); 
             // Commission function call
             $previous_package_check = previous_package_check($package_id,$current_user);
-            
+            $current_date_time = Carbon::now()->toDateTimeString();
+            $package->created_at = $current_date_time;
            
             if ($previous_package_check == 0){ 
                

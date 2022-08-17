@@ -12,8 +12,7 @@
 					<div class="col-xl-6 col-xxl-12">
 						<div class="row">
 							<div class="col-xl-6">
-								<div class="card">
-									
+								<div class="card">	
 								</div>
 							</div>
 							<div class="col-xl-6">
