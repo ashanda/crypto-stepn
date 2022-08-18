@@ -1321,9 +1321,3 @@ nav ul li a:hover {
     }
 
 }
-
-/* dashboard coin text hide */
-#sample .card-coin p.mb-0.fs-14,
-#sample .card-coin p.mb-0.fs-14 {
-    display: none;
-}
