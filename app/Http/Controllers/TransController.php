@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Package_Commissons;
 use App\Models\wallet;
 use App\Models\User_Package;
-
+use RealRashid\SweetAlert\Facades\Alert;
 class TransController extends Controller
 {
     public function p2p()
@@ -123,8 +123,8 @@ class TransController extends Controller
                 }
 
                 $withdraw->save();
-                return redirect()->route('wallet.index')
-                ->with('success','withdraw has been created successfully.');
+                Alert::Alert('Success', 'Withdraw has been created successfully.')->persistent(true,false);
+                return redirect()->route('wallet.index');
         
     
     }
@@ -190,8 +190,8 @@ class TransController extends Controller
                 }
 
                 $withdraw->save();
-                return redirect()->route('wallet.index')
-                ->with('success','withdraw has been created successfully.');
+                Alert::Alert('Success', 'Withdraw has been created successfully.')->persistent(true,false);
+                return redirect()->route('wallet.index');
         
     
     }

@@ -5,7 +5,7 @@ use App\Models\UserCryptoWallet;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-
+use RealRashid\SweetAlert\Facades\Alert;
 class AddWalletCRUDController extends Controller
 {
  public function index()
@@ -41,8 +41,8 @@ $usercryptowallet->currency_type = $request->currency_type;
 $usercryptowallet->network = $request->network;
 $usercryptowallet->wallet_address = $request->wallet_address;
 $usercryptowallet->save();
-return redirect()->route('add_wallet.index')
-->with('success','UserCryptoWallet has been created successfully.');
+Alert::Alert('Success', 'UserCryptoWallet has been created successfully.')->persistent(true,false);
+return redirect()->route('add_wallet.index');
 }
 /**
 * Display the specified resource.
@@ -83,8 +83,8 @@ $usercryptowallet->currency_type = $request->currency_type;
 $usercryptowallet->network = $request->network;
 $usercryptowallet->wallet_address = $request->wallet_address;
 $usercryptowallet->save();
-return redirect()->route('add_wallet.index')
-->with('success','UserCryptoWallet Has Been updated successfully');
+Alert::Alert('Success', 'UserCryptoWallet Has Been updated successfully')->persistent(true,false);
+return redirect()->route('add_wallet.index');
 }
 /**
 * Remove the specified resource from storage.
@@ -95,9 +95,8 @@ return redirect()->route('add_wallet.index')
 public function destroy($id)
 {
 DB::table('user_crypto_wallets')->where('id', $id)->delete();
-    
-return redirect()->route('add_wallet.index')
-->with('success','UserCryptoWallet has been deleted successfully');
+Alert::Alert('Success', 'UserCryptoWallet has been deleted successfully')->persistent(true,false);   
+return redirect()->route('add_wallet.index');
 }
 
 }

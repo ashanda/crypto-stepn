@@ -7,7 +7,7 @@ use App\Models\wallet;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-
+use RealRashid\SweetAlert\Facades\Alert;
 class WalletController extends Controller
 {
     public function index()
@@ -146,15 +146,15 @@ class WalletController extends Controller
        }
        $wallet_balance->save();
        $withdraw->save();
-        return redirect()->route('wallet.index')
-        ->with('success','Wallet Has Been updated successfully');
+       Alert::Alert('Success', 'Wallet has been updated successfully.')->persistent(true,false);
+        return redirect()->route('wallet.index');
         }
         
         public function destroy(wallet $package)
         {
         $package->delete();
-        return redirect()->route('package.index')
-        ->with('success','Company has been deleted successfully');
+        Alert::Alert('Success', 'Wallet has been deleted successfully.')->persistent(true,false);
+        return redirect()->route('package.index');
         }
 
     

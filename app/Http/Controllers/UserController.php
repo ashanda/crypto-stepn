@@ -5,7 +5,7 @@ use App\Models\User;
 Use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
-
+use RealRashid\SweetAlert\Facades\Alert;
 class UserController extends Controller
 {
     public function index(Request $request)
@@ -68,8 +68,8 @@ class UserController extends Controller
                     $user->password = $request->password;
                     
                     $user->save();
-                    
-                   return redirect('/report_users')->with('success', 'User has been updated');
+                    Alert::Alert('Success', 'User has been Updated successfully.')->persistent(true,false);
+                   return redirect('/report_users');
             }else{
                 $request->validate([
                 
@@ -91,8 +91,8 @@ class UserController extends Controller
                     $user->lname = $request->lname;
                     
                     $user->save();
-                    return redirect()->route('user.index')
-                    ->with('success','profile Has Been updated successfully');
+                    Alert::Alert('Success', 'Profile has been updated successfully.')->persistent(true,false);
+                    return redirect()->route('user.index');
 
             }
             

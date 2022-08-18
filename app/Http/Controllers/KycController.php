@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-
+use RealRashid\SweetAlert\Facades\Alert;
 class KycController extends Controller
 {
     
@@ -131,8 +131,8 @@ class KycController extends Controller
                 $kyc->postal_code = $request->postal_code;
                 
                 $kyc->save();
-                return redirect()->route('kyc.index')
-                ->with('success','KYC has been created successfully.');
+                Alert::Alert('Success', 'KYC has been created successfully.')->persistent(true,false);  
+                return redirect()->route('kyc.index');
         }
         if($role==0){
             $request->validate([
@@ -185,8 +185,8 @@ class KycController extends Controller
                 $kyc->postal_code = $request->postal_code;
                 
                 $kyc->save();
-                return redirect()->route('kyc.index')
-                ->with('success','KYC has been created successfully.');
+                Alert::Alert('Success', 'KYC has been created successfully.')->persistent(true,false);  
+                return redirect()->route('kyc.index');
         }
     
     }
@@ -246,8 +246,8 @@ class KycController extends Controller
                 
                 $kyc->status = $request->status;
                 $kyc->save();
-                return redirect()->route('kyc.index')
-                ->with('success','KYC Has Been updated successfully');
+                Alert::Alert('Success', 'KYC Has Been updated successfully.')->persistent(true,false); 
+                return redirect()->route('kyc.index');
         }
         if($role==0){
             $request->validate([
@@ -300,8 +300,8 @@ class KycController extends Controller
                 
                 $kyc->status = $request->status;
                 $kyc->save();
-                return redirect()->route('kyc.index')
-                ->with('success','KYC Has Been updated successfully');
+                Alert::Alert('Success', 'KYC Has Been updated successfully.')->persistent(true,false); 
+                return redirect()->route('kyc.index');
         }
     
     }
@@ -316,13 +316,13 @@ class KycController extends Controller
         $role=Auth::user()->role;
         if($role==1){
             $kyc->delete();
-            return redirect()->route('kyc.index')
-            ->with('success','Company has been deleted successfully');
+            Alert::Alert('Success', 'KYC has been deleted successfully.')->persistent(true,false); 
+            return redirect()->route('kyc.index');
         }
         if($role==0){
             $kyc->delete();
-            return redirect()->route('kyc.index')
-            ->with('success','Company has been deleted successfully');
+            Alert::Alert('Success', 'KYC has been deleted successfully.')->persistent(true,false);
+            return redirect()->route('kyc.index');
         }
     
     }

@@ -68284,8 +68284,18 @@ form a.btn.btn-primary {
     padding: 5px;
 }
 
+
 /* dashboard coin text hide */
+
 .card-coin p.mb-0.fs-14,
 .card-coin p.mb-0.fs-13 {
     display: none;
+}
+
+#swal2-html-container {
+    color: white;
+}
+
+#example2_info {
+    color: white;
 }

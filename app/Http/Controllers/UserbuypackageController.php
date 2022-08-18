@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\User_Package;
 use Carbon\Carbon;
+use RealRashid\SweetAlert\Facades\Alert;
 class UserbuypackageController extends Controller
 {
     public function index(User_Package $data)
@@ -95,8 +96,8 @@ class UserbuypackageController extends Controller
             $package->save();
    
      }
-        return redirect()->route('user_buy_package.index')
-        ->with('success','Package Has Been updated successfully');
+        Alert::Alert('Success', 'Package Has Been updated successfully')->persistent(true,false);
+        return redirect()->route('user_buy_package.index');
         }
 
 
@@ -106,7 +107,7 @@ class UserbuypackageController extends Controller
         {
 
         $data = DB::table('user__packages')->where('id', $id)->delete();
-        return redirect()->route('user_buy_package.index')
-        ->with('success','User Package has been deleted successfully');
+        Alert::Alert('Success', 'User Package has been deleted successfully')->persistent(true,false);
+        return redirect()->route('user_buy_package.index');
         }
 }

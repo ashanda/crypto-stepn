@@ -162,6 +162,7 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
         WisdomDiala\Cryptocap\Providers\CryptocapServiceProvider::class,
+        RealRashid\SweetAlert\SweetAlertServiceProvider::class,
 
         /*
          * Package Service Providers...
@@ -236,6 +237,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Cryptocap' => WisdomDiala\Cryptocap\Facades\Cryptocap::class,
         'Debugbar' => Barryvdh\Debugbar\Facade::class,
+        'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
     ],
 
 ];

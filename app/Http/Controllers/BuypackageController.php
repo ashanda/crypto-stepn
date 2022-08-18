@@ -14,6 +14,7 @@ use App\Http\Controllers\PackageController;
 
 use App\Models\Package;
 use App\Models\User;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class BuypackageController extends Controller
 {
@@ -122,8 +123,9 @@ class BuypackageController extends Controller
                 $buy_package->currency_type = $request->currency_type;
                 $buy_package->network = $request->network;
                 $buy_package->save();
-                return redirect()->route('buy_package.index')
-                ->with('success','Package has been buying successfully.');
+                
+                Alert::Alert('Success', 'Package has been buying successfully.')->persistent(true,false);
+                return redirect()->route('buy_package.index');
         
            
         }

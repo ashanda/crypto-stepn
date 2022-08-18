@@ -5,7 +5,7 @@ use App\Models\Package;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-
+use RealRashid\SweetAlert\Facades\Alert;
 
 
 class PackageController extends Controller
@@ -73,9 +73,8 @@ class PackageController extends Controller
         
         $package->package_status = $request->package_status;
         $package->save();
-        
-        return redirect()->route('package.index')
-        ->with('success','Package has been created successfully.');
+        Alert::Alert('Success', 'Package has been created successfully.')->persistent(true,false);
+        return redirect()->route('package.index');
         }
         /**
         * Display the specified resource.
@@ -135,15 +134,15 @@ class PackageController extends Controller
         
         $package->package_status = $request->package_status;
         $package->save();
-        return redirect()->route('package.index')
-        ->with('success','Company Has Been updated successfully');
+        Alert::Alert('Success', 'Package has been updated successfully.')->persistent(true,false);
+        return redirect()->route('package.index');
         }
         
         public function destroy(Package $package)
         {
         $package->delete();
-        return redirect()->route('package.index')
-        ->with('success','Company has been deleted successfully');
+        Alert::Alert('Success', 'Package has been deleted successfully.')->persistent(true,false);
+        return redirect()->route('package.index');
         }
 
         
