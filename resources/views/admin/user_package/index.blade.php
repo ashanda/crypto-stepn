@@ -16,7 +16,7 @@
             <div class="alert alert-success">
             <p>{{ $message }}</p>
             </div>
-            @endif
+            @endif             
             <div class="table-responsive">
                 <table id="example2" class="display" style="width:100%">
                     <thead>
@@ -46,13 +46,38 @@
             <td>{{ 'Rejected' }}</td>
             @endif
             <td>
-                <form action="{{ route('user_buy_package.destroy',$package->id) }}" method="Post">
-                <a class="btn btn-primary" href="{{ route('user_buy_package.edit',$package->id) }}">View</a>
-                @csrf
                 
-                </form>
+                <a class="btn btn-primary" href="{{ route('user_buy_package.edit',$package->id) }}">View</a>
+                <a href="#myModal" class="btn btn-danger" id="aButton" data-toggle="modal">Delete</a>
+                
             </td>
-            
+            <!-- Modal HTML -->
+            <div id="myModal" class="modal fade">
+                <div class="modal-dialog modal-confirm">
+                    <div class="modal-content">
+                        <div class="modal-header flex-column">
+                            <div class="icon-box">
+                                
+                            </div>						
+                            <h4 class="modal-title w-100">Are you sure?</h4>	
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Do you really want to delete this package ?</p>
+                        </div>
+                        <form action="{{ route('user_buy_package.destroy',$package->id) }}" method="Post">
+                        @csrf
+                        @method('DELETE')
+                        <div class="modal-footer justify-content-center">
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                            
+                        </div>
+                     
+                  </form>
+                    </div>
+                </div>
+            </div>
             
             
             </tr>

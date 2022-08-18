@@ -98,10 +98,14 @@ class UserbuypackageController extends Controller
         return redirect()->route('user_buy_package.index')
         ->with('success','Package Has Been updated successfully');
         }
+
+
+
         
-        public function destroy(User_Package $package)
+        public function destroy(User_Package $userbuypackage, $id)
         {
-        $package->delete();
+
+        $data = DB::table('user__packages')->where('id', $id)->delete();
         return redirect()->route('user_buy_package.index')
         ->with('success','User Package has been deleted successfully');
         }
