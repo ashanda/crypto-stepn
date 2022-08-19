@@ -6,6 +6,8 @@ Use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Facades\Hash;
+
 class UserController extends Controller
 {
     public function index(Request $request)
@@ -65,7 +67,7 @@ class UserController extends Controller
                     $user = user::find($id);
                     $user->status = $request->status;
                     $user->email_verified_at = $request->verify_email;
-                    $user->password = $request->password;
+                    $user->password = Hash::make($request->password);
                     
                     $user->save();
                     Alert::Alert('Success', 'User has been Updated successfully.')->persistent(true,false);
