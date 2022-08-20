@@ -12,7 +12,7 @@
                 <h2></h2>
                 <h1> Welcome to <br/>Your Global <br/>Digital Wealth Plan</h1>
                 <h3>100% Secure | Easy Conversation | Global</h3>
-                <button class="cover_btn"> Get Started</button> <br/>
+                <button onclick="location.href='https://lemaconet.com/register'" class="cover_btn"> Get Started</button> <br/>
                 
                 <!--img src="assets/images/acume.png" class="cover_logos">
                 <img src="assets/images/breally_1.png" class="cover_logos" --->
@@ -246,7 +246,7 @@
             <div class="container">
                 <h1>Welcome to your <br/>Digital Wealth Plan</h1>
                 <h2>Receive payments from anyone, anywhere.</h2>
-                <button> Get Started </button>                
+                <button onclick="location.href='https://lemaconet.com/register'"> Get Started </button>                
             </div>
         </div>
     </div>
