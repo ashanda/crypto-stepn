@@ -75,7 +75,7 @@ class UserbuypackageController extends Controller
             $package->current_status = 1;
             $user_current_package = DB::table('packages')->where('id','=',$package_row_id)->get(); 
             // Commission function call
-            $previous_package_check = previous_package_check($package_id,$current_user);
+            $previous_package_check = previous_package_check($current_user);
             $current_date_time = Carbon::now()->toDateTimeString();
             $package->created_at = $current_date_time;
            

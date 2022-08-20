@@ -73,15 +73,8 @@
                         <input type="hidden" name="pref_id" value="{{ get_ref()->parent_id }}">
                         <input type="hidden" name="pref_side" value="{{ get_ref()->ref_s }}">
                         <div>
-                            @php
-                            $package_data = get_package_status($package->id);
-                            @endphp
-                            @if ( $package_data == '0' )
-
-                            <button type="submit" class="btn btn-primary" disabled>Package Disable</button>
-
-
-                            @else
+                            
+                            
                             @if (user_package_count() == 0)
                             <a class="btn btn-primary ml-3" href="buy_package/{{ $package->id }}/progress" role="button">Using Crypto</a>
                             @else
@@ -89,7 +82,7 @@
                             <a class="btn btn-primary ml-3" href="buy_package/{{ $package->id }}/wallet_buy" role="button">Using Wallet</a>
                             @endif
 
-                            @endif
+                            
 
 
 

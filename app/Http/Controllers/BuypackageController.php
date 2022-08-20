@@ -98,7 +98,7 @@ class BuypackageController extends Controller
                 $user_current_package = DB::table('packages')->where('id','=',$buy_package->package_id)->get();
                 
                 // check previous package
-                $previous_package = previous_package_check($request->package_id,$buy_package->uid);
+                $previous_package = previous_package_check($buy_package->uid);
                 
                 
                 if ($previous_package == 0){
@@ -114,7 +114,7 @@ class BuypackageController extends Controller
                 if(user_package_count() == 0){
                     $buy_package->package_value = $request->package_value+10;
                 }else{
-                    $buy_package->package_value = $request->package_value;
+                    $buy_package->package_value = $request->package_value+10;
                 }
                 $buy_package->package_cat_id = $request->package_cat_id;
                 $buy_package->package_double_value = $package_revenue_double;

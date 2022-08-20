@@ -189,9 +189,8 @@ function current_user_package_commission($current_user_id,$package_cat_id){
 }
 
 //user previous package check//
-function previous_package_check($package_id,$user_id){
+function previous_package_check($user_id){
   $previous_package = DB::table('user__packages')
-  ->where('package_id', '=', $package_id)
   ->where("uid", "=", $user_id)
   ->where("current_status", "=", 1)
   ->count();
