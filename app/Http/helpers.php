@@ -21,8 +21,48 @@ use function PHPUnit\Framework\isEmpty;
    * @return response()
    */
 
+//left side binary chek
 
+function left_right_side_direct($user_id){
+    $check_left_side = DB::table('user__parents')
+    ->where('parent_id', $user_id)
+    ->where('ref_s', 0) 
+    ->get();
+    $check_right_side = DB::table('user__parents')
+    ->where('parent_id', $user_id)
+    ->where('ref_s', 1) 
+    ->get();
+    
+    $items_left = array();
+    foreach($check_left_side as $left_side){
+      $items_left[] = $left_side->uid;
+        
+    }
+    $items_right = array();
+    foreach($check_right_side as $right_side){
+      $items_right[] = $right_side->uid;
+        
+    }
 
+     $check_count_left = DB::table("user__packages")
+      ->whereIn("uid", $items_left)
+      ->where("status", "=", 1)
+      ->get();
+
+      $check_count_right = DB::table("user__packages")
+      ->whereIn("uid", $items_right)
+      ->where("status", "=", 1)
+      ->get();
+
+    if(count($check_count_left) > 0 && count($check_count_right) > 0){
+        return 1;
+    
+    }else{
+        return 0;
+    }
+    
+    
+}
 //user_package total
 
 function user_package_total_binary($uid,$old_total,$new_value){

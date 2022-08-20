@@ -23,7 +23,13 @@
                                     @if ( 10 < wallet_total())
                                     <div class="form-group">
                                         <label>Amount:</label>
-                                        <input type="number" name="amount" step="0.01" min="10" max="{{ wallet_total() }}" required>
+                                        @if (left_right_side_direct(Auth::user()->uid) == 0)
+											
+                                            <input type="number" name="amount" step="0.01" min="10" max="{{ wallet_total() - binary_commision() }}" required>
+                                        @else
+                                             <input type="number" name="amount" step="0.01" min="10" max="{{ wallet_total() }}" required>
+										@endif
+                                        
                                             
                                         </div>
                                     </div>

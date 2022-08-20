@@ -49,10 +49,15 @@
                             <div>
                                 @php
                                 $package_value = $buy_package[0]->package_value;
-                                $available_balance = wallet_available_balance_sum();
-                                $package_value_convert = (float)$package_value+10;
                                 
+                                $package_value_convert = (float)$package_value+10;
+                                 if(left_right_side_direct(Auth::user()->uid) == 0){
+                                    $available_balance = wallet_available_balance_sum() - binary_commision();
+                                 }else{
+                                    $available_balance = wallet_available_balance_sum();
+                                 }
                                 @endphp
+                                
                                 @if ( $package_value_convert < $available_balance)
                                 <button type="submit" class="btn btn-primary ml-3">Buy Package</button>
                                 

@@ -36,7 +36,12 @@
 													</svg>
 												</div>
 												<div class="d-flex justify-content-between">
-													<h5 class="num-text text-white mb-5 font-w200">Available - ${{ wallet_available_balance_sum() }}</h5>	
+													@if (left_right_side_direct(Auth::user()->uid) == 0)
+													<h5 class="num-text text-white mb-5 font-w200">Available - ${{ wallet_available_balance_sum() - binary_commision() }}</h5>
+													@else
+													<h5 class="num-text text-white mb-5 font-w200">Available - ${{ wallet_available_balance_sum() }}</h5>
+													@endif
+														
 												</div>
 												
 											</div>
