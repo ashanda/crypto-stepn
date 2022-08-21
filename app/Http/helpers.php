@@ -898,22 +898,27 @@ function binary_commission_find( $virtual_parentid,$package_value,$package_id,$p
   $new_binary_commission = 0;
   
   $virtual_user_data = DB::table('user__packages')
-                      ->where('uid','=',$virtual_parentid, 'AND', 'package_id','=',$package_id,'AND','package_status','=','1')
+                      ->where('uid','=',$virtual_parentid,'AND','package_status','=','1')
                       ->orderBy('package_double_value', 'desc')
                       ->get();
                   
-   $binary_commission_count = count((array)$virtual_user_data);                 
+   $binary_commission_count = count($virtual_user_data);                 
    
     if(isset($virtual_user_data[0] )){
       $package_cat_commission = DB::table('package__categories')
                             ->where('id',$virtual_user_data[0]->package_cat_id)
                             ->first();
-      if($binary_commission_count > 0){        
+      if($binary_commission_count == 1){        
         $new_binary_commission = $package_value * $package_cat_commission->cat_commission;         
-         
-         
-         }
-       }                         
+
+      }
+      if($binary_commission_count > 1){
+
+        $new_binary_commission = ($package_value * $package_cat_commission->cat_commission) / 2;  
+
+      }
+
+   }                         
   
    
    return $new_binary_commission;
