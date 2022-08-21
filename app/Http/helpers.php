@@ -485,6 +485,36 @@ function get_user_wallets_data(){
   }
 //-------------------------------------------------
 
+// holding wallet
+function holding_wallet_update_binary($uid,$wallet_balance){
+  $wallet_balance_update =  DB::table("holdin_wallets")
+          ->select("id", "uid" ,"wallet_balance")
+          ->where("uid", "=", $uid )
+          ->first();
+          $wallet_balance_update_check =  DB::table("holdin_wallets")
+          ->select("id", "uid" ,"wallet_balance")
+          ->where("uid", "=", $uid )
+          ->count();
+
+         if($wallet_balance_update_check > 0){
+          $wallet_id= $wallet_balance_update->id;
+          $new_wallet_balance = $wallet_balance_update->wallet_balance + ($wallet_balance);
+          
+          
+            DB::table('holdin_wallets')
+            ->where('id', $wallet_id)
+            ->update(['wallet_balance' => $new_wallet_balance,'available_balance' =>$new_wallet_balance]);
+         }else{
+          DB::table('holdin_wallets')->insert([
+            'uid' => $uid,
+            'wallet_balance' => $wallet_balance,
+            'available_balance' => $wallet_balance,
+            
+        ]);
+          
+         }
+}
+
 //wallet log//
 function wallet_log(){
   $wallete = DB::table("wallets")
@@ -776,6 +806,7 @@ function wallet_total(){
        
         
         $new_binary_commission = binary_commission_find($virtual_parentid,$package_value,$package_id,$package_cat_id);   
+         
         if (function_exists('validate_user_commissions')) {
           validate_binary_commissions( $ref_s,$virtual_parentid,$current_row_uid,$new_binary_commission  );
           }
@@ -908,13 +939,10 @@ function binary_commission_find( $virtual_parentid,$package_value,$package_id,$p
       $package_cat_commission = DB::table('package__categories')
                             ->where('id',$virtual_user_data[0]->package_cat_id)
                             ->first();
-      if($binary_commission_count == 1){        
-        $new_binary_commission = $package_value * $package_cat_commission->cat_commission;         
+      
+      if($binary_commission_count > 0){
 
-      }
-      if($binary_commission_count > 1){
-
-        $new_binary_commission = ($package_value * $package_cat_commission->cat_commission) / 2;  
+        $new_binary_commission = ($package_value * $package_cat_commission->cat_commission);  
 
       }
 
@@ -929,11 +957,12 @@ function validate_binary_commissions( $ref_s,$virtual_parentid,$current_row_uid,
  
   $balance_commission = $new_binary_commission;
   
+  //$virtual_parentid = $virtual_parentid[0]->uid;
   $User_packages_details =  DB::table("user__packages")->select("id", "uid" ,"package_max_revenue","total","status")
     ->where("uid", "=", $virtual_parentid ,'AND','current_status','=',1)
     ->orderBy('id','asc')
     ->get();
-
+  
    $User_binary_details =  DB::table("user_binary_commissions")
    ->select("id", "uid" ,"current_left_balance","current_right_balance",'total')
    ->where("uid", "=", $virtual_parentid)
@@ -953,6 +982,8 @@ function validate_binary_commissions( $ref_s,$virtual_parentid,$current_row_uid,
     
     $package_earning_capacity = $package->package_max_revenue - $package->total;
     
+    if($package->package_max_revenue >= $package->total){
+
     if($balance_commission >= 0){
       
       if( $new_binary_commission <= $package_earning_capacity  ){
@@ -1018,15 +1049,95 @@ function validate_binary_commissions( $ref_s,$virtual_parentid,$current_row_uid,
             $balance_commission = 0;  
 
           }else{          
-               
-            binary_commission_update_query($ref_s,$User_binary_details,$virtual_parentid,$current_row_uid,$new_binary_commission);
-            $balance_commission = $new_binary_commission - $package_earning_capacity;
+            $balance_commission = $new_binary_commission - $package_earning_capacity;  
+            binary_commission_update_query($ref_s,$User_binary_details,$virtual_parentid,$current_row_uid,$balance_commission);
+            
           }            
         }
+      }else{
+        binary_commission_update_query_hold($ref_s,$User_binary_details,$virtual_parentid,$current_row_uid,$balance_commission);
+      }
     } 
   } 
     
 } 
+
+//holding wallet update query
+function binary_commission_update_query_hold($ref_s,$User_binary_details,$virtual_parentid,$current_row_uid,$new_binary_commission){
+  
+  if($virtual_parentid != 0){
+
+      if($User_binary_details->isEmpty()){
+      $user['uid'] = $virtual_parentid;
+      if($ref_s == 0){
+        $user['current_left_balance'] = $new_binary_commission;
+        $user['current_right_balance'] = 0;
+        $user['total'] = $new_binary_commission;
+        
+      }else{
+        $user['current_right_balance'] = $new_binary_commission;
+        $user['current_left_balance'] = 0;
+        $user['total'] = $new_binary_commission;
+       
+      }
+      DB::table('user_binary_commissions')->insert($user);
+      $ptype='Direct Commission';
+         
+     
+
+      }else{
+      $id= $User_binary_details[0]->id;
+      $user_id = $User_binary_details[0]->uid;			
+      $current_left_balance = $User_binary_details[0]->current_left_balance;
+      $current_right_balance = $User_binary_details[0]->current_right_balance;
+      $total = $User_binary_details[0]->total;		
+
+      if( $ref_s == 0 ){
+      $current_left_balance += $new_binary_commission;
+      }else{
+      $current_right_balance += $new_binary_commission;
+      }
+
+
+      if(	$current_left_balance == $current_right_balance ){
+        // Update Wallet 
+        DB::table('user_binary_commissions')
+        ->where('id', $id)
+        ->update(array('current_left_balance' => 0, 'current_right_balance' => 0,'total'=>$total+($current_right_balance)));	
+        
+        holding_wallet_update_binary($virtual_parentid,$current_left_balance); 
+        binary_earn_log($user_id,1,$current_right_balance);
+       } else if( $current_left_balance < $current_right_balance ){				
+        // Update Wallet 
+       
+        
+        $current_right_balance = $current_right_balance - $current_left_balance;
+        binary_earn_log($user_id,1,$current_left_balance);
+        holding_wallet_update_binary($virtual_parentid,$current_left_balance);
+        $current_left_balance = 0;
+        
+        //wallete update < right binary value
+       
+        DB::table('user_binary_commissions')
+        ->where('id', $id)
+        ->update(array('current_left_balance' => $current_left_balance, 'current_right_balance' => $current_right_balance,'total'=>($total+($current_right_balance))));
+        
+      }else if($current_left_balance > $current_right_balance){
+        $current_left_balance = $current_left_balance - $current_right_balance;
+        binary_earn_log($user_id,1,$current_right_balance);
+        holding_wallet_update_binary($virtual_parentid,$current_right_balance);
+        $current_right_balance = 0;
+
+        DB::table('user_binary_commissions')
+        ->where('id', $id)
+        ->update(array('current_left_balance' => $current_left_balance, 'current_right_balance' => $current_right_balance,'total'=>($total+($current_left_balance))));
+        
+      }    
+
+    }
+  }
+}
+/************************************* */
 
 
 // binary commission update fuction
@@ -1124,8 +1235,6 @@ function binary_commission_update_query($ref_s,$User_binary_details,$virtual_par
 
   function buy_package_secound_time($user_package_row_id,$package_value,$package_id,$package_cat,$current_user,$package_cat_id){
     
-    
-    
     $parent_id=-1;
     $virtual_parentid = 0;
     $parent_user_level = 0;
@@ -1171,6 +1280,7 @@ function binary_commission_update_query($ref_s,$User_binary_details,$virtual_par
         ->select("id", "uid" ,"direct_commission")
         ->where("uid", "=", $current_row_uid )
         ->get();
+
         
         $direct_commission_count = count((array)$direct_commission); 
 
@@ -1221,30 +1331,18 @@ function binary_commission_update_query($ref_s,$User_binary_details,$virtual_par
         /****************************************************/
         
         /* Query for UserBinary Commision table values	- SELECT */	
-        $userbinarycommision =  DB::table("user_binary_commissions")
-        ->select("id", "uid","total","current_left_balance", "current_right_balance")
-        ->where("uid", "=", $virtual_parentid )
-        ->get();
+        
 
-        
-        
-        $binary_commission_count = count((array)$userbinarycommision);
-
-        $package_category = DB::table('package__categories')->where('id','=',$package_cat_id)->get();
-        
-        $package_cat_commission=0;
-        
        // $current_user_package_commission = current_user_package_commission($virtual_parentid);
         
-				if(!isset($package_category[0] )){
-          
-				}else{
-          $package_cat_commission = $package_category[0]->cat_commission;
-          
-				}
+       
         
-        $new_binary_commission = binary_commission_find($current_row_uid, $package_value, $binary_commission_count,$package_cat_commission);   
-        validate_binary_commissions( $ref_s,$userbinarycommision,$virtual_parentid,$current_row_uid,$new_binary_commission  );
+        $new_binary_commission = binary_commission_find($virtual_parentid,$package_value/2,$package_id,$package_cat_id);   
+      
+        if (function_exists('validate_user_commissions')) {
+          validate_binary_commissions( $ref_s,$virtual_parentid,$current_row_uid,$new_binary_commission  );
+          }
+        
         
         
         
@@ -1258,6 +1356,7 @@ function binary_commission_update_query($ref_s,$User_binary_details,$virtual_par
       }
       
     }
+    //end of while
      
       
   }
