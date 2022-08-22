@@ -10,7 +10,7 @@
 		<div class="form-head mb-sm-5 mb-3 d-flex flex-wrap align-items-center">
 			<h2 class="font-w600 mb-2 mr-auto ">Dashboard</h2>
 			
-			{{ binary_commission_find( 3,1500,1,1) }}
+			
 			
 			<div class="col-xl-12 col-xxl-12">
 				<div class="row">
