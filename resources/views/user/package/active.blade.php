@@ -42,12 +42,12 @@
     @endif
     <td>
         @php
-        $datetime_string = $package->created_at;
-        $days_to_add = $package->package_duration;
-        $new_timestamp = strtotime($datetime_string) + ($days_to_add * 60 * 60 * 24);
-        $new_date = date('Y-m-d H:i:s', $new_timestamp);
+            $original_date = $package->created_at;
+            $time_original = strtotime($original_date);
+            $time_add      = $time_original + (3600*24*$package->package_duration); //add seconds of one day
+            $new_date      = date("Y-m-d", $time_add);
             
-        echo $new_date; 
+            echo $new_date; 
         @endphp
         
     </td>

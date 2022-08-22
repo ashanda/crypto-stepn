@@ -45,7 +45,7 @@ class BuypackageController extends Controller
                 ->join('user__packages', 'users.uid', '=', 'user__packages.uid')
                 ->join('packages', 'user__packages.package_id', '=', 'packages.id')
                 ->where('users.uid', '=', $user_id)
-                ->select('user__packages.id','users.fname', 'users.lname', 'packages.package_name','packages.package_duration', 'user__packages.status','packages.created_at')
+                ->select('user__packages.id','users.fname', 'users.lname', 'packages.package_name','packages.package_duration', 'user__packages.status','user__packages.created_at')
                 ->get();    
                 return view('user.package.active',compact('data'));
             }
