@@ -46,7 +46,8 @@
         @php
             $original_date = $package->created_at;
             $time_original = strtotime($original_date);
-            $time_add      = $time_original + (3600*24*$package->package_duration); //add seconds of one day
+            $package_active_date = $package->package_duration + 6;
+            $time_add      = $time_original + (3600*24*$package_active_date); //add seconds of one day
             $new_date      = date("Y-m-d H:i:s", $time_add);
             
             echo $new_date; 
