@@ -22,6 +22,7 @@
     <th>Package Name</th>
     
     <th>Package status</th>
+    <th width="280px">Active Date</th>
     <th width="280px">Valid till</th>
     </tr>
     @php
@@ -40,12 +41,13 @@
     @else
     <td>{{ 'Rejected' }}</td>
     @endif
+    <td>{{ $package->created_at}}</td>
     <td>
         @php
             $original_date = $package->created_at;
             $time_original = strtotime($original_date);
             $time_add      = $time_original + (3600*24*$package->package_duration); //add seconds of one day
-            $new_date      = date("Y-m-d", $time_add);
+            $new_date      = date("Y-m-d H:i:s", $time_add);
             
             echo $new_date; 
         @endphp
