@@ -10,7 +10,7 @@
 <style>
     /* package-section Styles */
     .package-section {
-        padding-left: 25% !important;
+        padding-left: 360px !important;
     }
 
 
@@ -47,7 +47,7 @@
    
     <div class="row">
     @foreach ( $data as $package)
-    <div class="col-xl-4 col-lg-4 col-sm-4">
+    <div class="col-xl-3 col-lg-3 col-sm-4">
         <div class="card">
             <div class="card-body">
 
