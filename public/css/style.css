@@ -70378,9 +70378,7 @@ form a.btn.btn-primary {
 }
 
 /* row.package-section */
-@media screen and (min-width: 1400px) {
-    row.package-section .container {
-        max-width: 100%;
-        width: 100%;
-    }
+.row.package-section .container {
+    max-width: 100%;
+    width: 100%;
 }
