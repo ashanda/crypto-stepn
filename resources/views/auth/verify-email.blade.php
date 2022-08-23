@@ -26,7 +26,7 @@
     </div>
 </div>
 
-<!-- <script type="text/javascript">
+<script type="text/javascript">
     function onload_alert() {
 
         alert(" Verification email has been sent. Please check your emails");
@@ -34,5 +34,5 @@
     }
 
     window.onload = onload_alert();
-</script> -->
+</script>
 @endsection
