@@ -64,7 +64,7 @@
 
                         
                         <span class="price">${{ $package->package_value }}</span>
-                        <span class="userMsg">{{ 'Will be charged $10 as a service charge' }}</span>
+                        <span class="userMsg">{{ ' (Will be charged $10 as a service charge)' }}</span>
                         
                         <h3>Buy Package</h3>
 
