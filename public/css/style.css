@@ -70382,3 +70382,8 @@ form a.btn.btn-primary {
     max-width: 100%;
     width: 100%;
 }
+
+/* New alertbox */
+.alert_box{
+    text-align:center;
+}
