@@ -29,7 +29,8 @@
 <div id="alert_box" class="alert_box" style="display: none;">
     <div class="alert alert-danger">
         <strong>Alert!</strong> Verification email has been sent. Please check your emails.
-        <button onclick="close_alert()" class="btn btn-warning">Ok</button>
+        <br>
+        <button onclick="close_alert()" class="text-center btn btn-warning">Ok</button>
     </div>
 </div>
 
