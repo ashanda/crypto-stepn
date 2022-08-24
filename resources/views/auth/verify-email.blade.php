@@ -26,8 +26,8 @@
     </div>
 </div>
 
-<div id="alert_box" class="alert_box" style="display: none;">
-    <div class="alert_box_content">
+<div id="alert_box_outer" class="alert_box" style="display: none;">
+    <div class="alert_box">
         <div class="alert alert-danger">
             <strong>Alert!</strong> Verification email has been sent. Please check your emails.
             <br>

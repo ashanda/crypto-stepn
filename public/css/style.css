@@ -70384,6 +70384,28 @@ form a.btn.btn-primary {
 }
 
 /* New alertbox */
-.alert_box{
-    text-align:center;
+.alert_box_outer {
+    text-align: center;
+    width: 100%;
+    position: absolute;
+    height: 100%;
+    top: 0;
+    z-index: 9999;
+    
+}
+
+.alert_box {
+    padding-top: 20%;
+    max-width: 800px;
+    margin: auto;
+}
+
+.alert_box .btn {
+    margin-top: 10px;
+}
+
+@media screen and (min-width: 1000px) {
+    .alert_box {
+        padding-top: 40%;
+    }
 }
