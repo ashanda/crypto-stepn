@@ -28,10 +28,10 @@
 
 <div id="alert_box_outer" class="alert_box_outer" style="display: none;">
     <div class="alert_box">
-        <div class="alert alert-danger">
+        <div class="alert alert-primary">
             <strong>Alert!</strong> Verification email has been sent. Please check your emails.
             <br>
-            <button onclick="close_alert()" class="text-center btn btn-danger">Ok</button>
+            <button onclick="close_alert()" class="text-center btn btn-primary">Ok</button>
         </div>
     </div>
 </div>
