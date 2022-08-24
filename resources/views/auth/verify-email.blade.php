@@ -38,11 +38,11 @@
 
 <script type="text/javascript">
     function show_alert() {
-        document.getElementById("alert_box").style.display = "block";
+        document.getElementById("alert_box_outer").style.display = "block";
     }
 
     function close_alert() {
-        document.getElementById("alert_box").style.display = "none";
+        document.getElementById("alert_box_outer").style.display = "none";
     }
     window.onload = show_alert();
 </script>
