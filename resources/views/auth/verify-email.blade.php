@@ -26,13 +26,21 @@
     </div>
 </div>
 
+<div id="alert_box" class="alert_box" style="display: none;">
+    <div class="alert alert-danger">
+        <strong>Alert!</strong> Verification email has been sent. Please check your emails.
+        <button onclick="close_alert()" class="btn btn-warning">Ok</button>
+    </div>
+</div>
+
 <script type="text/javascript">
-    function onload_alert() {
-
-        alert(" Verification email has been sent. Please check your emails");
-
+    function show_alert() {
+        document.getElementById("alert_box").style.display = "block";
     }
 
-    window.onload = onload_alert();
+    function close_alert() {
+        document.getElementById("alert_box").style.display = "none";
+    }
+    window.onload = show_alert();
 </script>
 @endsection

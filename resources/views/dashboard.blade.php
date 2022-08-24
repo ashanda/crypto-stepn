@@ -321,14 +321,6 @@
 										</tbody>
 									</table>
 
-									<script>
-										$(document).ready(function() {
-											$('#example4').DataTable({
-												pagingType: 'full_numbers',
-											});
-										});
-									</script>
-
 								</div>
 							</div>
 						</div>
