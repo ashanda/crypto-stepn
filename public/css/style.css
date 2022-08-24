@@ -70391,7 +70391,7 @@ form a.btn.btn-primary {
     height: 100%;
     top: 0;
     z-index: 9999;
-    
+    background: #00000021;
 }
 
 .alert_box {
@@ -70404,7 +70404,7 @@ form a.btn.btn-primary {
     margin-top: 10px;
 }
 
-@media screen and (min-width: 1000px) {
+@media screen and (max-width: 1000px) {
     .alert_box {
         padding-top: 40%;
     }
