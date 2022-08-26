@@ -110,16 +110,15 @@ class WalletController extends Controller
     
     }else if($request->package_status == 1){
         store_fee($request->uid,$fee);
-        /*if($wallet_balance->direct_balance > $wallet_balance->binary_balance){
-            $new_balance_direct = $wallet_balance->direct_balance - $request->amount;
+        if($wallet_balance->binary_balance > $request->amount){
+            $new_balance_binary = $wallet_balance->binary_balance - $request->amount;
 
-            // check if the direct balance is less than the binary balance
-            if($new_balance_direct == 0){
-                $wallet_balance->direct_balance = $new_balance_direct;
+            
+            if($new_balance_binary == 0){
+                $wallet_balance->binary_balance = $new_balance_binary;
 
             }else{
-                $new_balance_binary = $wallet_balance->binary_balance + $new_balance_direct;
-                $wallet_balance->direct_balance = 0;
+                
                 $wallet_balance->binary_balance  = $new_balance_binary;
             } 
         }else{
@@ -127,15 +126,13 @@ class WalletController extends Controller
             $new_balance_binary = $wallet_balance->binary_balance - $request->amount;
 
             // check if the direct balance is less than the binary balance
-            if($new_balance_binary == 0){
-                $wallet_balance->binary_balance = $new_balance_binary;
-            }else{
-                $new_direct_balance = $wallet_balance->binary_balance + $new_balance_binary;
+            if($new_balance_binary < 0){
                 $wallet_balance->binary_balance = 0;
+                $new_direct_balance = $wallet_balance->direct_balance + $new_balance_binary;
                 $wallet_balance->direct_balance  = $new_direct_balance;
             } 
 
-        }   */
+        } 
         if( $old__available_balance == 0){
             $wallet_balance->available_balance = 0; 
         }else{

@@ -650,7 +650,7 @@ function wallet_total(){
 
   // binary commission sum
   function binary_commision(){
-    $binary_commision = DB::table('wallets')->where('uid',Auth::user()->uid)->sum('binary_balance');
+    $binary_commision = DB::table('binary_earn_log')->where('uid',Auth::user()->uid)->sum('earn');
     
     
     return $binary_commision;
