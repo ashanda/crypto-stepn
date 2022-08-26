@@ -69,16 +69,18 @@ class PackageEarn extends Command
                     if($wallet!=null){
                         $wid = $wallet->id;
                         $new_available_balance = $wallet->available_balance + $package_earn;
-                        $new_wallet_balance = $wallet->available_balance + $package_earn;
+                        $new_package_balance = $wallet->package_balance + $package_earn;
+                        $new_wallet_balance = $wallet->wallet_balance + $package_earn;
                         DB::table('wallets')
                         ->where('id', $wid)
-                        ->update(['available_balance' => $new_available_balance, 'wallet_balance' => $new_wallet_balance]);
+                        ->update(['available_balance' => $new_available_balance, 'wallet_balance' => $new_wallet_balance, 'package_balance' => $new_package_balance]);
                         
                     }else{
                         DB::table('wallets')->insert([
                             'uid' => $user_id,
                             'wallet_balance' => $package_earn,
                             'available_balance' => $package_earn ,
+                            'package_balance' => $package_earn,
                         ]);
                     }
                     
@@ -98,15 +100,17 @@ class PackageEarn extends Command
                      if($wallet!=null){
                         $wid = $wallet->id;
                         $new_available_balance = $wallet->available_balance + $package_earn;
+                        $new_package_balance = $wallet->package_balance + $package_earn;
                         $new_wallet_balance = $wallet->available_balance + $package_earn;
                         DB::table('wallets')
                         ->where('id', $wid)
-                        ->update(['available_balance' => $new_available_balance, 'wallet_balance' => $new_wallet_balance]);
+                        ->update(['available_balance' => $new_available_balance, 'wallet_balance' => $new_wallet_balance, 'package_balance' => $new_package_balance]);
                     }else{
                         DB::table('wallets')->insert([
                             'uid' => $user_id,
                             'wallet_balance' => $package_earn,
                             'available_balance' => $package_earn ,
+                            'package_balance' => $package_earn,
                         ]);
                     }  
                     } 
