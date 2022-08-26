@@ -23,7 +23,7 @@
         </div>
         <div class="line fff">
                 <div class="copyright">
-                    Copyright ©<script>document.write(new Date().getFullYear())</script> <a href="#">Lemaconet</a>. Website Powered by <a href="https://yogeemedia.com/" target="_blank">YogeeMedia</a>.
+                    Copyright ©<script>document.write(new Date().getFullYear())</script> <a href="#">Lemaconet</a>. Website Powered by <a href="https://mozita.digital/" target="_blank">Mozita Digital</a>.
                 </div>
     </div>
 </div>

@@ -10,7 +10,7 @@
 <style>
     /* package-section Styles */
     .package-section {
-        padding-left: 25% !important;
+        padding-left: 360px !important;
     }
 
 
@@ -47,7 +47,7 @@
    
     <div class="row">
     @foreach ( $data as $package)
-    <div class="col-xl-4 col-lg-4 col-sm-4">
+    <div class="col-xl-3 col-lg-3 col-sm-4">
         <div class="card">
             <div class="card-body">
 
@@ -64,7 +64,7 @@
 
                         
                         <span class="price">${{ $package->package_value }}</span>
-                        <span class="userMsg">{{ 'Will be charged $10 as a service charge' }}</span>
+                        <span class="userMsg">{{ ' (Will be charged $10 as a service charge)' }}</span>
                         
                         <h3>Buy Package</h3>
 
