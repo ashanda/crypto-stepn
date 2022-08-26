@@ -1,6 +1,6 @@
 <div class="footer">
     <div class="copyright">
-        <p>Copyright © Designed &amp; Developed by <a href="http://yogeemedia.com/" target="_blank">Yogeemedia</a> 2022</p>
+        <p>Copyright © Designed &amp; Developed by <a href="https://mozita.digital/" target="_blank">Mozita Digital</a> 2022</p>
     </div>
 </div>          
 
