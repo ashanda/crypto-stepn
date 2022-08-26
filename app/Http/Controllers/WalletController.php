@@ -110,7 +110,7 @@ class WalletController extends Controller
     
     }else if($request->package_status == 1){
         store_fee($request->uid,$fee);
-        if($wallet_balance->binary_balance > $request->amount){
+        if($wallet_balance->binary_balance >= $request->amount){
             $new_balance_binary = $wallet_balance->binary_balance - $request->amount;
 
             
