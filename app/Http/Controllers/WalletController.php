@@ -123,14 +123,24 @@ class WalletController extends Controller
             } 
         }else{
 
-            $new_balance_binary = $wallet_balance->binary_balance - $request->amount;
-
+            $new_balance_binary = $request->amount - $wallet_balance->binary_balance;
+           
             // check if the direct balance is less than the binary balance
-            if($new_balance_binary < 0){
+            if($new_balance_binary <= $wallet_balance->direct_balance){
+                
                 $wallet_balance->binary_balance = 0;
-                $new_direct_balance = $wallet_balance->direct_balance + $new_balance_binary;
+                $new_direct_balance = $wallet_balance->direct_balance - $new_balance_binary;
                 $wallet_balance->direct_balance  = $new_direct_balance;
-            } 
+                
+                
+                
+            } else{
+                $new_total_balance = $new_balance_binary - $wallet_balance->direct_balance;
+                $wallet_balance->binary_balance = 0;
+                $wallet_balance->direct_balance  = 0;
+                $new_package_balance = $wallet_balance->package_balance - $new_total_balance ;
+                $wallet_balance->package_balance  = $new_package_balance;
+            }
 
         } 
         if( $old__available_balance == 0){
