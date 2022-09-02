@@ -117,8 +117,20 @@ class WalletController extends Controller
             if($new_balance_binary == 0){
                 $wallet_balance->binary_balance = $new_balance_binary;
 
-            }else{
+            /*}else if($new_balance_binary < 0){
+                $new_balance_binary = $request->amount - $wallet_balance->binary_balance;
+                if($new_balance_binary <= $wallet_balance->direct_balance){
+                    $new_balance_direct = $wallet_balance->direct_balance - $new_balance_binary;
+                    $wallet_balance->direct_balance  = $new_balance_direct;
+                }else{
+                    $new_total_balance = $new_balance_binary - $wallet_balance->direct_balance;
+                    $new_package_balance = $wallet_balance->package_balance - $new_total_balance ;
+                    $wallet_balance->package_balance  = $new_package_balance;
+
+                }*/
                 
+                
+            }else{
                 $wallet_balance->binary_balance  = $new_balance_binary;
             } 
         }else{

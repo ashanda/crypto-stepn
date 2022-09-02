@@ -88,28 +88,28 @@
 								<table width="100%">
 									<tr>
 										<td>Daily Rewards</td>
-										@php
-										$pck_earn = get_package_earning_amount(Auth::user()->uid);
-
-										@endphp
-										@if ($pck_earn[0]->count == NULL)
-										<td>$0</td>
-										@else
-										<td>${{ $pck_earn[0]->count }} </td>
-										@endif
-
+										<td>${{ all_wallet_commision()->package_balance }}</td>
 									</tr>
 									<tr>
+										
 										<td>Referral Rewards</td>
-										<td>${{ direct_commision() }}</td>
+										<td>${{ all_wallet_commision()->direct_balance }}</td>
 									</tr>
+									@if (left_right_side_direct(Auth::user()->uid) == 0)
 									<tr>
-										<td>Business Volume Rewards</td>
-										<td>${{ binary_commision() }}</td>
+										<td>Business Volume Rewards Holds</td>
+										<td>${{ all_wallet_commision()->binary_balance }}</td>
 									</tr>
+									@else
+										<tr>
+											<td>Business Volume Rewards</td>
+											<td>${{ all_wallet_commision()->binary_balance }}</td>
+										</tr>
+									@endif
+									
 									<tr>
 										<td>Total</td>
-										<td>${{ binary_commision() + direct_commision()+$pck_earn[0]->count }}</td>
+										<td>${{ all_wallet_commision()->direct_balance + all_wallet_commision()->binary_balance + all_wallet_commision()->package_balance }}</td>
 									</tr>
 								</table>
 							</div>

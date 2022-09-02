@@ -71,8 +71,7 @@ class TransController extends Controller
 
     public function store_p2p(Request $request)
     {
-       
-
+               
                 $id = $request->wallet_address;
                 $wallet_address = UserCryptoWallet::find($id);
 

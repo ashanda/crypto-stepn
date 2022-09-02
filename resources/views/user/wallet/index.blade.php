@@ -28,7 +28,7 @@
 											<div class="card-info">
 												<p class="mb-1 text-white fs-14">Total Rewards</p>
 												<div class="d-flex justify-content-between">
-													<h5 class="num-text text-white mb-5 font-w200">Total - ${{ wallet_total() }}</h5></br>
+													<h5 class="num-text text-white mb-5 font-w200">Total - ${{ all_wallet_commision()->wallet_balance }}</h5></br>
 													
 													<svg width="55" height="34" viewBox="0 0 55 34" fill="none" xmlns="http://www.w3.org/2000/svg">
 														<circle cx="38.0091" cy="16.7788" r="16.7788" fill="white" fill-opacity="0.67"></circle>
@@ -37,9 +37,9 @@
 												</div>
 												<div class="d-flex justify-content-between">
 													@if (left_right_side_direct(Auth::user()->uid) == 0)
-													<h5 class="num-text text-white mb-5 font-w200">Available - ${{ wallet_available_balance_sum() - binary_commision() }}</h5>
+													<h5 class="num-text text-white mb-5 font-w200">Available - ${{ all_wallet_commision()->available_balance - all_wallet_commision()->binary_balance }}</h5>
 													@else
-													<h5 class="num-text text-white mb-5 font-w200">Available - ${{ wallet_available_balance_sum() }}</h5>
+													<h5 class="num-text text-white mb-5 font-w200">Available - ${{ all_wallet_commision()->available_balance }}</h5>
 													@endif
 														
 												</div>
@@ -55,16 +55,10 @@
 											<div class="card-info">
 												<p class="mb-1 text-white fs-14">Daily Rewards</p>
 												<div class="d-flex justify-content-between">
-													@php
-														$pck_earn = get_package_earning_amount(Auth::user()->uid);
-											
-													@endphp
-													@if ($pck_earn[0]->count == NULL)
-													<h2 class="num-text text-white mb-5 font-w600">$0</h2>
-													@else
-													<h2 class="num-text text-white mb-5 font-w600">${{ $pck_earn[0]->count }}</h2>
 													
-													@endif
+													<h2 class="num-text text-white mb-5 font-w600">${{ all_wallet_commision()->package_balance }}</h2>
+													
+													
 													
 													<svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
 														<path d="M19.2744 18.8013H16.0334V23.616H19.2744C19.9286 23.616 20.5354 23.3506 20.9613 22.9053C21.4066 22.4784 21.672 21.8726 21.672 21.1989C21.673 19.8813 20.592 18.8013 19.2744 18.8013Z" fill="white"></path>
@@ -84,7 +78,7 @@
 											<div class="card-info">
 												<p class="mb-1 text-white fs-14">Referrel Rewards</p>
 												<div class="d-flex justify-content-between">
-													<h2 class="num-text text-white mb-5 font-w600">${{ direct_commision()}}</h2>
+													<h2 class="num-text text-white mb-5 font-w600">${{ all_wallet_commision()->direct_balance}}</h2>
 													<svg width="55" height="34" viewBox="0 0 55 34" fill="none" xmlns="http://www.w3.org/2000/svg">
 														<circle cx="38.0091" cy="16.7788" r="16.7788" fill="white" fill-opacity="0.67"></circle>
 														<circle cx="17.4636" cy="16.7788" r="16.7788" fill="white" fill-opacity="0.67"></circle>
@@ -102,7 +96,11 @@
 											<div class="card-info">
 												<p class="mb-1 text-white fs-14">Business Volume Rewards</p>
 												<div class="d-flex justify-content-between">
-													<h2 class="num-text text-white mb-5 font-w600">$ {{ binary_commision() }}</h2>
+													@if (left_right_side_direct(Auth::user()->uid) == 0)
+													<h2 class="num-text text-white mb-5 font-w600">$ {{ all_wallet_commision()->binary_balance }}<span class="h6 text-red font-w600">Hold</span></h2>
+													@else
+													<h2 class="num-text text-white mb-5 font-w600">$ {{ all_wallet_commision()->binary_balance }} </h2>
+													@endif
 													<svg width="55" height="34" viewBox="0 0 55 34" fill="none" xmlns="http://www.w3.org/2000/svg">
 														<circle cx="38.0091" cy="16.7788" r="16.7788" fill="white" fill-opacity="0.67"></circle>
 														<circle cx="17.4636" cy="16.7788" r="16.7788" fill="white" fill-opacity="0.67"></circle>

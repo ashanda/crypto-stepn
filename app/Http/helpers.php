@@ -21,6 +21,57 @@ use function PHPUnit\Framework\isEmpty;
    * @return response()
    */
 
+
+
+//sms
+function send_sms($receiver_number,$messsage)
+    {
+		$sender_id = 123;
+		$sa_token = 123;
+        
+
+        $api_link = 'https://sms.send.lk/api/v3/sms/send';
+        $mask = $sender_id;
+        $api_key = $sa_token;
+        $number = $receiver_number;   //Receiver Number
+        $messsage = $messsage;        //SENDING MESSAGE සිංහල / தமிழ் / English
+
+        $msgdata = array("recipient"=>$number, "sender_id"=>$mask, "message"=>$messsage);
+
+
+			
+			$curl = curl_init();
+			
+			//IF you are running in locally and if you don't have https/SSL. then uncomment bellow two lines
+			curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 0);
+			curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
+			
+			curl_setopt_array($curl, array(
+			  CURLOPT_URL => $api_link,
+			  CURLOPT_CUSTOMREQUEST => "POST",
+			  CURLOPT_POSTFIELDS => json_encode($msgdata),
+			  CURLOPT_HTTPHEADER => array(
+				"accept: application/json",
+				"authorization: Bearer $api_key",
+				"cache-control: no-cache",
+				"content-type: application/x-www-form-urlencoded",
+			  ),
+			));
+
+			$response = curl_exec($curl);
+
+			$err = curl_error($curl);
+
+			curl_close($curl);
+
+			if ($err) {
+			  echo "cURL Error #:" . $err;
+			} else {
+			  echo "send sucessfull";
+			}
+    }
+
+
 //left side binary chek
 
 function left_right_side_direct($user_id){
@@ -643,19 +694,20 @@ function wallet_total(){
 
 // direct commission sum 
   function direct_commision(){
-    $direct_commision = DB::table('direct__commissions')->where('uid',Auth::id())->sum('direct_commission');
+    $direct_commision = DB::table('wallets')->where('uid',Auth::user()->uid);
     return $direct_commision;
   }
 
 
-  // binary commission sum
-  function binary_commision(){
-    $binary_commision = DB::table('binary_earn_log')->where('uid',Auth::user()->uid)->sum('earn');
+  // all wallet commission
+  function all_wallet_commision(){
+    $all_wallet_commision = DB::table('wallets')->where('uid',Auth::user()->uid)->first();
     
     
-    return $binary_commision;
+    return $all_wallet_commision;
   }
 
+  
   function binary_commision_right(){
     $binary_commision = DB::table('user_binary_commissions')->where('uid',Auth::id())->sum('current_right_balance');
     
