@@ -88,28 +88,23 @@
 								<table width="100%">
 									<tr>
 										<td>Daily Rewards</td>
-										<td>${{ all_wallet_commision()->package_balance }}</td>
+										<td>${{ package_log_sum() }}</td>
 									</tr>
 									<tr>
 										
 										<td>Referral Rewards</td>
-										<td>${{ all_wallet_commision()->direct_balance }}</td>
+										<td>${{ direct_log_sum() }}</td>
 									</tr>
-									@if (left_right_side_direct(Auth::user()->uid) == 0)
+									
 									<tr>
-										<td>Business Volume Rewards (<span class="h6 text-red font-w600">Hold</span>)</td>
-										<td>${{ all_wallet_commision()->binary_balance }}</td>
+										<td>Business Volume Rewards</td>
+										<td>${{ binary_log_sum() }}</td>
 									</tr>
-									@else
-										<tr>
-											<td>Business Volume Rewards</td>
-											<td>${{ all_wallet_commision()->binary_balance }}</td>
-										</tr>
-									@endif
+									
 									
 									<tr>
 										<td>Total</td>
-										<td>${{ all_wallet_commision()->direct_balance + all_wallet_commision()->binary_balance + all_wallet_commision()->package_balance }}</td>
+										<td>${{ binary_log_sum() + direct_log_sum() + package_log_sum() }}</td>
 									</tr>
 								</table>
 							</div>

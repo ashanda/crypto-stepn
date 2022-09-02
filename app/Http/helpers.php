@@ -114,6 +114,22 @@ function left_right_side_direct($user_id){
     
     
 }
+
+function binary_log_sum(){
+  $binary_log_sum = DB::table("binary_earn_log")->where('uid', Auth::user()->uid)->sum('earn');
+  return $binary_log_sum;
+}
+
+function direct_log_sum(){
+  $direct_log_sum = DB::table("direct_earn_log")->where('uid', Auth::user()->uid)->sum('earn');
+  return $direct_log_sum;
+}
+
+function package_log_sum(){
+  $package_log_sum = DB::table("package_earn_log")->where('uid', Auth::user()->uid)->sum('earn');
+  return $package_log_sum;
+}
+
 //user_package total
 
 function user_package_total_binary($uid,$old_total,$new_value){

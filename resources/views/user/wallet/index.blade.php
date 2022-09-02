@@ -56,7 +56,7 @@
 												<p class="mb-1 text-white fs-14">Daily Rewards</p>
 												<div class="d-flex justify-content-between">
 													
-													<h2 class="num-text text-white mb-5 font-w600">${{ all_wallet_commision()->package_balance }}</h2>
+													<h2 class="num-text text-white mb-5 font-w600">${{ package_log_sum() }}</h2>
 													
 													
 													
@@ -78,7 +78,7 @@
 											<div class="card-info">
 												<p class="mb-1 text-white fs-14">Referrel Rewards</p>
 												<div class="d-flex justify-content-between">
-													<h2 class="num-text text-white mb-5 font-w600">${{ all_wallet_commision()->direct_balance}}</h2>
+													<h2 class="num-text text-white mb-5 font-w600">${{ direct_log_sum()}}</h2>
 													<svg width="55" height="34" viewBox="0 0 55 34" fill="none" xmlns="http://www.w3.org/2000/svg">
 														<circle cx="38.0091" cy="16.7788" r="16.7788" fill="white" fill-opacity="0.67"></circle>
 														<circle cx="17.4636" cy="16.7788" r="16.7788" fill="white" fill-opacity="0.67"></circle>
@@ -96,11 +96,11 @@
 											<div class="card-info">
 												<p class="mb-1 text-white fs-14">Business Volume Rewards</p>
 												<div class="d-flex justify-content-between">
-													@if (left_right_side_direct(Auth::user()->uid) == 0)
-													<h2 class="num-text text-white mb-5 font-w600">$ {{ all_wallet_commision()->binary_balance }} <span class="h6 text-red font-w600">Hold</span></h2>
-													@else
-													<h2 class="num-text text-white mb-5 font-w600">$ {{ all_wallet_commision()->binary_balance }} </h2>
-													@endif
+												
+													<h2 class="num-text text-white mb-5 font-w600">$ {{ binary_log_sum() }} </h2>
+													
+													
+													
 													<svg width="55" height="34" viewBox="0 0 55 34" fill="none" xmlns="http://www.w3.org/2000/svg">
 														<circle cx="38.0091" cy="16.7788" r="16.7788" fill="white" fill-opacity="0.67"></circle>
 														<circle cx="17.4636" cy="16.7788" r="16.7788" fill="white" fill-opacity="0.67"></circle>
