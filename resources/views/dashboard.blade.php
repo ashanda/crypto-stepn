@@ -97,8 +97,8 @@
 									</tr>
 									@if (left_right_side_direct(Auth::user()->uid) == 0)
 									<tr>
-										<td>Business Volume Rewards</td>
-										<td>${{ all_wallet_commision()->binary_balance }}<span class="h6 text-red font-w600">Hold</span></td>
+										<td>Business Volume Rewards (<span class="h6 text-red font-w600">Hold</span>)</td>
+										<td>${{ all_wallet_commision()->binary_balance }}</td>
 									</tr>
 									@else
 										<tr>
