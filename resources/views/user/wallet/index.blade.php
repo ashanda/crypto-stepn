@@ -97,7 +97,7 @@
 												<p class="mb-1 text-white fs-14">Business Volume Rewards</p>
 												<div class="d-flex justify-content-between">
 													@if (left_right_side_direct(Auth::user()->uid) == 0)
-													<h2 class="num-text text-white mb-5 font-w600">$ {{ all_wallet_commision()->binary_balance }}<span class="h6 text-red font-w600">Hold</span></h2>
+													<h2 class="num-text text-white mb-5 font-w600">$ {{ all_wallet_commision()->binary_balance }} <span class="h6 text-red font-w600">Hold</span></h2>
 													@else
 													<h2 class="num-text text-white mb-5 font-w600">$ {{ all_wallet_commision()->binary_balance }} </h2>
 													@endif
