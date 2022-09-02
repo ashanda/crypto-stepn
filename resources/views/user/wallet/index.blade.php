@@ -37,7 +37,7 @@
 												</div>
 												<div class="d-flex justify-content-between">
 													@if (left_right_side_direct(Auth::user()->uid) == 0)
-													<h5 class="num-text text-white mb-5 font-w200">Available - ${{ all_wallet_commision()->available_balance - all_wallet_commision()->binary_balance }}<span class="h6 text-read">Hold</span></h5>
+													<h5 class="num-text text-white mb-5 font-w200">Available - ${{ all_wallet_commision()->available_balance - all_wallet_commision()->binary_balance }}<span class="h4 text-red"> (Hold)</span> </h5>
 													@else
 													<h5 class="num-text text-white mb-5 font-w200">Available - ${{ all_wallet_commision()->available_balance }}</h5>
 													@endif
