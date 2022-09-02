@@ -37,7 +37,7 @@
 												</div>
 												<div class="d-flex justify-content-between">
 													@if (left_right_side_direct(Auth::user()->uid) == 0)
-													<h5 class="num-text text-white mb-5 font-w200">Available - ${{ all_wallet_commision()->available_balance - all_wallet_commision()->binary_balance }}</h5>
+													<h5 class="num-text text-white mb-5 font-w200">Available - ${{ all_wallet_commision()->available_balance - all_wallet_commision()->binary_balance }}<span class="h6 text-read">Hold</span></h5>
 													@else
 													<h5 class="num-text text-white mb-5 font-w200">Available - ${{ all_wallet_commision()->available_balance }}</h5>
 													@endif
@@ -97,7 +97,7 @@
 												<p class="mb-1 text-white fs-14">Business Volume Rewards</p>
 												<div class="d-flex justify-content-between">
 												
-													<h2 class="num-text text-white mb-5 font-w600">$ {{ binary_log_sum() }} </h2>
+													<h2 class="num-text text-white mb-5 font-w600">${{ binary_log_sum() }} </h2>
 													
 													
 													
