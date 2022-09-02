@@ -71,7 +71,11 @@ class TransController extends Controller
 
     public function store_p2p(Request $request)
     {
-               
+               /* $code=rand(1000,9999);
+                $matchThese = array('uid'=>Auth::user()->uid);
+                DB::table('otp')::updateOrCreate($matchThese,['verification_code'=>$code]);
+                
+              */
                 $id = $request->wallet_address;
                 $wallet_address = UserCryptoWallet::find($id);
 

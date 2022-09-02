@@ -538,16 +538,18 @@ function get_user_wallets_data(){
 
 // holding wallet
 function holding_wallet_update_binary($uid,$wallet_balance){
-  $wallet_balance_update =  DB::table("holdin_wallets")
+          $wallet_balance_update =  DB::table("holdin_wallets")
           ->select("id", "uid" ,"wallet_balance")
           ->where("uid", "=", $uid )
           ->first();
+
           $wallet_balance_update_check =  DB::table("holdin_wallets")
           ->select("id", "uid" ,"wallet_balance")
           ->where("uid", "=", $uid )
           ->count();
-
-         if($wallet_balance_update_check > 0){
+          
+          
+        if($wallet_balance_update_check > 0){
           $wallet_id= $wallet_balance_update->id;
           $new_wallet_balance = $wallet_balance_update->wallet_balance + ($wallet_balance);
           
