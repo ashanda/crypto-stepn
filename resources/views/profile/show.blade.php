@@ -73,7 +73,7 @@
                                                         Two factor Authentication has been enabled.
                                                     </div>
                                                 @endif
-                            
+         
                             
                                                 <form method="POST" action="/user/two-factor-authentication">
                                                     @csrf

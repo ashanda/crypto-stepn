@@ -21,7 +21,19 @@ use function PHPUnit\Framework\isEmpty;
    * @return response()
    */
 
+function email_send(){
 
+  $details = [
+
+    'title' => 'Mail from ItSolutionStuff.com',
+
+    'body' => 'This is for testing email using smtp'
+
+  ];
+
+
+dd("Email is Sent.");
+}
 
 //sms
 function send_sms($receiver_number,$messsage)
@@ -956,7 +968,7 @@ function direct_commission_update_queries( $current_row_uid,$new_direct_commissi
   ->where("uid", "=", $current_row_uid )
   ->first();
   
-  direct_earn_log($current_row_uid,1,$new_direct_commission);
+ 
 
 if($direct_commission != NULL){
   //echo $current_row_uid.'update ';
@@ -986,7 +998,7 @@ if($direct_commission != NULL){
     
 
 }
-
+direct_earn_log($current_row_uid,1,$new_direct_commission);
 
 }
 
