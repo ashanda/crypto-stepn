@@ -36,9 +36,14 @@
                             
 
 
+                           
+                            <input type="hidden" name="package_cat_id" value="{{ $buy_package[0]->package_cat_id }}">
                             <input type="hidden" name="pref_id" value="{{ get_ref()->parent_id }}">
                             <input type="hidden" name="package_id" value="{{ $buy_package[0]->id  }}">
-                            <input type="hidden" name="package_value" value="{{ $buy_package[0]->package_value+10  }}">
+                            <input type="hidden" name="package_value" value="{{ $buy_package[0]->package_value  }}">
+                            <input type="hidden" name="currency_type" value="USDT">
+                            <input type="hidden" name="network" value="Wallet">
+                            
                             <div class="form-group">
                                 <div class="custom-control custom-checkbox ml-1">
                                     <input type="checkbox" class="custom-control-input" id="basic_checkbox_1">

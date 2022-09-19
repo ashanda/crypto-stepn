@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Models\User_Package;
 use App\Models\User_Parent;
-
+use App\Models\wallet;
 use App\Models\Direct_Commission;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -85,47 +85,102 @@ class BuypackageController extends Controller
                 
                 
                 ]);
-                $buy_package = new User_Package();
-                $buy_package->uid = Auth::user()->uid;
-                if($request->file('deposite_ss')){
-                    $file= $request->file('deposite_ss');
-                    $filename= date('YmdHi').$file->getClientOriginalName();
-                    $file-> move(public_path('/deposite/img'), $filename);
-                    $buy_package->deposite_ss = $filename;
-                }
-                $buy_package->package_id = $request->package_id;
-                
-                $user_current_package = DB::table('packages')->where('id','=',$buy_package->package_id)->get();
-                
-                // check previous package
-                $previous_package = previous_package_check($buy_package->uid);
-                
-                
-                if ($previous_package == 0){
-                     
-                    $package_revenue = $request->package_value * 5;
-                    $package_revenue_double = $request->package_value * 2;
-                    $package_revenue_triple = $request->package_value * 3;
+            
+                if($request->network == 'Wallet'){
+                    $buy_package = new User_Package();
+                    $buy_package->uid = Auth::user()->uid;
+                    $buy_package->deposite_ss = 'none';
+                    
+                    $buy_package->package_id = $request->package_id;
+                    
+                    $user_current_package = DB::table('packages')->where('id','=',$buy_package->package_id)->get();
+                    
+                    // check previous package
+                    $previous_package = previous_package_check($buy_package->uid);
+                    
+                    
+                    if ($previous_package == 0){
+                         
+                        $package_revenue = $request->package_value * 5;
+                        $package_revenue_double = $request->package_value * 2;
+                        $package_revenue_triple = $request->package_value * 3;
+                    }else{
+                        $package_revenue_double = $request->package_value * 2;
+                        $package_revenue_triple = $request->package_value * 3;
+                        $package_revenue = $request->package_value * 4;
+                    }
+                    if(user_package_count() == 0){
+                        $buy_package->package_value = $request->package_value+10;
+                    }else{
+                        $buy_package->package_value = $request->package_value+10;
+                    }
+                    $buy_package->package_cat_id = $request->package_cat_id;
+                    $buy_package->package_double_value = $package_revenue_double;
+                    $buy_package->package_triple_value = $package_revenue_triple;
+                    $buy_package->package_max_revenue = $package_revenue;
+                    $buy_package->currency_type = $request->currency_type;
+                    $buy_package->network = $request->network;
+                    $buy_package->save();
+
+                    $old_wallet = wallet::where('uid',$buy_package->uid) -> first();
+                   
+                    wallet::where('uid', $buy_package->uid)
+                    ->update([
+                        'wallet_balance' => $old_wallet->wallet_balance - $buy_package->package_value,
+                        'available_balance' => $old_wallet->wallet_balance - $buy_package->package_value
+                        ]);
+                      buy_package_mail($request->package_value);
+                    Alert::Alert('Success', 'Package has been buying successfully.')->persistent(true,false);
+                    return redirect()->route('buy_package.index');
+
+
                 }else{
-                    $package_revenue_double = $request->package_value * 2;
-                    $package_revenue_triple = $request->package_value * 3;
-                    $package_revenue = $request->package_value * 4;
+                    $buy_package = new User_Package();
+                    $buy_package->uid = Auth::user()->uid;
+                    if($request->file('deposite_ss')){
+                        $file= $request->file('deposite_ss');
+                        $filename= date('YmdHi').$file->getClientOriginalName();
+                        $file-> move(public_path('/deposite/img'), $filename);
+                        $buy_package->deposite_ss = $filename;
+                    }else{
+                        $buy_package->deposite_ss = 'none';
+                    }
+                    $buy_package->package_id = $request->package_id;
+                    
+                    $user_current_package = DB::table('packages')->where('id','=',$buy_package->package_id)->get();
+                    
+                    // check previous package
+                    $previous_package = previous_package_check($buy_package->uid);
+                    
+                    
+                    if ($previous_package == 0){
+                         
+                        $package_revenue = $request->package_value * 5;
+                        $package_revenue_double = $request->package_value * 2;
+                        $package_revenue_triple = $request->package_value * 3;
+                    }else{
+                        $package_revenue_double = $request->package_value * 2;
+                        $package_revenue_triple = $request->package_value * 3;
+                        $package_revenue = $request->package_value * 4;
+                    }
+                    if(user_package_count() == 0){
+                        $buy_package->package_value = $request->package_value+10;
+                    }else{
+                        $buy_package->package_value = $request->package_value+10;
+                    }
+                    $buy_package->package_cat_id = $request->package_cat_id;
+                    $buy_package->package_double_value = $package_revenue_double;
+                    $buy_package->package_triple_value = $package_revenue_triple;
+                    $buy_package->package_max_revenue = $package_revenue;
+                    $buy_package->currency_type = $request->currency_type;
+                    $buy_package->network = $request->network;
+                    $buy_package->save();
+                    buy_package_mail($request->package_value);
+                    Alert::Alert('Success', 'Package has been buying successfully.')->persistent(true,false);
+                    return redirect()->route('buy_package.index');
                 }
-                if(user_package_count() == 0){
-                    $buy_package->package_value = $request->package_value+10;
-                }else{
-                    $buy_package->package_value = $request->package_value+10;
-                }
-                $buy_package->package_cat_id = $request->package_cat_id;
-                $buy_package->package_double_value = $package_revenue_double;
-                $buy_package->package_triple_value = $package_revenue_triple;
-                $buy_package->package_max_revenue = $package_revenue;
-                $buy_package->currency_type = $request->currency_type;
-                $buy_package->network = $request->network;
-                $buy_package->save();
+
                 
-                Alert::Alert('Success', 'Package has been buying successfully.')->persistent(true,false);
-                return redirect()->route('buy_package.index');
         
            
         }
@@ -178,7 +233,11 @@ class BuypackageController extends Controller
                 }
                 if($role==0){
                     
-                    $buy_package = DB::table('packages')->where('id', $id)->get();  
+                    $buy_package = DB::table('packages')
+                    ->join('package__categories','package__categories.cat_name','=','packages.package_category')
+                    ->where('packages.id', $id)
+                    ->select('packages.id','package__categories.id as package_cat_id','packages.package_category','packages.package_name', 'packages.package_value', 'packages.package_status')
+                    ->get(); 
                     
                     return view('user.package.wallet_buy',compact('buy_package','id'));
                 }
