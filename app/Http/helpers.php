@@ -411,18 +411,18 @@
           </table>
         </body>
       </html>' ;
-      $plain = "5% off its awesome\n\nGo get it now!" ;
+      
       $to = Auth::user()->email ;
       $subject= 'Lemaco Buy Package';
       $formEmail = 'support@lemaconet.com' ;
       $formName = 'LemacoNet';
 
-      Mail::send([], [], function($message) use($html, $plain, $to, $subject, $formEmail, $formName){
+      Mail::send([], [], function($message) use($html, $to, $subject, $formEmail, $formName){
         $message->from($formEmail, $formName);
         $message->to($to);
         $message->subject($subject);
         $message->setBody($html, 'text/html' ); // dont miss the '<html></html>' or your spam score will increase !
-        $message->addPart($plain, 'text/plain');
+        
     });
   
    
