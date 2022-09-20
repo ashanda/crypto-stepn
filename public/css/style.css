@@ -64549,6 +64549,22 @@ table.dataTable.display tbody td {
     border-radius: 15px;
 }
 
+.Profe{
+    color:white; /*dinuka - change pay package interface's profe screen shot text color*/ 
+}
+
+.userMsg{ /*dinuka*/
+    color: white;
+    font-weight: 0px;
+}
+
+.disclaimer{ /*dinuka*/
+    color: white;
+}
+ 
+
+
+
 @media only screen and (max-width: 1199px) {
     .my-profile img {
         height: 100px;
@@ -70409,3 +70425,4 @@ form a.btn.btn-primary {
         padding-top: 40%;
     }
 }
+

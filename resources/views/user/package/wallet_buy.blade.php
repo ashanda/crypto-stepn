@@ -42,7 +42,7 @@
                             <div class="form-group">
                                 <div class="custom-control custom-checkbox ml-1">
                                     <input type="checkbox" class="custom-control-input" id="basic_checkbox_1">
-                                    <label class="custom-control-label" for="basic_checkbox_1"><a target="_blank" href="/disclaimer_notice">Disclaimer Notice</a></label>
+                                    <label class="custom-control-label" for="basic_checkbox_1"></label>
                                 </div>
                             </div>
                             <span class="price">${{ $buy_package[0]->package_value+10  }}</span>

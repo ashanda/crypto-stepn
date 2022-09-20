@@ -61,8 +61,8 @@
                                 <button onclick="myFunction()">Copy</button>
                             </div>
                             <div class="form-group">
-                                <strong>Profe Screen Shot:</strong>
-                                <input type="file" name="deposite_ss" class="form-control" placeholder="Profe Screen Shot" required>
+                                <strong class="Profe">Profe Screen Shot:</strong>
+                                <input type="file" name="deposite_ss" class="form-control"  placeholder="Profe Screen Shot" required>
                                 @error('deposite_ss')
                                 <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                                 @enderror
@@ -75,7 +75,7 @@
                             <div class="form-group">
                                 <div class="custom-control custom-checkbox ml-1">
                                     <input type="checkbox" class="custom-control-input" id="basic_checkbox_1" required>
-                                    <label class="custom-control-label" for="basic_checkbox_1"><a target="_blank" href="/disclaimer_notice">Disclaimer Notice</a></label>
+                                    <label class="custom-control-label" for="basic_checkbox_1"><a target="_blank" href="/disclaimer_notice" class="disclaimer">Disclaimer Notice</a></label>
                                 </div>
                             </div>
                             
