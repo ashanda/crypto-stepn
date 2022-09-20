@@ -142,7 +142,7 @@ right connector from last child*/
                             </div><!-- end left child -->
                             
                             <div id="right_child" class="genealogy_child">
-                            </div><!-- end right child -->
+                            </div><!-- end ight child -->
 
 
                         </div>
