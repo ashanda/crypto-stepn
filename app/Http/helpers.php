@@ -152,10 +152,22 @@ function package_log_sum(){
 
 //user_package total
 
-function user_package_total_binary($uid,$old_total,$new_value){
-  DB::table('user__packages')
-  ->where('id', $uid )
-  ->update(array('total' => ( $old_total + $new_value) ));
+function user_package_total_binary($row_id,$uid,$remain_total,$old_total,$new_value){
+  if($remain_total >= ($old_total+$new_value)){
+
+    DB::table('user__packages')
+    ->where('id', $row_id )
+    ->update(array('total' => ( $old_total + $new_value) ));
+
+  }elseif($remain_total < ($old_total + $new_value)){
+    
+    $holding_wallte_value =  ($old_total + $new_value) - $old_total;
+    holding_wallet_update_binary($uid,$holding_wallte_value);
+
+  }
+  
+  
+
 }
 
 // log data
@@ -953,13 +965,13 @@ function validate_user_commissions( $current_row_uid,$new_direct_commission,$dir
             
               // User Package Table Update with Total
           
-            user_package_total_binary($User_packages_details[0]->id ,$User_packages_details[0]->total,$new_direct_commission);
-            direct_commission_update_queries($current_row_uid,$new_direct_commission,$direct_commission_count,$package_value);    
+            user_package_total_binary($User_packages_details[0]->id,$User_packages_details[0]->uid,$package->package_max_revenue,$package->total,$new_direct_commission);
+            direct_commission_update_queries($User_packages_details[0]->id,$current_row_uid,$new_direct_commission,$direct_commission_count,$package_value);    
             $balance_commission = 0;  
 
           }else{          
                
-            direct_commission_update_queries($current_row_uid,$new_direct_commission,$direct_commission_count,$package_value);
+            user_package_total_binary($User_packages_details[0]->id,$User_packages_details[0]->uid,$package->package_max_revenue,$package->total,$new_direct_commission);
             $balance_commission = $new_direct_commission - $package_earning_capacity;
           }            
         }
@@ -1114,20 +1126,20 @@ function validate_binary_commissions( $ref_s,$virtual_parentid,$current_row_uid,
 
       if(	$current_left_balance == $current_right_balance ){
         // Update user_packages table total 
-        user_package_total_binary($User_packages_details[0]->id ,$User_packages_details[0]->total,$current_right_balance);
+        user_package_total_binary($User_packages_details[0]->id ,$User_packages_details[0]->uid,$package->package_max_revenue,$User_packages_details[0]->total,$current_right_balance);
        
        } else if( $current_left_balance < $current_right_balance ){				
    // Update user_packages table total 
        
         
         $current_right_balance = $current_right_balance - $current_left_balance;
-        user_package_total_binary($User_packages_details[0]->id ,$User_packages_details[0]->total,$current_left_balance);
+        user_package_total_binary($User_packages_details[0]->id ,$User_packages_details[0]->uid,$package->package_max_revenue,$User_packages_details[0]->total,$current_left_balance);
         
       }else if($current_left_balance > $current_right_balance){
         // Update user_packages table total 
         $current_left_balance = $current_left_balance - $current_right_balance;
 
-        user_package_total_binary($User_packages_details[0]->id ,$User_packages_details[0]->total,$current_right_balance);
+        user_package_total_binary($User_packages_details[0]->id ,$User_packages_details[0]->uid,$package->package_max_revenue,$User_packages_details[0]->total,$current_right_balance);
         
         
      }

@@ -54,10 +54,14 @@ class PackageEarn extends Command
                    if($new_total > $package_value*3 ){
                      $remaning_value = $new_total - $package_value*3;
                      $new_total_value = ($package_earn - $remaning_value) + $current_earn->total;  
-                   }else{
+                     User_Package::whereId($current_user_package_id)->update(['total' => $new_total_value,'package_commission_update_at' => date('Y-m-d H:i:s')]);
+                   }else if($new_total < $package_value*3){
                     $new_total_value = $new_total;
+                    User_Package::whereId($current_user_package_id)->update(['total' => $new_total_value,'package_commission_update_at' => date('Y-m-d H:i:s')]);
+                   }else{
+                    
                    }
-                   User_Package::whereId($current_user_package_id)->update(['total' => $new_total_value,'package_commission_update_at' => date('Y-m-d H:i:s')]);
+                  
                    $data = Package_Commissons::where('uid','=',$user_id ,'AND','package_id','=',$current_earn->package_id)->first();
                    $wallet = wallet::where('uid','=',$user_id)->first();
                    
