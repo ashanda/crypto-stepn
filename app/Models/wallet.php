@@ -9,7 +9,12 @@ class wallet extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'uid'
+        'uid',
+        'wallet_balance',
+        'available_balance',
+        'binary_balance',
+        'direct_balance',
+        'package_balance'
         
     ];
 }
