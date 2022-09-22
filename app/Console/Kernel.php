@@ -21,7 +21,7 @@ class Kernel extends ConsoleKernel
     {
         $schedule->command('PackageEarn:cron')->timezone('Asia/Colombo')->dailyAt('02:00');
         $schedule->command('AutoRemoveNotBuyUser:cron')->timezone('Asia/Colombo')->dailyAt('02:00');
-        $schedule->command('WalletDuplicateFind:cron')->timezone('Asia/Colombo')->dailyAt('02:40');
+        $schedule->command('WalletDuplicateFind:cron')->timezone('Asia/Colombo')->everyFiveMinutes();;
        // $schedule->command('backup:run')->daily();
 
         $schedule->call(function () {

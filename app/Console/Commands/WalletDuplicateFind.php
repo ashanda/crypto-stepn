@@ -7,7 +7,6 @@ use Illuminate\Support\Facades\DB;
 use App\Models\wallet;
 use App\Models\User_Package;
 use App\Models\Package_Commissons;
-
 class WalletDuplicateFind extends Command
 {
     /**
@@ -15,14 +14,14 @@ class WalletDuplicateFind extends Command
      *
      * @var string
      */
-    protected $signature = 'command:WalletDuplicateFind';
+    protected $signature = 'WalletDuplicateFind:cron';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Wallet Duplicate Finder';
+    protected $description = 'Command description';
 
     /**
      * Create a new command instance.
@@ -75,4 +74,5 @@ class WalletDuplicateFind extends Command
      }  
 
     }
+    
 }
