@@ -14,12 +14,84 @@
     use App\Models\Package;
     use Illuminate\Support\Facades\Mail;
     use function PHPUnit\Framework\isEmpty;
-
+    use Illuminate\Support\Facades\Log;
    /**
    * Write code on Method
    *
    * @return response()
    */
+
+  function earn_debug($uid){
+   $package_count = DB::table('user__packages')
+                    ->where('uid', '=', $uid)
+                    ->count();
+                
+    $package_total = DB::table('user__packages')
+                    ->select('package_value','package_max_revenue','total')
+                    ->where('uid', '=', $uid)
+                    ->get();
+    $transection = DB::table('transections')->where("uid", "=", $uid)->where("status", "=", 1)
+    ->get( array(
+        DB::raw( 'SUM(amount) AS amount' ),
+        DB::raw( 'SUM(fee) AS fee' ),  
+    ));
+
+    
+
+    $package = DB::table('package_earn_log')->where("uid", "=", $uid)
+    ->get( array(
+        DB::raw( 'SUM(earn) AS earn' ),   
+    ));
+    $direct = DB::table('direct_earn_log')->where("uid", "=", $uid)
+    ->get( array(
+        DB::raw( 'SUM(earn) AS earn' ),   
+    ));
+
+    $binary = DB::table('binary_earn_log')->where("uid", "=", $uid)
+    ->get( array(
+        DB::raw( 'SUM(earn) AS earn' ),   
+    ));
+    echo '<ul>';
+    echo  '<li>User ID : '.$uid.'</li>' ; 
+    echo '<br>';
+    echo  '<li>Package Count : '.$package_count.'</li>' ; 
+
+    foreach($package_total as $package_total){
+      echo '<br>';
+      echo  '<li>Package Value : '.$package_total->package_value.'</li>';  
+      echo  '<li>User Package Earn table Total : '.$package_total->total.'</li>'; 
+      echo '<br>';
+    }                
+    
+    echo  '<li>Earn Total : '.$binary[0]->earn + $direct[0]->earn + $package[0]->earn.'</li>'; 
+    echo '<br>';
+    echo  '<li>Now Wallet Balance : '.($binary[0]->earn + $direct[0]->earn + $package[0]->earn)- ($transection[0]->amount + $transection[0]->fee).'</li>'; 
+    echo '<br>';
+    echo  '<li>Package Transection Amount : '.$transection[0]->amount.'</li>';   
+    echo '<br>';
+    echo  '<li>Package Transection Fee : '.$transection[0]->fee.'</li>'; 
+    echo '<br>'; 
+    echo  '<li>Binary Earn Total : '.$binary[0]->earn.'</li>'; 
+    echo '<br>'; 
+    echo  '<li>Package Earn Total : '.$package[0]->earn.'</li>';  
+    echo '<br>';     
+    echo  '<li>Direct Earn Total : '.$direct[0]->earn.'</li>';  
+    echo '<br>'; 
+    echo  '<li>Hold Total : '.($binary[0]->earn + $direct[0]->earn + $package[0]->earn) - $package_total->package_max_revenue.'</li>';
+    echo '<br>'; 
+    echo  '<li>Withdrawel Total : '.$transection[0]->amount + $transection[0]->fee.'</li>';
+    echo '<br>'; 
+    echo  '<li>Wallet Remaining balance : '.$package_total->package_max_revenue - ($transection[0]->amount + $transection[0]->fee).'</li>';
+    echo '<br>'; 
+    echo '</ul>';                        
+
+  /*$User_packages_details =  DB::table("user__packages")->select("id", "uid" ,"package_max_revenue","total","status")
+    ->where("uid", "=", $uid ,'AND','current_status','=',1)
+    ->orderBy('id','asc')
+    ->get();
+    return $User_packages_details;
+    */
+  }
 
   
   function globle_send_mail($html)
@@ -955,8 +1027,10 @@ function validate_user_commissions( $current_row_uid,$new_direct_commission,$dir
    
   if (isset($User_packages_details)) {  
    // var_dump($User_packages_details);
+   $i=0;
   foreach($User_packages_details as $package){
-    
+    if($i==0){
+      
     $package_earning_capacity = $package->package_max_revenue - $package->total;
     
     if($balance_commission >= 0){
@@ -975,6 +1049,10 @@ function validate_user_commissions( $current_row_uid,$new_direct_commission,$dir
             $balance_commission = $new_direct_commission - $package_earning_capacity;
           }            
         }
+      }else{
+
+      }  
+      $i++;
     } 
   } 
     
@@ -985,7 +1063,7 @@ function direct_commission_update_queries( $current_row_uid,$new_direct_commissi
  
   $direct_commission =  DB::table("direct__commissions")
   ->select("id", "uid" ,"direct_commission")
-  ->where("uid", "=", $current_row_uid )
+  ->where("id", "=", $current_row_uid )
   ->first();
   
  
@@ -1062,7 +1140,7 @@ function validate_binary_commissions( $ref_s,$virtual_parentid,$current_row_uid,
   //$virtual_parentid = $virtual_parentid[0]->uid;
   $User_packages_details =  DB::table("user__packages")->select("id", "uid" ,"package_max_revenue","total","status")
     ->where("uid", "=", $virtual_parentid ,'AND','current_status','=',1)
-    ->orderBy('id','asc')
+    ->orderBy('id','desc')
     ->get();
   
    $User_binary_details =  DB::table("user_binary_commissions")
@@ -1079,9 +1157,9 @@ function validate_binary_commissions( $ref_s,$virtual_parentid,$current_row_uid,
    $current_left_balance=0;
    $current_right_balance=0;  
   if (isset($User_packages_details)) {  
-    
+    $i=0;
   foreach($User_packages_details as $package){
-    
+    if($i==0){
     $package_earning_capacity = $package->package_max_revenue - $package->total;
     
     if($package->package_max_revenue >= $package->total){
@@ -1159,6 +1237,11 @@ function validate_binary_commissions( $ref_s,$virtual_parentid,$current_row_uid,
       }else{
         binary_commission_update_query_hold($ref_s,$User_binary_details,$virtual_parentid,$current_row_uid,$balance_commission);
       }
+
+     }else{
+
+    }
+      $i++;
     } 
   } 
     
