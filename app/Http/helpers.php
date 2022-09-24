@@ -615,7 +615,7 @@ function get_user_wallets_data(){
             $new_wallet_balance = $wallet_balance_update->wallet_balance + ($wallet_balance);
             $new_direct_balance = $wallet_balance_update->direct_balance + ($wallet_balance);
             
-    DB::table('wallets')
+          DB::table('wallets')
               ->where('id', $wallet_id)
               ->update(['wallet_balance' => $new_wallet_balance,'available_balance' =>$new_wallet_balance,'direct_balance' =>$new_direct_balance]);
            }else{
@@ -1019,7 +1019,7 @@ function direct_commission_find( $package_value,  $commission_ratio , $direct_co
 function validate_user_commissions( $current_row_uid,$new_direct_commission,$direct_commission_count,$package_value ){
  
   $balance_commission = $new_direct_commission;
-  
+ 
   $User_packages_details =  DB::table("user__packages")->select("id", "uid" ,"package_max_revenue","total","status")
     ->where("uid", "=", $current_row_uid ,'AND','current_status','=',1)
     ->orderBy('id','asc')
@@ -1059,8 +1059,8 @@ function validate_user_commissions( $current_row_uid,$new_direct_commission,$dir
 }
 
 //direct_commission_update_queries
-function direct_commission_update_queries( $current_row_uid,$new_direct_commission,$direct_commission_count,$package_value ){
- 
+function direct_commission_update_queries($user_packages_row,$current_row_uid,$new_direct_commission,$direct_commission_count,$package_value ){
+  
   $direct_commission =  DB::table("direct__commissions")
   ->select("id", "uid" ,"direct_commission")
   ->where("id", "=", $current_row_uid )
@@ -1070,6 +1070,7 @@ function direct_commission_update_queries( $current_row_uid,$new_direct_commissi
 
 if($direct_commission != NULL){
   //echo $current_row_uid.'update ';
+  dd($user_packages_row);
   $direct_commision_id= $direct_commission->id;
   $direct_commission_total = $direct_commission->direct_commission + $new_direct_commission;
   DB::table('direct__commissions')
@@ -1077,7 +1078,7 @@ if($direct_commission != NULL){
       ->update(array('direct_commission' => $direct_commission_total ));
 
    wallet_update_direct($current_row_uid, $new_direct_commission );
-
+   
   
   }else{
     
@@ -1092,12 +1093,12 @@ if($direct_commission != NULL){
       'available_balance' => $new_direct_commission,
       'direct_balance' => $new_direct_commission,
   ]);
-    
+  
     
 
 }
-direct_earn_log($current_row_uid,1,$new_direct_commission);
 
+direct_earn_log($current_row_uid,1,$new_direct_commission);
 }
 
 /****************************************** */

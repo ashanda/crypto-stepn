@@ -61,7 +61,7 @@ class HomeController extends Controller
     public function disclaimer_notice(){
         $role=Auth::user()->role;
         if($role==0){
-            package_commission();
+            
             return view('user.disclaimer.index');
         }
         
