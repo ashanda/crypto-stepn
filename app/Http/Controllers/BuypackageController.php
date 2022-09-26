@@ -138,7 +138,7 @@ class BuypackageController extends Controller
                             'currency_type'=>'USDT',
                             'network'=>'No',
                             'wallet_address'=>'No',
-                            'status'=>2,
+                            'status'=>1,
                         ]);    
 
 
