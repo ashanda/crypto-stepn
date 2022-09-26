@@ -100,12 +100,17 @@
 										<td>Business Volume Rewards</td>
 										<td>${{ binary_log_sum() }}</td>
 									</tr>
-									
+									<tr>
+										<td>Holding Balance</td>
+										<td>${{ holding_log_sum() }}</td>
+									</tr>
 									
 									<tr>
 										<td>Total</td>
 										<td>${{ binary_log_sum() + direct_log_sum() + package_log_sum() }}</td>
 									</tr>
+									
+									
 								</table>
 							</div>
 						</div>

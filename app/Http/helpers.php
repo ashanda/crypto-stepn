@@ -15,11 +15,14 @@
     use Illuminate\Support\Facades\Mail;
     use function PHPUnit\Framework\isEmpty;
     use Illuminate\Support\Facades\Log;
-   /**
-   * Write code on Method
-   *
-   * @return response()
-   */
+   
+
+  function holding_log_sum(){
+    $holding_balance = DB::table('holdin_wallets')
+                      ->where('uid',Auth::user()->uid)
+                      ->sum('wallet_balance');
+     return $holding_balance;               
+  }  
 
   function earn_debug($uid){
    $package_count = DB::table('user__packages')

@@ -111,6 +111,28 @@
 										</div>
 									</div>
 								</div>
+								<div class="col-md-6 col-sm-6 col-xs-12">
+									<div class="swiper-slide" role="group" aria-label="4 / 8">
+										<div class="card-bx stacked card">
+											<img src="images/card/card2.jpg" alt="">
+											<div class="card-info">
+												<p class="mb-1 text-white fs-14">Holding Balance</p>
+												<div class="d-flex justify-content-between">
+												
+													<h2 class="num-text text-white mb-5 font-w600">${{ holding_log_sum() }} </h2>
+													
+													
+													
+													<svg width="55" height="34" viewBox="0 0 55 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+														<circle cx="38.0091" cy="16.7788" r="16.7788" fill="white" fill-opacity="0.67"></circle>
+														<circle cx="17.4636" cy="16.7788" r="16.7788" fill="white" fill-opacity="0.67"></circle>
+													</svg>
+												</div>
+
+											</div>
+										</div>
+									</div>
+								</div>
 							</div>
 
 
@@ -143,7 +165,7 @@
 											<thead>
 												<tr>
 													<th>Amount</th>
-													<th>P2P ID</th>
+													<th>P2P/Crypto/Buy Package</th>
 													<th>Currency Type</th>
 													<th>Network</th>
 													<th>Wallet Address</th>

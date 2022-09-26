@@ -110,9 +110,9 @@ class BuypackageController extends Controller
                         $package_revenue = $request->package_value * 4;
                     }
                     if(user_package_count() == 0){
-                        $buy_package->package_value = $request->package_value+10;
+                        $buy_package->package_value = $request->package_value;
                     }else{
-                        $buy_package->package_value = $request->package_value+10;
+                        $buy_package->package_value = $request->package_value;
                     }
                     $buy_package->package_cat_id = $request->package_cat_id;
                     $buy_package->package_double_value = $package_revenue_double;
@@ -129,7 +129,17 @@ class BuypackageController extends Controller
                         'wallet_balance' => $old_wallet->wallet_balance - $buy_package->package_value,
                         'available_balance' => $old_wallet->wallet_balance - $buy_package->package_value
                         ]);
-                      
+                     
+                    DB::table('transections')->insert([
+                            'uid' => Auth::user()->uid,
+                            'fee' => 0,
+                            'amount' => $request->package_value,
+                            'p2p_id'=>'Buy package',
+                            'currency_type'=>'USDT',
+                            'network'=>'No',
+                            'wallet_address'=>'No',
+                            'status'=>2,
+                        ]);    
 
 
                 }else{
