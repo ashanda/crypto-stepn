@@ -1073,7 +1073,7 @@ function direct_commission_update_queries($user_packages_row,$current_row_uid,$n
 
 if($direct_commission != NULL){
   //echo $current_row_uid.'update ';
-  dd($user_packages_row);
+  
   $direct_commision_id= $direct_commission->id;
   $direct_commission_total = $direct_commission->direct_commission + $new_direct_commission;
   DB::table('direct__commissions')
