@@ -23,7 +23,7 @@
 						</div>
 					</div>
 					
-					{{ earn_debug(27) }}
+					
 
 					
 				</div>
