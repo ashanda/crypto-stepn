@@ -827,7 +827,7 @@ function wallet_total(){
   // all wallet commission
   function all_wallet_commision(){
     $all_wallet_commision = DB::table('wallets')->where('uid',Auth::user()->uid)->first();
-    
+   
     
     return $all_wallet_commision;
   }

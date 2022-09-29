@@ -84,6 +84,16 @@ class CreateNewUser implements CreatesNewUsers
                 'virtual_parent' => $vp,
                 'ref_s' => $input['ref_s'],
             ]);
+
+            DB::table('wallets')->insert([
+                'uid' => $userid,
+                'wallet_balance' => 0,
+                'available_balance' => 0,
+                'binary_balance' => 0,
+                'package_balance' => 0,
+                'direct_balance'  => 0,
+            ]);
+
            
             return $user;
             }
