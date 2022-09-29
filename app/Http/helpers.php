@@ -1023,8 +1023,9 @@ function validate_user_commissions( $current_row_uid,$new_direct_commission,$dir
  
   $balance_commission = $new_direct_commission;
  
-  $User_packages_details =  DB::table("user__packages")->select("id", "uid" ,"package_max_revenue","total","status")
-    ->where("uid", "=", $current_row_uid ,'AND','current_status','=',1)
+  $User_packages_details =  DB::table("user__packages")->select("id", "uid" ,"package_max_revenue","total","current_status")
+    ->where("uid", "=", $current_row_uid)
+    ->where('current_status','=',1)
     ->orderBy('id','asc')
     ->get();
    
