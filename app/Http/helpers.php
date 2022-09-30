@@ -17,6 +17,39 @@
     use Illuminate\Support\Facades\Log;
    
 
+
+  function holding_to_real_wallet($uid){
+
+    $holding_wallte_balance =  DB::table('holdin_wallets')
+                              ->where('uid','=',$uid)
+                              ->first();
+                           
+    if($holding_wallte_balance != null){
+      $real_wallet_balance = DB::table('wallets')
+      ->where('uid','=',$uid)
+      ->first();
+$now_wallete_blance = $real_wallet_balance->wallet_balance +  $holding_wallte_balance->wallet_balance;
+$now_available_blance = $real_wallet_balance->available_balance +  $holding_wallte_balance->available_balance;
+
+              $result_hold = DB::table('holdin_wallets')
+              ->where('uid', $uid)
+              ->update([
+                  'wallet_balance' => 0,
+                  'available_balance' => 0,
+              ]);
+
+              $result_real = DB::table('wallets')
+              ->where('uid', $uid)
+              ->update([
+                          'wallet_balance' => $now_wallete_blance,
+                          'available_balance' => $now_available_blance,
+                      ]); 
+
+    }                         
+                     
+
+  }
+
   function holding_log_sum(){
     $holding_balance = DB::table('holdin_wallets')
                       ->where('uid',Auth::user()->uid)

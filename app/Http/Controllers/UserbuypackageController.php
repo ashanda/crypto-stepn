@@ -87,9 +87,10 @@ class UserbuypackageController extends Controller
                 store_fee( $package->uid,$package_value+10);
                  
             }else{ 
-               
+                
                 buy_package_secound_time($user_package_row_id,$package_value,$package_id,$user_current_package[0]->id,$current_user,$package_cat_id);   
                 $package_value = $package->package_value;
+                holding_to_real_wallet($current_user);
                 store_fee( $package->uid,$package_value+10);
             }
 
