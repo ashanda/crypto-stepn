@@ -50,7 +50,7 @@ class HomeController extends Controller
         if($role==1){
 
             return view('admin.package_earn.package_earn')
-            ->with('success','successfully Tranfer');;
+            ->with('success','successfully Tranfer');
         }
         
 
