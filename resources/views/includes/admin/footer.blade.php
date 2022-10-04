@@ -97,6 +97,16 @@ Scripts
     $("#input2").val(value);
   });
 });
+$(document).ready(function() {
+    $('#example2').DataTable( {
+        dom: 'Bfrtip',
+        destroy: true,
+        searching: true,
+        buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print'
+        ]
+    } );
+} );
  </script>
 
 </body>

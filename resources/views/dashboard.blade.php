@@ -23,6 +23,12 @@
 									<h2 class="num-text text-white mb-2 font-w600">Left Chain</h2>
 								</div>
 								<h3 id="">Business Volume ${{ binary_commision_left()}}</h3>
+								@php
+									$user_package_count = user_package_count()
+								@endphp
+								@if ($user_package_count == 0)
+									
+								@else
 								<div class="d-flex">
 									<div class="text-white">
 										<span><input type="text" readonly id="copyTarget1" class="form-control" value="{{ url('/') }}/register/?ref={{ $user_data[0]->system_id }}&ref_s={{ 0 }}"></span>
@@ -32,6 +38,8 @@
 										<span class="alert alert-success" id="clickedMessage-1">Copied !</span>
 									</div>
 								</div>
+								@endif
+								
 							</div>
 						</div>
 					</div>
@@ -44,6 +52,9 @@
 									<h2 class="num-text text-white mb-2 font-w600">Right Chain</h2>
 								</div>
 								<h3 id="">Business Volume ${{ binary_commision_right() }}</h3>
+								@if ($user_package_count == 0)
+									
+								@else
 								<div class="d-flex">
 
 									<div class="text-white">
@@ -55,6 +66,7 @@
 										<span class="alert alert-success" id="clickedMessage-2">Copied !</span>
 									</div>
 								</div>
+								@endif
 							</div>
 						</div>
 					</div>
