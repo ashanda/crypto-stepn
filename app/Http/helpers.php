@@ -295,7 +295,7 @@ function direct_earn_log($user_id,$package_id,$earn){
     'package_id' => $package_id,
     'earn' => $earn,
   ]);
-  Log::notice($user_id.','.$earn.' - Direct Earn');
+ // Log::notice($user_id.','.$earn.' - Direct Earn');
 }
 function package_earn_log($user_id,$package_id,$earn){
 
@@ -1016,7 +1016,7 @@ function wallet_total(){
        
         
         $new_binary_commission = binary_commission_find($virtual_parentid,$package_value,$package_id,$package_cat_id);   
-        Log::info($virtual_parentid.','.$new_binary_commission.' - Binary Earn');
+        
 
        
         if (function_exists('validate_user_commissions')) {
@@ -1025,9 +1025,9 @@ function wallet_total(){
         
         
         
-        
-        
-     
+          
+      Log::debug($current_row_uid .' user list');
+          
       //echo $virtual_parentid.'/';
       //echo $direct_parent_dna.'/';
       if($current_row_uid == 2 ){
@@ -1424,16 +1424,34 @@ function binary_commission_update_query($ref_s,$User_binary_details,$virtual_par
         
         $current_right_balance = $current_right_balance - $current_left_balance;
         binary_earn_log($user_id,1,$current_left_balance);
-        
-        DB::table('user__packages')
+        $current_package_total = $User_packages_details[0]->total + $current_left_balance;
+
+        if($current_package_total > $User_packages_details[0]->total ){
+          $now_balance = $User_packages_details[0]->package_max_revenue - $User_packages_details[0]->total;
+          $hold_balance = $current_left_balance - $now_balance;
+          DB::table('user__packages')
         ->where('id', $User_packages_details[0]->id)
-        ->update(array('total'=>$User_packages_details[0]->total+($current_left_balance)));	
-        wallet_update_binary($virtual_parentid,$current_left_balance);
+        ->update(array('total'=>$User_packages_details[0]->total+($now_balance)));	
+         wallet_update_binary($virtual_parentid,$now_balance);
         
-        $current_left_balance = 0;
+        $current_left_balance = 0 ;
+        }elseif($current_package_total < $User_packages_details[0]->total ){
+          DB::table('user__packages')
+          ->where('id', $User_packages_details[0]->id)
+          ->update(array('total'=>$User_packages_details[0]->total+($current_left_balance)));	
+           wallet_update_binary($virtual_parentid,$current_left_balance);
+        $current_left_balance = 0 ;
+        }else{
+          DB::table('user__packages')
+          ->where('id', $User_packages_details[0]->id)
+          ->update(array('total'=>$User_packages_details[0]->total+($current_left_balance)));	
+           wallet_update_binary($virtual_parentid,$current_left_balance);
+        $current_left_balance = 0 ;
+        }
+        
         
         //wallete update < right binary value
-       
+        //Log::info($User_packages_details[0]->id.' '.$User_packages_details[0]->total);
         DB::table('user_binary_commissions')
         ->where('id', $id)
         ->update(array('current_left_balance' => $current_left_balance, 'current_right_balance' => $current_right_balance,'total'=>($total+($current_right_balance))));
@@ -1441,13 +1459,37 @@ function binary_commission_update_query($ref_s,$User_binary_details,$virtual_par
       }else if($current_left_balance > $current_right_balance){
         $current_left_balance = $current_left_balance - $current_right_balance;
         binary_earn_log($user_id,1,$current_right_balance);
-        wallet_update_binary($virtual_parentid,$current_right_balance);
-       
-        $current_right_balance = 0;
-        DB::table('user__packages')
+        
+        $current_package_total = $User_packages_details[0]->total + $current_right_balance;
+        //Log::info($current_package_total);
+        if($current_package_total > $User_packages_details[0]->total ){
+          $now_balance = $User_packages_details[0]->package_max_revenue - $User_packages_details[0]->total;
+          $hold_balance = $current_right_balance - $now_balance;
+          DB::table('user__packages')
         ->where('id', $User_packages_details[0]->id)
-        ->update(array('total'=>$User_packages_details[0]->total+($current_right_balance)));
-
+        ->update(array('total'=>$User_packages_details[0]->total+($current_right_balance)));	
+         wallet_update_binary($virtual_parentid,$current_right_balance);
+         
+         $current_right_balance = 0 ;
+        }elseif($current_package_total < $User_packages_details[0]->total ){
+          
+          DB::table('user__packages')
+          ->where('id', $User_packages_details[0]->id)
+          ->update(array('total'=>$User_packages_details[0]->total+($current_right_balance)));	
+           wallet_update_binary($virtual_parentid,$current_right_balance);
+           $current_right_balance = 0 ;
+        }else{
+          DB::table('user__packages')
+          ->where('id', $User_packages_details[0]->id)
+          ->update(array('total'=>$User_packages_details[0]->total+($current_right_balance)));	
+           wallet_update_binary($virtual_parentid,$current_right_balance);
+           $current_right_balance = 0 ;
+          
+        }
+        
+       
+     
+        Log::info($User_packages_details[0]->id.' '.$User_packages_details[0]->total);
         DB::table('user_binary_commissions')
         ->where('id', $id)
         ->update(array('current_left_balance' => $current_left_balance, 'current_right_balance' => $current_right_balance,'total'=>($total+($current_left_balance))));
