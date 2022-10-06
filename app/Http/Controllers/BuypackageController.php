@@ -126,8 +126,8 @@ class BuypackageController extends Controller
                    
                     wallet::where('uid', $buy_package->uid)
                     ->update([
-                        'wallet_balance' => $old_wallet->wallet_balance - $buy_package->package_value,
-                        'available_balance' => $old_wallet->wallet_balance - $buy_package->package_value
+                        'wallet_balance' => $old_wallet->wallet_balance - ($buy_package->package_value + 10),
+                        'available_balance' => $old_wallet->wallet_balance - ($buy_package->package_value + 10)
                         ]);
                      
                     DB::table('transections')->insert([
@@ -571,7 +571,7 @@ class BuypackageController extends Controller
                 </table>
                 </body>
             </html>' ;
-            globle_send_mail($html);
+           // globle_send_mail($html);
             Alert::Alert('Success', 'Package has been buying successfully.')->persistent(true,false);
             return redirect()->route('buy_package.index');    
         

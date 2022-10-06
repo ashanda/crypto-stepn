@@ -35,9 +35,12 @@ class ReportController extends Controller
             $data =DB::table("users")
             ->leftJoin("kycs", function($join){
                 $join->on("users.uid", "=", "kycs.uid");
+                
             })
+            
             ->join('user__parents', 'users.uid', '=', 'user__parents.uid')
-            ->select("users.uid","users.system_id","users.fname", "users.lname", "users.password", "users.email_verified_at", "users.status","user__parents.*","kycs.phone_number")
+            ->select("users.uid","users.system_id","users.fname", "users.lname", "users.email","users.password", "users.email_verified_at", "users.status","user__parents.*","kycs.phone_number")
+            
             ->get();
             
                     

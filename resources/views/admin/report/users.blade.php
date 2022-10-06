@@ -24,9 +24,11 @@
                         <table id="example2" class="display" style="width:100%">
                             <thead>
                                 <tr>
+                                    <th>#</th>
                                     <th>S.No</th>
                                     <th>Name</th>
                                     <th>Phone</th>
+                                    <th>email</th>
                                     <th>Sponser Name</th>
                                     <th>Sponser phone</th>
                                     <th>Package status</th>
@@ -38,14 +40,16 @@
                                
                                 @foreach ($data as $kyc)
                 <tr>
+                <td>{{ $kyc->uid }}</td>
                 <td>{{ $kyc->system_id }}</td>
                 <td>{{ $kyc->fname .' '. $kyc->lname}}</td>
                 @if ($kyc->phone_number == null)
                 <td><span class="badge light badge-danger">{{ 'Kyc Not Submit' }}</span></td>
                 @else
+                
                 <td>{{ $kyc->phone_number }}</td> 
                 @endif
-                
+                <td>{{ $kyc->email }}</td> 
                 
                 @php
                 $get_parent = get_parent_name_email($kyc->parent_id);

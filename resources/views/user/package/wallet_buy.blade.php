@@ -57,7 +57,7 @@
                                 
                                 $package_value_convert = (float)$package_value+10;
                                  if(left_right_side_direct(Auth::user()->uid) == 0){
-                                    $available_balance = wallet_available_balance_sum() - binary_commision();
+                                    $available_balance = wallet_available_balance_sum();
                                  }else{
                                     $available_balance = wallet_available_balance_sum();
                                  }
