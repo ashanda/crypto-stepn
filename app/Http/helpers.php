@@ -945,7 +945,8 @@ function wallet_total(){
       $parent_id  =  $sub_level_parent[0]->parent_id;
       
       $ref_s = $sub_level_parent[0]->ref_s; 
-
+      Log::debug($parent_id .' parent');
+      Log::debug($current_row_uid  .' row uid');
       // First Time Assign DNA Parent
       if($direct_parent_dna == -1){
         $direct_parent_dna = $parent_id; //3
@@ -988,7 +989,7 @@ function wallet_total(){
             break;
       } 
       
-      Log::debug($direct_parent_dna .' direct');
+      
       $parent_user_level++;
       
       // DNA User Update
