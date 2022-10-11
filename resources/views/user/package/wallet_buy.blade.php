@@ -63,7 +63,7 @@
                                  }
                                 @endphp
                                 
-                                @if ( $package_value_convert < $available_balance)
+                                @if ( $package_value_convert <= $available_balance)
                                 <button type="submit" class="btn btn-primary ml-3">Buy Package</button>
                                 
                                 @else

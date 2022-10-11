@@ -969,22 +969,22 @@ function wallet_total(){
                 
              $new_direct_commission = $package_value * $commission_ratio[0]->first_time_direct;
              
-             validate_user_commissions( $parent_id,$new_direct_commission , $direct_commission_count,$package_value );               
+             validate_user_commissions( $current_row_uid,$new_direct_commission , $direct_commission_count,$package_value );               
             break;
         case 1:    
                
             $new_direct_commission = $package_value * $commission_ratio[0]->first_time_direct_01;
-            validate_user_commissions( $parent_id,$new_direct_commission , $direct_commission_count,$package_value );
+            validate_user_commissions( $current_row_uid,$new_direct_commission , $direct_commission_count,$package_value );
              break;
         case 2:  
           
             $new_direct_commission = $package_value * $commission_ratio[0]->first_time_direct_02;
-            validate_user_commissions( $parent_id,$new_direct_commission , $direct_commission_count,$package_value );
+            validate_user_commissions( $current_row_uid,$new_direct_commission , $direct_commission_count,$package_value );
             break;	
         case 3:     
                    
             $new_direct_commission = $package_value * $commission_ratio[0]->first_time_direct_03;
-            validate_user_commissions( $parent_id,$new_direct_commission , $direct_commission_count,$package_value );
+            validate_user_commissions( $current_row_uid,$new_direct_commission , $direct_commission_count,$package_value );
             break;
       } 
       
